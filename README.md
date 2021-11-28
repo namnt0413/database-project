@@ -21,3 +21,8 @@ hoặc chỉ cần
 ```
 git push
 ```
+
+- Để đồng bộ code từ github về máy :
+```
+git pull
+```
