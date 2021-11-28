@@ -15,5 +15,9 @@ git clone https://github.com/nduongw/database-project.git
 ```
 git add .
 git commit -m "điền nội dung mình đã thay đổi vào đây nhé"
-git push origin main
+git push origin main 
+```
+hoặc chỉ cần 
+```
+git push
 ```
