@@ -1,5 +1,0 @@
-Thêm các hàm : 
-	- connect_db.php : kết nối vs csdl ở server
-	- login,logout,register.php : chức năng đăng nhập, đăng xuất, đăng ký
-	- change_password.php: đổi mật khẩu
-	- function.php : hàm xử lý code chung cho toàn bộ project( hiện tại là xử lý ngày,tháng)

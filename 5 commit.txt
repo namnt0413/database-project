@@ -1,0 +1,3 @@
+-	Thêm thư mục Admin (chưa CSS )
+-	Trong admin có các hàm: - user.php : quản lý danh sách user
+							- create_user,edit_user,delete_user : thêm sửa xóa tài khoản user
