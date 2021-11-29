@@ -38,10 +38,34 @@
     
             <div class="icons">
                 <div id="search-btn" class="fas fa-search"></div>
+        
+        <!-- KIEM TRA DANG NHAP -->
+        <?php
+        session_start();
+        include './connect_db.php';
+        include './function.php';
+        if (empty($_SESSION['current_user'])) { 
+            unset($_SESSION['cart']);   // xoa phien gio hang vua nap len csdl di
+          ?>
+                <a href="login.php" id="login-btn" class="fas fa-user" style="font-size: 15px;">Đăng nhập/Đăng ký</a>
+
+       <!-- NEU NHU DANG NHAP THANH CONG -->
+       <?php
+        } else {
+            $currentUser = $_SESSION['current_user'];
+        ?>
                 <a href="#" class="fas fa-heart"></a>
                 <a href="#" class="fas fa-shopping-cart"></a>
-                <div id="login-btn" class="fas fa-user"></div>
-            </div>
+                <a href="#" id="login-btn" class="fas fa-user"></a>
+                <div id="user">
+                    <a href="#" id="username" ><?= $currentUser['fullname'] ?></a>
+                    <ul class="subnav">
+                            <a href="change_password.php">Đổi mật khẩu</a>
+                            <a href="logout.php">Đăng xuất</a>
+                    </ul>
+                </div>
+        <?php } ?>  <!-- end else -->
+            </div>          <!-- end icon -->
     
         </div>
     
@@ -69,7 +93,7 @@
         <a href="#blogs" class="fas fa-blog"></a>
     </nav>
 
-    <!-- login form  -->
+    <!-- login form                             TAM THOI CHUA LAM 
     <div class="login-form-container">
     
         <div id="close-login-btn" class="fas fa-times"></div>
@@ -89,7 +113,7 @@
             <p>don't have an account ? <a href="#">create one</a></p>
         </form>
     
-    </div>
+    </div>-->
 
     <!-- home section starts  -->
     
