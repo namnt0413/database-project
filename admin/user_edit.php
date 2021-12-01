@@ -1,17 +1,26 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>Đổi thông tin thành viên</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php
+    include 'header.php';
+     ?>
+   <body>      
+        <?php if (empty($_SESSION['current_user'])) { ?>
+            <a href="login.php">Đăng nhập để vào trang Admin</a>
+            <?php
+         } else {
+        
+        include 'menu_sidebar.php';
+        $currentUser = $_SESSION['current_user'];
+        ?>
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+
+    <?php 
+         
+        include 'admin_navbar.php';
+    ?>  
         <style>
             .box-content{
-                margin: 0 auto;
+                margin: 74px auto 0;
                 width: 800px;
                 border: 1px solid #ccc;
                 text-align: center;
@@ -25,21 +34,22 @@ and open the template in the editor.
                 margin: 5px 0;
             }
         </style>
-    </head>
-    <body>
-        <?php
-        include '../connect_db.php';
-        include '../function.php';
+
+    <?php 
+        //include 'admin_navbar.php';
         $error = false;
         if (isset($_GET['action']) && $_GET['action'] == 'edit') {
-            if (isset($_POST['user_id']) && !empty($_POST['user_id']) && isset($_POST['password']) && !empty($_POST['password'])) {
+            if (isset($_POST['id']) && !empty($_POST['id']) && isset($_POST['password']) && !empty($_POST['password'])) {
                 // var_dump($_POST['password']);exit;
                 $birthday = $_POST['birthday'];
                 $check = validateDateTime($birthday);
                 if ($check) {
                      $birthday = strtotime($birthday);
                 }
-                $result = mysqli_query($con, "UPDATE `users` SET `password` = MD5('" . $_POST['password'] . "'), `fullname` = '" . $_POST['fullname'] ."' , `birthday` = " . $birthday ." , `status` = " . $_POST['status'] . ", `last_updated`=" . time() . " WHERE `users`.`id` = " . $_POST['user_id'] . ";");
+
+                $result = mysqli_query($con, "UPDATE `users` SET `password` = MD5('" . $_POST['password'] . "'), `fullname` = '" . $_POST['fullname'] ."' ,
+                 `birthday` = " . $birthday ." , `phone` = '" . $_POST['phone'] ."' , `address` = '" . $_POST['address'] ."' ,
+                  `status` = " . $_POST['status'] . ", `last_updated`=" . time() . " WHERE `users`.`id` = " . $_POST['id'] . ";");
                 if (!$result) {
                     $error = "Không thể cập nhật tài khoản";
                 }
@@ -60,7 +70,7 @@ and open the template in the editor.
             <?php } else { ?>
                 <div id="edit-notify" class="box-content">
                     <h1>Vui lòng nhập đủ thông tin để sửa tài khoản</h1>
-                    <a href="./edit_user.php?id=<?= $_POST['user_id'] ?>">Quay lại sửa tài khoản</a>
+                    <a href="./user_edit.php?id=<?= $_POST['id'] ?>">Quay lại sửa tài khoản</a>
                 </div>
             <?php
             }
@@ -74,26 +84,34 @@ and open the template in the editor.
                 ?>
                 <div id="edit_user" class="box-content">
                     <h1>Sửa tài khoản "<?= $user['username'] ?>"</h1>
-                    <form action="./edit_user.php?action=edit" method="Post" autocomplete="off">
-                        <label>Password</label></br>
-                        <input type="hidden" name="user_id" value="<?= $user['id'] ?>" />
+                    <form action="./user_edit.php?action=edit" method="Post" autocomplete="off">
+                        <label>Mật khẩu mới</label></br>
+                        <input type="hidden" name="id" value="<?= $user['id'] ?>" />
                         <input type="password" name="password" value="" />
-                        <label>Ho va ten</label></br>
-                        <input type="text" name="fullname" value="" />
-                        <label>Ngay thang nam sinh</label></br>
-                        <input type="text" name="birthday" value="" />
+                        <label>Họ và tên</label></br>
+                        <input type="text" name="fullname" value="<?= (!empty($user) ? $user['fullname'] : "") ?>" />
+                        <label>Ngày tháng năm sinh</label></br>
+                        <input type="text" name="birthday" value="<?= (!empty($user) ? $user['birthday'] : "") ?>" />
+                        <label>Số điện thoại</label></br>
+                        <input type="text" name="phone" value="<?= (!empty($user) ? $user['phone'] : "") ?>" />
+                        <label>Địa chỉ</label></br>
+                        <input type="text" name="address" value="<?= (!empty($user) ? $user['address'] : "") ?>" />
 
                         <select name="status">
                             <option <?php if (!empty($user['status'])) { ?> selected <?php } ?> value="1">Kích hoạt</option>
                             <option <?php if (empty($user['status'])) { ?> selected <?php } ?>  value="0">Block</option>
                         </select>
                         <br><br>
-                        <input type="submit" value="Edit" />
+                        <input class="btn-success" type="submit" value=" Chỉnh sửa " />
                     </form>
                 </div>
             <?php
             }
         }
         ?>
+    
+    </div> <!-- end container  -->
+       
+    <?php } ?>   <!-- end else -->
     </body>
 </html>

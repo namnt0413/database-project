@@ -41,7 +41,7 @@ and open the template in the editor.
                 $check = validateDateTime($birthday);   // su dung ham validateDateTime trong function.php
                 if ($check) {
                     $birthday = strtotime($birthday);
-                    $result = mysqli_query($con, "INSERT INTO `users` (`fullname`,`username`, `password`, `birthday`, `status`, `created_time`, `last_updated`) VALUES ('" . $_POST['fullname'] . "', '" . $_POST['username'] . "', MD5('" . $_POST['password'] . "'), '" . $birthday . "', 1, " . time() . ", '" . time() . "');");
+                    $result = mysqli_query($con, "INSERT INTO `users` (`fullname`,`username`, `password`, `birthday`, `phone` , `address` , `status`, `created_time`, `last_updated`) VALUES ('" . $_POST['fullname'] . "', '" . $_POST['username'] . "', MD5('" . $_POST['password'] . "'), '" . $birthday . "','" . $_POST['phone'] . "','" . $_POST['address'] . "', 1, " . time() . ", '" . time() . "');");
                     if (!$result) {
                         if (strpos(mysqli_error($con), "Duplicate entry") !== FALSE) {
                             $error = "Tài khoản đã tồn tại. Bạn vui lòng chọn tài khoản khác.";
@@ -87,6 +87,10 @@ and open the template in the editor.
                     <input type="text" name="fullname" value="" /><br/>
                     <label>Ngày sinh (DD-MM-YYYY)</label></br>
                     <input type="text" name="birthday" value="" /><br/>
+                    <label>Số điện thoại</label></br>
+                    <input type="text" name="phone" value="" /><br/>
+                    <label>Địa chỉ</label></br>
+                    <input type="text" name="address" value="" /><br/>
                     </br>
                     </br>
                     <input type="submit" value="Đăng ký"/>

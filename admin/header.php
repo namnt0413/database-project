@@ -2,9 +2,9 @@
 <html lang="en">
 
 <?php   
-    session_start();    // Mỗi khi gọi hàm header thì sẽ bắt đầu 1 phiên mới
     include '../connect_db.php';
     include '../function.php';
+    session_start();    // Mỗi khi gọi hàm header thì sẽ bắt đầu 1 phiên mới
 ?>
 <head>
     <!-- Required meta tags-->
@@ -15,7 +15,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Dashboard</title>
+    <title>Trang quản lý</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">

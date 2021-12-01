@@ -1,7 +1,7 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="#">
+                <a href="index.php">
                     <img src="images/icon/logo.png" alt="Cool Admin" />
                 </a>
             </div>
@@ -31,7 +31,7 @@
                                 <i class="fas fa-chart-bar"></i>Biểu đồ</a>
                         </li>
                         <li>
-                            <a href="table.php">
+                            <a href="user.php">
                                 <i class="fas fa-user"></i>Quản lý thành viên</a>
                         </li>
                         <li>

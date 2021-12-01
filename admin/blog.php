@@ -1,14 +1,24 @@
 <?php
     include 'header.php';
-    include 'menu_sidebar.php';
-?>        
-    <body>   
+     ?>
+   <body>      
+        <?php if (empty($_SESSION['current_user'])) { ?>
+            <a href="login.php">Đăng nhập để vào trang Admin</a>
+            <?php
+         } else {
+        
+        include 'menu_sidebar.php';
+        $currentUser = $_SESSION['current_user'];
+        ?>
+
         <!-- PAGE CONTAINER-->
         <div class="page-container">
 
     <?php 
+         
         include 'admin_navbar.php';
     ?>
+        <!-- MAIN CONTENT -->
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
@@ -159,6 +169,8 @@
 
     <!-- Main JS-->
     <script src="js/main.js"></script>
+
+    <?php } ?>   <!-- end else -->
 
 </body>
 

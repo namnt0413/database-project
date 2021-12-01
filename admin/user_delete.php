@@ -1,18 +1,26 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>Xoa tài khoản</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php
+    include 'header.php';
+     ?>
+   <body>      
+        <?php if (empty($_SESSION['current_user'])) { ?>
+            <a href="login.php">Đăng nhập để vào trang Admin</a>
+            <?php
+         } else {
+        
+        include 'menu_sidebar.php';
+        $currentUser = $_SESSION['current_user'];
+        ?>
 
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+
+    <?php 
+         
+        include 'admin_navbar.php';
+    ?>
         <style>
             .box-content{
-                margin: 0 auto;
+                margin: 76px auto 0;
                 width: 800px;
                 border: 1px solid #ccc;
                 text-align: center;
@@ -26,8 +34,6 @@ and open the template in the editor.
                 margin: 5px 0;
             }
         </style>
-    </head>
-    <body>
         <?php
         $error = false;
         if (isset($_GET['id']) && !empty($_GET['id'])) {
@@ -51,5 +57,9 @@ and open the template in the editor.
                 </div>
             <?php } ?>
         <?php } ?>
+
+            </div><!-- end container -->
+            
+        <?php } ?>   <!-- end else -->
     </body>
 </html>
