@@ -152,41 +152,35 @@ section{
 }
 
 /* Phan hien thi ten user, doi mat khau, dang xuat */
-.header-1 .icons #username {
+.icons .user_navbar {
     font-size:15px;
-    max-width: 150px;
-    top: 100%;
+    max-width: 300px;
+    list-style: none;
     margin-right: 15px;
     text-align: center;
-}   
- 
-.header-1 .icons #user {
-    display: inline-block;
-    float: right;
-    position: relative;
-    margin-bottom: 10px;
-}
 
-.header-1 .icons #user ul{
-    display: none;
+    display:flex;
+}   
+.sub_user_nav {
     list-style: none;
     min-width: 160px;
-    top: 50px;
+    top: 30px;
     left: 0px; /* top luc nao cung cach hoan toan the cha100% con left luc nao cung sat */
     position: absolute;
     background-color:rgb(255, 255, 255);
     box-shadow: 0 0 20px rgba(19, 10, 10);
+    /* display: none; */
 }
-
-.header-1 .icons #user:hover ul {
+.user_navbar #has_subnav:hover .sub_user_nav {
     display: block;
 }
 
-.icons #user ul a{
-    font-size:15px;
-    text-align: center;
-    padding:15px;
-    display:block;
+li#has_subnav {
+    position: relative;
+    width: 150px;
+}
+.sub_user_nav li{
+    font-size: 15px;
 }
 
 /*end  Phan hien thi ten user, doi mat khau, dang xuat */

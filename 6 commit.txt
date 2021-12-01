@@ -1,2 +1,0 @@
-- Sửa lại tên database từ database-project thành database_project ( không bị lỗi ở dấu - ) + sửa lại tên như thế trong hàm connect_db
-- Thêm Template admin mẫu vào trang admin( cho đẹp:v)

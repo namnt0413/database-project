@@ -35,19 +35,19 @@
                                 <i class="fas fa-user"></i>Quản lý thành viên</a>
                         </li>
                         <li>
-                            <a href="form.php">
+                            <a href="book.php">
                                 <i class="fas fa-book"></i>Quản lý sản phẩm</a>
                         </li>
                         <li>
-                            <a href="calendar.php">
+                            <a href="order.php">
                                 <i class="fas fa-shopping-cart"></i>Quản lý đơn hàng</a>
                         </li>
                         <li>
-                            <a href="map.php">
+                            <a href="blog.php">
                                 <i class="fas fa-newspaper"></i>Quản lý danh mục tin</a>
                         </li>
                         <li>
-                            <a href="map.php">
+                            <a href="review.php">
                             <i class="fas fa-star"></i>Quản lý Reviews</a>
                         </li>
                         <li class="has-sub">

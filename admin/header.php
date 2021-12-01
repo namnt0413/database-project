@@ -2,6 +2,7 @@
 <html lang="en">
 
 <?php   
+    session_start();    // Mỗi khi gọi hàm header thì sẽ bắt đầu 1 phiên mới
     include '../connect_db.php';
     include '../function.php';
 ?>
@@ -36,5 +37,4 @@
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
-
 </head>

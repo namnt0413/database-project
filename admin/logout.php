@@ -34,8 +34,8 @@ and open the template in the editor.
         ?>
         <div id="user_logout" class="box-content">
             <h1>Đăng xuất tài khoản thành công</h1>
-            <a href="./index.php">Tro ve trang chu</a><br>
-            <a href="./login.php">Đăng nhập lại</a>
+            <a href="../index.php">Trở về trang chủ</a><br>
+            <a href="./login.php">Đăng nhập lại vào trang Admin</a>
         </div>
     </body>
 </html>
