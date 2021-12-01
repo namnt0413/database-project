@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2021 at 05:45 AM
+-- Generation Time: Dec 01, 2021 at 05:34 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -117,6 +117,8 @@ CREATE TABLE `users` (
   `password` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fullname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `birthday` int(11) DEFAULT NULL,
+  `phone` int(11) NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `last_updated` int(11) NOT NULL,
   `created_time` int(11) NOT NULL
@@ -126,11 +128,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `fullname`, `birthday`, `status`, `last_updated`, `created_time`) VALUES
-(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'administrator', 0, 1, 1637421508, 0),
-(2, 'namnt0413', 'f7a174303deddf385177363f75650ad0', 'Nguyễn Tuấn Nam', 987112800, 1, 1638119155, 1638119155),
-(3, 'test', 'e10adc3949ba59abbe56e057f20f883e', 'Tester', 951778800, 1, 1638120004, 1638120004),
-(4, 'test2', 'faa8e9ec927099f17d29092bb32cb1bb', 'Tester 2 ', 1582153200, 1, 1638120271, 1638120271);
+INSERT INTO `users` (`id`, `username`, `password`, `fullname`, `birthday`, `phone`, `address`, `status`, `last_updated`, `created_time`) VALUES
+(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'administrator', 0, 0, '', 1, 1637421508, 0),
+(2, 'namnt0413', 'f7a174303deddf385177363f75650ad0', 'Nguyễn Tuấn Nam', 987112800, 367099786, 'Thanh Tri, Ha Noi', 1, 1638119155, 1638119155),
+(3, 'test', 'e10adc3949ba59abbe56e057f20f883e', 'Tester', 951778800, 123456789, 'DH Bach Khoa, Hai Ba Trung, Ha Noi', 1, 1638120004, 1638120004),
+(4, 'test2', 'faa8e9ec927099f17d29092bb32cb1bb', 'Tester 2 ', 1582153200, 0, '', 1, 1638120271, 1638120271);
 
 --
 -- Indexes for dumped tables

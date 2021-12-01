@@ -94,9 +94,8 @@ and open the template in the editor.
         } else {
             $currentUser = $_SESSION['current_user'];
             // include './index.php';
-            ?>
-            <a href="index.php">quay ve trang chu</a>
-        <?php } ?>             <!-- end else -->
+            header('Location: index.php');exit; ?>
+        <?php  } ?>             <!-- end else -->
 
         <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
