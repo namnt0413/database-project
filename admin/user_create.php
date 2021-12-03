@@ -33,6 +33,7 @@
             #create_user form input{
                 margin: 5px 0;
             }
+            
         </style>
         <?php
         $error = false;
@@ -76,7 +77,7 @@
                     <label>Password</label></br>
                     <input type="password" name="password" value="" />
                     <br><br>
-                    <input type="submit" value="Create" />
+                    <input class="btn-success" style="padding: 10px;" type="submit" value="Tạo tài khoản" />
                 </form> 
             </div>
         <?php } ?>

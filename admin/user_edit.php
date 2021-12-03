@@ -102,7 +102,7 @@
                             <option <?php if (empty($user['status'])) { ?> selected <?php } ?>  value="0">Block</option>
                         </select>
                         <br><br>
-                        <input class="btn-success" type="submit" value=" Chỉnh sửa " />
+                        <input class="btn-success" style="padding: 10px" type="submit" value=" Chỉnh sửa " />
                     </form>
                 </div>
             <?php

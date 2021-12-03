@@ -1,7 +1,8 @@
 <?php
     include 'header.php';
      ?>
-   <body>      
+   <body class="animsition">     
+    <div class="page-wrapper"> 
         <?php if (empty($_SESSION['current_user'])) { ?>
             <a href="login.php">Đăng nhập để vào trang Admin</a>
             <?php
@@ -560,10 +561,10 @@
                 </div>
             </div>
             <!-- END MAIN CONTENT-->
-            <!-- END PAGE CONTAINER-->
-        </div>
+       
+        </div>     <!-- END PAGE CONTAINER-->
 
-    </div>
+    </div><!-- end page-wrapper -->
 
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>
