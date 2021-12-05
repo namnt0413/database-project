@@ -1,4 +1,0 @@
-TRANG CHỦ :
-- Đổi tên featured.php về book.php
-- Làm qua frontend cho sản phẩm : sửa file book.php và thêm book.css, book.js
-
