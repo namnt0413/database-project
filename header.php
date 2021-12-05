@@ -81,7 +81,7 @@
                 <a href="./admin/index.php">Admin</a>
                 <?php } ?>
                 <a href="index.php">home</a>
-                <a href="featured.php">featured</a>
+                <a href="book.php">featured</a>
                 <a href="reviews.php">reviews</a>
                 <a href="blogs.php">blogs</a>
                 <a href="contact.php">contact</a>
@@ -101,7 +101,7 @@
         <a href="./admin/index.php" class="fas fa-user-cog"></a>
         <?php } ?>
         <a href="#home" class="fas fa-home"></a>
-        <a href="#featured" class="fas fa-list"></a>
+        <a href="#book" class="fas fa-list"></a>
         <a href="#arrivals" class="fas fa-tags"></a>
         <a href="#reviews" class="fas fa-comments"></a>
         <a href="#blogs" class="fas fa-blog"></a>

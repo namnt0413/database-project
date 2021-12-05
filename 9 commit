@@ -1,7 +1,0 @@
-TRANG ADMIN :
--   Fix lại 1 chút CSS ở phần user
--   Fix và thêm lại hàm responsive cho mobile vào menu_sidebar
-
-TRANG CHỦ :
-- Thêm vào thanh Menu ở header 1 chức năng nữa là Admin-để link tới trang Admin nếu user đăng nhập vào là admin
-- Tạo file header.php : chứa phần header của chung tất cả các trang khác ( chuyển trang không cần phải gọi lại header nữa)
