@@ -38,7 +38,7 @@
         $error = false;
         if (isset($_GET['id']) && !empty($_GET['id'])) {
             include '../connect_db.php';
-            $result = mysqli_query($con, "DELETE FROM `users` WHERE `id` = " . $_GET['id']);
+            $result = mysqli_query($con, "DELETE FROM `customers` WHERE `id` = " . $_GET['id']);
             if (!$result) {
                 $error = "Không thể xóa tài khoản.";
             }

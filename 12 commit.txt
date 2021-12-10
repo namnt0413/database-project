@@ -1,0 +1,7 @@
+
+-   Cập nhật lại Database đã được nhóm và thầy kiểm tra, thống nhất
+
+TRANG ADMIN và TRANG WEB 
+-   Đồng bộ lại code theo db thống nhất
+
+ 

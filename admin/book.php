@@ -17,9 +17,10 @@
     <?php  
         include 'admin_navbar.php';
     
-        $books = mysqli_query($con, "SELECT books.*,authors.fullname AS author 
-                                    FROM `books`  INNER JOIN `authors` ON books.author_id = authors.id
-                                    ORDER BY `id` DESC " );
+        $books = mysqli_query($con, "SELECT books.*,authors.first_name,authors.last_name
+                                    FROM `books_authors`  INNER JOIN `books` ON books.id = books_authors.book_id
+                                                          INNER JOIN `authors` ON authors.id = books_authors.author_id 
+                                    ORDER BY `id` ASC " );
     
 
 
@@ -109,7 +110,7 @@
                                                 <td>
                                                     <img style="width: 60px;height: 80px;" src="../<?= $row['image'] ?>" alt="<?= $row['tittle'] ?>" title="<?= $row['tittle']?>">
                                                 </td>
-                                                <td class="desc"><a href=""><?=$row['author']?></a></td>
+                                                <td class="desc"><a href=""><?= $row['first_name']." ".$row['last_name'] ?></a></td>
                                                 <td><?= date('d/m/Y H:i', $row['last_updated'])?></td>
                                                 <td>
                                                     <?php if ($row['quantity'] > 0) { ?>

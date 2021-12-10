@@ -128,7 +128,7 @@
                                             <img src="images/icon/avatar-01.jpg" alt="image" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#"><?= $currentUser['fullname']?></a>
+                                            <a class="js-acc-btn" href="#"><?= $currentUser['last_name']?></a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
@@ -139,7 +139,8 @@
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#"><?= $currentUser['fullname']?></a>
+                                                        <a href="#"><?= $currentUser['first_name']?></a>
+                                                        <a href="#"><?= $currentUser['last_name']?></a>
                                                     </h5>
                                                     <span class="email">Admin@example.com</span>
                                                 </div>

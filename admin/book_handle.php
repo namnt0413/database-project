@@ -75,12 +75,21 @@
                     if (!isset($error)) {
                         if ($_GET['action'] == 'edit' && !empty($_GET['id'])) { 
                             //Cập nhật lại sản phẩm
-                            $result = mysqli_query($con, "UPDATE `books` SET `tittle` = '" . $_POST['tittle'] . "', `quantity` = '" . $_POST['quantity'] . "' ,`image` =  '" . $image . "', `price` = " . str_replace('.', '', $_POST['price']) . ", `content` = '" . $_POST['content'] . "', `last_updated` = " . time() . " WHERE `books`.`id` = " . $_GET['id']);
+                            $result = mysqli_query($con, "UPDATE `books` SET `tittle` = '" . $_POST['tittle'] . "', `quantity` = '" . $_POST['quantity'] . "' ,`image` =  '" . $image . "',
+                             `price` = " . str_replace('.', '', $_POST['price']) . ", `content` = '" . $_POST['content'] . "', `last_updated` = " . time() . " WHERE `books`.`id` = " . $_GET['id']);
+                           $result2 = mysqli_query($con, "UPDATE `books_authors` SET `author_id` = '" . $_POST['author_id'] . "' WHERE `books_authors`.`book_id` = " . $_GET['id']);
                         } else { 
                             //Thêm sản phẩm hoac copy san pham
-                            $result = mysqli_query($con, "INSERT INTO `books` (`id`, `tittle`, `author_id` , `quantity` , `image`, `price`, `content`, `created_time`, `last_updated`) 
-                            VALUES (NULL, '" . $_POST['tittle'] . "', '" . $_POST['author_id'] . "' , '" . $_POST['quantity'] . "' , '" . $image . "', '" . str_replace('.', '', $_POST['price']) . "', '" . $_POST['content'] . "', " . time() . ", " . time() . ");");
-                        
+                            $result = mysqli_query($con, "INSERT INTO `books` (`id`, `tittle` , `quantity` , `image`, `price`, `content`, `created_date`, `last_updated`) 
+                            VALUES (NULL, '" . $_POST['tittle'] . "', '" . $_POST['quantity'] . "' , '" . $image . "',
+                             '" . str_replace('.', '', $_POST['price']) . "', '" . $_POST['content'] . "', " . time() . ", " . time() . ");");
+                            
+                            // lay ra id sa'ch lo'n nhat chinh la id cua sach mi`nh vu`a tao 
+                            $book_add = mysqli_query($con, "SELECT MAX(id) FROM `books` "); 
+                            $book_add_id = $book_add->fetch_assoc();
+                            // var_dump($book_add_id['MAX(id)']);var_dump($_POST['author_id']); exit;
+                            $result2 = mysqli_query($con, "INSERT INTO `books_authors` (`author_id`,`book_id`)
+                            VALUES ('" . $_POST['author_id'] . "',  '" . $book_add_id['MAX(id)'] . "'  )   ") ;
                             // var_dump($result);exit;
                         }
 
@@ -120,7 +129,9 @@
 // Neu khong ton tai 1 phuong thuc nao (chua them or sua,copy) thi render ra giao dien              
             else {     
                 if (!empty($_GET['id'])) {      // HAM XU LY LAY VE TUNG ANH TU THU VIEN ANH ( neu co phuong thuc get id )
-                    $result = mysqli_query($con, "SELECT * FROM `books` WHERE `id` = " . $_GET['id']);  // lay du lieu tu bang books vs id = $_Get['id]
+                    $result = mysqli_query($con, "SELECT books.*,books_authors.author_id 
+                    FROM `books_authors` INNER JOIN `books` ON books.id = books_authors.book_id WHERE `id` = " . $_GET['id']);  // lay du lieu tu bang books vs id = $_Get['id]
+
                     $book = $result->fetch_assoc();  // dua du lieu tu json ve dang array
                     $gallery = mysqli_query($con, "SELECT * FROM `books_library` WHERE `book_id` = " . $_GET['id']); // lay du lieu tu bag image_library
                     if (!empty($gallery) && !empty($gallery->num_rows)) {

@@ -59,7 +59,8 @@
                 <li><a href="#" class="fas fa-shopping-cart"></a></li>
                 <li><a href="#" id="login-btn" class="fas fa-user"></a></li>
                 <li id="has_subnav">
-                    <?= $currentUser['fullname'] ?>
+                    <?= $currentUser['first_name']?>
+                    <?= $currentUser['last_name']?> 
                     <ul class="sub_user_nav">
                         <li><a href="change_password.php" style="font-size: 15px;" >Đổi mật khẩu</a></li>
                         <li><a href="logout.php" style="font-size: 15px;" >Đăng xuất</a></li>

@@ -43,7 +43,7 @@
             // POST nhan dc day du username va password
                 include '../connect_db.php';
                 // Thêm bản ghi vào cơ sở dữ liệu
-                $result = mysqli_query($con, "INSERT INTO `users` (`id`, `username`, `password`, `status`, `created_time`, `last_updated`) VALUES (NULL, '" . $_POST['username'] . "', MD5('" . $_POST['password'] . "'), 1, '" . time() . "', '" . time() . "');");
+                $result = mysqli_query($con, "INSERT INTO `customers` (`id`, `username`, `password`, `status`, `created_date`, `last_updated`) VALUES (NULL, '" . $_POST['username'] . "', MD5('" . $_POST['password'] . "'), 1, '" . time() . "', '" . time() . "');");
                 // neu nhu ko insert dc : trung ten user
                 if (!$result) {
                     if (strpos(mysqli_error($con), "Duplicate entry") !== FALSE) {

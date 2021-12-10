@@ -41,15 +41,16 @@
         if (isset($_GET['action']) && $_GET['action'] == 'edit') {
             if (isset($_POST['id']) && !empty($_POST['id']) && isset($_POST['password']) && !empty($_POST['password'])) {
                 // var_dump($_POST['password']);exit;
-                $birthday = $_POST['birthday'];
-                $check = validateDateTime($birthday);
-                if ($check) {
-                     $birthday = strtotime($birthday);
-                }
+                    $birthday = $_POST['birthday'];
+                    $check = validateDateTime($birthday);
+                    if ($check) {
+                         $birthday = strtotime($birthday);
+                    }
 
-                $result = mysqli_query($con, "UPDATE `users` SET `password` = MD5('" . $_POST['password'] . "'), `fullname` = '" . $_POST['fullname'] ."' ,
-                 `birthday` = " . $birthday ." , `phone` = '" . $_POST['phone'] ."' , `address` = '" . $_POST['address'] ."' ,
-                  `status` = " . $_POST['status'] . ", `last_updated`=" . time() . " WHERE `users`.`id` = " . $_POST['id'] . ";");
+                $result = mysqli_query($con, "UPDATE `customers` SET `password` = MD5('" . $_POST['password'] . "'), `first_name` = '" . $_POST['first_name'] ."',
+                `last_name` = '" . $_POST['last_name'] ."' , `birthday` = " . $birthday ." , `phone` = '" . $_POST['phone'] ."' , `address` = '" . $_POST['address'] ."' ,
+                  `status` = " . $_POST['status'] . ", `email` = '" . $_POST['email'] . "', `money_spent` = '" . $_POST['money_spent'] . "',
+                   `last_updated`=" . time() . " WHERE `customers`.`id` = " . $_POST['id'] . ";");
                 if (!$result) {
                     $error = "Không thể cập nhật tài khoản";
                 }
@@ -76,7 +77,7 @@
             }
         } else {
             //select p tu co id can sua
-            $result = mysqli_query($con, "SELECT * FROM users where `id`=" . $_GET['id']);
+            $result = mysqli_query($con, "SELECT * FROM customers where `id`=" . $_GET['id']);
             //lay ra toan bo gia tri cua phan tu co id do
             $user = $result->fetch_assoc();
             mysqli_close($con);
@@ -88,14 +89,20 @@
                         <label>Mật khẩu mới</label></br>
                         <input type="hidden" name="id" value="<?= $user['id'] ?>" />
                         <input type="password" name="password" value="" />
-                        <label>Họ và tên</label></br>
-                        <input type="text" name="fullname" value="<?= (!empty($user) ? $user['fullname'] : "") ?>" />
+                        <label>Họ và tên đệm</label></br>
+                        <input type="text" name="first_name" value="<?= (!empty($user) ? $user['first_name'] : "") ?>" />
+                        <label>Tên</label></br>
+                        <input type="text" name="last_name" value="<?= (!empty($user) ? $user['last_name'] : "") ?>" />
                         <label>Ngày tháng năm sinh</label></br>
                         <input type="text" name="birthday" value="<?= (!empty($user) ? $user['birthday'] : "") ?>" />
                         <label>Số điện thoại</label></br>
                         <input type="text" name="phone" value="<?= (!empty($user) ? $user['phone'] : "") ?>" />
                         <label>Địa chỉ</label></br>
                         <input type="text" name="address" value="<?= (!empty($user) ? $user['address'] : "") ?>" />
+                        <label>Email</label></br>
+                        <input type="text" name="email" value="<?= (!empty($user) ? $user['email'] : "") ?>" />
+                        <label>Tổng số tiền đã mua</label></br>
+                        <input type="text" name="money_spent" value="<?= (!empty($user) ?  $user['money_spent'] : "") ?>" />
 
                         <select name="status">
                             <option <?php if (!empty($user['status'])) { ?> selected <?php } ?> value="1">Kích hoạt</option>

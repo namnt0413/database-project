@@ -21,7 +21,7 @@
 
     <?php
         include '../connect_db.php';
-        $result = mysqli_query($con, "SELECT * FROM users");
+        $result = mysqli_query($con, "SELECT * FROM customers");
         mysqli_close($con);
         ?>
         <style>
@@ -65,15 +65,17 @@
                                             <td>Sửa</td>
                                             <td>Xóa</td>
                                             <td class="text-right">Cập nhật lần cuối</td>
-                                            <td class="text-right">Ngày tạo tài khoản</td>
-                                            <td>Địa chỉ</td>
+                                            <!-- <td class="text-right">Ngày tạo tài khoản</td> -->
                                         </tr>
                                         <?php
                                         while ($row = mysqli_fetch_array($result)) {
                                             ?>
                                             <tr>
                                                 <td><?= $row['username'] ?></td>
-                                                <td><?= $row['fullname'] ?></td>
+                                                <td>
+                                                    <?=$row['first_name']." ".$row['last_name']
+                                                    ?>
+                                                </td>
                                                 <td><?= date('d/m/Y H:i', $row['birthday']) ?></td>
                                                 <td><?= $row['phone'] ?></td>
                                                 <td>
@@ -86,8 +88,7 @@
                                                 <td><a class="fa fa-edit" href="./user_edit.php?id=<?= $row['id'] ?>" style="color:dodgerblue"></a></td>
                                                 <td><a class="fa fa-trash" href="./user_delete.php?id=<?= $row['id'] ?>" style="color:crimson"></a></td>
                                                 <td><?= date('d/m/Y H:i', $row['last_updated']) ?></td>
-                                                <td><?= date('d/m/Y H:i', $row['created_time']) ?></td>
-                                                <td><?= $row['address'] ?></td>
+                                                <!-- <td> date('d/m/Y H:i', $row['created_date']) </td> -->
                                             </tr>
                                         <?php } ?>
                                     </table>

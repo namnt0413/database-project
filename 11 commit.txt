@@ -1,6 +1,0 @@
-
-TRANG ADMIN :
--   Thêm hàm book_handle.php :xử lý thêm, sửa, copy sách ở backend
--   Thêm book_delete.php :xóa sách
--   Sửa book.php :  lấy dữ liệu từ database và hiển thị ra
--   Thêm hàm xử lý ảnh và thư viện ảnh vào function.php => sau này áp dụng cho tất cả lọai ảnh
