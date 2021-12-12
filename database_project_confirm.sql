@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2021 at 01:15 PM
+-- Generation Time: Dec 12, 2021 at 10:56 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -84,17 +84,48 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id`, `tittle`, `image`, `price`, `discount`, `quantity`, `content`, `publication_date`, `created_date`, `last_updated`) VALUES
-(20, 'Mắt biếc', 'assets/image/book/book1(1).jpg', 1000000, NULL, 100, 'Test Thêm sách', NULL, 1638703768, 1638703812),
-(24, 'Mắt biếc', 'assets/image/book/book-1(1).png', 200000, NULL, 100, '                                                                    asdasdasdads\r\nadadas\r\nasdasdad', NULL, 1638715409, 1638715409),
 (25, 'Đệ nhất kiếm tiền', 'assets/image/book/book20.png', 500000, NULL, 100, '                                                                                                            Ra xã hội làm ăn bươn chải, liều thì ăn nhiều, không liều thì ăn ít. Muốn thành công thì phải chấp nhận trải qua đắng cay ngọt bùi. Làm ăn muốn kiếm kiếm được tiền thì phải chấp nhận mạo hiểm một chút nhưng trong tầm kiểm soát. Sau này chỉ có làm, chịu khó cần cù thì bù siêng năng , chỉ có làm thì mới có ăn.                                                                                                    ', NULL, 1638703768, 1639123028),
-(26, 'Bài Học Diệu Kỳ Từ Chiếc Xe Rác', 'assets/image/book/book22.jpg\r\n', 91500, NULL, 50, 'Hạnh phúc không ở ngoài tầm tay\r\n\r\nPhép lịch sự không hề mất.\r\n\r\nCam kết nói Không với \"xe rác\" khiến cho hạnh phúc và phép lịch sự trở thành hiện thực. Điều này hỗ trợ điều kia trong một vòng tròn khép kín.\r\n\r\nMục lục\r\n\r\nCam kết thứ nhất: Hãy bỏ qua những \"chiếc xe rác\"\r\nCam kết thứ hai: Đừng tự \"vấy bẩn\" cuộc sống của mình\r\nCam kết thứ ba: Đừng biến mình thành \"chiếc xe rác\"\r\nCam kết thứ tư: Giúp người khác thôi \"xả rác\"\r\nCam kết thứ năm: Cuộc sống không có \"xe rác\"\r\nCam kết thứ sáu: Xây dựng một gia đình không có \"xe rác\"\r\nCam kết thứ bảy: Xây dựng môi trường làm việc không có \"xe rác\"', NULL, 1638703084, 1638703084),
-(27, 'Hòm thư số 110', 'assets/image/book/book23.png', 127500, NULL, 0, '                                                                                                                                                                                                                                                                                                                                    Tình yêu của anh nhón chân rón rén bước\r\nEm đã bước vào vườn hoa của anh rồi nhỉ.\r\nDù chưa được cho phép.\r\n\r\nỞ độ tuổi 30, bận bịu trong nhịp sống thường ngày quen thuộc khiến Jin Sol lẳng lặng đem cất những rung động tình yêu xa xỉ vào góc sâu trái tim. Mục tiêu cô đề ra là “Đừng để lòng vướng bận”. Song lẽ dĩ nhiên, trời chẳng chiều lòng người, đợt cải tổ nhân sự định kỳ của đài phát thanh đã mang đến cho cô một cộng sự khó nhằn - một nhà sản xuất chương trình còn sáng tác cả thơ. Để đối phó với anh ta, dường như mọi sự phòng bị là không đủ, hoặc chỉ một cốc smoothie đã đủ…\r\n\r\nViết về những con người gần gũi trong cuộc đời bình dị, những người lớn dù đã khoác lên mình lớp vỏ trưởng thành song vẫn còn vô số khuyết điểm cũng như nhược điểm, ngày ngày vẫn đối mặt với nỗi cô đơn trong chừng mực cho phép, đây là câu chuyện “thử yêu thêm lần nữa” của họ, của bạn và của tôi.                                                                                                                                                                                                                                                                                                 ', NULL, 1638703768, 1639123712),
-(29, 'Hòm thư số 110', 'assets/image/book/book23.png', 127500, NULL, 0, '                                                                                                                                                                                                                                                                                                                                                                        Tình yêu của anh nhón chân rón rén bước\r\nEm đã bước vào vườn hoa của anh rồi nhỉ.\r\nDù chưa được cho phép.\r\n\r\nỞ độ tuổi 30, bận bịu trong nhịp sống thường ngày quen thuộc khiến Jin Sol lẳng lặng đem cất những rung động tình yêu xa xỉ vào góc sâu trái tim. Mục tiêu cô đề ra là “Đừng để lòng vướng bận”. Song lẽ dĩ nhiên, trời chẳng chiều lòng người, đợt cải tổ nhân sự định kỳ của đài phát thanh đã mang đến cho cô một cộng sự khó nhằn - một nhà sản xuất chương trình còn sáng tác cả thơ. Để đối phó với anh ta, dường như mọi sự phòng bị là không đủ, hoặc chỉ một cốc smoothie đã đủ…\r\n\r\nViết về những con người gần gũi trong cuộc đời bình dị, những người lớn dù đã khoác lên mình lớp vỏ trưởng thành song vẫn còn vô số khuyết điểm cũng như nhược điểm, ngày ngày vẫn đối mặt với nỗi cô đơn trong chừng mực cho phép, đây là câu chuyện “thử yêu thêm lần nữa” của họ, của bạn và của tôi.                                                                                                                                                                                                                                                                                                                                 ', NULL, 1639135419, 1639135419),
-(31, 'Test2', 'assets/image/book/book-9(1).png', 200000, NULL, 1, '                                                                                                             Test book 2                                                                                                                                                                   ', NULL, 1639135580, 1639135984),
-(49, 'Test3', 'assets/image/book/book7.png', 250000, NULL, 0, '                                     Test Book so 3                                                                                                   ', NULL, 1639138068, 1639138120),
-(51, 'Test5', 'assets/image/book/book7.png', 250000, NULL, 0, '                                                                         Test Book so 3                                                                                                                                   ', NULL, 1639138177, 1639138177),
-(52, 'Test Book5', 'assets/image/book/book-2(1).png', 599999, NULL, 25, '                                        Test Book 5                            ', NULL, 1639138274, 1639138274),
-(53, 'Test Book 6', 'assets/image/book/book-5(1)(1).png', 200000, NULL, 0, '                                                       Test Book 6             ', NULL, 1639138500, 1639138500);
+(26, 'Bài Học Diệu Kỳ Từ Chiếc Xe Rác (bản đặc biệt )', 'assets/image/book/book22.jpg\r\n', 91500, NULL, 50, '                                    Hạnh phúc không ở ngoài tầm tay\r\n\r\nPhép lịch sự không hề mất.\r\n\r\nCam kết nói Không với \"xe rác\" khiến cho hạnh phúc và phép lịch sự trở thành hiện thực. Điều này hỗ trợ điều kia trong một vòng tròn khép kín.\r\n\r\nMục lục\r\n\r\nCam kết thứ nhất: Hãy bỏ qua những \"chiếc xe rác\"\r\nCam kết thứ hai: Đừng tự \"vấy bẩn\" cuộc sống của mình\r\nCam kết thứ ba: Đừng biến mình thành \"chiếc xe rác\"\r\nCam kết thứ tư: Giúp người khác thôi \"xả rác\"\r\nCam kết thứ năm: Cuộc sống không có \"xe rác\"\r\nCam kết thứ sáu: Xây dựng một gia đình không có \"xe rác\"\r\nCam kết thứ bảy: Xây dựng môi trường làm việc không có \"xe rác\"                                ', NULL, 1638703084, 1639250890),
+(27, 'Hòm thư số 110', 'assets/image/book/book23.png', 127500, NULL, 0, 'Tình yêu của anh nhón chân rón rén bước                                                                                                                                                                                                                                                                                                                                                         \r\nEm đã bước vào vườn hoa của anh rồi nhỉ.\r\nDù chưa được cho phép.\r\n\r\nỞ độ tuổi 30, bận bịu trong nhịp sống thường ngày quen thuộc khiến Jin Sol lẳng lặng đem cất những rung động tình yêu xa xỉ vào góc sâu trái tim. Mục tiêu cô đề ra là “Đừng để lòng vướng bận”. Song lẽ dĩ nhiên, trời chẳng chiều lòng người, đợt cải tổ nhân sự định kỳ của đài phát thanh đã mang đến cho cô một cộng sự khó nhằn - một nhà sản xuất chương trình còn sáng tác cả thơ. Để đối phó với anh ta, dường như mọi sự phòng bị là không đủ, hoặc chỉ một cốc smoothie đã đủ…\r\n\r\nViết về những con người gần gũi trong cuộc đời bình dị, những người lớn dù đã khoác lên mình lớp vỏ trưởng thành song vẫn còn vô số khuyết điểm cũng như nhược điểm, ngày ngày vẫn đối mặt với nỗi cô đơn trong chừng mực cho phép, đây là câu chuyện “thử yêu thêm lần nữa” của họ, của bạn và của tôi.                                                                                                                                                                                                                                                                                                                                 ', NULL, 1638703768, 1639143294),
+(31, 'Test2', 'assets/image/book/book-9(1).png', 200000, NULL, 1, 'Test book 2                                                                                                                                                                                                   ', NULL, 1639135580, 1639143313),
+(49, 'Test3', 'assets/image/book/book7.png', 250000, NULL, 0, '                                                                         Test Book so 3                                                                                                                                   ', NULL, 1639138068, 1639158955),
+(51, 'Test5', 'assets/image/book/book7.png', 250000, NULL, 0, 'Test Book so 3                                                                                                                                                                   ', NULL, 1639138177, 1639143325),
+(52, 'Test Book5', 'assets/image/book/book-2(1).png', 599999, NULL, 25, 'Test Book 5                                                            ', NULL, 1639138274, 1639143336),
+(54, 'Test6', 'assets/image/book/book-10(1).png', 220000, NULL, 20, '                                                                    ', NULL, 1639143519, 1639143519),
+(55, 'Mắt biếc', 'assets/image/book/book1_gallery(1).jpg', 250000, NULL, 1, 'Một tác phẩm được nhiều người bình chọn là hay nhất của nhà văn này. Một tác phẩm đang được dịch và giới thiệu tại Nhật Bản (theo thông tin từ các báo)… Bởi sự trong sáng của một tình cảm, bởi cái kết thúc rất, rất buồn khi suốt câu chuyện vẫn là những điều vui, buồn lẫn lộn (cái kết thúc không như mong đợi của mọi người). Cũng bởi, mắt biếc… năm xưa nay đâu (theo lời một bài hát)                                                                                                    ', NULL, 1639158555, 1639158617),
+(56, 'Test6', 'assets/image/book/book-10(1).png', 210000, NULL, 20, '                                                                                                                                        ', NULL, 1639246866, 1639246866),
+(57, 'Test6', 'assets/image/book/book-10(1).png', 300000, NULL, 20, '                                                                                                                                                                                                            ', NULL, 1639246886, 1639246886),
+(58, 'Test6', 'assets/image/book/book-10(1).png', 290000, NULL, 20, '                                                                                                                                                                                                                                                                                ', NULL, 1639247086, 1639247086),
+(59, 'Test6', 'assets/image/book/book-10(1).png', 260000, NULL, 20, '                                                                                                                                                                                                                                                                                                                                                    ', NULL, 1639247095, 1639247095),
+(60, 'Test6', 'assets/image/book/book-10(1).png', 270000, NULL, 20, '                                                                                                                                                                                                                                                                                                                                                                                                                        ', NULL, 1639247102, 1639247102),
+(61, 'Test6', 'assets/image/book/book-10(1).png', 280000, NULL, 20, '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ', NULL, 1639247207, 1639247207),
+(62, 'Test Book5', 'assets/image/book/book-2(1).png', 699999, NULL, 25, '                                    Test Book 5                                                                                            ', NULL, 1639247259, 1639247259),
+(63, 'Test Book5', 'assets/image/book/book-2(1).png', 599999, NULL, 25, '                                    Test Book 5                                                                                            ', NULL, 1639247264, 1639247264),
+(64, 'Test5', 'assets/image/book/book7.png', 250000, NULL, 0, '                                    Test Book so 3                                                                                                                                                                                                   ', NULL, 1639247268, 1639247268),
+(65, 'Đệ nhất kiếm tiền', 'assets/image/book/book20.png', 520000, NULL, 100, '                                                                                                                                                Ra xã hội làm ăn bươn chải, liều thì ăn nhiều, không liều thì ăn ít. Muốn thành công thì phải chấp nhận trải qua đắng cay ngọt bùi. Làm ăn muốn kiếm kiếm được tiền thì phải chấp nhận mạo hiểm một chút nhưng trong tầm kiểm soát. Sau này chỉ có làm, chịu khó cần cù thì bù siêng năng , chỉ có làm thì mới có ăn.                                                                                                                                    ', NULL, 1639247825, 1639247825),
+(66, 'Đệ nhất kiếm tiền', 'assets/image/book/book20.png', 510000, NULL, 100, '                                                                                                                                                                                    Ra xã hội làm ăn bươn chải, liều thì ăn nhiều, không liều thì ăn ít. Muốn thành công thì phải chấp nhận trải qua đắng cay ngọt bùi. Làm ăn muốn kiếm kiếm được tiền thì phải chấp nhận mạo hiểm một chút nhưng trong tầm kiểm soát. Sau này chỉ có làm, chịu khó cần cù thì bù siêng năng , chỉ có làm thì mới có ăn.                                                                                                                                                                    ', NULL, 1639247832, 1639247832),
+(67, 'Đệ nhất kiếm tiền', 'assets/image/book/book20.png', 500000, NULL, 100, '                                                                                                                                                                                                                        Ra xã hội làm ăn bươn chải, liều thì ăn nhiều, không liều thì ăn ít. Muốn thành công thì phải chấp nhận trải qua đắng cay ngọt bùi. Làm ăn muốn kiếm kiếm được tiền thì phải chấp nhận mạo hiểm một chút nhưng trong tầm kiểm soát. Sau này chỉ có làm, chịu khó cần cù thì bù siêng năng , chỉ có làm thì mới có ăn.                                                                                                                                                                                                    ', NULL, 1639247840, 1639247840),
+(68, 'Đệ nhất kiếm tiền', 'assets/image/book/book20.png', 550000, NULL, 100, '                                                                                                                                                                                                                                                            Ra xã hội làm ăn bươn chải, liều thì ăn nhiều, không liều thì ăn ít. Muốn thành công thì phải chấp nhận trải qua đắng cay ngọt bùi. Làm ăn muốn kiếm kiếm được tiền thì phải chấp nhận mạo hiểm một chút nhưng trong tầm kiểm soát. Sau này chỉ có làm, chịu khó cần cù thì bù siêng năng , chỉ có làm thì mới có ăn.                                                                                                                                                                                                                                    ', NULL, 1639247884, 1639247884),
+(69, 'Test10', 'assets/image/book/book21(1).png', 230000, NULL, 1, '                                     T.T        T.T        T.T        T.T        T.T        T.T        T.T        T.T        T.T                                                                                                   ', NULL, 1639247949, 1639247977),
+(70, 'Test10', 'assets/image/book/book21(1).png', 240000, NULL, 1, '                                     T.T        T.T        T.T        T.T        T.T        T.T        T.T        T.T        T.T                                                                                                   ', NULL, 1639247956, 1639247956),
+(71, 'Test10', 'assets/image/book/book21(1).png', 250000, NULL, 1, '                                                                                                             T.T        T.T        T.T        T.T        T.T        T.T        T.T        T.T        T.T                                                                                                                                                                   ', NULL, 1639247987, 1639248003),
+(72, 'Test3', 'assets/image/book/book7.png', 250000, NULL, 0, '                                                                                                             Test Book so 3                                                                                                                                                                   ', NULL, 1639248017, 1639248017),
+(73, 'Test Book5', 'assets/image/book/book-2(1).png', 599999, NULL, 25, '                                    Test Book 5                                                                                            ', NULL, 1639285216, 1639285216),
+(74, 'Test5', 'assets/image/book/book7.png', 250000, NULL, 0, '                                    Test Book so 3                                                                                                                                                                                                   ', NULL, 1639285220, 1639285220),
+(75, 'Test Book5', 'assets/image/book/book-2(1).png', 590000, NULL, 25, '                                    Test Book 5                                                                                            ', NULL, 1639285224, 1639285224),
+(76, 'Test Book5', 'assets/image/book/book-2(1).png', 580000, NULL, 25, '                                    Test Book 5                                                                                            ', NULL, 1639285229, 1639285229),
+(77, 'Test Book5', 'assets/image/book/book-2(1).png', 570000, NULL, 25, '                                    Test Book 5                                                                                            ', NULL, 1639285234, 1639285234),
+(78, 'Test Book5', 'assets/image/book/book-2(1).png', 560000, NULL, 25, '                                    Test Book 5                                                                                            ', NULL, 1639285237, 1639285237),
+(79, 'Test Book5', 'assets/image/book/book-2(1).png', 550000, NULL, 25, '                                    Test Book 5                                                                                            ', NULL, 1639285241, 1639285241),
+(80, 'Test Book5', 'assets/image/book/book-2(1).png', 540000, NULL, 25, '                                    Test Book 5                                                                                            ', NULL, 1639285245, 1639285245),
+(81, 'Test Book5', 'assets/image/book/book-2(1).png', 53000, NULL, 25, '                                    Test Book 5                                                                                            ', NULL, 1639285248, 1639285248),
+(82, 'Test Book5', 'assets/image/book/book-2(1).png', 52000, NULL, 25, '                                    Test Book 5                                                                                            ', NULL, 1639285252, 1639285252),
+(83, 'Test Book5', 'assets/image/book/book-2(1).png', 510000, NULL, 25, '                                    Test Book 5                                                                                            ', NULL, 1639285255, 1639285255),
+(84, 'Test Book5', 'assets/image/book/book-2(1).png', 50000, NULL, 25, '                                    Test Book 5                                                                                            ', NULL, 1639285259, 1639285259),
+(85, 'Test Book5', 'assets/image/book/book-2(1).png', 699999, NULL, 25, '                                    Test Book 5                                                                                            ', NULL, 1639285263, 1639285263),
+(86, 'Test Book5', 'assets/image/book/book-2(1).png', 799999, NULL, 25, '                                    Test Book 5                                                                                            ', NULL, 1639285268, 1639285268),
+(87, 'Test Book5', 'assets/image/book/book-2(1).png', 899999, NULL, 25, '                                    Test Book 5                                                                                            ', NULL, 1639285272, 1639285272),
+(88, 'Test Book5', 'assets/image/book/book-2(1).png', 999999, NULL, 25, '                                    Test Book 5                                                                                            ', NULL, 1639285276, 1639285276);
 
 -- --------------------------------------------------------
 
@@ -113,14 +144,50 @@ CREATE TABLE `books_authors` (
 
 INSERT INTO `books_authors` (`author_id`, `book_id`) VALUES
 (4, 25),
-(1, 20),
 (5, 26),
 (2, 27),
 (4, 31),
 (4, 49),
 (4, 51),
 (6, 52),
-(2, 53);
+(4, 54),
+(5, 54),
+(1, 55),
+(3, 51),
+(5, 51),
+(4, 56),
+(4, 57),
+(4, 58),
+(4, 59),
+(4, 60),
+(4, 61),
+(6, 62),
+(6, 63),
+(4, 64),
+(4, 65),
+(4, 66),
+(4, 67),
+(4, 68),
+(6, 69),
+(6, 70),
+(6, 71),
+(4, 72),
+(6, 73),
+(4, 74),
+(6, 75),
+(6, 76),
+(6, 77),
+(6, 78),
+(6, 79),
+(6, 80),
+(6, 81),
+(6, 82),
+(6, 83),
+(6, 84),
+(6, 85),
+(6, 86),
+(6, 87),
+(6, 88);
 
 -- --------------------------------------------------------
 
@@ -152,18 +219,17 @@ CREATE TABLE `books_library` (
 --
 
 INSERT INTO `books_library` (`id`, `book_id`, `path`, `created_time`, `last_updated`) VALUES
-(20, 20, 'assets/image/book/book1_gallery_(2).jpg', 1638703768, 1638703768),
-(21, 20, 'assets/image/book/book1_gallery.jpg', 1638703768, 1638703768),
-(33, 24, 'assets/image/book/book2_gallery.jpg', 1638715409, 1638715409),
-(34, 24, 'assets/image/book/book-2(1).png', 1638715409, 1638715409),
-(35, 24, 'assets/image/book/book3(1).png', 1638715409, 1638715409),
 (36, 25, 'assets/image/book/book21(1).png', 1639120459, 1639120459),
 (37, 25, 'assets/image/book/Huan-Hoa-Hong(1).jpg', 1639120459, 1639120459),
 (38, 31, 'assets/image/book/book-9(1).png', 1639135580, 1639135580),
 (39, 31, 'assets/image/book/book-10(1).png', 1639135580, 1639135580),
 (48, 49, 'assets/image/book/book3(1).png', 1639138120, 1639138120),
 (49, 49, 'assets/image/book/book-4(1).png', 1639138120, 1639138120),
-(50, 49, 'assets/image/book/book5(1).png', 1639138120, 1639138120);
+(58, 55, 'assets/image/book/book1(1).jpg', 1639158617, 1639158617),
+(59, 55, 'assets/image/book/book1_gallery(1)(1).jpg', 1639158617, 1639158617),
+(60, 55, 'assets/image/book/book1_gallery_(2)(1).jpg', 1639158617, 1639158617),
+(65, 69, 'assets/image/book/book20(1).png', 1639247977, 1639247977),
+(66, 69, 'assets/image/book/book21(1).png', 1639247977, 1639247977);
 
 -- --------------------------------------------------------
 
@@ -196,7 +262,7 @@ INSERT INTO `customers` (`id`, `username`, `password`, `first_name`, `last_name`
 (2, 'namnt0413', 'f7a174303deddf385177363f75650ad0', 'Nguyễn Tuấn', 'Nam', 987112800, '0367099786', 'Vĩnh Quỳnh, Thanh Trì, Hà Nội', 'namnt0413@gmail.com', 1, 0, 1638371670, 1638119155),
 (3, 'test', 'e10adc3949ba59abbe56e057f20f883e', 'Tester', '1st', 951778800, '0123456789', 'DH Bach Khoa, Hai Ba Trung, Ha Noi', 'test@yahoo.com', 1, 0, 1638120004, 1638120004),
 (7, 'test3', 'e10adc3949ba59abbe56e057f20f883e', 'Tester', '3rd', 984006000, '088889999', 'Phường Bách Khoa, Hai Bà Trưng, Hà Nội', 'test3@gmail.com', 0, 500000, 1639112871, 1638355340),
-(9, 'Bloger', 'e10adc3949ba59abbe56e057f20f883e', NULL, 'Blog', 987112800, '0234987650', 'Tokyo,Japan', 'blogger@outlook.com', 1, 0, 1638898379, 1638355591),
+(9, 'Bloger', 'e10adc3949ba59abbe56e057f20f883e', '', 'Blog', 987112800, '0234987650', 'Tokyo,Japan', 'blogger@outlook.com', 1, 0, 1639253201, 1638355591),
 (10, 'Shiper', 'e10adc3949ba59abbe56e057f20f883e', NULL, 'shipper', 1638313200, '0987654321', 'Nguyễn Xiển,Thanh Xuân, Hà Nội', 'shipper@outlook.com', 0, 0, 1638514388, 1638355730),
 (13, 'accountant', 'e10adc3949ba59abbe56e057f20f883e', NULL, 'accountant', 1287525600, '044444444', 'Hà Nội', 'accountant@outlook.com', 1, 2000, 1638466621, 1638466542),
 (14, 'test4', 'e10adc3949ba59abbe56e057f20f883e', NULL, 'Test4', 946681200, '123456789', 'Hà Nội', NULL, 1, 200000000, 1639105270, 1639105270),
@@ -396,13 +462,13 @@ ALTER TABLE `blogs`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `books_library`
 --
 ALTER TABLE `books_library`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `customers`

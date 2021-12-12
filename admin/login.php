@@ -13,7 +13,7 @@ and open the template in the editor.
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
-    <title>SixteenClothing</title>
+    <title>BookShop</title>
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -41,7 +41,7 @@ and open the template in the editor.
         include '../connect_db.php';
         $error = false;
         if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && !empty($_POST['password'])) {
-            $result = mysqli_query($con, "Select `id`,`username`,`fullname`,`birthday` from `customers` WHERE (`username` ='" . $_POST['username'] . "' AND `password` = md5('" . $_POST['password'] . "'))");
+            $result = mysqli_query($con, "Select * from `customers` WHERE (`username` ='" . $_POST['username'] . "' AND `password` = md5('" . $_POST['password'] . "'))");
             //var_dump( $result );
             if (!$result) {
                 $error = mysqli_error($con);
@@ -84,9 +84,9 @@ and open the template in the editor.
             </div>
 
 
-            <!-- NEU NHU DANG NHAP THANH CONG -->
+            
             <?php
-        } else {
+        } else {    //NEU NHU DANG NHAP THANH CONG
             $currentUser = $_SESSION['current_user'];
             // var_dump($_SESSION['current_user']);exit;
             // include './index.php';

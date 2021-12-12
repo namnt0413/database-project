@@ -17,14 +17,49 @@
     <?php  
         include 'admin_navbar.php';
     
-        $books = mysqli_query($con, "SELECT books.*,authors.first_name,authors.last_name
-                                    FROM `books_authors`  INNER JOIN `books` ON books.id = books_authors.book_id
-                                                          INNER JOIN `authors` ON authors.id = books_authors.author_id 
-                                    ORDER BY `id` ASC " );
-    
+        // $books = mysqli_query($con, "SELECT books.* FROM `books`  ORDER BY `id` ASC " );
 
+            //      PHÂN TRANG
 
+    if(!empty($_GET['action']) && $_GET['action'] == 'search' && !empty($_POST)){//  Neu co action GET co ten la search
+        $_SESSION['book_filter'] = $_POST;      // khai bao session  'book filter' = $_POST => Khi quay ve trang chinh thi van luu lai session
+        // var_dump($_SESSION['book_filter']);exit;
+        
+    }
+    if(!empty($_SESSION['book_filter'])){ // Neu ton tai phien co phan tu book_filter
+        $where = "";
+        foreach ($_SESSION['book_filter'] as $field => $value) { // gan field = key
+            if(!empty($value)){
+                switch ($field) {
+                    case 'tittle':
+                        $where .= (!empty($where))? " AND "."`".$field."` LIKE '%".$value."%'" : "`".$field."` LIKE '%".$value."%'"; // neu rong thi luu luon chuoi, neu ko thi them AND
+                    break;
+                    default:
+                        $where .= (!empty($where))? " AND "."`".$field."` = ".$value."": "`".$field."` = ".$value."";
+                    break;
+                }
+            }
+        }
+        // var_dump($where);exit;
+        extract($_SESSION['book_filter']);
+    }
 
+    $item_per_page = (!empty($_GET['per_page'])) ? $_GET['per_page'] : 8;
+    $current_page = (!empty($_GET['page'])) ? $_GET['page'] : 1;
+    $offset = ($current_page - 1) * $item_per_page;
+    if(!empty($where)){ // Tinh toan lai tong so san pham khi co filter
+        $totalRecords = mysqli_query($con, "SELECT * FROM `books` where (".$where.")");
+    }else{
+        $totalRecords = mysqli_query($con, "SELECT * FROM `books`");
+    }
+    $totalRecords = $totalRecords->num_rows;
+    $totalPages = ceil($totalRecords / $item_per_page);
+    if(!empty($where)){ // neu ton tai where - tuc la dang filter thi su dung ham nay
+        $books_filter = mysqli_query($con, "SELECT * FROM `books` where (".$where.") ORDER BY `id` DESC LIMIT " . $item_per_page . " OFFSET " . $offset);
+    }else{  // neu ko thi phan trang binh thuong
+        $books_filter = mysqli_query($con, "SELECT * FROM `books` ORDER BY `id` ASC LIMIT " . $item_per_page . " OFFSET " . $offset);
+    }
+  
     ?>
             <!-- MAIN CONTENT-->
             <div class="main-content">
@@ -38,14 +73,6 @@
                                 <h3 class="title-5 m-b-35">Danh sách sản phẩm</h3>
                                 <div class="table-data__tool">
                                     <div class="table-data__tool-left">
-                                        <div class="rs-select2--light rs-select2--md">
-                                            <select class="js-select2" name="property">
-                                                <option selected="selected">All Properties</option>
-                                                <option value="">Option 1</option>
-                                                <option value="">Option 2</option>
-                                            </select>
-                                            <div class="dropDownSelect2"></div>
-                                        </div>
                                         <div class="rs-select2--light rs-select2--sm">
                                             <select class="js-select2" name="time">
                                                 <option selected="selected">Today</option>
@@ -54,9 +81,18 @@
                                             </select>
                                             <div class="dropDownSelect2"></div>
                                         </div>
-                                        <button class="au-btn-filter">
-                                            <i class="zmdi zmdi-filter-list"></i>filters</button>
                                     </div>
+                                    
+                                    <div class="table-data__tool-center">
+                                    <form id="book-search-form" action="book.php?action=search" method="POST">
+                                    <fieldset>
+                                    ID: <input style="width: 160px;" type="text" name="id" value="<?=!empty($id)?$id:""?>" />
+                                    Tên sản phẩm: <input style="width: 160px;" type="text" name="tittle" value="<?=!empty($tittle)?$tittle:""?>" />
+                                    <input  type="submit" value="Tìm" />
+                                    </fieldset>
+                                    </form>
+                                    </div>
+
                                     <div class="table-data__tool-right">
                                         <a href="book_handle.php" class="au-btn au-btn-icon au-btn--green au-btn--small">
                                             <i class="zmdi zmdi-plus"></i> Thêm sản phẩm
@@ -71,7 +107,7 @@
                                         </div>
                                     </div>
                                 </div><!-- end filter -->
-                                
+                                 <span>Có tất cả <strong><?=$totalRecords?></strong> sản phẩm trên <strong><?=$totalPages?></strong> trang</span>
 
                                  <!-- DATA TABLE -->
                                 <div class="table-responsive table-responsive-data2">
@@ -95,8 +131,10 @@
                                         </thead>
                                     
                                     <?php
-                                    while ($row = mysqli_fetch_array($books) ) {
-                                        // var_dump($row);exit;
+                                    while ($row = mysqli_fetch_array($books_filter) ) {
+                                        // đặt biến $row_id để sau này gọi trong mysqli khôn gbị lỗi
+                                        $row_id = $row['id'];
+                                        // var_dump($row_id);exit;
                                     ?>
                                         <tbody>
                                             <tr class="tr-shadow">
@@ -110,7 +148,22 @@
                                                 <td>
                                                     <img style="width: 60px;height: 80px;" src="../<?= $row['image'] ?>" alt="<?= $row['tittle'] ?>" title="<?= $row['tittle']?>">
                                                 </td>
-                                                <td class="desc"><a href=""><?= $row['first_name']." ".$row['last_name'] ?></a></td>
+                                                
+                                                <td class="desc">
+                                                    <?php
+                                                        $author = mysqli_query($con, "SELECT authors.first_name,authors.last_name
+                                                                                    FROM `books_authors`  INNER JOIN `authors` ON books_authors.author_id = authors.id
+                                                                                                        INNER JOIN `books` ON books_authors.book_id = books.id
+                                                                                    WHERE `books_authors`.`book_id` = $row_id                    
+                                                                                                  ");  
+                                                        // 
+                                                        while ($row2 = mysqli_fetch_array($author)){ ?>
+                                                            <a href=""><?= $row2['first_name']." ".$row2['last_name'].","?></a>
+                                                            <!-- var_dump($row2); -->
+                                                        <?php } ?>
+
+                                                </td>
+                                                
                                                 <td><?= date('d/m/Y H:i', $row['last_updated'])?></td>
                                                 <td>
                                                     <?php if ($row['quantity'] > 0) { ?>
@@ -138,11 +191,14 @@
                                                 </td>
                                             </tr>
                                             <tr class="spacer"></tr>
-                                     <?php } ?>
-
+                              
                                             
-                                        </tbody>
+                                        </tbody> 
+                                    <?php } ?>
                                     </table><!-- end table -->
+                            <?php
+                            include './pagination.php';
+                            ?>
                                 </div>
                                 <!-- END DATA TABLE -->
 
@@ -188,7 +244,7 @@
     <script src="js/main.js"></script>
 
          
-    <?php } ?>   <!-- end else -->
+    <?php }  ?>   <!-- end else -->
 
 </body>
 

@@ -1,0 +1,9 @@
+
+TRANG ADMIN : 
+-   book.php : Sửa phần hiển thị tác giả ( có thể hiển thị nhiều tác giả ) 
+-   thêm book_library_delete.php : hàm để xóa ảnh trong thự viện ảnh của sp   
+-   pagination : nút bấm vào để chuyển trang
+
+TRANG WEB :
+-   book.php:   + lấy dữ liệu sách từ database và hiển thị ra web
+                + Thêm phần sắp xếp sách theo (ngày tạo, giá cả)

@@ -197,7 +197,7 @@
                         <!-- Duyet tung phan tu gallery trong book -->
                                                 <li style="width:80px;height: 120px; margin-bottom:35px;margin-right: 15px;">
                                                     <img  src="../<?= $image['path'] ?>"/>
-                                                    <a href="book_gallerydelete.php?id=<?= $image['id'] ?>">Xóa</a>
+                                                    <a href="book_library_delete.php?id=<?= $image['id'] ?>">Xóa</a>
                                                     <!-- Render ra tung phan tu va nut xoa -->
                                                 </li>
                          <?php } ?>

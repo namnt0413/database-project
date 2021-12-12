@@ -14649,3 +14649,21 @@ section {
 .vue-lists ul, .vue-lists ol {
     padding-left: 30px;
 }
+
+/* Pagination */
+#pagination{
+    text-align: right;
+    margin-top: 15px;
+}
+.page-item{
+    border: 1px solid #ccc;
+    padding: 5px 9px;
+    color: #000;
+    background-color: var(--white);
+}
+.current-page{
+    background-color: var(--green);
+    border: 1px solid var(--white);
+    color: var(--white);
+    font-weight: 600;
+}

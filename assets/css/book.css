@@ -85,16 +85,22 @@ button.btn.btn-hide {
     display: inline-flex
 } */
 
-.pagination .page-item .page-link {
-    color: #333;
-    border: none;
-    width: 60px;
-    text-align: center
-}
 
-.pagination .page-item.active .page-link {
-    background-color: #fff;
-    border: 1px solid #333
+/* Pagination */
+#bottom-pagination{
+    text-align: right;
+    margin-top: 15px;
+}
+.page-item{
+    border: 1px solid #ccc;
+    padding: 5px 9px;
+    color: #333;
+}
+.current-page{
+    background-color: var(--green);
+    border: 1px solid var(--white);
+    color: var(--white);
+    font-weight: 600;
 }
 
 select {
@@ -257,7 +263,7 @@ label {
 }
 
 .price span {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     color:var(--light-color);
     text-decoration: line-through;
     margin-left: 0.9rem;
@@ -301,7 +307,7 @@ label {
     padding: 10px;
     cursor: pointer;
     transition: .3s all ease-in-out;
-    height: 320px
+    height: 340px
 }
 
 .card:hover {
@@ -310,7 +316,13 @@ label {
 }
 
 .card .product-name {
-    font-weight: 600
+    font-weight: 600;
+    color:var(--black);
+    margin-top: 0.4rem;
+}
+
+.card .product-name:hover{
+    color: var(--green);
 }
 
 .card-body {
@@ -321,7 +333,7 @@ label {
     font-size: 1.12rem
 }
 
-.card-img img {
+a.card-img img {
     padding-top: 10px;
     width: inherit;
     height: 180px;
@@ -522,7 +534,7 @@ input[type=range]::-webkit-slider-thumb {
     }
 
     .price {
-        font-size: 1.4rem
+        font-size: 1.2rem
     }
 
     .product-name {
@@ -606,4 +618,18 @@ input[type=range]::-webkit-slider-thumb {
         display: none
     }
 }
+
+/* css review star */
+.stars i{
+    color:var(--yellow);
+}
+
+/* css serach form */
+#book-search{
+    padding: 6px 12px;
+    margin: 0px 4px;
+    font-size: 1.25rem;
+}
+
+
 
