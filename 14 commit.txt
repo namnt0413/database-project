@@ -1,0 +1,3 @@
+
+TRANG WEB:
+-	thêm book_detail.php: xử lý cả frontend lẫn backend cho phần chi tiết sách

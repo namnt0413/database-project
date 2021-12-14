@@ -167,8 +167,8 @@
                 ?>
                         <div class="col-lg-3 col-md-6 pt-md-4 pt-3">
                             <div class="card d-flex flex-column">
-                                <a href="book_detail.php" class="card-img" > <img src="<?= $row['image'] ?>" alt=""> </a>
-                                <a href="book_detail.php" class="product-name" style="font-size:1.4rem;"><?= $row['tittle'] ?></a>
+                                <a href="book_detail.php?id=<?= $row['id'] ?>" class="card-img" > <img src="<?= $row['image'] ?>" alt=""> </a>
+                                <a href="book_detail.php?id=<?= $row['id'] ?>" class="product-name" style="font-size:1.4rem;"><?= $row['tittle'] ?></a>
                                 <div class="card-info" style="margin-top: 0.5rem;">
                                     <div class="text-muted mt-auto">
                                         <?php
