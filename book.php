@@ -50,7 +50,7 @@
                         <ul class="navbar-nav d-lg-flex align-items-lg-center">
                             <li class="nav-item active" style="border:1px solid #777;margin-left:0.5rem">
                                 <form id="book-search" method="GET">
-                                    <input type="text" value="<?=isset($_GET['tittle']) ? $_GET['tittle'] : ""?>" name="tittle" placeholder="Nhập tên sách" />
+                                    <input style="width:300px;" type="text" value="<?=isset($_GET['tittle']) ? $_GET['tittle'] : ""?>" name="tittle" placeholder="Nhập tên sách" />
                                     <input type="submit" value="Tìm kiếm" class="btn btn-secondary"/>
                                 </form>
                             </li>
@@ -66,16 +66,6 @@
                                      <!-- Neu TON TAI sortParam(1 str khac cua search) thi se KET HOP ca dk search va order -->
                                     <option <?php if(isset($_GET['sort']) && $_GET['sort'] == "asc") { ?> selected <?php } ?> value="?<?=$sortParam?>field=created_date&sort=asc">Cũ nhất</option>
                                 </select> 
-                            </li>
-                            <li class="nav-item d-inline-flex align-items-center justify-content-between mb-lg-0 mb-3">
-                                <div class="d-inline-flex align-items-center mx-lg-2" id="select2">
-                                    <div class="pl-2">Products:</div> <select name="pro" id="pro">
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                    </select>
-                                </div>
-                                <div class="font-weight-bold mx-2 result">18 from 200</div>
                             </li>
                             <li class="nav-item d-lg-none d-inline-flex"> </li>
                         </ul>

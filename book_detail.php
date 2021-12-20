@@ -111,10 +111,10 @@
             	      	<div class="col-sm-6">
             	      		  <p style="font-size: 1.2em;">Số lượng</p>
                                 <form id="add-to-cart-form" action="cart.php?action=add" method="POST">
-                                    <div class="row" style="margin-bottom:10px;"><input type="number" value="1" name="quantity" size="2" style="border:1px solid;text-align:center;"/></div>  
-                                    <input class="btn btn-lg btn-primary text-uppercase type="submit" value="Mua ngay" style="width: 90px;" />                       
+                                    <div class="row" style="margin-bottom:10px;"><input type="number" value="1" name="quantity[<?=$book['id']?>]" size="2" style="border:1px solid;text-align:center;"/></div>  
+                                    <input class="btn btn-lg btn-primary text-uppercase" type="submit" value="Mua ngay" style="width: 90px;" />                       
                                     <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng </a>
-                                  </form>  <!-- item-property .// -->
+                                </form>  <!-- item-property .// -->
             	      	</div> <!-- col.// -->
 
             		      <div class="col-sm-6    ">
