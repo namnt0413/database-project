@@ -56,7 +56,7 @@
         ?>
             <ul class="user_navbar">
                 <li><a href="#" class="fas fa-heart"></a></li>
-                <li><a href="#" class="fas fa-shopping-cart"></a></li>
+                <li><a href="cart.php" class="fas fa-shopping-cart"></a></li>
                 <li><a href="#" id="login-btn" class="fas fa-user"></a></li>
                 <li id="has_subnav">
                     <?= $currentUser['first_name']?>
@@ -104,11 +104,11 @@
         ?>
         <a href="./admin/index.php" class="fas fa-user-cog"></a>
         <?php } ?>
-        <a href="#home" class="fas fa-home"></a>
-        <a href="#book" class="fas fa-list"></a>
-        <a href="#arrivals" class="fas fa-tags"></a>
-        <a href="#reviews" class="fas fa-comments"></a>
-        <a href="#blogs" class="fas fa-blog"></a>
+        <a href="index.php" class="fas fa-home"></a>
+        <a href="book.php" class="fas fa-book"></a>
+        <a href="reviews.php" class="fas fa-comments"></a>
+        <a href="blogs.php" class="fas fa-blog"></a>
+        <a href="contact.php" class="fas fa-phone"></a>
     </nav>
 
     <!-- login form                             TAM THOI CHUA LAM 

@@ -6,8 +6,7 @@
     // var_dump($book);exit;
     $imgLibrary = mysqli_query($con, "SELECT * FROM `books_library` WHERE `book_id` = ".$_GET['id']);    // ket noi voi thu vien anh
     $book['images'] = mysqli_fetch_all($imgLibrary, MYSQLI_ASSOC);   // lay ra nhieu anh gan cho book[images]   ( # voi book[image] )
-
-    $row_id = $book['id']; ;
+    $row_id = $book['id'];
 ?>   
 
         <link rel="stylesheet" href="./assets/css/book_detail.css">
@@ -79,13 +78,9 @@
                         <span style="font-size:1.2rem;">Tình trạng :</span> 
 
                         <?php if ($book['quantity'] > 0) { ?>
-                        	<span class="price h5 text-success"> 
-                        		<span class="num">Còn hàng</span>
-                        	</span>
+                        	<span class="price h5 text-success"> Còn hàng</span>
                         <?php } else { ?> 
-                          <span class="price h5 text-warning"> 
-                        		<span class="num">Hết hàng</span>
-                        	</span>
+                          <span class="price h5 text-warning"> Hết hàng</span>
                         <?php } ?>  
                         
                     </p> <!-- quantity-detail-wrap .// -->
@@ -109,12 +104,17 @@
                     <hr>
             	      <div class="row">
             	      	<div class="col-sm-6">
+                      <?php if ($book['quantity'] > 0) { ?>
             	      		  <p style="font-size: 1.2em;">Số lượng</p>
-                                <form id="add-to-cart-form" action="cart.php?action=add" method="POST">
-                                    <div class="row" style="margin-bottom:10px;"><input type="number" value="1" name="quantity[<?=$book['id']?>]" size="2" style="border:1px solid;text-align:center;"/></div>  
-                                    <input class="btn btn-lg btn-primary text-uppercase" type="submit" value="Mua ngay" style="width: 90px;" />                       
-                                    <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng </a>
-                                </form>  <!-- item-property .// -->
+                          <form id="add-to-cart-form" action="cart.php?action=add" method="POST">
+                              <div class="row" style="margin-bottom:10px;"><input type="number" value="1" name="quantity[<?=$book['id']?>]" size="2" style="border:1px solid;text-align:center;"/></div>  
+                              <input class="btn btn-lg btn-primary text-uppercase" type="submit" value="Mua ngay" style="width: 90px;" />                       
+                              <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng </a>
+                          </form>  <!-- item-property .// -->
+
+                      <?php } else { ?>
+                          <span class="h5 text-warning">Sản phẩm hiện chưa có hàng</span>
+                      <?php } ?>
             	      	</div> <!-- col.// -->
 
             		      <div class="col-sm-6    ">

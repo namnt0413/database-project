@@ -1,0 +1,4 @@
+
+TRANG WEB :
+- Code phần back end của giỏ hàng(cart.php) : đặt sách theo số lượng, cập nhật lại số lượng, lấy dữ liệu ng dùng để in đơn hàng,
+	ghi dữ liệu của đơn hàng vào database( bảng orders và orders_details)
