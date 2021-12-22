@@ -1,4 +1,5 @@
 <div id="pagination">
+<span style="float: left;">Có tất cả <strong><?=$totalRecords?></strong> trên <strong><?=$totalPages?></strong> trang</span>
 <?php 
 if($current_page > 3){
 	$first_page = 1;?>

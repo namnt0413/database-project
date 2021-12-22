@@ -145,10 +145,10 @@
                     }
                 }
             ?>
-
+                    <div class="row"><a href="book.php" class="fa fa-undo" style="padding: 5px;">  Quay lại</a></div>
                     <form id="book-form" method="POST" action="<?= (!empty($book) && !isset($_GET['task'])) ? "?action=edit&id=" . $_GET['id'] : "?action=add" ?>"  enctype="multipart/form-data">
                           <!-- neu ma sp khong rong va ko co $_GET['task'] thi la edit =>  neu ko co sp nhan ve thi la THEM, neu co task thi la COPY  -->
-                        <input class="" style="background-color: black; color: white;"  type="submit" title="Lưu sản phẩm" value="Lưu sản phẩm" />
+                        
 
                             <div class="clear-both"></div>
                             <div class="wrap-field">
@@ -221,6 +221,9 @@
                                     <?= (!empty($book) ? $book['content'] : "") ?>
                                 </textarea>
                                 <div class="clear-both"></div>
+                            </div>
+                            <div class="row">
+                                <input class="save_form" style="background-color: black; color: white;padding: 5px;"  type="submit" title="Lưu" value="Lưu" />
                             </div>
                     </form>
                     <div class="clear-both"></div>

@@ -86,8 +86,8 @@
                                     <div class="table-data__tool-center">
                                     <form id="book-search-form" action="book.php?action=search" method="POST">
                                     <fieldset>
-                                    ID: <input style="width: 160px;" type="text" name="id" value="<?=!empty($id)?$id:""?>" />
-                                    Tên sản phẩm: <input style="width: 160px;" type="text" name="tittle" value="<?=!empty($tittle)?$tittle:""?>" />
+                                    ID: <input style="width: 160px;border: 1px solid rgba(0,0,0,.1);" type="text" name="id" value="<?=!empty($id)?$id:""?>" />
+                                    Tên sản phẩm: <input style="width: 160px;border: 1px solid rgba(0,0,0,.1);" type="text" name="tittle" value="<?=!empty($tittle)?$tittle:""?>" />
                                     <input  type="submit" value="Tìm" />
                                     </fieldset>
                                     </form>
@@ -107,10 +107,12 @@
                                         </div>
                                     </div>
                                 </div><!-- end filter -->
-                                 <span>Có tất cả <strong><?=$totalRecords?></strong> sản phẩm trên <strong><?=$totalPages?></strong> trang</span>
 
                                  <!-- DATA TABLE -->
                                 <div class="table-responsive table-responsive-data2">
+                            <?php
+                            include './pagination.php';
+                            ?>
                                     <table class="table table-data2">
                                         <thead>
                                             <tr>

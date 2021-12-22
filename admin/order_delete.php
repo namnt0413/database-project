@@ -26,9 +26,9 @@
                     <?php
                     $error = false;
                     if (isset($_GET['id']) && !empty($_GET['id'])) {
-                        $result = mysqli_query($con, "DELETE FROM `books` WHERE `id` = " . $_GET['id']);
+                        $result = mysqli_query($con, "DELETE FROM `orders` WHERE `id` = " . $_GET['id']);
                         if (!$result) {
-                            $error = "Không thể xóa sản phẩm.";
+                            $error = "Không thể xóa đơn hàng.";
                         }
                         mysqli_close($con);
                         // var_dump($error);
@@ -37,12 +37,12 @@
                             <div id="error-notify" class="box-content">
                                 <h2>Thông báo</h2>
                                 <h4><?= $error ?></h4>
-                                <a href="./book.php">Danh sách sản phẩm</a>
+                                <a href="./order.php">Danh sách đơn hàng</a>
                             </div>
                     <?php } else { ?>
                             <div id="success-notify" class="box-content">
-                                <h2>Xóa sản phẩm thành công</h2>
-                                <a href="./book.php">Danh sách sản phẩm</a>
+                                <h2>Xóa đơn hàng thành công</h2>
+                                <a href="./order.php">Danh sách đơn hàng</a>
                             </div>
                         <?php } ?>
                      <?php } ?>
@@ -64,7 +64,9 @@
     <script src="vendor/animsition/animsition.min.js"></script>
     <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
     </script>
-
+    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="vendor/counter-up/jquery.counterup.min.js">
+    </script>
 
     <!-- Main JS-->
     <script src="js/main.js"></script>

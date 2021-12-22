@@ -1,0 +1,11 @@
+
+TRANG ADMIN 
+Frontend: 
+- Sửa qua giao diện của phần order
+
+Backend: 
+- Code phần quản lý đơn hàng : order.php
+- In ra chi tiết đơn hàng : order_printing.php
+- Xóa đơn hàng : order_delete.php
+
+- Sửa lại phần phân trang có thể hiển thị cả tổng số lượng sp trong bao nhiêu trang
