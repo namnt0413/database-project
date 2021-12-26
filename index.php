@@ -261,7 +261,7 @@
         <h1 class="heading"> <span>new arrivals</span> </h1>
     
         <div class="swiper arrivals-slider">
-            <a href="featured.php">view all books <i class="fa fa-angle-right"></i></a>
+            <a href="book.php">view all books <i class="fa fa-angle-right"></i></a>
             
             <div class="swiper-wrapper">
     
