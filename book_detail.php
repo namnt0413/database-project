@@ -17,7 +17,7 @@
             <div class="card">
             	<div class="row">
             		<aside class="col-sm-5 border-right">
-                  <article class="gall  ery-wrap"> 
+                  <article class="gallery-wrap"> 
                     <div class="img-big-wrap" >
                       <a href="#"><img src="<?=$book['image']?>"></a>
                     </div> <!-- book - image // -->
@@ -35,11 +35,11 @@
 
             		<aside class="col-sm-7">
                   <article class="card-body p-5">
-            	      <h3 class="title mb-6" style="font-size: 25px;"><?= $book['tittle']?></h3>
+            	      <h3 class="product-name"><?= $book['tittle']?></h3>
             
                     <p class="author-detail-wrap" style="margin-top:20px;"> 
-                      <span style="font-size:1.2rem;">Tác giả :</span> 
-                      <span class="price h3 text-info"> 
+                      <span class="category">Tác giả: </span> 
+                      <span class="category-info price h3 text-info"> 
                         <?php
                           $author = mysqli_query($con, "SELECT authors.first_name,authors.last_name
                                                       FROM `books_authors`  INNER JOIN `authors` ON books_authors.author_id = authors.id
@@ -53,99 +53,84 @@
                     </p> <!-- author-detail-wrap .// -->
 
                     <p class="publisher-detail-wrap"> 
-                        <span style="font-size:1.2rem;">Nhà xuất bản :</span> 
-                    	<span class="price h3 text-info"> 
+                        <span class="category">Nhà xuất bản: </span> 
+                    	<span class="category-info price h3 text-info"> 
                     		<span class="">NXH xxx</span>
                     	</span> 
                     </p> <!-- publicsher-detail-wrap .// -->
 
 
                     <p class="price-detail-wrap"> 
-                        <span style="font-size:1.2rem;">Giá :</span> 
-                    	<span class="price h3 text-danger"> 
+                        <span class="category">Giá: </span> 
+                    	<span class="category-info price h3 text-danger"> 
                     		<span class="num"><?= number_format($book['price'], 0, ",", ".") ?></span><span class="currency"> VNĐ</span>
                     	</span> 
                     </p> <!-- price-detail-wrap .// -->
 
                     <p class="discount-detail-wrap"> 
-                        <span style="font-size:1.2rem;">Tiết kiệm :</span> 
-                    	<span class="price h5 text-danger"> 
+                        <span class="category">Tiết kiệm: </span> 
+                    	<span class="category-info price h5 text-danger"> 
                     		<span class="num"><?= number_format(25000, 0, ",", ".") ?></span><span class="currency"> VNĐ</span><span>( 10% )</span>
                     	</span> 
                     </p> <!-- discount-detail-wrap .// -->
 
                     <p class="quantity-detail-wrap"> 
-                        <span style="font-size:1.2rem;">Tình trạng :</span> 
+                        <span class="category">Tình trạng: </span> 
 
                         <?php if ($book['quantity'] > 0) { ?>
-                        	<span class="price h5 text-success"> Còn hàng</span>
+                        	<span class="category-info price h5 text-success"> Còn hàng</span>
                         <?php } else { ?> 
-                          <span class="price h5 text-warning"> Hết hàng</span>
+                          <span class="category-info price h5 text-warning"> Hết hàng</span>
                         <?php } ?>  
                         
                     </p> <!-- quantity-detail-wrap .// -->
                         
                         
                     <dl class="item-property">
-                        <h3>Giới thiệu tóm tắt tác phẩm:</h3>
+                        <h4 class="category">Giới thiệu tóm tắt tác phẩm:</h4>
                         <dd>
-                            <p style="font-size:1.2rem"> <?= $book['content'] ?> </p>
+                            <p class="overview-content"> <?= $book['content'] ?> </p>
                         </dd>
                     </dl>
 
                     <dl class="param param-feature">
-                      <h4>Tags</h4>
-                      <a href="#" style="font-size:1.2rem;">Thể loại xxx ,</a> 
-                      <a href="#" style="font-size:1.2rem;">Thể loại xxx ,</a> 
-                      <a href="#" style="font-size:1.2rem;">Thể loại xxx ,</a> 
-                      <a href="#" style="font-size:1.2rem;">Thể loại xxx ,</a> 
+                      <h4>Tags:</h4>
+                      <a href="#" >Thể loại xxx ,</a> 
+                      <a href="#" >Thể loại xxx ,</a> 
+                      <a href="#" >Thể loại xxx ,</a> 
+                      <a href="#" >Thể loại xxx ,</a> 
                     </dl>  <!-- item-property-hor .// -->
 
                     <hr>
             	      <div class="row">
             	      	<div class="col-sm-6">
                       <?php if ($book['quantity'] > 0) { ?>
-            	      		  <p style="font-size: 1.2em;">Số lượng</p>
+                            <div class="amount-selection-container">
+            	      		  <p class="category delete-margin">Số lượng:</p>
                           <form id="add-to-cart-form" action="cart.php?action=add" method="POST">
-                              <div class="row" style="margin-bottom:10px;"><input type="number" value="1" name="quantity[<?=$book['id']?>]" size="2" style="border:1px solid;text-align:center;"/></div>  
-                              <input class="btn btn-lg btn-primary text-uppercase" type="submit" value="Mua ngay" style="width: 90px;" />                       
-                              <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng </a>
-                          </form>  <!-- item-property .// -->
+                              <div class="category row" ><input class="number-select" type="number" value="1" name="quantity[<?=$book['id']?>]" size="2" /></div> 
+                            </div>
 
+                            <div class="button-container">
+                              <input class="buy-button btn btn-lg btn-primary text-uppercase" type="submit" value="Mua ngay"  />                       
+                              <a href="#" class="cart-button btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng </a>
+                              </div>
+                            </form>  <!-- item-property .// -->
+                            
+                            
                       <?php } else { ?>
                           <span class="h5 text-warning">Sản phẩm hiện chưa có hàng</span>
                       <?php } ?>
             	      	</div> <!-- col.// -->
 
-            		      <div class="col-sm-6    ">
-            		      	<dl class="param param-inline">
-            		      		  <dt>choose </dt>
-            		      		  <dd>
-            		      		  	<label class="form-check form-check-inline">
-            		      			  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-            		      			  <span class="form-check-label">SM</span>
-            		      			</label>
-            		      			<label class="form-check form-check-inline">
-            		      			  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-            		      			  <span class="form-check-label">MD</span>
-            		      			</label>
-            		      			<label class="form-check form-check-inline">
-            		      			  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-            		      			  <span class="form-check-label">XXL</span>
-            		      			</label>
-            		      		  </dd>
-            		      	</dl>  <!-- item-property .// -->
-            		      </div> <!-- col.// -->
+            		      
             	      </div> <!-- row.// -->
-            	      <hr>
+            	      
 
                   </article> <!-- card-body.// -->
             		</aside> <!-- col.// -->
             	</div> <!-- row.// -->
             </div> <!-- card.// -->
-
-            
-
 
             <div class="review_card" style="margin-top:30px">
               <!-- RATING ROW -->
@@ -427,9 +412,9 @@
             <div class="swiper-button-prev"></div>
         </div>
     </section>
-    <!-- featured section ends -->        
-        
-    
+
+
+            
   </body>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -447,5 +432,93 @@
     
     <!-- custom js file link  -->
   <script src="./assets/js/main.js"></script>
+<style>
+     * {
+            padding: 0;
+            margin: 0;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+            box-sizing: border-box;
+            
+        }
+    .product-name {
+        font-size: 2.2rem;
+    }
+    .category {
+        font-size: 1.7rem;
+        font-weight: 400;
+    }
+    .overview-content {
+        font-size: 1.2rem;
+        font-weight: 300;
+    }
+    .buy-button {
+                height: 40px;
+                width: 120px;
+                font-size: 14px;
+                font-weight: 600;
+                background-color: #27ae60;
+                color: #fff;
+                text-decoration: none;
+                cursor: pointer;
+                
+                border: 0;
+                padding: 5px 10px;
+                letter-spacing: 0.3px;
+            }
 
+    .buy-button:hover {
+        background-color: #219150;
+    }
+
+    .category-info {
+        font-size: 1.7rem;
+    }
+
+    .amount-selection-container {
+        
+        display: flex;
+        gap: 3rem;
+        align-items: center;
+        
+        margin-bottom: 4rem;
+    }
+
+    .number-select {
+        border: 0.3px solid;
+        text-align: center;
+        width: 100px;
+    }
+
+    .delete-margin {
+        margin: 0;
+    }
+
+    .cart-button {
+        height: 40px;
+        width: 240px;
+        font-size: 14px;
+        font-weight: 600;
+        background-color: #f59f00;
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+        
+        border: 0;
+        padding: 5px 10px;
+        letter-spacing: 0.3px;
+        display: flex;
+        justify-content:center;
+        align-items: center;
+    }
+
+    .cart-button:hover {
+        background-color: #f08c00;
+    }
+    .button-container {
+        gap: 1rem;
+        display: flex; 
+        justify-content: space-between;
+        margin-bottom: 1rem;
+    }
+</style>
 </html>
