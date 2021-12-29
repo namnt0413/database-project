@@ -1,3 +1,7 @@
+<?php
+@ob_start();
+session_start();
+?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -197,7 +201,7 @@ and open the template in the editor.
     
     <body>
         <?php
-        session_start();
+        // session_start();
         include './connect_db.php';
         $error = false;
         if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && !empty($_POST['password'])) {

@@ -26,3 +26,7 @@ git push
 ```
 git pull
 ```
+- Kiểm tra trạng thái của project: 
+```
+git status
+```

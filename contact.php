@@ -1,51 +1,43 @@
 <?php include 'header.php' ?>
 
         <!-- Page Content -->
-    <div class="page-heading contact-heading header-text">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            
+    
 
 
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="find-us">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-heading">
-              <br><h2>Our Location on Maps</h2><br>
-            </div>
-          </div>
-          <div class="col-md-8">
+    
 <!-- How to change your own map point
     1. Go to Google Maps
     2. Click on your location point
     3. Click "Share" and choose "Embed map" tab
     4. Copy only URL and paste it within the src="" field below
 -->
-            <div id="map">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.7172162244697!2d105.84526041476283!3d21.003969686011754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac743ba55555%3A0xb835dcc0410fa11!2zTmjDoCBTw6FjaCBCw6FjaCBLaG9h!5e0!3m2!1svi!2s!4v1637007397716!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="left-content">
-              <h4>About our contact info</h4>
-              <ul>
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                <li><a href="#"><i class="fa fa-behance"></i></a></li>
-              </ul>
-            </div>
-          </div>
+    <div class="address-info-container">
+        <div id="map-container">
+            <h2 class="section-heading">Our shop location: </h2>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.7172162244697!2d105.84526041476283!3d21.003969686011754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac743ba55555%3A0xb835dcc0410fa11!2zTmjDoCBTw6FjaCBCw6FjaCBLaG9h!5e0!3m2!1svi!2s!4v1637007397716!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
-      </div>
+        
+        
+        <div class="right-content">
+            <h2 class="section-heading">About our contact info:</h2>
+            <ul>
+                <li class="li-info"><svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+</svg><a href="#">Address </a></li>
+                <li class="li-info"><svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+</svg><a href="#">Active hours </i></a></li>
+                <li class="li-info"><svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76" />
+</svg><a href="#">Email address </i></a></li>
+                <li class="li-info"><svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+</svg><a href="#">Facebook</i></a></li>
+            </ul>
+        </div>
+      
+          
     </div>
          <?php
         // 2 phuong thuc de gui mail
@@ -104,42 +96,49 @@
             </div>
              <?php } else {
             ?>
-        <div class="container-contact100" style="background-image: url('images/bg-01.jpg');">
-            <div class="wrap-contact100">
-            <form class="contact100-form validate-form">
+        <div class="container contact-content-container">
+            <div class="container-contact100">
+                <div class="wrap-contact100">
                 <span class="contact100-form-title">
-                    Get in Touch
+                        Get in touch with us!
                 </span>
+                <form class="contact-form contact100-form validate-form">
+                    
+                   
 
-                <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Name is required">
-                    <span class="label-input100">Tell us your name *</span>
-                    <input class="input100" type="text" name="name" placeholder="Enter your name">
-                </div>
-
-                <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                    <span class="label-input100">Enter your email *</span>
-                    <input class="input100" type="text" name="email" placeholder="Enter your email">
-                </div>
-
-                <div class="wrap-input100">
-                    <span class="label-input100">Tittle</span>
-                    <input class="input100" type="text" name="web" placeholder="">
-                </div>
-
-                <div class="wrap-input100 validate-input" data-validate = "Message is required">
-                    <span class="label-input100">Message</span>
-                    <textarea class="input100" name="message" placeholder="Your message here..."></textarea>
-                </div>
-
-                <div class="container-contact100-form-btn">
-                    <div class="wrap-contact100-form-btn">
-                        <div class="contact100-form-bgbtn"></div>
-                        <button class="contact100-form-btn">
-                            Submit
-                        </button>
+                    <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Name is required">
+                        <span class="label-input100">Tell us your name *</span>
+                        <input class="input100" type="text" name="name" placeholder="Enter your name">
                     </div>
+
+                    <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                        <span class="label-input100">Enter your email *</span>
+                        <input class="input100" type="text" name="email" placeholder="Enter your email">
+                    </div>
+
+                    <div class="wrap-input100">
+                        <span class="label-input100">Tittle</span>
+                        <input class="input100" type="text" name="web" placeholder="">
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate = "Message is required">
+                        <span class="label-input100">Message</span>
+                        <textarea class="input100" name="message" placeholder="Your message here..."></textarea>
+                    </div>
+
+                    <div class="container-contact100-form-btn">
+                        <div class="wrap-contact100-form-btn">
+                            <div class="contact100-form-bgbtn"></div>
+                            <button class="contact100-form-btn">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
                 </div>
-            </form>
+            </div>
+            <div class="contact-img">
+                
             </div>
         </div>
 
@@ -153,62 +152,7 @@
 
 
 
-    <!-- footer section starts  -->
-    <section class="footer">
-    
-        <div class="box-container">
-    
-            <div class="box">
-                <h3>our locations</h3>
-                <a href="#"> <i class="fas fa-map-marker-alt"></i> india </a>
-                <a href="#"> <i class="fas fa-map-marker-alt"></i> USA </a>
-                <a href="#"> <i class="fas fa-map-marker-alt"></i> russia </a>
-                <a href="#"> <i class="fas fa-map-marker-alt"></i> france </a>
-                <a href="#"> <i class="fas fa-map-marker-alt"></i> japan </a>
-                <a href="#"> <i class="fas fa-map-marker-alt"></i> africa </a>
-            </div>
-    
-            <div class="box">
-                <h3>quick links</h3>
-                <a href="#"> <i class="fas fa-arrow-right"></i> home </a>
-                <a href="#"> <i class="fas fa-arrow-right"></i> featured </a>
-                <a href="#"> <i class="fas fa-arrow-right"></i> arrivals </a>
-                <a href="#"> <i class="fas fa-arrow-right"></i> reviews </a>
-                <a href="#"> <i class="fas fa-arrow-right"></i> blogs </a>
-            </div>
-    
-            <div class="box">
-                <h3>extra links</h3>
-                <a href="#"> <i class="fas fa-arrow-right"></i> account info </a>
-                <a href="#"> <i class="fas fa-arrow-right"></i> ordered items </a>
-                <a href="#"> <i class="fas fa-arrow-right"></i> privacy policy </a>
-                <a href="#"> <i class="fas fa-arrow-right"></i> payment method </a>
-                <a href="#"> <i class="fas fa-arrow-right"></i> our serivces </a>
-            </div>
-    
-            <div class="box">
-                <h3>contact info</h3>
-                <a href="#"> <i class="fas fa-phone"></i> +123-456-7890 </a>
-                <a href="#"> <i class="fas fa-phone"></i> +111-222-3333 </a>
-                <a href="#"> <i class="fas fa-envelope"></i> shaikhanas@gmail.com </a>
-                <img src="./assets/image/worldmap.png" class="map" alt="">
-            </div>
-            
-        </div>
-    
-        <div class="share">
-            <a href="#" class="fab fa-facebook-f"></a>
-            <a href="#" class="fab fa-twitter"></a>
-            <a href="#" class="fab fa-instagram"></a>
-            <a href="#" class="fab fa-linkedin"></a>
-            <a href="#" class="fab fa-pinterest"></a>
-        </div>
-    
-        <div class="credit"> created by <span>mr. web designer</span> | all rights reserved! </div>
-    
-    </section>
-    <!-- footer section ends -->
-
+   
 
 
 		<!-- Optional JavaScript -->
@@ -217,4 +161,124 @@
 		<!-- custom js file link  -->
 		<script src="./assets/js/main.js"></script>
 </body>
-</html>         
+
+<style>
+    /* * {
+        box-sizing: border-box;
+    } */
+    
+    .address-info-container {
+        padding-left: 6rem;
+        display: grid;
+        grid-template-columns: 60fr 30fr;
+        margin-top: 6rem;
+        height: 85vh;
+        column-gap: 6rem;
+    }
+    .section-heading {
+        margin-bottom: 3rem;
+        font-size: 3.2rem;
+        font-weight: 600;
+    }
+
+    iframe {
+        width: 100%;
+    }
+    ul {
+        list-style: none;
+        display: flex; 
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .li-info {
+        display: flex; 
+        align-items: center;
+        margin-bottom: 1.3rem;
+    }
+
+    li a:link, li a:visited {
+        display: inline-block;
+        text-decoration: none;
+        font-size: 2rem;
+        color: #27ae60;
+        padding: 3px;
+    }
+    .icon {
+        stroke: #27ae60;
+        width: 32px; 
+        height: 32px;
+        
+    }
+    .container {
+        max-width: 100%;
+        padding: 0;
+        
+    }
+    .contact-content-container {
+        display: grid;
+        grid-template-columns: 1fr 1.3fr; 
+        
+        padding-left: 8rem;
+        background-color: #27ae60;
+    }
+    .contact100-form-title {
+        display: inline-block;
+        font-size: 3.2rem;
+        font-weight: 600;
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+    }
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .label-input100 {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+    }
+
+    .input100 {
+        width: 70%;
+        padding: 1rem;
+        font-size: 1.1rem;
+        font-family: inherit;
+        color: inherit;
+        border: none;
+        background-color: #e9f7ef;
+        border-radius: 9px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+    }
+
+    .contact-img {
+        background-image: linear-gradient(
+        to right bottom,
+        rgba(20,87,48,0.25),
+        rgba(16,70,38,0.25)
+        ),
+    url("assets/image/contact-section-img.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+    .contact100-form-btn {
+        font-size: 15px;
+        font-weight: 600;
+        background-color: #104626;
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 9px;
+        padding: 9px 24px;
+        margin-top: 12px;
+        margin-bottom: 24px;
+    }
+</style>
+</html>     
