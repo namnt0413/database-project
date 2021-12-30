@@ -1,6 +1,22 @@
 <?php 
     include 'header.php' ;
 
+
+    if(isset($_POST['content']) && isset($_POST['tittle']) ){
+        $tittle = $_POST['tittle'];
+        $content = $_POST['content'];
+
+        if(isset($_SESSION['current_user'] )){
+            $book_id = $_GET['id'];
+            $user_id = $currentUser['id'];
+            // var_dump($book_id,$user_id,$tittle,$content);exit;
+             $result = mysqli_query($con, "INSERT INTO `reviews` (`id`, `book_id`, `customer_id`, `rating`, `tittle` , `content`, `created_date`, `last_updated`)
+             VALUES (NULL, '$book_id', '$user_id', NULL, '$tittle' ,'$content', " . time() . ", " . time() . ");");
+
+        echo"<script>alert('Bình luận của bạn đã được gửi!')</script>";
+        }
+    }
+
     $result = mysqli_query($con, "SELECT * FROM `books` WHERE `id` = ".$_GET['id']);
     $book = mysqli_fetch_assoc($result);
     // var_dump($book);exit;
@@ -194,57 +210,63 @@
                     </div>
                 </div>
               </div><!-- end RATING ROW -->
-            </div>            
-
-            <div class="review_card">
-              <!-- COMMENT ROW -->
-                <div class="row d-flex">
-                    <div class=""> <img class="profile-pic" src="https://i.imgur.com/V3ICjlm.jpg"> </div>
-                    <div class="d-flex flex-column">
-                        <h3 class="mt-2 mb-0">Vikram jit Singh</h3>
-                        <div>
-                            <p class="text-left"><span class="text-muted">4.0</span> <span class="fa fa-star star-active ml-3"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-inactive"></span></p>
-                        </div>
-                    </div>
-                    <div class="ml-auto">
-                        <p class="text-muted pt-5 pt-sm-3">10 Sept</p>
-                    </div>
-                </div>
-                <div class="row text-left">
-                    <h4 class="blue-text mt-3">"An awesome activity to experience"</h4>
-                    <p class="content">If you really enjoy spending your vacation 'on water' or would like to try something new and exciting for the first time.</p>
-                </div>
-                <div class="row text-left"> <img class="pic" src="https://i.imgur.com/kjcZcfv.jpg"> <img class="pic" src="https://i.imgur.com/SjBwAgs.jpg"> <img class="pic" src="https://i.imgur.com/IgHpsBh.jpg"> </div>
-                <div class="row text-left mt-4">
-                    <div class="like mr-3 vote"> <img src="https://i.imgur.com/mHSQOaX.png"><span class="blue-text pl-2">20</span> </div>
-                    <div class="unlike vote"> <img src="https://i.imgur.com/bFBO3J7.png"><span class="text-muted pl-2">4</span> </div>
-                </div>
-            </div><!-- end review card -->
+            </div>      
             
+            
+            <!-- COMMENT FORM -->
             <div class="review_card">
-              <!-- COMMENT ROW -->
+              <div class="row justify-content-left d-flex">
+                    <h2>COMMENT  : </h2>
+                    <form method="post">
+                        <textarea class="form-control" name="tittle" rows="1" placeholder="Tiêu đề" style="width: 500px;"></textarea>                            
+                        <textarea class="form-control" name="content" rows="5" placeholder="Nội dung" style="width: 500px;"></textarea>                            
+                        <input type="submit" class="btn btn-primary">
+                    </form>
+              </div><!-- end COMMENT FORM -->
+            </div>  
+
+
+
+        <?php
+        $comments = mysqli_query($con, "SELECT customers.first_name, customers.last_name, reviews.* 
+        FROM reviews
+        INNER JOIN books ON reviews.book_id = books.id
+        INNER JOIN customers ON reviews.customer_id = customers.id
+        WHERE book_id = $row_id ");
+        // $comments = mysqli_fetch_all($comments, MYSQLI_ASSOC);
+            // var_dump($comments);exit;                      
+        ?>
+
+        <?php  while ($row_comment = mysqli_fetch_array($comments) ){  
+            // var_dump($row_comment);exit;                      
+        ?>
+            <!-- USER COMMENT ROW -->
+            <div class="review_card">
                 <div class="row d-flex">
                     <div class=""> <img class="profile-pic" src="https://i.imgur.com/V3ICjlm.jpg"> </div>
                     <div class="d-flex flex-column">
-                        <h3 class="mt-2 mb-0">Vikram jit Singh</h3>
+                        <h3 class="mt-2 mb-0"> <?= $row_comment['first_name']." ".$row_comment['last_name'] ?> </h3>
                         <div>
                             <p class="text-left"><span class="text-muted">4.0</span> <span class="fa fa-star star-active ml-3"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-inactive"></span></p>
                         </div>
                     </div>
                     <div class="ml-auto">
-                        <p class="text-muted pt-5 pt-sm-3">10 Sept</p>
+                        <p class="text-muted pt-5 pt-sm-3"> <?= date('d/m/Y',$row_comment['created_date']) ?> </p>
                     </div>
                 </div>
                 <div class="row text-left">
-                    <h4 class="blue-text mt-3">"An awesome activity to experience"</h4>
-                    <p class="content">If you really enjoy spending your vacation 'on water' or would like to try something new and exciting for the first time.</p>
+                    <h4 class="blue-text mt-3"> <?= $row_comment['tittle'] ?></h4> 
                 </div>
-                <div class="row text-left"> <img class="pic" src="https://i.imgur.com/kjcZcfv.jpg"> <img class="pic" src="https://i.imgur.com/SjBwAgs.jpg"> <img class="pic" src="https://i.imgur.com/IgHpsBh.jpg"> </div>
+                <div class="row text-left">
+                    <p class="content"> <?= $row_comment['content'] ?></p> </p>
+                </div>
+                <!-- <div class="row text-left"> <img class="pic" src="https://i.imgur.com/kjcZcfv.jpg"> <img class="pic" src="https://i.imgur.com/SjBwAgs.jpg"> <img class="pic" src="https://i.imgur.com/IgHpsBh.jpg"> </div> -->
                 <div class="row text-left mt-4">
                     <div class="like mr-3 vote"> <img src="https://i.imgur.com/mHSQOaX.png"><span class="blue-text pl-2">20</span> </div>
                     <div class="unlike vote"> <img src="https://i.imgur.com/bFBO3J7.png"><span class="text-muted pl-2">4</span> </div>
                 </div>
             </div><!-- end review card -->
+        <?php } ?>
 
 
         </div>

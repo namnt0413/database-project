@@ -1,2 +1,0 @@
-TRANG WEB :
-- Làm frontend phần Review sách: book_detail.php, book_detail.css

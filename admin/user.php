@@ -21,8 +21,18 @@
 
     <?php
         include '../connect_db.php';
-        $result = mysqli_query($con, "SELECT * FROM customers");
+        
+        $item_per_page = (!empty($_GET['per_page'])) ? $_GET['per_page'] : 8;
+        $current_page = (!empty($_GET['page'])) ? $_GET['page'] : 1;
+        $offset = ($current_page - 1) * $item_per_page;
+
+        $totalRecords = mysqli_query($con, "SELECT * FROM `customers`");
+        $totalRecords = $totalRecords->num_rows;
+        $totalPages = ceil($totalRecords / $item_per_page);
+        
+        $result = mysqli_query($con, "SELECT * FROM customers ORDER BY `id` DESC LIMIT " . $item_per_page . " OFFSET " . $offset);
         mysqli_close($con);
+
         ?>
         <style>
             /* table, th, td {
@@ -55,6 +65,10 @@
                                     <a class="fa fa-user-plus" href="./user_create.php">Tạo tài khoản mới</a>
                                 <div class="table-responsive table--no-card m-b-30">
                                     <!-- <table id = "user-listing" style="width: 700px;"> -->
+
+                            <?php
+                            include './pagination.php';
+                            ?>                                    
                                     <table class="table table-borderless table-striped table-earning">
                                         <tr>
                                             <td>Tài khoản</td>
@@ -76,7 +90,7 @@
                                                     <?=$row['first_name']." ".$row['last_name']
                                                     ?>
                                                 </td>
-                                                <td><?= date('d/m/Y H:i', $row['birthday']) ?></td>
+                                                <td><?= date('d/m/Y', $row['birthday']) ?></td>
                                                 <td><?= $row['phone'] ?></td>
                                                 <td>
                                                     <?php if ($row['status'] == 1 ){ ?>
