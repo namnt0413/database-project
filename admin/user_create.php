@@ -19,7 +19,7 @@
         include 'admin_navbar.php';
     ?>
         <style>
-            .box-content{
+            /* .box-content{
                 margin: 76px auto 0;
                 width: 800px;
                 border: 1px solid #ccc;
@@ -32,8 +32,108 @@
             }
             #create_user form input{
                 margin: 5px 0;
+            } */
+           
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+                color: #495057;
             }
+            h1 {
+                margin-bottom: 2.5rem;
+            }
+
+            h4 {
+                font-size: 1rem; 
+                margin-bottom: 1rem;
+            }
+            label {
+                margin: 0;
+            }
+            .content-container {
+                margin-top: 5rem;
+                position: relative;
+                height: 90vh;
+                 /* background-image: linear-gradient(rgba(233, 236, 239, 0.603), rgba(233, 236, 239, 0.603));
+                 background-image: linear-gradient(rgba(34, 34, 34, 0.603), rgba(34, 34, 34, 0.603)), url(assets/image/login-theme.jpg);
+                background-size: cover; */
+                background-color: #27ae60;
+
+            }
+            .box-content{
+                margin: 0 auto;
+                width: 500px;
+                
+                text-align: center;
+                padding: 20px;
+                box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.07);
+                border: 1px solid #ccc;
+                position: absolute;
+                box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.07);
+               
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgb(256,256,256,0.9);
+            }
+           
             
+            .input-block {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                margin-bottom: 10px;
+                position: relative;
+            }
+
+            .input-area {
+                height: 30px;
+                width: 350px;
+                position: absolute; 
+                right: 10px;
+                border-radius: 9px;
+                border: 1px solid #ccc;
+                padding: 5px;
+                
+            }
+            .button {
+                
+                font-size: 17px;
+                font-weight: 600;
+                background-color: #f59f00;
+                color: #fff;
+                text-decoration: none;
+                cursor: pointer;
+                border-radius: 9px;
+                border: 0;
+                padding: 5px 15px;
+                
+            }
+
+            .button:hover, .button:active {
+                background-color: #f08c00;
+            }
+
+            .link-button:link, .link-button:visited {
+                display: inline-block; 
+                text-decoration: none; 
+                font-size: 17px;
+                font-weight: 600;
+                background-color: #f59f00;
+                color: #fff;
+                text-decoration: none;
+                cursor: pointer;
+                border-radius: 9px;
+                border: 0;
+                padding: 5px 10px;
+            }
+
+            .link-button:hover, .link-button:active {
+                background-color: #f08c00;
+            }
         </style>
         <?php
         $error = false;
@@ -54,31 +154,41 @@
                 // trong TH ma ko dang ki duoc
                 if ($error !== false) {
                     ?>
-                    <div id="error-notify" class="box-content">
-                        <h1>Thông báo</h1>
-                        <h4><?= $error ?></h4>
-                        <a href="./create_user.php">Tạo tài khoản khác</a>
+                    <div class="content-container">
+                        <div id="error-notify" class="box-content">
+                            <h1>Thông báo</h1>
+                            <h4><?= $error ?></h4>
+                            <a href="./create_user.php" class="link-button">Tạo tài khoản khác</a>
+                        </div>
                     </div>
                 <?php } else { ?>
-                    <div id="success-notify" class="box-content">
-                        <h1>Chúc mừng</h1>
-                        <h4>Bạn đã tạo thành công tài khoản <?= $_POST['username'] ?></h4>
-                        <a href="./user.php">Danh sách tài khoản</a>
+                    <div class="content-container">
+                        <div id="success-notify" class="box-content">
+                            <h1>Chúc mừng</h1>
+                            <h4>Bạn đã tạo thành công tài khoản <?= $_POST['username'] ?></h4>
+                            <a class="link-button" href="./user.php">Danh sách tài khoản</a>
+                        </div>
                     </div>
                 <?php } ?>
             <?php } ?>
-        <?php } else { ?>             
-            <div id="create_user" class="box-content">
-                <h1>Tạo tài khoản</h1>
-                <form action="./user_create.php?action=create" method="Post" autocomplete="off">
-                    <label>Username</label></br>
-                    <input type="text" name="username" value="" />
-                    <br>
-                    <label>Password</label></br>
-                    <input type="password" name="password" value="" />
-                    <br><br>
-                    <input class="btn-success" style="padding: 10px;" type="submit" value="Tạo tài khoản" />
-                </form> 
+        <?php } else { ?>   
+            <div class="content-container">          
+                <div id="create_user" class="box-content">
+                    <h1>Tạo tài khoản</h1>
+                    <form action="./user_create.php?action=create" method="Post" autocomplete="off">
+                        <div class="input-block">
+                            <label>Username</label></br>
+                            <input class="input-area" type="text" name="username" value="" />
+                        </div>
+                        <br>
+                        <div class="input-block">
+                            <label>Password</label></br>
+                            <input class="input-area" type="password" name="password" value="" />
+                        </div>
+                        <br><br>
+                        <input class="button "  type="submit" value="Tạo tài khoản" />
+                    </form> 
+                </div>
             </div>
         <?php } ?>
 

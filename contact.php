@@ -172,12 +172,12 @@
         display: grid;
         grid-template-columns: 60fr 30fr;
         margin-top: 6rem;
-        height: 85vh;
+        height: 100vh;
         column-gap: 6rem;
     }
     .section-heading {
         margin-bottom: 3rem;
-        font-size: 3.2rem;
+        font-size: 2.5rem;
         font-weight: 600;
     }
 
@@ -192,6 +192,7 @@
     }
 
     .li-info {
+        
         display: flex; 
         align-items: center;
         margin-bottom: 1.3rem;
@@ -200,7 +201,7 @@
     li a:link, li a:visited {
         display: inline-block;
         text-decoration: none;
-        font-size: 2rem;
+        font-size: 1.5rem;
         color: #27ae60;
         padding: 3px;
     }
@@ -224,10 +225,10 @@
     }
     .contact100-form-title {
         display: inline-block;
-        font-size: 3.2rem;
+        font-size: 2.5rem;
         font-weight: 600;
-        margin-top: 3rem;
-        margin-bottom: 2rem;
+        margin-top: 2rem;
+        margin-bottom: 1.5rem;
     }
     .contact-form {
         display: flex;
@@ -244,14 +245,14 @@
     .input100 {
         width: 70%;
         padding: 1rem;
-        font-size: 1.1rem;
+        font-size: 1.3rem;
         font-family: inherit;
         color: inherit;
         border: none;
         background-color: #e9f7ef;
         border-radius: 9px;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
 
     .contact-img {
