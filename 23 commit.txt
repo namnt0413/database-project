@@ -1,6 +1,0 @@
-
-TRANG ADMIN : 
-- Thêm phân trang cho phần quản lý người dùng
-
-TRANG WEB 
-- Xây dựng chức năng Review cơ bản ( gồm có form bình luận, hiển thị các comment ra web)

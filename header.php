@@ -57,7 +57,7 @@
             <ul class="user_navbar">
                 <li><a href="#" class="fas fa-heart"></a></li>
                 <li><a href="cart.php" class="fas fa-shopping-cart"></a></li>
-                <li><a href="#" id="login-btn" class="fas fa-user"></a></li>
+                <li><a href="#"><img src="./<?= isset($currentUser['avatar']) ? $currentUser['avatar'] : "assets/image/user/user.png"?>" alt="" style="width: 40px;height:40px;border-radius: 100%;"></a></li>
                 <li id="has_subnav">
                     <?= $currentUser['first_name']?>
                     <?= $currentUser['last_name']?> 

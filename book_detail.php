@@ -228,7 +228,7 @@
 
 
         <?php
-        $comments = mysqli_query($con, "SELECT customers.first_name, customers.last_name, reviews.* 
+        $comments = mysqli_query($con, "SELECT customers.first_name, customers.last_name, customers.avatar, reviews.* 
         FROM reviews
         INNER JOIN books ON reviews.book_id = books.id
         INNER JOIN customers ON reviews.customer_id = customers.id
@@ -243,7 +243,7 @@
             <!-- USER COMMENT ROW -->
             <div class="review_card">
                 <div class="row d-flex">
-                    <div class=""> <img class="profile-pic" src="https://i.imgur.com/V3ICjlm.jpg"> </div>
+                    <div class=""> <img class="profile-pic" src="./<?=  isset($row_comment['avatar']) ? $row_comment['avatar'] : "assets/image/user/user.png"?>" alt="" style="width: 40px;height:40px;border-radius: 100%;"> </div>
                     <div class="d-flex flex-column">
                         <h3 class="mt-2 mb-0"> <?= $row_comment['first_name']." ".$row_comment['last_name'] ?> </h3>
                         <div>

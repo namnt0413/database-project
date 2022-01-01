@@ -125,7 +125,7 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="images/icon/avatar-01.jpg" alt="image" />
+                                            <img src="../<?= $currentUser['avatar'] ?>" alt="image" title="<?=$currentUser['last_name'] ?>" />
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn" href="#"><?= $currentUser['last_name']?></a>
@@ -134,7 +134,7 @@
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="" alt="Admin" />
+                                                        <img src="../<?= $currentUser['avatar'] ?>" alt="Admin" />
                                                     </a>
                                                 </div>
                                                 <div class="content">

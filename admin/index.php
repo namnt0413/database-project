@@ -16,7 +16,6 @@
         <div class="page-container">
 
     <?php 
-         
         include 'admin_navbar.php';
     ?>
             <!-- MAIN CONTENT-->
