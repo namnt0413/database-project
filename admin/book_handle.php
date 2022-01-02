@@ -53,6 +53,7 @@
                     if (!isset($image) && !empty($_POST['image'])) {
                         $image = $_POST['image'];
                     }
+                    var_dump($image);    exit;                 
 
                     //khi up load nhieu anh trong thu vien anh , du lieu anh dc luu lai o truong $_FILES['gallery'
                     if (isset($_FILES['gallery']) && !empty($_FILES['gallery']['name'][0])) {
@@ -69,7 +70,6 @@
                         $galleryImages = array_merge($galleryImages, $_POST['gallery_image']);
                     }
 
-                    // var_dump($image);                     
 
                     // Cap nhat vao database
                     if (!isset($error)) {

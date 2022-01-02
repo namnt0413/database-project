@@ -1,3 +1,0 @@
-
-Thêm phần ảnh đại diện cho người dùng:
-- Trong header.php, book_detail.php và trong admin_navbar.php

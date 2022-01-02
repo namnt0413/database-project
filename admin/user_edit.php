@@ -49,11 +49,13 @@
             .content-container {
                 margin-top: 5rem;
                 position: relative;
-                height: 90vh;
+                height: 125vh;
+                background-image: linear-gradient(#f4f4f4, #7ac187);
+
                  /* background-image: linear-gradient(rgba(233, 236, 239, 0.603), rgba(233, 236, 239, 0.603));
                  background-image: linear-gradient(rgba(34, 34, 34, 0.603), rgba(34, 34, 34, 0.603)), url(assets/image/login-theme.jpg);
                 background-size: cover; */
-                background-color: #27ae60;
+                /* background-color: #27ae60; */
 
             }
             .box-content{
@@ -147,8 +149,22 @@
                          $birthday = strtotime($birthday);
                     }
 
+                     //upload anh dai dien
+                     $uploadedFiles = $_FILES['avatar']; // uploadFile get duoc anh 
+                     if (isset($_FILES['avatar']) && !empty($_FILES['avatar']['name'][0])) { // Dieu Kien cua thu vien anh
+                        $result = uploadAvatarFiles($uploadedFiles);  // upload file anh len(TV upload anh)
+                        if (!empty($result['errors'])) { // neu co loi
+                            $error = $result['errors'];
+                        } else {
+                            $avatar = $result['path'];
+                        }
+                    }
+                    // var_dump($image);    exit;                 
+
+
+                // CAP NHAT VAO DATABASE
                 $result = mysqli_query($con, "UPDATE `customers` SET `password` = MD5('" . $_POST['password'] . "'), `first_name` = '" . $_POST['first_name'] ."',
-                `last_name` = '" . $_POST['last_name'] ."' , `birthday` = " . $birthday ." , `phone` = '" . $_POST['phone'] ."' , `address` = '" . $_POST['address'] ."' ,
+                `last_name` = '" . $_POST['last_name'] ."' , `avatar` =  '" . $avatar . "' , `birthday` = " . $birthday ." , `phone` = '" . $_POST['phone'] ."' , `address` = '" . $_POST['address'] ."' ,
                   `status` = " . $_POST['status'] . ", `email` = '" . $_POST['email'] . "', `money_spent` = '" . $_POST['money_spent'] . "',
                    `last_updated`=" . time() . " WHERE `customers`.`id` = " . $_POST['id'] . ";");
                 if (!$result) {
@@ -189,8 +205,21 @@
                 ?>
                 <div class="content-container">
                     <div id="edit_user" class="box-content">
+                        <div class="row"><a href="user.php" class="fa fa-undo" style="padding: 5px;">  Quay lại</a></div>
                         <h1>Sửa tài khoản "<?= $user['username'] ?>"</h1>
-                        <form action="./user_edit.php?action=edit" method="Post" autocomplete="off">
+                        <form action="./user_edit.php?action=edit" method="Post" enctype="multipart/form-data" autocomplete="off">  
+                            <div class="wrao-feild" style="margin-bottom:30px">
+                                <!-- <div class="right-wrap-field" style="width:80px;height: 120px;margin-bottom: 40px;"> -->
+                                <?php if (isset($user['avatar'])) { ?>  <!-- Neu co anh dai dien  -->
+                                        <img src="../<?= $user['avatar'] ?>" style="width: 200px;height: 200px;border-radius:100%;" /><br/>
+                                        <input type="file" name="avatar"/><br>
+                                 <?php   } else { ?>
+                                    <img src="../assets/image/user/user.png" style="width: 200px;height: 200px;border-radius:100%;"><br>
+                                    <input type="file" name="avatar" /><br>      <!-- nut choosen file-->
+                                <?php } ?>
+                                <!-- </div> -->
+                            </div>                    
+
                             <div class="input-block">
                                 <label>Mật khẩu mới</label></br>
                                 <input type="hidden" name="id" value="<?= $user['id'] ?>" />

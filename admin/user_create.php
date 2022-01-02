@@ -59,7 +59,8 @@
                  /* background-image: linear-gradient(rgba(233, 236, 239, 0.603), rgba(233, 236, 239, 0.603));
                  background-image: linear-gradient(rgba(34, 34, 34, 0.603), rgba(34, 34, 34, 0.603)), url(assets/image/login-theme.jpg);
                 background-size: cover; */
-                background-color: #27ae60;
+                /* background-color: #27ae60; */
+                background-image: linear-gradient(#f4f4f4, #7ac187);
 
             }
             .box-content{
