@@ -173,7 +173,8 @@
                 <?php } ?>
             <?php } ?>
         <?php } else { ?>   
-            <div class="content-container">          
+            <div class="content-container">   
+            <a href="javascript:window.history.go(-1)" class="fa fa-undo" style="padding: 5px; margin-bottom: 10px;">  Quay lại</a>       
                 <div id="create_user" class="box-content">
                     <h1>Tạo tài khoản</h1>
                     <form action="./user_create.php?action=create" method="Post" autocomplete="off">

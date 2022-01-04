@@ -29,6 +29,7 @@
         <link rel="stylesheet" href="./assets/js/book.js">
 
         <div class="container">
+        <a href="javascript:window.history.go(-1)" class="fa fa-undo" style="padding: 5px; margin-bottom: 10px;">  Quay lại</a>
         <hr>
             <div class="card">
             	<div class="row">

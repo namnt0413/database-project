@@ -155,7 +155,7 @@
                     if (!isset($image) && !empty($_POST['image'])) {
                         $image = $_POST['image'];
                     }
-                    var_dump($image);    exit;                 
+                    // var_dump($image);    exit;                 
 
                     //khi up load nhieu anh trong thu vien anh , du lieu anh dc luu lai o truong $_FILES['gallery'
                     if (isset($_FILES['gallery']) && !empty($_FILES['gallery']['name'][0])) {
@@ -179,7 +179,7 @@
                             //Cập nhật lại sản phẩm
                             $result = mysqli_query($con, "UPDATE `books` SET `tittle` = '" . $_POST['tittle'] . "', `quantity` = '" . $_POST['quantity'] . "' ,`image` =  '" . $image . "',
                              `price` = " . str_replace('.', '', $_POST['price']) . ", `content` = '" . $_POST['content'] . "', `last_updated` = " . time() . " WHERE `books`.`id` = " . $_GET['id']);
-                           $result2 = mysqli_query($con, "UPDATE `books_authors` SET `author_id` = '" . $_POST['author_id'] . "' WHERE `books_authors`.`book_id` = " . $_GET['id']);
+                        //    $result2 = mysqli_query($con, "UPDATE `books_authors` SET `author_id` = '" . $_POST['author_id'] . "' WHERE `books_authors`.`book_id` = " . $_GET['id']);
                         } else { 
                             //Thêm sản phẩm hoac copy san pham
                             $result = mysqli_query($con, "INSERT INTO `books` (`id`, `tittle` , `quantity` , `image`, `price`, `content`, `created_date`, `last_updated`) 
@@ -187,11 +187,11 @@
                              '" . str_replace('.', '', $_POST['price']) . "', '" . $_POST['content'] . "', " . time() . ", " . time() . ");");
                             
                             // lay ra id sa'ch lo'n nhat chinh la id cua sach mi`nh vu`a tao 
-                            $book_add = mysqli_query($con, "SELECT MAX(id) FROM `books` "); 
-                            $book_add_id = $book_add->fetch_assoc();
+                            //$book_add = mysqli_query($con, "SELECT MAX(id) FROM `books` "); 
+                            //$book_add_id = $book_add->fetch_assoc();
                             // var_dump($book_add_id['MAX(id)']);var_dump($_POST['author_id']); exit;
-                            $result2 = mysqli_query($con, "INSERT INTO `books_authors` (`author_id`,`book_id`)
-                            VALUES ('" . $_POST['author_id'] . "',  '" . $book_add_id['MAX(id)'] . "'  )   ") ;
+                            //$result2 = mysqli_query($con, "INSERT INTO `books_authors` (`author_id`,`book_id`)
+                            //VALUES ('" . $_POST['author_id'] . "',  '" . $book_add_id['MAX(id)'] . "'  )   ") ;
                             // var_dump($result);exit;
                         }
 
@@ -231,10 +231,17 @@
 // Neu khong ton tai 1 phuong thuc nao (chua them or sua,copy) thi render ra giao dien              
             else {     
                 if (!empty($_GET['id'])) {      // HAM XU LY LAY VE TUNG ANH TU THU VIEN ANH ( neu co phuong thuc get id )
-                    $result = mysqli_query($con, "SELECT books.*,books_authors.author_id 
-                    FROM `books_authors` INNER JOIN `books` ON books.id = books_authors.book_id WHERE `id` = " . $_GET['id']);  // lay du lieu tu bang books vs id = $_Get['id]
+                    $result = mysqli_query($con, "SELECT *
+                    FROM `books` WHERE `id` = " . $_GET['id']);  // lay du lieu tu bang books vs id = $_Get['id]
+                    // var_dump($result);exit;  
+
+                    $result2 = mysqli_query($con, "SELECT books_authors.author_id,authors.first_name,authors.last_name
+                    FROM `books_authors` INNER JOIN `authors` ON books_authors.author_id = authors.id
+                      WHERE `book_id` = " . $_GET['id']);  // lay du lieu tu bang books vs id = $_Get['id]
+                    //var_dump($result2);exit;
 
                     $book = $result->fetch_assoc();  // dua du lieu tu json ve dang array
+
                     $gallery = mysqli_query($con, "SELECT * FROM `books_library` WHERE `book_id` = " . $_GET['id']); // lay du lieu tu bag image_library
                     if (!empty($gallery) && !empty($gallery->num_rows)) {
                         while ($row = mysqli_fetch_array($gallery)) {   
@@ -249,7 +256,7 @@
             ?>
                     <div class="content-container">
                     <div class = "box-content">
-                        <div class="row"><a href="book.php" class="fa fa-undo" style="padding: 5px; margin-bottom: 10px;">  Quay lại</a></div>
+                        <div class="row"><a href="javascript:window.history.go(-1)" class="fa fa-undo" style="padding: 5px; margin-bottom: 10px;">  Quay lại</a></div>
                         <form id="book-form" method="POST" action="<?= (!empty($book) && !isset($_GET['task'])) ? "?action=edit&id=" . $_GET['id'] : "?action=add" ?>"  enctype="multipart/form-data">
                             <!-- neu ma sp khong rong va ko co $_GET['task'] thi la edit =>  neu ko co sp nhan ve thi la THEM, neu co task thi la COPY  -->
                             
@@ -261,17 +268,32 @@
                                     <input class="input-area" type="text" name="tittle" value="<?= (!empty($book) ? $book['tittle'] : "") ?>" />
                                     <div class="clear-both"></div>
                                 </div>
-                                <div class="wrap-field">
-                                    <label class="label-style">Tác giả : </label>
-                                    <!-- Neu TH la sua sp thi co book ko empty -> tra ve book'tittle' -->
-                                    <input  class="input-area" type="text" name="author_id" value="<?= (!empty($book) ? $book['author_id'] : "") ?>" />
-                                    <div class="clear-both"></div>
-                                </div>
+                                
+                        <?php if (!empty($_GET['id'])) {  ?> 
+                            <div class="wrap-field">
+                                <!-- Neu TH la sua sp thi co book ko empty -> tra ve book'tittle' -->
+                                <label>Tác giả : </label>
+                                <a href="book_add_author.php?id=<?= $book['id']?>" class="fas fa-plus-circle"></a>
+                                
+                                <div class="clear-both"></div>
+                        <?php
+                            while ($author = mysqli_fetch_array($result2)){ 
+                            // var_dump($author['author_id']);
+                        ?>
+                                <span style="padding: 5px;background-color:white;" ><?=$author['first_name']." ".$author['last_name']?></span>
+                                <a href="book_delete_author.php?author_id=<?= $author['author_id']?>&id=<?= $book['id'] ?>" class="fa fa-trash"></a>
+                                <div class="clear-both"></div>                            
+                        <?php } ?>
+                                <div class="clear-both"></div>                            
+                            </div>
+                        <?php } ?>
+
                                 <div class="wrap-field">
                                     <label class="label-style">Giá sách: </label>
                                     <input class="input-area" type="text" name="price" value="<?= (!empty($book) ? number_format($book['price'], 0, ",", ".") : "") ?>" />
                                     <div class="clear-both"></div>
                                 </div>
+
                                 <div class="wrap-field">
                                     <label class="label-style">Số lượng hiện có: </label>
                                     <input class="input-area" type="text" name="quantity" value="<?= (!empty($book) ? $book['quantity'] : "") ?>" />
@@ -333,7 +355,7 @@
 
                                 <div class="content-wrap-field">
                                     <label class="label-style">Nội dung: </label>
-                                    <textarea class="input-area" name="content" id="book-content" style="height: 300px;width: 610px;-webkit-fill-available;">
+                                    <textarea class="input-area" name="content" id="book-content" style="height: 300px;width: 610px;">
                                         <?= (!empty($book) ? $book['content'] : "") ?>
                                     </textarea>
                                     <div class="clear-both"></div>

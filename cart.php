@@ -161,7 +161,7 @@
                     <?= $success ?>. <a href="book.php">Tiếp tục mua hàng</a>
                 </div>
             <?php } else { ?>
-        <div class="back-to-shop"><a class="fa fa-reply" href="book.php">Back to shop</a></div>
+        <div class="back-to-shop"><a href="javascript:window.history.go(-2)" class="fa fa-undo" style="padding: 5px; margin-bottom: 10px;">  Quay lại Cửa hàng</a></div>
         <?php if ($GLOBALS['changed_cart']) { ?>  <!-- Check nhap qua quantity neu la true: so luong khach nhap lon qua-->   
             <h3>Số lượng sản phẩm trong giỏ hàng đã thay đổi, do lượng sản phẩm tồn kho không đủ. Vui lòng <a href="cart.php">tải lại</a> giỏ hàng</h3>
             <?php } else { ?>

@@ -203,7 +203,7 @@
                 ?>
                 <div class="content-container">
                     <div id="edit_user" class="box-content">
-                        <div class="row"><a href="user.php" class="fa fa-undo" style="padding: 5px;">  Quay lại</a></div>
+                        <div class="row"><a href="javascript:window.history.go(-1)" class="fa fa-undo" style="padding: 5px; margin-bottom: 10px;">  Quay lại</a></div>
                         <h1>Sửa tài khoản "<?= $user['username'] ?>"</h1>
                         <form action="./user_edit.php?action=edit" method="Post" enctype="multipart/form-data" autocomplete="off">  
                             <div class="wrao-feild" style="margin-bottom:30px">
