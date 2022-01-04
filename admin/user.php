@@ -6,7 +6,6 @@
             <a href="login.php">Đăng nhập để vào trang Admin</a>
             <?php
          } else {
-        
         include 'menu_sidebar.php';
         $currentUser = $_SESSION['current_user'];
         ?>
@@ -14,12 +13,9 @@
         <!-- PAGE CONTAINER-->
         <div class="page-container">
 
-    <?php 
-         
-        include 'admin_navbar.php';
-    ?>
+    <?php include 'admin_navbar.php'; ?>
 
-    <?php
+    <?php 
         include '../connect_db.php';
         
         $item_per_page = (!empty($_GET['per_page'])) ? $_GET['per_page'] : 8;

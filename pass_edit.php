@@ -6,8 +6,9 @@
             <a href="login.php">Đăng nhập để vào trang Admin</a>
             <?php
          } else {
-        include 'menu_sidebar.php';
+        // include 'menu_sidebar.php';
         $currentUser = $_SESSION['current_user'];
+        // var_dump($current_user); exit;
         ?>
 
         <!-- PAGE CONTAINER-->
@@ -15,7 +16,7 @@
 
     <?php 
          
-        include 'admin_navbar.php';
+        // include 'admin_navbar.php';
     ?>  
         <style>
             /* .box-content{
@@ -139,6 +140,9 @@
     <?php 
         //include 'admin_navbar.php';
         $error = false;
+        // $a = @_GET['action'];
+        // echo $a;
+        // exit;
         if (isset($_GET['action']) && $_GET['action'] == 'edit') {
             if (isset($_POST['id']) && !empty($_POST['id']) && isset($_POST['password']) && !empty($_POST['password'])) {
                 // var_dump($_POST['password']);exit;
@@ -161,10 +165,10 @@
 
 
                 // CAP NHAT VAO DATABASE
-                $result = mysqli_query($con, "UPDATE `customers` SET `password` = MD5('" . $_POST['password'] . "'), `first_name` = '" . $_POST['first_name'] ."',
-                `last_name` = '" . $_POST['last_name'] ."' , `avatar` =  '" . $avatar . "' , `birthday` = " . $birthday ." , `phone` = '" . $_POST['phone'] ."' , `address` = '" . $_POST['address'] ."' ,
-                  `status` = " . $_POST['status'] . ", `email` = '" . $_POST['email'] . "', `money_spent` = '" . $_POST['money_spent'] . "',
-                   `last_updated`=" . time() . " WHERE `customers`.`id` = " . $_POST['id'] . ";");
+                $result = mysqli_query($con, "UPDATE `customers` SET `password` = MD5('" . $_POST['password'] . "'), 
+                `first_name` = '" . $_POST['first_name'] ."',
+                `last_name` = '" . $_POST['last_name'] ."' , 
+                `last_updated`=" . time() . " WHERE `customers`.`id` = " . $_POST['id'] . ";");
                 if (!$result) {
                     $error = "Không thể cập nhật tài khoản";
                 }
@@ -195,7 +199,9 @@
             }
         } else {
             //select p tu co id can sua
-            $result = mysqli_query($con, "SELECT * FROM customers where `id`=" . $_GET['id']);
+            // var_dump($currentUser);exit;
+            $user_id = $currentUser['id'];
+            $result = mysqli_query($con, "SELECT * FROM `customers` where `id`=" '$user_id';
             //lay ra toan bo gia tri cua phan tu co id do
             $user = $result->fetch_assoc();
             mysqli_close($con);
@@ -205,7 +211,7 @@
                     <div id="edit_user" class="box-content">
                         <div class="row"><a href="user.php" class="fa fa-undo" style="padding: 5px;">  Quay lại</a></div>
                         <h1>Sửa tài khoản "<?= $user['username'] ?>"</h1>
-                        <form action="./user_edit.php?action=edit" method="Post" enctype="multipart/form-data" autocomplete="off">  
+                        <form action="./pass_edit.php?action=edit" method="Post" enctype="multipart/form-data" autocomplete="off">  
                             <div class="wrao-feild" style="margin-bottom:30px">
                                 <!-- <div class="right-wrap-field" style="width:80px;height: 120px;margin-bottom: 40px;"> -->
                                 <?php if (isset($user['avatar'])) { ?>  <!-- Neu co anh dai dien  -->
