@@ -1,3 +1,105 @@
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        color: #495057;
+    }
+    #main-content {
+        padding-top: 80px;
+    }
+    .content-container {
+               
+                position: relative;
+                height: 160vh;
+                 background-image: linear-gradient(rgba(233, 236, 239, 0.603), rgba(233, 236, 239, 0.603));
+                 background-image: linear-gradient(rgba(34, 34, 34, 0.603), rgba(34, 34, 34, 0.603)), url(assets/image/login-theme.jpg);
+                background-size: cover;
+                background-image: linear-gradient(#f4f4f4, #7ac187);
+
+            }
+            .box-content{
+                margin: 0 auto;
+                margin-top: 10px;
+                width: 800px;
+                border: 1px solid #ccc;
+                text-align: center;
+                padding: 20px;
+                box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.07);
+                border: 1px solid #ccc;
+                position: absolute;
+                box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.07);
+                border-radius: 12px;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgb(256,256,256,0.9);
+            }
+
+            .wrap-field {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                margin-bottom: 40px;
+                position: relative;
+            }
+
+            .content-wrap-field {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                margin-bottom: 30px;
+                position: relative;
+                height: 300px;
+            }
+
+            .input-area {
+                height: 34px;
+                width: 600px;
+                position: absolute; 
+                right: 10px;
+                border-radius: 9px;
+                border: 1px solid #ccc;
+                padding: 5px;
+            }
+
+            .image-content-block {
+                display: flex;
+            }
+
+            .label-style {
+                margin-bottom: 0;
+            }
+
+            .button-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+            .button {
+               
+                font-size: 17px;
+                font-weight: 600;
+                background-color: #f59f00;
+                color: #fff;
+                text-decoration: none;
+                cursor: pointer;
+                border-radius: 9px;
+                border: 0;
+                padding: 5px 40px;
+                margin-top: 20px;
+                
+            }
+
+            .button:hover, .button:active {
+                background-color: #f08c00;
+            }
+            
+</style>
 <?php
     include 'header.php';
      ?>
@@ -20,11 +122,11 @@
     ?>
 
             <!-- MAIN CONTENT-->
-            <div class="main-content">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
+            <div id="main-content" class="main-content">
+                <div >
+                    <div >
+                        <div >
+                            <div >
             <?php
 // Neu phuong thuc truyen vao la add(copy) hoac edit : DA THEM SUA ROI        
             //echo ($_GET['id']);exit;
@@ -145,87 +247,103 @@
                     }
                 }
             ?>
-                    <div class="row"><a href="book.php" class="fa fa-undo" style="padding: 5px;">  Quay lại</a></div>
-                    <form id="book-form" method="POST" action="<?= (!empty($book) && !isset($_GET['task'])) ? "?action=edit&id=" . $_GET['id'] : "?action=add" ?>"  enctype="multipart/form-data">
-                          <!-- neu ma sp khong rong va ko co $_GET['task'] thi la edit =>  neu ko co sp nhan ve thi la THEM, neu co task thi la COPY  -->
+                    <div class="content-container">
+                    <div class = "box-content">
+                        <div class="row"><a href="book.php" class="fa fa-undo" style="padding: 5px; margin-bottom: 10px;">  Quay lại</a></div>
+                        <form id="book-form" method="POST" action="<?= (!empty($book) && !isset($_GET['task'])) ? "?action=edit&id=" . $_GET['id'] : "?action=add" ?>"  enctype="multipart/form-data">
+                            <!-- neu ma sp khong rong va ko co $_GET['task'] thi la edit =>  neu ko co sp nhan ve thi la THEM, neu co task thi la COPY  -->
+                            
+
+                                <div class="clear-both"></div>
+                                <div class="wrap-field">
+                                    <label class="label-style">Tên sách : </label>
+                                    <!-- Neu TH la sua sp thi co book ko empty -> tra ve book'tittle' -->
+                                    <input class="input-area" type="text" name="tittle" value="<?= (!empty($book) ? $book['tittle'] : "") ?>" />
+                                    <div class="clear-both"></div>
+                                </div>
+                                <div class="wrap-field">
+                                    <label class="label-style">Tác giả : </label>
+                                    <!-- Neu TH la sua sp thi co book ko empty -> tra ve book'tittle' -->
+                                    <input  class="input-area" type="text" name="author_id" value="<?= (!empty($book) ? $book['author_id'] : "") ?>" />
+                                    <div class="clear-both"></div>
+                                </div>
+                                <div class="wrap-field">
+                                    <label class="label-style">Giá sách: </label>
+                                    <input class="input-area" type="text" name="price" value="<?= (!empty($book) ? number_format($book['price'], 0, ",", ".") : "") ?>" />
+                                    <div class="clear-both"></div>
+                                </div>
+                                <div class="wrap-field">
+                                    <label class="label-style">Số lượng hiện có: </label>
+                                    <input class="input-area" type="text" name="quantity" value="<?= (!empty($book) ? $book['quantity'] : "") ?>" />
+                                    <div class="clear-both"></div>
+                                </div>
+                                
+                               
+                                <div class="wrap-field" style = "margin-bottom: 70px" >
+                                    <label class="label-style">Ảnh bìa: </label>
+                                    <div class="align-content" style="margin-left: 70px; display: flex; align-items: center; gap: 105px">
+                                        <div class="right-wrap-field" style="width:100px;">
+                                        
+                                    <?php if (!empty($book['image'])) { ?>  <!-- Neu co anh dai dien (copy hoac sua) -->
+                                            <img src="../<?= $book['image'] ?>" /><br/>
+                                            <input type="hidden" name="image" value="<?= $book['image'] ?>" />
+                                    <?php   } ?>
+                                            
+                                        </div>
+                                        <input type="file" name="image" />      <!-- nut choosen file-->
+                                    </div>
+                                <div class="clear-both"></div>
+                                </div>
+
+                                
+                                    <div class="wrap-field">
+                                        <label class="label-style">Thư viện ảnh: </label>
+                                        <div class="align-content" style="margin-left:35px; display: flex; align-items: center; gap: 20px">
+                                        <div class="right-wrap-field">
+                                            <!-- Neu ma co trong thu vien anh sp (copy or sua-->
+                                                <?php if (!empty($book['gallery'])) { ?>
+                                                <ul style="list-style:none; display:flex">
+                                <?php foreach ($book['gallery'] as $image) { ?>
+                                <!-- Duyet tung phan tu gallery trong book -->
+                                                        <li style="width:80px;height: 120px; margin-right: 15px;">
+                                                            <img  src="../<?= $image['path'] ?>"/>
+                                                            <a href="book_library_delete.php?id=<?= $image['id'] ?>">Xóa</a>
+                                                            <!-- Render ra tung phan tu va nut xoa -->
+                                                        </li>
+                                <?php } ?>
+                                                </ul>
+                                            <?php } ?>
+                                    
+                                <?php if (isset($_GET['task']) && !empty($book['gallery'])) { ?> <!-- trong TH copy (vi neu tham thi gallery la rong) -->
+                                        <?php foreach ($book['gallery'] as $image) { ?>
+                                            <input type="hidden" name="gallery_image[]" value="<?= $image['path'] ?>" />
+                                        <?php } ?>
+                                <?php } ?>
+
+                                        
+                                        </div>
+                                        <input multiple="" type="file" name="gallery[]" />  <!-- Nut upload thu vien co okieu multiple -->
+                                        </div>
+                                        <div class="clear-both"></div>
+                                    </div>
+                             
                         
 
-                            <div class="clear-both"></div>
-                            <div class="wrap-field">
-                                <label>Tên sách : </label>
-                                <!-- Neu TH la sua sp thi co book ko empty -> tra ve book'tittle' -->
-                                <input type="text" name="tittle" value="<?= (!empty($book) ? $book['tittle'] : "") ?>" />
-                                <div class="clear-both"></div>
-                            </div>
-                            <div class="wrap-field">
-                                <label>Tác giả : </label>
-                                <!-- Neu TH la sua sp thi co book ko empty -> tra ve book'tittle' -->
-                                <input type="text" name="author_id" value="<?= (!empty($book) ? $book['author_id'] : "") ?>" />
-                                <div class="clear-both"></div>
-                            </div>
-                            <div class="wrap-field">
-                                <label>Giá sách: </label>
-                                <input type="text" name="price" value="<?= (!empty($book) ? number_format($book['price'], 0, ",", ".") : "") ?>" />
-                                <div class="clear-both"></div>
-                            </div>
-                            <div class="wrap-field">
-                                <label>Số lượng hiện có: </label>
-                                <input type="text" name="quantity" value="<?= (!empty($book) ? $book['quantity'] : "") ?>" />
-                                <div class="clear-both"></div>
-                            </div>
 
-                            <div class="wrap-field">
-                                <label>Ảnh bìa: </label>
-                                <div class="right-wrap-field" style="width:80px;height: 120px;margin-bottom: 40px;">
-                                
-                            <?php if (!empty($book['image'])) { ?>  <!-- Neu co anh dai dien (copy hoac sua) -->
-                                    <img src="../<?= $book['image'] ?>" /><br/>
-                                    <input type="hidden" name="image" value="<?= $book['image'] ?>" />
-                             <?php   } ?>
-                                    <input type="file" name="image" />      <!-- nut choosen file-->
+
+                                <div class="content-wrap-field">
+                                    <label class="label-style">Nội dung: </label>
+                                    <textarea class="input-area" name="content" id="book-content" style="height: 300px;width: 610px;-webkit-fill-available;">
+                                        <?= (!empty($book) ? $book['content'] : "") ?>
+                                    </textarea>
+                                    <div class="clear-both"></div>
                                 </div>
-                            <div class="clear-both"></div>
-                            </div>
-
-                            <div class="wrap-field">
-                                <label>Thư viện ảnh: </label>
-                                <div class="right-wrap-field">
-                                    <!-- Neu ma co trong thu vien anh sp (copy or sua-->
-                                        <?php if (!empty($book['gallery'])) { ?>
-                                        <ul style="list-style:none; display:flex">
-                        <?php foreach ($book['gallery'] as $image) { ?>
-                        <!-- Duyet tung phan tu gallery trong book -->
-                                                <li style="width:80px;height: 120px; margin-bottom:35px;margin-right: 15px;">
-                                                    <img  src="../<?= $image['path'] ?>"/>
-                                                    <a href="book_library_delete.php?id=<?= $image['id'] ?>">Xóa</a>
-                                                    <!-- Render ra tung phan tu va nut xoa -->
-                                                </li>
-                         <?php } ?>
-                                        </ul>
-                                    <?php } ?>
-                            
-                        <?php if (isset($_GET['task']) && !empty($book['gallery'])) { ?> <!-- trong TH copy (vi neu tham thi gallery la rong) -->
-                                <?php foreach ($book['gallery'] as $image) { ?>
-                                    <input type="hidden" name="gallery_image[]" value="<?= $image['path'] ?>" />
-                                <?php } ?>
-                         <?php } ?>
-
-                                <input multiple="" type="file" name="gallery[]" />  <!-- Nut upload thu vien co okieu multiple -->
+                                <div class="button-container wrap-field">
+                                    <input class=" save_form button"   type="submit" title="Lưu" value="Lưu" />
                                 </div>
-                                <div class="clear-both"></div>
-                            </div>
-                    
-                            <div class="wrap-field">
-                                <label>Nội dung: </label>
-                                <textarea name="content" id="book-content" style="height: 300px;width: -webkit-fill-available;">
-                                    <?= (!empty($book) ? $book['content'] : "") ?>
-                                </textarea>
-                                <div class="clear-both"></div>
-                            </div>
-                            <div class="row">
-                                <input class="save_form" style="background-color: black; color: white;padding: 5px;"  type="submit" title="Lưu" value="Lưu" />
-                            </div>
-                    </form>
+                        </form>
+                    </div>
+                    </div>
                     <div class="clear-both"></div>
               
                                
@@ -233,13 +351,7 @@
                                
                         </div>     <!-- end row  -->
                         
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                                </div>
-                            </div>
-                        </div>
+                       
                     </div><!-- end containẻ fluid -->
                 
                 </div>  <!-- end section__content section__content--p30-->
