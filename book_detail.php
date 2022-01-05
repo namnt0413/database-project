@@ -17,9 +17,11 @@
         }
     }
 
+    // lay ra thong tin sach
     $result = mysqli_query($con, "SELECT * FROM `books` WHERE `id` = ".$_GET['id']);
     $book = mysqli_fetch_assoc($result);
     // var_dump($book);exit;
+
     $imgLibrary = mysqli_query($con, "SELECT * FROM `books_library` WHERE `book_id` = ".$_GET['id']);    // ket noi voi thu vien anh
     $book['images'] = mysqli_fetch_all($imgLibrary, MYSQLI_ASSOC);   // lay ra nhieu anh gan cho book[images]   ( # voi book[image] )
     $row_id = $book['id'];
@@ -29,6 +31,11 @@
     FROM `books_genres` INNER JOIN `genres` ON books_genres.genres_id = genres.id
       WHERE `book_id` = " . $_GET['id']);  // lay du lieu tu bang books vs id = $_Get['id]
     //var_dump($result3);exit;
+    
+    // Lay ra tac gia
+    $result2 = mysqli_query($con, "SELECT authors.first_name,authors.last_name, books_authors.author_id
+                                FROM `books_authors`  INNER JOIN `authors` ON books_authors.author_id = authors.id
+                                WHERE `book_id` = " . $_GET['id'] );
 ?>   
 
         <link rel="stylesheet" href="./assets/css/book_detail.css">
@@ -63,15 +70,23 @@
                     <p class="author-detail-wrap" style="margin-top:20px;"> 
                       <span class="category">Tác giả: </span> 
                       <span class="category-info price h3 text-info"> 
+
                         <?php
-                          $author = mysqli_query($con, "SELECT authors.first_name,authors.last_name
-                                                      FROM `books_authors`  INNER JOIN `authors` ON books_authors.author_id = authors.id
-                                                                          INNER JOIN `books` ON books_authors.book_id = books.id
-                                                      WHERE `books_authors`.`book_id` = $row_id                    
-                                                                    ");  
-                          while ($row2 = mysqli_fetch_array($author)){ ?>
-                              <span><?= $row2['first_name']." ".$row2['last_name'].","?></span>
-                        <?php } ?>
+                            $where2 ="";                     
+                            while ($author = mysqli_fetch_array($result2)){ 
+                                $author_id = $author['author_id'];
+                                $where2 .= (!empty($where2))? " OR "."`author_id` = $author_id" : "`author_id` = $author_id"; // neu rong thi luu luon chuoi, neu ko thi them AND
+                                ?>
+                            <a href="book.php?author_id=<?= $author['author_id']?>" ><?= $author['first_name']." ".$author['last_name'].","?></a> 
+                            <?php }
+                            // var_dump($where3);exit;
+
+                                $author_same = mysqli_query($con, "SELECT DISTINCT books_authors.book_id,books.*
+                                  FROM `books_authors`  INNER JOIN `books` ON books_authors.book_id = books.id
+                                                      WHERE (".$where2.")    ");  
+                            // var_dump($genres_same);exit;
+                            ?>
+
                     	</span> 
                     </p> <!-- author-detail-wrap .// -->
 
@@ -118,9 +133,21 @@
 
                     <dl class="param param-feature">
                       <h4>Tags:</h4>
-                            <?php while ($genres = mysqli_fetch_array($result3)){ ?>
+                            <?php
+                            $where3 ="";                     
+                            while ($genres = mysqli_fetch_array($result3)){ 
+                                $genres_id = $genres['genres_id'];
+                                $where3 .= (!empty($where3))? " OR "."`genres_id` = $genres_id" : "`genres_id` = $genres_id"; // neu rong thi luu luon chuoi, neu ko thi them AND
+                                ?>
                             <a href="book.php?genres_id=<?= $genres['genres_id']?>" ><h4><?= $genres['name'] ?> </h4></a> 
-                            <?php } ?>
+                            <?php }
+                            // var_dump($where3);exit;
+
+                                $genres_same = mysqli_query($con, "SELECT DISTINCT books_genres.book_id,books.*
+                                  FROM `books_genres`  INNER JOIN `books` ON books_genres.book_id = books.id
+                                                      WHERE (".$where3.")    ");  
+                            // var_dump($genres_same);exit;
+                            ?>
                     </dl>  <!-- item-property-hor .// -->
 
                     <hr>
@@ -267,10 +294,6 @@
                     <p class="content"> <?= $row_comment['content'] ?></p> </p>
                 </div>
                 <!-- <div class="row text-left"> <img class="pic" src="https://i.imgur.com/kjcZcfv.jpg"> <img class="pic" src="https://i.imgur.com/SjBwAgs.jpg"> <img class="pic" src="https://i.imgur.com/IgHpsBh.jpg"> </div> -->
-                <div class="row text-left mt-4">
-                    <div class="like mr-3 vote"> <img src="https://i.imgur.com/mHSQOaX.png"><span class="blue-text pl-2">20</span> </div>
-                    <div class="unlike vote"> <img src="https://i.imgur.com/bFBO3J7.png"><span class="text-muted pl-2">4</span> </div>
-                </div>
             </div><!-- end review card -->
         <?php } ?>
 
@@ -282,60 +305,34 @@
     <!-- featured section starts  -->
     <section class="featured" id="featured">
     
-        <h1 class="heading"> <span>Sản phẩm có liên quan</span> </h1>
+        <h1 class="heading"> <span>Sách cùng thể loại</span> </h1>
     
         <div class="swiper featured-slider">
     
             <div class="swiper-wrapper">
     
+            <?php while ($row_genres = mysqli_fetch_array($genres_same)) {?>
                 <div class="swiper-slide box">
                     <div class="icons">
                         <a href="#" class="fas fa-search"></a>
                         <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
+                        <a href="book_detail.php?id=<?= $row_genres['id'] ?>" class="fas fa-eye"></a>
                     </div>
                     <div class="image">
-                        <img src="./assets/image/book-2.png" alt="">
+                        <a href="book_detail.php?id=<?= $row_genres['id'] ?>"><img src="./<?= $row_genres['image'] ?>" alt="<?= $row_genres['tittle'] ?>" alt=""></a>
                     </div>
                     <div class="content">
-                        <h3>featured books</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <a href="#" class="button">add to cart</a>
+                        <h3><?= $row_genres['tittle'] ?></h3>
+                        <div class="price"><?= number_format($row_genres['price'], 0, ",", ".") ?>đ <span> $20.99</span></div>
+                        <form id="add-to-cart-form" action="cart.php?action=add" method="POST">
+                        <input class="number-select" type="hidden" value="1" name="quantity[<?=$row_genres['id']?>]"/>
+                        <input class="buy-button btn btn-lg btn-primary text-uppercase" type="submit" value="Add to cart"  /> 
+                        </form>
                     </div>
                 </div>
-
+            <?php } ?>
     
-                <div class="swiper-slide box">
-                    <div class="icons">
-                        <a href="#" class="fas fa-search"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
-                    </div>
-                    <div class="image">
-                        <img src="./assets/image/book-8.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>featured books</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <a href="#" class="button">add to cart</a>
-                    </div>
-                </div>
-    
-                <div class="swiper-slide box">
-                    <div class="icons">
-                        <a href="#" class="fas fa-search"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
-                    </div>
-                    <div class="image">
-                        <img src="./assets/image/book-10.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>featured books</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <a href="#" class="button">add to cart</a>
-                    </div>
-                </div>
+               
     
             </div>
 
@@ -348,92 +345,33 @@
     <!-- featured section starts  -->
     <section class="featured" id="featured">
     
-        <h1 class="heading"> <span>Cùng tác giả</span> </h1>
+        <h1 class="heading"> <span>Sách cùng tác giả</span> </h1>
     
         <div class="swiper featured-slider">
     
             <div class="swiper-wrapper">
-    
-                <div class="swiper-slide box">
-                    <div class="icons">
-                        <a href="#" class="fas fa-search"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
-                    </div>
-                    <div class="image">
-                        <img src="./assets/image/book-1.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>featured books</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <a href="#" class="button">add to cart</a>
-                    </div>
-                </div>
 
-    
+            <?php while ($row_author = mysqli_fetch_array($author_same)) {?>
                 <div class="swiper-slide box">
                     <div class="icons">
                         <a href="#" class="fas fa-search"></a>
                         <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
+                        <a href="book_detail.php?id=<?= $row_author['id'] ?>" class="fas fa-eye"></a>
                     </div>
                     <div class="image">
-                        <img src="./assets/image/book-9.png" alt="">
+                        <a href="book_detail.php?id=<?= $row_author['id'] ?>"><img src="./<?= $row_author['image'] ?>" alt="<?= $row_author['tittle'] ?>" alt=""></a>
                     </div>
                     <div class="content">
-                        <h3>featured books</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <a href="#" class="button">add to cart</a>
+                        <h3><?= $row_author['tittle'] ?></h3>
+                        <div class="price"><?= number_format($row_author['price'], 0, ",", ".") ?>đ <span> $20.99</span></div>
+                        <form id="add-to-cart-form" action="cart.php?action=add" method="POST">
+                        <input class="number-select" type="hidden" value="1" name="quantity[<?=$row_author['id']?>]"/>
+                        <input class="buy-button btn btn-lg btn-primary text-uppercase" type="submit" value="Add to cart"  /> 
+                        </form>
                     </div>
                 </div>
-    
-                <div class="swiper-slide box">
-                    <div class="icons">
-                        <a href="#" class="fas fa-search"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
-                    </div>
-                    <div class="image">
-                        <img src="./assets/image/book-10.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>featured books</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <a href="#" class="button">add to cart</a>
-                    </div>
-                </div>
-
-                <div class="swiper-slide box">
-                    <div class="icons">
-                        <a href="#" class="fas fa-search"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
-                    </div>
-                    <div class="image">
-                        <img src="./assets/image/book-5.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>featured books</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <a href="#" class="button">add to cart</a>
-                    </div>
-                </div>
-                <div class="swiper-slide box">
-                    <div class="icons">
-                        <a href="#" class="fas fa-search"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
-                    </div>
-                    <div class="image">
-                        <img src="./assets/image/book-6.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>featured books</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <a href="#" class="button">add to cart</a>
-                    </div>
-                </div>
-    
+            <?php } ?>
+        
             </div>
 
             <div class="swiper-button-next"></div>
