@@ -62,7 +62,7 @@
                     <?= $currentUser['first_name']?>
                     <?= $currentUser['last_name']?> 
                     <ul class="sub_user_nav">
-                        <li><a href="#" style="font-size: 15px;" >Cập nhật thông tin</a></li>
+                        <li><a href="uif_profile.php" style="font-size: 15px;" >Cập nhật thông tin</a></li>
                         <li><a href="#" style="font-size: 15px;" >Lịch sử mua hàng</a></li>
                         <li><a href="#" style="font-size: 15px;" >Sản phẩm yêu thích</a></li>
                         <li><a href="change_password.php" style="font-size: 15px;" >Đổi mật khẩu</a></li>

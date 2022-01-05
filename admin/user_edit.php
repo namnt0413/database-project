@@ -139,8 +139,10 @@
     <?php 
         //include 'admin_navbar.php';
         $error = false;
-        if (isset($_GET['action']) && $_GET['action'] == 'edit') {
-            if (isset($_POST['id']) && !empty($_POST['id']) && isset($_POST['password']) && !empty($_POST['password'])) {
+        if (isset($_GET['action']) && $_GET['action'] == 'edit') 
+        {
+            if (isset($_POST['id']) && !empty($_POST['id']) && isset($_POST['password']) && !empty($_POST['password'])) 
+            {
                 // var_dump($_POST['password']);exit;
                     $birthday = $_POST['birthday'];
                     $check = validateDateTime($birthday);
@@ -158,8 +160,6 @@
                         }
                     }
                     // var_dump($image);    exit;                 
-
-
                 // CAP NHAT VAO DATABASE
                 $result = mysqli_query($con, "UPDATE `customers` SET `password` = MD5('" . $_POST['password'] . "'), `first_name` = '" . $_POST['first_name'] ."',
                 `last_name` = '" . $_POST['last_name'] ."' , `avatar` =  '" . $avatar . "' , `birthday` = " . $birthday ." , `phone` = '" . $_POST['phone'] ."' , `address` = '" . $_POST['address'] ."' ,
@@ -169,7 +169,8 @@
                     $error = "Không thể cập nhật tài khoản";
                 }
                 mysqli_close($con);
-                if ($error !== false) {
+                if ($error !== false) 
+                {
                     ?>
                     <div id="error-notify" class="box-content">
                         <h1>Thông báo</h1>
