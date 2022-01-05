@@ -240,6 +240,11 @@
                       WHERE `book_id` = " . $_GET['id']);  // lay du lieu tu bang books vs id = $_Get['id]
                     //var_dump($result2);exit;
 
+                    $result3 = mysqli_query($con, "SELECT books_genres.genres_id,genres.name
+                    FROM `books_genres` INNER JOIN `genres` ON books_genres.genres_id = genres.id
+                      WHERE `book_id` = " . $_GET['id']);  // lay du lieu tu bang books vs id = $_Get['id]
+                    //var_dump($result3);exit;
+
                     $book = $result->fetch_assoc();  // dua du lieu tu json ve dang array
 
                     $gallery = mysqli_query($con, "SELECT * FROM `books_library` WHERE `book_id` = " . $_GET['id']); // lay du lieu tu bag image_library
@@ -269,7 +274,8 @@
                                     <div class="clear-both"></div>
                                 </div>
                                 
-                        <?php if (!empty($_GET['id'])) {  ?> 
+                                <?php if (!empty($_GET['id'])) {  ?> 
+                            <!-- TAC GIA -->
                             <div class="wrap-field">
                                 <!-- Neu TH la sua sp thi co book ko empty -> tra ve book'tittle' -->
                                 <label>Tác giả : </label>
@@ -286,7 +292,25 @@
                         <?php } ?>
                                 <div class="clear-both"></div>                            
                             </div>
+
+                            <!-- THE LOAI -->
+                            <div class="wrap-field">
+                                <!-- Neu TH la sua sp thi co book ko empty -> tra ve book'tittle' -->
+                                <label>Thể loại : </label>
+                                <a href="book_add_genres.php?id=<?= $book['id']?>" class="fas fa-plus-circle"></a>
+                                
+                                <div class="clear-both"></div>
+                        <?php
+                            while ($genres = mysqli_fetch_array($result3)){ 
+                            // var_dump($author['author_id']);
+                        ?>
+                                <span style="padding: 5px;background-color:white;" ><?=$genres['name']?></span>
+                                <a href="book_delete_genres.php?genres_id=<?= $genres['genres_id']?>&id=<?= $book['id'] ?>" class="fa fa-trash"></a>
+                                <div class="clear-both"></div>                            
                         <?php } ?>
+                                <div class="clear-both"></div>                            
+                            </div>
+                    <?php } ?>
 
                                 <div class="wrap-field">
                                     <label class="label-style">Giá sách: </label>

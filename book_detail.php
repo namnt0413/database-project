@@ -23,6 +23,12 @@
     $imgLibrary = mysqli_query($con, "SELECT * FROM `books_library` WHERE `book_id` = ".$_GET['id']);    // ket noi voi thu vien anh
     $book['images'] = mysqli_fetch_all($imgLibrary, MYSQLI_ASSOC);   // lay ra nhieu anh gan cho book[images]   ( # voi book[image] )
     $row_id = $book['id'];
+
+    // Lay ra the loai
+    $result3 = mysqli_query($con, "SELECT books_genres.genres_id,genres.name
+    FROM `books_genres` INNER JOIN `genres` ON books_genres.genres_id = genres.id
+      WHERE `book_id` = " . $_GET['id']);  // lay du lieu tu bang books vs id = $_Get['id]
+    //var_dump($result3);exit;
 ?>   
 
         <link rel="stylesheet" href="./assets/css/book_detail.css">
@@ -112,10 +118,9 @@
 
                     <dl class="param param-feature">
                       <h4>Tags:</h4>
-                      <a href="#" >Thể loại xxx ,</a> 
-                      <a href="#" >Thể loại xxx ,</a> 
-                      <a href="#" >Thể loại xxx ,</a> 
-                      <a href="#" >Thể loại xxx ,</a> 
+                            <?php while ($genres = mysqli_fetch_array($result3)){ ?>
+                            <a href="book.php?genres_id=<?= $genres['genres_id']?>" ><h4><?= $genres['name'] ?> </h4></a> 
+                            <?php } ?>
                     </dl>  <!-- item-property-hor .// -->
 
                     <hr>
