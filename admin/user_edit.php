@@ -235,7 +235,7 @@
                             </div>
                             <div class="input-block">
                                 <label>Ngày tháng năm sinh</label></br>
-                                <input class="input-area" type="text" name="birthday" value="<?= (!empty($user) ? $user['birthday'] : "") ?>" />
+                                <input class="input-area" type="date" name="birthday" value="<?= date('Y-m-d', $user['birthday']) ?>" />
                             </div>
                             <div class="input-block">
                                 <label>Số điện thoại</label></br>

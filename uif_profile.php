@@ -4,7 +4,21 @@
 <!------ Include the above in your HEAD tag ---------->
 <?php 
     include 'header.php';
-    // var_dump($currentUser);
+    $user_id = $currentUser['id'];
+    // var_dump($user_id);exit;
+
+    $result = mysqli_query($con, "Select * from `customers` WHERE `id` = $user_id ");
+    // var_dump( $result );exit;
+    if (!$result) {
+        $error = mysqli_error($con);
+    } else {
+        $user = mysqli_fetch_assoc($result);
+        $_SESSION['current_user'] = $user;
+    }
+    // var_dump($user);exit;
+    $currentUser = $_SESSION['current_user'];
+    // var_dump($currentUser);exit;
+
 ?>
 
 <head>
@@ -89,10 +103,15 @@
                         if (isset($_POST['id']) && $_POST['id'] == $user['id']) {
                         
                           $birthday = $_POST['birthday'];
+                        //   var_dump($birthday);exit;
                           $check = validateDateTime($birthday);
+                        //   var_dump($check);exit;
+
                           if ($check) {
                               $birthday = strtotime($birthday);
                           }
+                        //   var_dump($birthday);exit;
+
                           // upload anh dai dien
                           // $uploadedFiles = $_FILES['avatar']; // uploadFile get duoc anh 
                           // if (isset($_FILES['avatar']) && !empty($_FILES['avatar']['name'][0])) { // Dieu Kien cua thu vien anh
@@ -148,6 +167,11 @@
                         }
                     } else {
                         mysqli_close($con);
+
+                        // var_dump($_SESSION['current_user']);exit;
+
+
+
                         if (!empty($user)) {
                           ?>
                           <form action="./uif_profile.php?action=edit" method="Post" enctype="multipart/form-data"autocomplete="off" id="registrationForm">
@@ -193,8 +217,8 @@
                                     <label for="birthday">
                                         <h4>Ngày sinh</h4>
                                     </label>
-                                    <input type="text" class="form-control" name="birthday" id="birthday"
-                                    value="<?= (!empty($user) ? $user['birthday'] : "") ?>" title="enter your mobile number if any.">
+                                    <input type="date" class="form-control" name="birthday" id="birthday"
+                                    value="<?= date('Y-m-d', $user['birthday']) ?>" title="enter your mobile number if any.">
                                 </div>
                             </div>
 

@@ -110,7 +110,7 @@
                                           <h4>Password</h4>
                                       </label>
                                       <input type="password" class="form-control" name="password" id="password"
-                                          placeholder="password" title="enter your password.">
+                                          placeholder="Nhập mật khẩu" title="enter your password.">
                                   </div>
                               </div>
 
@@ -120,7 +120,7 @@
                                           <h4>Verify</h4>
                                       </label>
                                       <input type="password" class="form-control" name="password2" id="password2"
-                                          placeholder="password2" title="enter your password2.">
+                                          placeholder="Nhập lại mật khẩu" title="enter your password2.">
                                   </div>
                               </div>
 

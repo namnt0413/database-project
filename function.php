@@ -151,14 +151,14 @@ function validateUploadFile($file, $uploadPath) {
 
 function validateDateTime($date) {
     //Kiểm tra định dạng ngày tháng xem đúng DD/MM/YYYY hay chưa?
-    preg_match('/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/', $date, $matches);
-    if (count($matches) == 0) { //Nếu ngày tháng nhập không đúng định dạng thì $match = array(); (rỗng)
-        return false;
-    }
+    // preg_match('/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/', $date, $matches);
+    // if (count($matches) == 0) { //Nếu ngày tháng nhập không đúng định dạng thì $match = array(); (rỗng)
+        // return false;
+    // }
     $separateDate = explode('-', $date);
-    $day = (int) $separateDate[0];
+    $year = (int) $separateDate[0];
     $month = (int) $separateDate[1];
-    $year = (int) $separateDate[2];
+    $day = (int) $separateDate[2];
     //Nếu là tháng 2
     if ($month == 2) {
         if ($year % 4 == 0) { //Nếu là năm nhuận
