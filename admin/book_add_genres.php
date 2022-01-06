@@ -39,7 +39,7 @@
                             VALUES ('" . $book_id . "' , '" . $_POST['genres_id'] . "'  ) ");
                             // var_dump($result);exit;
                             if (!$result) {
-                                $error = "Không thể thêm thể loại.";
+                                $error = "Bạn đã thêm trùng thể loại.";
                             }
                             mysqli_close($con);
                             if ($error !== false) {

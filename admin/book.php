@@ -59,11 +59,6 @@
     }else{  // neu ko thi phan trang binh thuong
         $books_filter = mysqli_query($con, "SELECT * FROM `books` ORDER BY `id` ASC LIMIT " . $item_per_page . " OFFSET " . $offset);
     }
-
-        // Lay ra tac gia
-        $result2 = mysqli_query($con, "SELECT authors.first_name,authors.last_name
-        FROM `books_authors`  INNER JOIN `authors` ON books_authors.author_id = authors.id
-        WHERE `book_id` = " . $_GET['id'] );
   
     ?>
             <!-- MAIN CONTENT-->
@@ -157,11 +152,15 @@
                                                 </td>
                                                 
                                                 <td class="desc">
-
-                                                <?php
-                                                  while ($author = mysqli_fetch_array($result2)){ ?>
-                                                      <a><?= $author['first_name']." ".$author['last_name'].","?></a>
-                                                <?php } ?>
+                                        <?php
+                                        $author = mysqli_query($con, "SELECT authors.first_name,authors.last_name
+                                                                    FROM `books_authors`  INNER JOIN `authors` ON books_authors.author_id = authors.id
+                                                                                        INNER JOIN `books` ON books_authors.book_id = books.id
+                                                                    WHERE `books_authors`.`book_id` = $row_id                    
+                                                                                  ");  
+                                        while ($row2 = mysqli_fetch_array($author)){ ?>
+                                            <a href="" style="font-size: 0.8rem;"><?= $row2['first_name']." ".$row2['last_name'].","?></a>
+                                        <?php } ?>
 
                                                 </td>
                                                 

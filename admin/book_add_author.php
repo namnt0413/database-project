@@ -39,7 +39,7 @@
                             VALUES ('" . $_POST['author_id'] . "' , '" . $book_id . "' ) ");
                             // var_dump($result);exit;
                             if (!$result) {
-                                $error = "Không thể thêm tác giả.";
+                                $error = "Bạn đã thêm trùng tác giả.";
                             }
                             mysqli_close($con);
                             if ($error !== false) {
