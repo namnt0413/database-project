@@ -15,7 +15,7 @@
         $user = mysqli_fetch_assoc($result);
         $_SESSION['current_user'] = $user;
     }
-    // var_dump($user);exit;
+    // var_dump($user);
     $currentUser = $_SESSION['current_user'];
     // var_dump($currentUser);exit;
 
@@ -47,15 +47,20 @@
                     <h2>xử lí</h2>   
                     <!-- in kiểm tra -->
                     <?php
+                // var_dump( empty($_FILES['avatar']['name'] ));exit;
+                if( empty($_FILES['avatar']['name']) ){
+                    $avatar = $user['avatar'];
+                } else {
                     $uploadedFiles = $_FILES['avatar']; // uploadFile get duoc anh 
                     if (isset($_FILES['avatar']) && !empty($_FILES['avatar']['name'][0])) { // Dieu Kien cua thu vien anh
-                        $uppic = uploadAvatarFiles($uploadedFiles);  // upload file anh len(TV upload anh)
+                        $uppic = uploadAvatarUif($uploadedFiles);  // upload file anh len(TV upload anh)
                         if (!empty($uppic['errors'])) { // neu co loi
                             $error = $uppic['errors'];
                         } else {
                                 $avatar = $uppic['path'];
                         }
                     }
+                }
                     var_dump($avatar);
                     $picid = $user['id'];
                     $result = mysqli_query($con, "UPDATE `customers` SET
@@ -78,15 +83,12 @@
                             if (isset($user['avatar'])) { 
                                 ?>  <!-- Neu co anh dai dien  -->
                                 <br/>
-                                <h2>có ảnh</h2>
-                                <?php var_dump($user['avatar']);?>
 
                                 <img src="<?= $user['avatar'] ?>" class="avatar img-circle img-thumbnail" alt="avatar">
                                 <input type="file" name="avatar"/><br>
                             <?php   
                             } else { 
                                 ?>
-                                <h2>không có ảnh</h2>
                                 <img src="../assets/image/user/user.png"  class="avatar img-circle img-thumbnail" alt="avatar">
                                 <br>
                                 <input type="file" name="avatar" /><br>      <!-- nut choosen file-->

@@ -103,6 +103,52 @@ function uploadAvatarFiles($uploadedFiles) {
     );
 }
 
+function uploadAvatarUif($uploadedFiles) {
+    $files = array();
+    $errors = array();
+    $returnFiles = array();
+    //Xử lý gom dữ liệu vào từng file đã upload
+    // var_dump($uploadedFiles);exit;
+    foreach ($uploadedFiles as $key => $values) {
+        if(is_array($values)){
+            foreach ($values as $index => $value) {
+                $files[$index][$key] = $value;
+            }
+        }else{
+            $files[$key] = $values;
+        }
+    }
+    $uploadPath = "./assets/image/user";
+    if (!is_dir($uploadPath)) {
+        mkdir($uploadPath, 0777, true);
+    }
+    if(is_array(reset($files))){ //Up nhiều ảnh
+        foreach ($files as $file) {
+            $result = processUploadFile($file,$uploadPath);
+            if($result['error']){
+                $errors[] = $result['message'];
+            }else{
+                $returnFiles[] = $result['path'];
+            }
+        }
+    }else{ //Up 1 ảnh
+        $result = processUploadFile($files,$uploadPath);
+        if($result['error']){
+            return array(
+                'errors' => $result['message']
+            );
+        }else{
+            return array(
+                'path' => $result['path']
+            );
+        }
+    }
+    return array(
+        'errors' => $errors,
+        'uploaded_files' => $returnFiles
+    );
+}
+
 function processUploadFile($file,$uploadPath){
     $file = validateUploadFile($file, $uploadPath);
     if ($file != false) {
