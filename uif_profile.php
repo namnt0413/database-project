@@ -7,7 +7,7 @@
     $user_id = $currentUser['id'];
     // var_dump($user_id);exit;
 
-    $result = mysqli_query($con, "Select * from `customers` WHERE `id` = $user_id ");
+    $result = mysqli_query($con, "SELECT * FROM `customers` WHERE `id` = $user_id ");
     // var_dump( $result );exit;
     if (!$result) {
         $error = mysqli_error($con);
@@ -31,26 +31,82 @@
 </head>
 
 <hr>
-<div class="container bootstrap snippet">
-    <div class="row">
-        <div class="col-sm-10">
-            <h1> <?= $currentUser['first_name']." ".$currentUser['last_name']?> </h1>
+    <div class="container bootstrap snippet">
+        <div class="row">
+            <div class="col-sm-10">
+                <h1> <?= $currentUser['first_name']." ".$currentUser['last_name']?> </h1>
+            </div>
         </div>
 
-        <!-- <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a></div> -->
-    </div>
-    <div class="row">
-        <div class="col-sm-3">
-            <!--left col-->
+        <div class="row">
+            <div class="col-sm-3">
 
-            <div class="text-center">
-    
-                <img src="<?= $currentUser['avatar'] ?>" class="avatar img-circle img-thumbnail" alt="avatar">
-                
-                <h6>Upload a different photo...</h6>
-                <input type="file" class="text-center center-block file-upload">
-            </div>
-            </hr><br>
+                <?php
+                if (isset($_GET['action']) && $_GET['action'] == 'pic'){
+                    ?>
+                    <h2>xử lí</h2>   
+                    <!-- in kiểm tra -->
+                    <?php
+                    $uploadedFiles = $_FILES['avatar']; // uploadFile get duoc anh 
+                    if (isset($_FILES['avatar']) && !empty($_FILES['avatar']['name'][0])) { // Dieu Kien cua thu vien anh
+                        $uppic = uploadAvatarFiles($uploadedFiles);  // upload file anh len(TV upload anh)
+                        if (!empty($uppic['errors'])) { // neu co loi
+                            $error = $uppic['errors'];
+                        } else {
+                                $avatar = $uppic['path'];
+                        }
+                    }
+                    var_dump($avatar);
+                    $picid = $user['id'];
+                    $result = mysqli_query($con, "UPDATE `customers` SET
+                    `avatar` =  '" . $avatar . "' 
+                    WHERE `customers`.`id` = " . $picid . ";");
+                    ?>
+                        <img src="<?= $user['avatar'] ?>" class="avatar img-circle img-thumbnail" alt="avatar">
+                        <!-- in thử ảnh ra và nút back  -->
+                        <a class="button" href="uif_profile.php">Quay lại</a>
+                <?php
+                }else{
+                    
+                    ?>
+                    <form action="./uif_profile.php?action=pic" method="Post" enctype="multipart/form-data" autocomplete="off"> 
+                        <div class="input-block">
+                                <input type="hidden" name="id" value="<?= $user['id'] ?>" />
+                        </div>
+
+                        <?php 
+                            if (isset($user['avatar'])) { 
+                                ?>  <!-- Neu co anh dai dien  -->
+                                <br/>
+                                <h2>có ảnh</h2>
+                                <?php var_dump($user['avatar']);?>
+
+                                <img src="<?= $user['avatar'] ?>" class="avatar img-circle img-thumbnail" alt="avatar">
+                                <input type="file" name="avatar"/><br>
+                            <?php   
+                            } else { 
+                                ?>
+                                <h2>không có ảnh</h2>
+                                <img src="../assets/image/user/user.png"  class="avatar img-circle img-thumbnail" alt="avatar">
+                                <br>
+                                <input type="file" name="avatar" /><br>      <!-- nut choosen file-->
+                                <br></br>
+                            <?php 
+                            }
+                            ?>
+                            <!-- submit -->
+                            <div class="form-group">
+                                <div class="col-xs-3">
+                                    <button class="btn btn-lg btn-success" type="submit">
+                                    <i class="glyphicon glyphicon-ok-sign"></i> Lưu ảnh</button>
+                                </div>
+                            </div>
+                    </form>
+                <?php
+                }
+                ?>
+
+</hr><br></br><br></br>
 
 
             <div class="panel panel-default">
@@ -89,9 +145,7 @@
             </ul>
 
           <?php 
-            // var_dump($currentUser); 
             $user = $currentUser;
-            // var_dump($user);
           ?>
             <div class="tab-content">
                 <div class="tab-pane active" id="home">
@@ -103,14 +157,11 @@
                         if (isset($_POST['id']) && $_POST['id'] == $user['id']) {
                         
                           $birthday = $_POST['birthday'];
-                        //   var_dump($birthday);exit;
-                          $check = validateDateTime($birthday);
-                        //   var_dump($check);exit;
 
+                          $check = validateDateTime($birthday);
                           if ($check) {
                               $birthday = strtotime($birthday);
                           }
-                        //   var_dump($birthday);exit;
 
                           // upload anh dai dien
                           // $uploadedFiles = $_FILES['avatar']; // uploadFile get duoc anh 
@@ -129,10 +180,9 @@
                             `birthday` = " . $birthday ." ,
                             `phone` = '" . $_POST['phone'] ."' , 
                             `address` = '" . $_POST['address'] ."' ,
-                            `email` = '" . $_POST['email'] . "',
-                            `last_updated`=" . time() . " WHERE `customers`.`id` = " . $_POST['id'] . ";");
+                            `email` = '" . $_POST['email'] . "'
+                             WHERE `customers`.`id` = " . $_POST['id'] . ";");
                           
-                          // var_dump($result); exit;
                           if (!$result) {
                               $error = "Không thể cập nhật tài khoản";
                           }
@@ -143,7 +193,6 @@
                               <div id="error-notify" class="box-content">
                                   <h1>Thông báo</h1>
                                   <h4><?= $error ?></h4>
-                                  <a href="./user.php">Danh sách tài khoản</a>
                               </div>
                           <?php 
                           } else { 
@@ -166,11 +215,6 @@
                         <?php
                         }
                     } else {
-                        mysqli_close($con);
-
-                        // var_dump($_SESSION['current_user']);exit;
-
-
 
                         if (!empty($user)) {
                           ?>
@@ -179,8 +223,6 @@
                             <div class="input-block">
                                   <input type="hidden" name="id" value="<?= $user['id'] ?>" />
                             </div>
-
-
 
                             <div class="form-group">
                                 <div class="col-xs-6">
