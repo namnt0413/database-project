@@ -83,7 +83,9 @@
 
                                 $author_same = mysqli_query($con, "SELECT DISTINCT books_authors.book_id,books.*
                                   FROM `books_authors`  INNER JOIN `books` ON books_authors.book_id = books.id
-                                                      WHERE (".$where2.")    ");  
+                                                      WHERE (".$where2.")  
+                                                    ORDER BY RAND()
+                                                    LIMIT 8;  ");  
                             // var_dump($genres_same);exit;
                             ?>
 
@@ -145,7 +147,9 @@
 
                                 $genres_same = mysqli_query($con, "SELECT DISTINCT books_genres.book_id,books.*
                                   FROM `books_genres`  INNER JOIN `books` ON books_genres.book_id = books.id
-                                                      WHERE (".$where3.")    ");  
+                                                      WHERE (".$where3.")  
+                                                    ORDER BY RAND()
+                                                    LIMIT 8;  ");  
                             // var_dump($genres_same);exit;
                             ?>
                     </dl>  <!-- item-property-hor .// -->

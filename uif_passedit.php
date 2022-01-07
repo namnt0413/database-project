@@ -4,6 +4,7 @@
 <!------ Include the above in your HEAD tag ---------->
 <?php 
     include 'header.php';
+    $user = $currentUser;
 ?>
 
 <head>
