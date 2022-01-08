@@ -97,6 +97,10 @@ and open the template in the editor.
                 border-radius: 9px;
             }
 
+            .username > placeholder {
+                color: 'red';
+            }
+
             .dang-nhap-button:hover, .dang-nhap-button:active {
                 background-color: #219150;
             }
@@ -244,9 +248,9 @@ and open the template in the editor.
                     <h1>Đăng nhập tài khoản</h1>
                     <form action="./login.php" method="Post" autocomplete="off">
                         <!-- <label>Username</label></br> -->
-                        <input type="text" name="username" value="" placeholder="Tên tài khoản"/>
+                        <input type="text" name="username" value="" placeholder="Tên tài khoản" class="username"/>
                         <!-- <label>Password</label></br> -->
-                        <input type="password" name="password" value="" placeholder="Mật khẩu"/>
+                        <input type="password" name="password" value="" placeholder="Mật khẩu" class="password"/>
                     
                         <input type="submit" value="Đăng nhập" class="dang-nhap-button"/>
                         
@@ -280,5 +284,6 @@ and open the template in the editor.
           }
       }
     </script>
+    <script src="assets/js/login.js"></script>
     </body>
 </html>

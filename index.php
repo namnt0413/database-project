@@ -701,25 +701,12 @@
         <img src="./assets/image/loader-img.gif" alt="">
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     
     <!-- custom js file link  -->
     <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/header.js"></script>
+
 
 </body>
 </html>
