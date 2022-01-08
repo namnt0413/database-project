@@ -18,18 +18,21 @@
 <hr>
 <div class="container bootstrap snippet">
     <div class="row">
-  		<div class="col-sm-10"><h1>User name</h1></div>
-        
-    	<!-- <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a></div> -->
+      <div class="col-sm-4">
+        <div class="text-center">  
+            <h1> <?= $currentUser['first_name']." ".$currentUser['last_name']?> </h1>
+        </div>
+      </div>
     </div>
+    <!-- row -->
+      
     <div class="row">
-  		<div class="col-sm-3"><!--left col-->
-              
+  		<div class="col-sm-4"><!--left col-->
       <div class="text-center">
-        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-        <h6>Upload a different photo...</h6>
-        <input type="file" class="text-center center-block file-upload">
-      </div></hr><br>
+        <img src="<?= $currentUser['avatar'] ?>" class="avatar img-circle img-thumbnail" alt="avatar" style="width:200px;height:200px;">
+      </div>
+</hr>
+    <br>
 
                
           <div class="panel panel-default">
@@ -54,7 +57,7 @@
           </div>
           
         </div><!--/col-3-->
-    	<div class="col-sm-9">
+    	<div class="col-sm-8">
             <ul class="nav nav-tabs">
                 <!-- <li class="active"><a data-toggle="tab" href="user_profile.php">Thông tin</a></li> -->
                 <li><a  href="uif_profile.php">Cập nhật Thông tin</a></li>

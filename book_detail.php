@@ -125,6 +125,9 @@
                         
                     </p> <!-- quantity-detail-wrap .// -->
                         
+                    <div>
+                        <a href="./uif_favorite.php" style="font-size: 20px;">Yêu thích</a>
+                    </div>
                         
                     <dl class="item-property">
                         <h4 class="category">Giới thiệu tóm tắt tác phẩm:</h4>
