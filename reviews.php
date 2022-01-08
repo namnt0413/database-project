@@ -159,5 +159,6 @@
 	
 		<!-- custom js file link  -->
 		<script src="./assets/js/main.js"></script>
+        <script src="./assets/js/header.js"></script>
 	</body>
 </html>
