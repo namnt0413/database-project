@@ -185,11 +185,11 @@ and open the template in the editor.
                     <form action="./register.php?action=reg" method="Post" autocomplete="off">
                         <div class="input-block">
                             <label>Username</label></br>
-                            <input type="text" name="username" value="" class="input-area" placeholder="Điều kiện cho trường nhập vào"><br/>
+                            <input type="text" name="username" value="" class="input-area"  placeholder="Điều kiện cho trường nhập vào"><br/>
                         </div>
                         <div class="input-block">
                             <label>Password</label></br>
-                            <input type="password" name="password" value="" class="input-area" placeholder="Điều kiện cho trường nhập vào"/></br>
+                            <input type="password" name="password" value="" class="input-area" id="password" placeholder="Điều kiện cho trường nhập vào"/></br>
                         </div>
                         <div class="input-block">
                             <label>Họ và Đệm</label></br>
@@ -201,11 +201,11 @@ and open the template in the editor.
                         </div>
                         <div class="input-block">
                             <label>Ngày Sinh </label></br>
-                            <input type="text" name="birthday" value="" class="input-area" placeholder="Phải có dạng (DD-MM-YYYY)"/><br/>
+                            <input type="text" name="birthday" value="" class="input-area" id="birthday" placeholder="Phải có dạng (DD-MM-YYYY)"/><br/>
                         </div>
                         <div class="input-block">
                             <label>Số Điện Thoại</label></br>
-                            <input type="text" name="phone" value="" class="input-area" placeholder="Điều kiện cho trường nhập vào"/><br/>
+                            <input type="text" name="phone" value="" class="input-area" id="phone" placeholder="Điều kiện cho trường nhập vào"/><br/>
                         </div>
                         <div class="input-block">
                             <label>Địa Chỉ</label></br>
@@ -213,7 +213,7 @@ and open the template in the editor.
                         </div>
                         <div class="input-block">
                             <label>Email</label></br>
-                            <input type="text" name="email" value="" class="input-area" placeholder="Điều kiện cho trường nhập vào"/><br/>
+                            <input type="text" name="email" value="" class="input-area" id="email" placeholder="Điều kiện cho trường nhập vào"/><br/>
                         </div>
                         </br>
                         </br>
