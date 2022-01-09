@@ -20,6 +20,22 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
+
+#bottom-pagination{
+    text-align: left;
+    margin-top: 15px;
+}
+.page-item{
+    border: 1px solid #ccc;
+    padding: 5px 9px;
+    color: #333;
+}
+.current-page{
+    background-color: var(--green);
+    border: 1px solid var(--white);
+    color: var(--white);
+    font-weight: 600;
+}
 </style>
 
 <!-- <hr> -->
@@ -71,17 +87,28 @@ img {
         <!-- <hr> -->
 
         <?php 
+          $param = "";          // khoi tao bien param la chuoi trong filter de gan vs perpage va page
+          $sortParam = "";      // khoi tao sortParam la chuoi trong filter ket hop vs order
+          $orderConditon = "";  //  String chua dieu kien order : vd ORDER BY product.name ASC/DESC
+
           $user = $currentUser;
           $userid = $user['id'];
 
-          $result = mysqli_query($con, "SELECT tittle, image, price FROM  books 
-          INNER JOIN favorites ON books.id = favorites.book_id WHERE customer_id= $userid" );
-          // var_dump($result);exit;
-          $num_record = mysqli_num_rows($result);
-          // echo "Số sách yêu thích : ". $num_record . "<br>";
+          $item_per_page = (!empty($_GET['per_page'])) ? $_GET['per_page'] : 3;
+          $current_page = (!empty($_GET['page'])) ? $_GET['page'] : 1;
+          $offset = ($current_page - 1) * $item_per_page;
 
+          $result = mysqli_query($con, "SELECT id,tittle, image, price FROM  books 
+          INNER JOIN favorites ON books.id = favorites.book_id WHERE customer_id= $userid
+          LIMIT " . $item_per_page . " OFFSET " . $offset . " " );
+
+          $totalRecords = mysqli_query($con, "SELECT id,tittle, image, price FROM  books 
+          INNER JOIN favorites ON books.id = favorites.book_id WHERE customer_id= $userid ");
+          $totalRecords = $totalRecords->num_rows;
+          $totalPages = ceil($totalRecords / $item_per_page);
           ?>
           <table class="table table-borderless table-striped table-earning">
+          <?php include 'pagination.php'?>
             <tr>
               <td style="text-align: center">
                 Tên sách
@@ -104,7 +131,7 @@ img {
                     src="./<?= $row['image'] ?>" alt="<?= $row['tittle'] ?>" title="<?= $row['tittle']?>" >
                   </td>
                   <td style="text-align: center"><?= $row['price'] ?></td>
-                  <td style="text-align: center"><a class="fa fa-trash" href="./uif_favor_del?id=<?= $row['id'] ?>" style="color:crimson"></a></td>
+                  <td style="text-align: center"><a class="fa fa-trash" href="./uif_favor_del?id=<?= $row['id'] ?>" ></a></td>
                     
                 </tr>
             <?php } ?>
