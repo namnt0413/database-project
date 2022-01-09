@@ -15,7 +15,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
-<hr>
+<!-- <hr> -->
 <div class="container bootstrap snippet">
     <div class="row">
       <div class="col-sm-4">
@@ -63,7 +63,7 @@
                 <li><a  href="uif_profile.php">Cập nhật Thông tin</a></li>
                 <li><a href="uif_passedit.php" >Đổi mật khẩu </a></li>
                 <li><a href="uif_favorite.php" >Yêu thích</a></li>
-                <li><a href="uif_orderhis.php" >Lịch sử mua hàng</a></li>
+                <li style = "background-color :#ddd"><a href="uif_orderhis.php" >Lịch sử mua hàng</a></li>
 
             </ul>
 

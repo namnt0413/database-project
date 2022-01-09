@@ -34,7 +34,7 @@
 </head>
 
 
-<hr></hr>
+<!-- <hr></hr> -->
     <div class="container bootstrap snippet">
         <!-- name -->
         <div class="row">
@@ -139,10 +139,10 @@
        
             <div class="col-sm-8">
                 <ul class="nav nav-tabs">
-                    <li><a href="uif_profile.php">Cập nhật Thông tin</a></li>
+                    <li style = "background-color :#ddd"><a href="uif_profile.php">Cập nhật Thông tin</a></li>
                     <li><a href="uif_passedit.php">Đổi mật khẩu </a></li>
                     <li><a href="uif_favorite.php">Yêu thích</a></li>
-                    <li><a href="uif_orderhis.php">Lịch sử mua hàng</a></li>
+                    <li ><a href="uif_orderhis.php">Lịch sử mua hàng</a></li>
                 </ul>
 
                 <?php 

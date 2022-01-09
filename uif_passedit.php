@@ -16,7 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
-<hr>
+<!-- <hr> -->
     <div class="container bootstrap snippet">
         <div class="row">
             <div class="col-sm-4">
@@ -63,7 +63,7 @@
                 <ul class="nav nav-tabs">
                     <!-- <li class="active"><a data-toggle="tab" href="user_profile.php">Thông tin</a></li> -->
                     <li><a href="uif_profile.php">Cập nhật Thông tin</a></li>
-                    <li><a href="uif_passedit.php">Đổi mật khẩu </a></li>
+                    <li style = "background-color :#ddd"><a href="uif_passedit.php">Đổi mật khẩu </a></li>
                     <li><a href="uif_favorite.php">Yêu thích</a></li>
                     <li><a href="uif_orderhis.php">Lịch sử mua hàng</a></li>
 
@@ -71,7 +71,7 @@
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="home">
-                        <hr>
+                        
                         <?php
                             $error = false;
                             if (isset($_GET['action']) && $_GET['action'] == 'edit'){

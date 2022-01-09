@@ -134,7 +134,7 @@
                                     
                                     <?php
                                     while ($row = mysqli_fetch_array($books_filter) ) {
-                                        // đặt biến $row_id để sau này gọi trong mysqli khôn gbị lỗi
+                                        // đặt biến $row_id để sau này gọi trong mysqli không bị lỗi
                                         $row_id = $row['id'];
                                         // var_dump($row_id);exit;
                                     ?>

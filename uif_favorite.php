@@ -14,8 +14,15 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+<style>
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
 
-<hr>
+<!-- <hr> -->
 <div class="container bootstrap snippet">
     <div class="row">
   		<div class="col-sm-4">
@@ -56,52 +63,52 @@
     	<div class="col-sm-8">
             <ul class="nav nav-tabs">
                 <!-- <li class="active"><a data-toggle="tab" href="user_profile.php">Thông tin</a></li> -->
-                <li><a  href="uif_profile.php">Cập nhật Thông tin</a></li>
+                <li><a href="uif_profile.php">Cập nhật Thông tin</a></li>
                 <li><a href="uif_passedit.php" >Đổi mật khẩu </a></li>
-                <li><a href="uif_favorite.php" >Yêu thích</a></li>
+                <li style = "background-color :#ddd"><a href="uif_favorite.php" >Yêu thích</a></li>
                 <li><a href="uif_orderhis.php" >Lịch sử mua hàng</a></li>
             </ul>
+        <!-- <hr> -->
 
         <?php 
           $user = $currentUser;
           $userid = $user['id'];
-          // var_dump($user);exit;\
-
-
-          // $result = mysqli_query($con, "SELECT * FROM `favorites`  WHERE `customer_id`= $userid" );
-          // // var_dump($result);exit;
-          // $data = array();
-          // // for ($i=0; $i < ; $i++) { 
-          // //   # code...
-          // // }
-          //   foreach ($row = mysqli_fetch_array($result)){
-          //     echo "Tiêu đề là : ". $row['book_id']. "<br>";
-
-          //   }
-          // exit;
-
 
           $result = mysqli_query($con, "SELECT tittle, image, price FROM  books 
           INNER JOIN favorites ON books.id = favorites.book_id WHERE customer_id= $userid" );
           // var_dump($result);exit;
           $num_record = mysqli_num_rows($result);
-          echo "Số sách yêu thích : ". $num_record . "<br>";
-          
-            while ($row = mysqli_fetch_array($result)){
-              // echo "ID sách là : ". $row["book_id"]. "<br>"
+          // echo "Số sách yêu thích : ". $num_record . "<br>";
+
+          ?>
+          <table class="table table-borderless table-striped table-earning">
+            <tr>
+              <td style="text-align: center">
+                Tên sách
+              </td>
+              <td style="text-align: center">Ảnh</td>
+              <td style="text-align: center">Giá</td>
+              <td style="text-align: center">Xóa</td>
+            </tr>
+
+            <?php
+            while ($row = mysqli_fetch_array($result)) {
               ?>
-
-              <img src="<?= $row["image"] ?>" class="avatar img-circle img-thumbnail" style="width:100px;height:100px;">
-              <?php
-              echo $row["tittle"];
-              echo '<br>';
-              echo '<br>';
-
-            }
-
-        ?>  
-
-
-        </div><!--/col-9-->
+                <tr>
+                  <td>
+                    <?= $row['tittle'] ?>
+                </td>
+                  
+                  <td>
+                  <img style="width: 80px;height: 100px;"
+                    src="./<?= $row['image'] ?>" alt="<?= $row['tittle'] ?>" title="<?= $row['tittle']?>" >
+                  </td>
+                  <td style="text-align: center"><?= $row['price'] ?></td>
+                  <td style="text-align: center"><a class="fa fa-trash" href="./uif_favor_del?id=<?= $row['id'] ?>" style="color:crimson"></a></td>
+                    
+                </tr>
+            <?php } ?>
+          </table>
+      </div><!--/col-8-->
     </div><!--/row-->
-                                                      
+    
