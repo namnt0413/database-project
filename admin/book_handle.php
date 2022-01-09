@@ -245,6 +245,13 @@
                       WHERE `book_id` = " . $_GET['id']);  // lay du lieu tu bang books vs id = $_Get['id]
                     //var_dump($result3);exit;
 
+                    $book_id = $_GET['id']; $now = time();
+                    // var_dump($book_id);exit; // var_dump($now);exit; 
+                    $result4 = mysqli_query($con, "SELECT books_publishers.publisher_id,publishers.name,books_publishers.started_date
+                    FROM `books_publishers` INNER JOIN `publishers` ON books_publishers.publisher_id = publishers.id
+                      WHERE  `book_id` = $book_id AND started_date IN (SELECT MAX(started_date) FROM books_publishers WHERE `book_id` = $book_id AND started_date <= $now )");
+                    // var_dump($result4);exit;
+
                     $book = $result->fetch_assoc();  // dua du lieu tu json ve dang array
 
                     $gallery = mysqli_query($con, "SELECT * FROM `books_library` WHERE `book_id` = " . $_GET['id']); // lay du lieu tu bag image_library
@@ -310,6 +317,25 @@
                         <?php } ?>
                                 <div class="clear-both"></div>                            
                             </div>
+
+                            <!-- NHA XUAT BAN -->
+                            <div class="wrap-field">
+                                <!-- Neu TH la sua sp thi co book ko empty -> tra ve book'tittle' -->
+                                <label>Nhà xuất bản : </label>
+                                <a href="book_add_publisher.php?id=<?= $book['id']?>" class="fas fa-plus-circle"></a>
+                                
+                                <div class="clear-both"></div>
+                        <?php
+                            while ($publisher = mysqli_fetch_array($result4)){ 
+                            // var_dump($author['author_id']);
+                        ?>
+                                <span style="padding: 5px;background-color:white;" ><?=$publisher['name']?></span>
+                                <a href="book_delete_publisher.php?publisher_id=<?= $publisher['publisher_id']?>&id=<?= $book['id'] ?>" class="fa fa-trash"></a>
+                                <div class="clear-both"></div>                            
+                        <?php } ?>
+                                <div class="clear-both"></div>                            
+                            </div>                            
+
                     <?php } ?>
 
                                 <div class="wrap-field">

@@ -81,11 +81,8 @@
                                         while ($row = mysqli_fetch_array($result)) {
                                             ?>
                                             <tr>
-                                                <td><?= $row['tittle'] ?></td>
-                                                <td>
-                                                    <img style="width: 60px;height: 80px;" 
-                                                    src="../<?= $row['image'] ?>" >
-                                                </td>
+                                                <td><?= $row['username'] ?></td>
+                                                <td><?= $row['first_name']." ".$row['last_name'] ?></td>
                                                 <td><?= date('d/m/Y', $row['birthday']) ?></td>
                                                 <td><?= $row['phone'] ?></td>
                                                 <td>

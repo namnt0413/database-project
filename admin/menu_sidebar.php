@@ -17,24 +17,6 @@
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="index.html">Dashboard 1</a>
-                                </li>
-                                <li>
-                                    <a href="index2.html">Dashboard 2</a>
-                                </li>
-                                <li>
-                                    <a href="index3.html">Dashboard 3</a>
-                                </li>
-                                <li>
-                                    <a href="index4.html">Dashboard 4</a>
-                                </li>
-                            </ul>
-                        </li>
                         <li>
                             <a href="chart.php">
                                 <i class="fas fa-chart-bar"></i>Statistics</a>
@@ -43,9 +25,23 @@
                             <a href="user.php">
                                 <i class="fas fa-user"></i>User</a>
                         </li>
-                        <li>
-                            <a href="book.php">
-                                <i class="fa fa-book"></i>Book</a>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-tachometer-alt"></i>Product</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="book.php">Book</a>
+                                </li>
+                                <li>
+                                    <a href="index2.html">Author</a>
+                                </li>
+                                <li>
+                                    <a href="index3.html">Genres</a>
+                                </li>
+                                <li>
+                                    <a href="index4.html">Publisher</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="order.php">
@@ -91,24 +87,6 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="active has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="index.php">Dashboard 1</a>
-                                </li>
-                                <li>
-                                    <a href="">Dashboard 2</a>
-                                </li>
-                                <li>
-                                    <a href="">Dashboard 3</a>
-                                </li>
-                                <li>
-                                    <a href="">Dashboard 4</a>
-                                </li>
-                            </ul>
-                        </li>
                         <li>
                             <a href="chart.php">
                                 <i class="fas fa-chart-bar"></i>Biểu đồ</a>
@@ -117,9 +95,23 @@
                             <a href="user.php">
                                 <i class="fas fa-user"></i>Quản lý thành viên</a>
                         </li>
-                        <li>
-                            <a href="book.php">
-                                <i class="fas fa-book"></i>Quản lý sản phẩm</a>
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-tags"></i>Quản lý sản phẩm</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="book.php"><i class="fas fa-book"></i>Quản lý sách</a>
+                                </li>
+                                <li>
+                                    <a href="book_author.php"><i class="fas fa-book"></i>Quản lý Tác giả</a>
+                                </li>
+                                <li>
+                                    <a href="book_genres.php"><i class="fas fa-book"></i>Quản lý Thể loại</a>
+                                </li>
+                                <li>
+                                    <a href="book_publish.php"><i class="fas fa-book"></i>Quản lý Nhà xuất bản</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="order.php">
