@@ -31,6 +31,93 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+            /* .box-content{
+                margin: 76px auto 0;
+                width: 800px;
+                border: 1px solid #ccc;
+                text-align: center;
+                padding: 20px;
+            }
+            #create_user form{
+                width: 200px;
+                margin: 40px auto;
+            }
+            #create_user form input{
+                margin: 5px 0;
+            } */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+                color: #495057;
+            }
+            h1 {
+                margin-bottom: 3rem;
+            }
+
+            h4 {
+                font-size: 1rem; 
+                margin-bottom: 1rem;
+            }
+            label {
+                margin: 0;
+            }
+            .content-container {
+                margin-top: 5rem;
+                position: relative;
+                height: 20vh;
+                 /* background-image: linear-gradient(rgba(233, 236, 239, 0.603), rgba(233, 236, 239, 0.603));
+                 background-image: linear-gradient(rgba(34, 34, 34, 0.603), rgba(34, 34, 34, 0.603)), url(assets/image/login-theme.jpg);
+                background-size: cover; */
+                
+
+            }
+            .box-content{
+                margin: 0 auto;
+                width: 500px;
+                
+                text-align: center;
+                padding: 20px;
+                
+                /* border: 1px solid #ccc; */
+                position: absolute;
+                box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.07);
+               
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgb(256,256,256,0.9);
+            }
+           
+            .link-button:link, .link-button:visited {
+                display: inline-block; 
+                width: 25%;
+                text-decoration: none; 
+                font-size: 17px;
+                font-weight: 600;
+                background-color: #27ae60;
+                color: #fff;
+                text-decoration: none;
+                cursor: pointer;
+                border-radius: 5px;
+                border: 0;
+                padding: 7px 10px;
+            }
+
+            .link-button:hover, .link-button:active {
+                background-color: #219150;
+            }
+
+            .btn {
+                background-color: #27ae60;
+            }
+
+            .btn: hover {
+                background-color: #219150;
+            }
+        </style>
 </head>
 
 
@@ -102,7 +189,7 @@
                                     }
                                     ?>
                                     <!-- submit -->
-                                        <button class="btn btn-lg btn-success" type="submit">
+                                        <button class="btn btn-lg btn-success" type="submit" >
                                         <i class="glyphicon glyphicon-ok-sign"></i> Lưu ảnh</button>
                             </form>
                         <?php
@@ -150,7 +237,7 @@
                 ?>
                 <div class="tab-content">
                     <div class="tab-pane active" id="home">
-                        <hr>
+                        
                         <?php 
                         $error = false;
                         if (isset($_GET['action']) && $_GET['action'] == 'edit') 
@@ -189,6 +276,7 @@
                                 <div class="content-container">
                                     <div id="edit-notify" class="box-content">
                                         <h1><?= ($error !== false) ? $error : "Sửa tài khoản thành công" ?></h1>
+                                        <a class="link-button" href="uif_profile.php"> Reset</a>
                                     </div>
                                 </div>
                             <?php 
@@ -198,7 +286,7 @@
                                 <div class="content-container">
                                     <div id="edit-notify" class="box-content">
                                         <h1>Vui lòng nhập đủ thông tin để sửa tài khoản</h1>
-                                        <a class="button" href="uif_profile.php?id=<?= $_POST['id'] ?>">Quay lại sửa tài khoản</a>
+                                        <a class="link-button" href="uif_profile.php?id=<?= $_POST['id'] ?>">Quay lại sửa tài khoản</a>
                                     </div>
                                 </div>
                             <?php
@@ -286,7 +374,7 @@
                             }
                         }
                         ?>
-                        <hr>
+                       
 
                     </div>
                     <!--/tab-pane active-->

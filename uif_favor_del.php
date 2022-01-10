@@ -96,7 +96,7 @@
             #create_user form input{
                 margin: 5px 0;
             } */
-            * {#F08C00
+            * {
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
@@ -104,7 +104,7 @@
                 color: #495057;
             }
             h1 {
-                margin-bottom: 2.5rem;
+                margin-bottom: 3rem;
             }
 
             h4 {
@@ -117,11 +117,11 @@
             .content-container {
                 margin-top: 5rem;
                 position: relative;
-                height: 90vh;
+                height: 20vh;
                  /* background-image: linear-gradient(rgba(233, 236, 239, 0.603), rgba(233, 236, 239, 0.603));
                  background-image: linear-gradient(rgba(34, 34, 34, 0.603), rgba(34, 34, 34, 0.603)), url(assets/image/login-theme.jpg);
                 background-size: cover; */
-                background-color: #27ae60;
+                
 
             }
             .box-content{
@@ -130,8 +130,8 @@
                 
                 text-align: center;
                 padding: 20px;
-                box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.07);
-                border: 1px solid #ccc;
+                
+                /* border: 1px solid #ccc; */
                 position: absolute;
                 box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.07);
                
@@ -143,20 +143,21 @@
            
             .link-button:link, .link-button:visited {
                 display: inline-block; 
+                width: 25%;
                 text-decoration: none; 
                 font-size: 17px;
                 font-weight: 600;
-                background-color: #f59f00;
+                background-color: #27ae60;
                 color: #fff;
                 text-decoration: none;
                 cursor: pointer;
-                border-radius: 9px;
+                border-radius: 5px;
                 border: 0;
-                padding: 5px 10px;
+                padding: 7px 10px;
             }
 
             .link-button:hover, .link-button:active {
-                background-color: #f08c00;
+                background-color: #219150;
             }
         </style>
         <?php

@@ -36,6 +36,30 @@ img {
     color: var(--white);
     font-weight: 600;
 }
+table {
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0px 2px 5px 0px rgb(0 0 0 / 10%);
+}
+thead tr {
+        background-color: #333;
+        color: #fff;
+      }
+
+td {
+  /* border: 1px solid #343a40; */
+  padding: 16px 24px;
+  text-align: left;
+  
+}
+#table-row:nth-child(odd) {
+  background-color: #fff;
+}
+
+#table-row:nth-child(even) {
+  background-color: #f5f5f5;
+}
 </style>
 
 <!-- <hr> -->
@@ -107,24 +131,27 @@ img {
           $totalRecords = $totalRecords->num_rows;
           $totalPages = ceil($totalRecords / $item_per_page);
           ?>
-          
+  
           <table class="table table-borderless table-striped table-earning">
           <?php include 'pagination.php'?>
           <br>
-            <tr>
-              <td style="text-align: center">ID</td>
-              <td style="text-align: center">
-                Tên sách
-              </td>
-              <td style="text-align: center">Ảnh</td>
-              <td style="text-align: center">Giá</td>
-              <td style="text-align: center">Xóa</td>
-            </tr>
-
+            <thead>
+              <tr>
+                <td style="text-align: center">ID</td>
+                <td style="text-align: center">
+                  Tên sách
+                </td>
+                <td style="text-align: center">Ảnh</td>
+                <td style="text-align: center">Giá</td>
+                <td style="text-align: center">Xóa</td>
+              </tr>
+            </thead>
             <?php
+           
             while ($row = mysqli_fetch_array($result)) {
               ?>
-                <tr>
+              
+                <tr id="table-row">
                 <td style="text-align: center"><?= $row['id'] ?></td>
                   <td>
                     <?= $row['tittle'] ?>
@@ -137,6 +164,7 @@ img {
                   <td style="text-align: center"><a class="fa fa-trash" href="./uif_favor_del.php?id=<?= $row['id'] ?>" ></a></td>
                     
                 </tr>
+             
             <?php } ?>
           </table>
       </div><!--/col-8-->
