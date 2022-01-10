@@ -100,9 +100,9 @@
         $error = false;
         if (isset($_GET['id']) && !empty($_GET['id'])) {
             include '../connect_db.php';
-            $result = mysqli_query($con, "DELETE FROM `customers` WHERE `id` = " . $_GET['id']);
+            $result = mysqli_query($con, "DELETE FROM `authors` WHERE `id` = " . $_GET['id']);
             if (!$result) {
-                $error = "Không thể xóa tài khoản.";
+                $error = "Không thể xóa tác giả.";
             }
             mysqli_close($con);
             if ($error !== false) {
@@ -111,14 +111,14 @@
                     <div id="error-notify" class="box-content">
                         <h1>Thông báo</h1>
                         <h4><?= $error ?></h4>
-                        <a class="link-button" href="javascript:window.history.go(-1)">Danh sách tài khoản</a>
+                        <a class="link-button" href="javascript:window.history.go(-1)">Danh sách tác giả</a>
                     </div>
                 </div>
             <?php } else { ?>
                 <div class="content-container">
                     <div id="success-notify" class="box-content">
-                        <h1>Xóa tài khoản thành công</h1>
-                        <a class="link-button" href="javascript:window.history.go(-1)">Danh sách tài khoản</a>
+                        <h1>Xóa tác giả thành công</h1>
+                        <a class="link-button" href="javascript:window.history.go(-1)">Danh sách tác giả</a>
                     </div>
                 </div>
             <?php } ?>

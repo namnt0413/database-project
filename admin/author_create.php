@@ -16,7 +16,7 @@
 
     <?php 
          
-        include 'admin_navbar.php';
+        // include 'admin_navbar.php';
     ?>
         <style>
             /* .box-content{
@@ -138,17 +138,18 @@
         </style>
         <?php
         $error = false;
+        // var_dump($_POST['first_name']);exit;
         // neu ton tai cation GET = create
         if (isset($_GET['action']) && $_GET['action'] == 'create') {
-            if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && !empty($_POST['password'])) {
+            if (!empty($_POST['first_name']) && !empty($_POST['last_name'])) {
             // POST nhan dc day du username va password
                 include '../connect_db.php';
                 // Thêm bản ghi vào cơ sở dữ liệu
-                $result = mysqli_query($con, "INSERT INTO `customers` (`id`, `username`, `password`, `status`, `created_date`, `last_updated`) VALUES (NULL, '" . $_POST['username'] . "', MD5('" . $_POST['password'] . "'), 1, '" . time() . "', '" . time() . "');");
+                $result = mysqli_query($con, "INSERT INTO `authors` (`id`, `first_name`, `last_name`, `last_updated`) VALUES (NULL, '" . $_POST['first_name'] . "' , '" . $_POST['last_name'] . "' , '" . time() . "');");
                 // neu nhu ko insert dc : trung ten user
                 if (!$result) {
                     if (strpos(mysqli_error($con), "Duplicate entry") !== FALSE) {
-                        $error = "Tài khoản đã tồn tại. Bạn vui lòng chọn tài khoản khác.";
+                        $error = "Tác giả khoản đã tồn tại. Bạn vui lòng nhập tác giả khác.";
                     }
                 }
                 mysqli_close($con);
@@ -159,43 +160,43 @@
                         <div id="error-notify" class="box-content">
                             <h1>Thông báo</h1>
                             <h4><?= $error ?></h4>
-                            <a href="./user_create.php" class="link-button">Tạo tài khoản khác</a>
+                            <a href="./author_create.php" class="link-button">Tạo tác giả khác</a>
                         </div>
                     </div>
                 <?php } else { ?>
                     <div class="content-container">
                         <div id="success-notify" class="box-content">
                             <h1>Chúc mừng</h1>
-                            <h4>Bạn đã tạo thành công tài khoản <?= $_POST['username'] ?></h4>
-                            <a class="link-button" href="javascript:window.history.go(-2)">Danh sách tài khoản</a>
+                            <h4>Bạn đã tạo thành công tác giả <?= $_POST['first_name']." ".$_POST['last_name'] ?></h4>
+                            <a class="link-button" href="javascript:window.history.go(-2)">Danh sách tác giả</a>
                         </div>
                     </div>
                 <?php } ?>
-            <?php } else { ?>
+            <?php }  else { ?>
                 <div class="content-container">
                     <div id="edit-notify" class="box-content">
-                        <h1>Vui lòng nhập đủ thông tin để thêm tài khoản</h1>
-                        <a class="button" href="javascript:window.history.go(-1)">Quay lại thêm tài khoản</a>
+                        <h1>Vui lòng nhập đủ thông tin để thêm tác giả</h1>
+                        <a class="button" href="javascript:window.history.go(-1)">Quay lại thêm tác giả</a>
                     </div>
                 </div>
-                <?php } ?>
+            <?php } ?>   
         <?php } else { ?>   
             <div class="content-container">   
             <a href="javascript:window.history.go(-1)" class="fa fa-undo" style="padding: 5px; margin-bottom: 10px;">  Quay lại</a>       
                 <div id="create_user" class="box-content">
-                    <h1>Tạo tài khoản</h1>
-                    <form action="./user_create.php?action=create" method="Post" autocomplete="off">
+                    <h1>Tạo tác giả</h1>
+                    <form action="./author_create.php?action=create" method="Post" autocomplete="off">
                         <div class="input-block">
-                            <label>Username</label></br>
-                            <input class="input-area" type="text" name="username" value="" />
+                            <label>Họ và tên đệm</label></br>
+                            <input class="input-area" type="text" name="first_name" value="" />
                         </div>
                         <br>
                         <div class="input-block">
-                            <label>Password</label></br>
-                            <input class="input-area" type="password" name="password" value="" />
+                            <label>Tên</label></br>
+                            <input class="input-area" type="text" name="last_name" value="" />
                         </div>
                         <br><br>
-                        <input class="button "  type="submit" value="Tạo tài khoản" />
+                        <input class="button "  type="submit" value="Tạo tác giả" />
                     </form> 
                 </div>
             </div>

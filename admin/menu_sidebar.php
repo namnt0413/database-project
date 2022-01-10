@@ -33,13 +33,13 @@
                                     <a href="book.php">Book</a>
                                 </li>
                                 <li>
-                                    <a href="index2.html">Author</a>
+                                    <a href="author.php">Author</a>
                                 </li>
                                 <li>
-                                    <a href="index3.html">Genres</a>
+                                    <a href="genres.php">Genres</a>
                                 </li>
                                 <li>
-                                    <a href="index4.html">Publisher</a>
+                                    <a href="publisher.php">Publisher</a>
                                 </li>
                             </ul>
                         </li>
@@ -103,13 +103,13 @@
                                     <a href="book.php"><i class="fas fa-book"></i>Quản lý sách</a>
                                 </li>
                                 <li>
-                                    <a href="book_author.php"><i class="fas fa-book"></i>Quản lý Tác giả</a>
+                                    <a href="author.php"><i class="fas fa-book"></i>Quản lý Tác giả</a>
                                 </li>
                                 <li>
-                                    <a href="book_genres.php"><i class="fas fa-book"></i>Quản lý Thể loại</a>
+                                    <a href="genres.php"><i class="fas fa-book"></i>Quản lý Thể loại</a>
                                 </li>
                                 <li>
-                                    <a href="book_publish.php"><i class="fas fa-book"></i>Quản lý Nhà xuất bản</a>
+                                    <a href="publisher.php"><i class="fas fa-book"></i>Quản lý Nhà xuất bản</a>
                                 </li>
                             </ul>
                         </li>

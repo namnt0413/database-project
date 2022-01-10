@@ -175,13 +175,13 @@
                     <div id="error-notify" class="box-content">
                         <h1>Thông báo</h1>
                         <h4><?= $error ?></h4>
-                        <a href="./user.php">Danh sách tài khoản</a>
+                        <a href="javascript:window.history.go(-2)">Danh sách tài khoản</a>
                     </div>
                 <?php } else { ?>
                     <div class="content-container">
                         <div id="edit-notify" class="box-content">
                             <h1><?= ($error !== false) ? $error : "Sửa tài khoản thành công" ?></h1>
-                            <a class="link-button" href="./user.php">Danh sách tài khoản</a>
+                            <a class="link-button" href="javascript:window.history.go(-2)">Danh sách tài khoản</a>
                         </div>
                     </div>
                 <?php } ?>
@@ -189,7 +189,7 @@
                 <div class="content-container">
                     <div id="edit-notify" class="box-content">
                         <h1>Vui lòng nhập đủ thông tin để sửa tài khoản</h1>
-                        <a class="button" href="./user_edit.php?id=<?= $_POST['id'] ?>">Quay lại sửa tài khoản</a>
+                        <a class="button" href="javascript:window.history.go(-1)">Quay lại sửa tài khoản</a>
                     </div>
                 </div>
             <?php
