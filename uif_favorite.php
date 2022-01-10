@@ -98,18 +98,21 @@ img {
           $current_page = (!empty($_GET['page'])) ? $_GET['page'] : 1;
           $offset = ($current_page - 1) * $item_per_page;
 
-          $result = mysqli_query($con, "SELECT id,tittle, image, price FROM  books 
+          $result = mysqli_query($con, "SELECT books.id,tittle, image, price FROM  books 
           INNER JOIN favorites ON books.id = favorites.book_id WHERE customer_id= $userid
           LIMIT " . $item_per_page . " OFFSET " . $offset . " " );
-
-          $totalRecords = mysqli_query($con, "SELECT id,tittle, image, price FROM  books 
-          INNER JOIN favorites ON books.id = favorites.book_id WHERE customer_id= $userid ");
+          
+          $totalRecords = mysqli_query($con, "SELECT books.id, tittle, image, price FROM  books 
+          INNER JOIN favorites ON books.id = favorites.book_id WHERE customer_id= $userid ORDER BY books.id ASC");
           $totalRecords = $totalRecords->num_rows;
           $totalPages = ceil($totalRecords / $item_per_page);
           ?>
+          
           <table class="table table-borderless table-striped table-earning">
           <?php include 'pagination.php'?>
+          <br>
             <tr>
+              <td style="text-align: center">ID</td>
               <td style="text-align: center">
                 Tên sách
               </td>
@@ -122,16 +125,16 @@ img {
             while ($row = mysqli_fetch_array($result)) {
               ?>
                 <tr>
+                <td style="text-align: center"><?= $row['id'] ?></td>
                   <td>
                     <?= $row['tittle'] ?>
-                </td>
-                  
+                  </td>
                   <td>
-                  <img style="width: 80px;height: 100px;"
-                    src="./<?= $row['image'] ?>" alt="<?= $row['tittle'] ?>" title="<?= $row['tittle']?>" >
+                    <img style="width: 80px;height: 100px;"
+                      src="./<?= $row['image'] ?>" alt="<?= $row['tittle'] ?>" title="<?= $row['tittle']?>" >
                   </td>
                   <td style="text-align: center"><?= $row['price'] ?></td>
-                  <td style="text-align: center"><a class="fa fa-trash" href="./uif_favor_del?id=<?= $row['id'] ?>" ></a></td>
+                  <td style="text-align: center"><a class="fa fa-trash" href="./uif_favor_del.php?id=<?= $row['id'] ?>" ></a></td>
                     
                 </tr>
             <?php } ?>
