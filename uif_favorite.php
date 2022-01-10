@@ -124,6 +124,7 @@ td {
 
           $result = mysqli_query($con, "SELECT books.id,tittle, image, price FROM  books 
           INNER JOIN favorites ON books.id = favorites.book_id WHERE customer_id= $userid
+          ORDER BY books.id ASC
           LIMIT " . $item_per_page . " OFFSET " . $offset . " " );
           
           $totalRecords = mysqli_query($con, "SELECT books.id, tittle, image, price FROM  books 
