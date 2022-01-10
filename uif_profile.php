@@ -75,7 +75,7 @@
                             WHERE `customers`.`id` = " . $picid . ";");
                             ?>
                                 <img src="<?= $user['avatar'] ?>" class="avatar img-circle img-thumbnail" alt="avatar" style="width:200px;height:200px;">
-                                <p style="text-align", font-size="60px">Đang xử lí . . . </p>   
+                                <p style="text-align: center;font-size:20px">Đang xử lí . . . </p>   
                                 <!-- in thử ảnh ra và nút back  -->
                                 <a  class="button" href="uif_profile.php"  >Cập nhật</a> 
                         <?php
@@ -303,5 +303,3 @@
 
 
 
-
-                            
