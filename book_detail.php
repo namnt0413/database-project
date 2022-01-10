@@ -36,6 +36,13 @@
     $result2 = mysqli_query($con, "SELECT authors.first_name,authors.last_name, books_authors.author_id
                                 FROM `books_authors`  INNER JOIN `authors` ON books_authors.author_id = authors.id
                                 WHERE `book_id` = " . $_GET['id'] );
+    // Lay ra NXB
+    $book_id = $_GET['id']; $now = time();
+    // var_dump($book_id);exit; // var_dump($now);exit; 
+    $result4 = mysqli_query($con, "SELECT books_publishers.publisher_id,publishers.name,books_publishers.started_date
+    FROM `books_publishers` INNER JOIN `publishers` ON books_publishers.publisher_id = publishers.id
+      WHERE  `book_id` = $book_id AND started_date IN (SELECT MAX(started_date) FROM books_publishers WHERE `book_id` = $book_id AND started_date <= $now )");
+    // var_dump($result4);exit;                                
 ?>   
 
         <link rel="stylesheet" href="./assets/css/book_detail.css">
@@ -95,7 +102,9 @@
                     <p class="publisher-detail-wrap"> 
                         <span class="category">Nhà xuất bản: </span> 
                     	<span class="category-info price h3 text-info"> 
-                    		<span class="">NXH xxx</span>
+                            <?php while ($publisher = mysqli_fetch_array($result4)){ ?>
+                    	        <span class=""><?=$publisher['name']?></span>
+                            <?php } ?>
                     	</span> 
                     </p> <!-- publicsher-detail-wrap .// -->
 
@@ -103,14 +112,15 @@
                     <p class="price-detail-wrap"> 
                         <span class="category">Giá: </span> 
                     	<span class="category-info price h3 text-danger"> 
-                    		<span class="num"><?= number_format($book['price'], 0, ",", ".") ?></span><span class="currency"> VNĐ</span>
+                    		<span class="num"><?= number_format($book['price']-$book['discount'] , 0, ",", ".") ?>VNĐ</span>
+                            <span style="color:black;font-size: 1.2rem;text-decoration: line-through;"><?=number_format($book['price'], 0, ",", ".") ?>đ</span>
                     	</span> 
                     </p> <!-- price-detail-wrap .// -->
 
                     <p class="discount-detail-wrap"> 
                         <span class="category">Tiết kiệm: </span> 
                     	<span class="category-info price h5 text-danger"> 
-                    		<span class="num"><?= number_format(25000, 0, ",", ".") ?></span><span class="currency"> VNĐ</span><span>( 10% )</span>
+                    		<span class="num"><?= number_format($book['discount'], 0, ",", ".") ?></span><span class="currency"> VNĐ</span><span>( <?=ceil( $book['discount']/$book['price']*100 )?>% )</span>
                     	</span> 
                     </p> <!-- discount-detail-wrap .// -->
 
@@ -186,72 +196,7 @@
                   </article> <!-- card-body.// -->
             		</aside> <!-- col.// -->
             	</div> <!-- row.// -->
-            </div> <!-- card.// -->
-
-            <div class="review_card" style="margin-top:30px">
-              <!-- RATING ROW -->
-              <div class="row justify-content-left d-flex">
-                <div class="col-md-4 d-flex flex-column">
-                    <div class="rating-box">
-                        <h1 class="pt-4">4.0</h1>
-                        <p class="">out of 5</p>
-                    </div>
-                    <div> <span class="fa fa-star star-active mx-1"></span> <span class="fa fa-star star-active mx-1"></span> <span class="fa fa-star star-active mx-1"></span> <span class="fa fa-star star-active mx-1"></span> <span class="fa fa-star star-inactive mx-1"></span> </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="rating-bar0 justify-content-center">
-                        <table class="text-left mx-auto">
-                            <tr>
-                                <td class="rating-label">Excellent</td>
-                                <td class="rating-bar">
-                                    <div class="bar-container">
-                                        <div class="bar-5"></div>
-                                    </div>
-                                </td>
-                                <td class="text-right">123</td>
-                            </tr>
-                            <tr>
-                                <td class="rating-label">Good</td>
-                                <td class="rating-bar">
-                                    <div class="bar-container">
-                                        <div class="bar-4"></div>
-                                    </div>
-                                </td>
-                                <td class="text-right">23</td>
-                            </tr>
-                            <tr>
-                                <td class="rating-label">Average</td>
-                                <td class="rating-bar">
-                                    <div class="bar-container">
-                                        <div class="bar-3"></div>
-                                    </div>
-                                </td>
-                                <td class="text-right">10</td>
-                            </tr>
-                            <tr>
-                                <td class="rating-label">Poor</td>
-                                <td class="rating-bar">
-                                    <div class="bar-container">
-                                        <div class="bar-2"></div>
-                                    </div>
-                                </td>
-                                <td class="text-right">3</td>
-                            </tr>
-                            <tr>
-                                <td class="rating-label">Terrible</td>
-                                <td class="rating-bar">
-                                    <div class="bar-container">
-                                        <div class="bar-1"></div>
-                                    </div>
-                                </td>
-                                <td class="text-right">0</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-              </div><!-- end RATING ROW -->
-            </div>      
-            
+            </div> <!-- card.// -->  
             
             <!-- COMMENT FORM -->
             <div class="review_card">

@@ -171,16 +171,9 @@
                                             <a href="" style="font-size: 1.2rem;color:#219150;"><?= $row2['first_name']." ".$row2['last_name'].","?></a>
                                         <?php } ?>
                                     </div>
-                                   
-                                    <div class="stars" style="margin-top: 1rem;">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                    </div>
+
                                     <div class="d-flex price">
-                                        <p class="price" style="margin-top: 0.6rem; font-weight: 600; font-size: 20px;color: #f33f3f;"><?= number_format($row['price'], 0, ",", ".") ?>đ<span>$20.99</span></p>
+                                        <p class="price" style="margin-top: 0.6rem; font-weight: 600; font-size: 20px;color: #f33f3f;"><?= number_format($row['price']-$row['discount'], 0, ",", ".") ?>đ<span><?=number_format($row['price'], 0, ",", ".") ?>đ</span></p>
                                     </div>
                                 </div>
                             </div>

@@ -1,4 +1,16 @@
-<?php include 'header.php' ?>
+<?php 
+    include 'header.php';
+    $rate = 25;
+
+    $result1 = mysqli_query($con, "SELECT books.image,books.id
+    FROM `books`
+    WHERE  (discount / price) >= ($rate / 100) 
+    ORDER BY RAND()
+    LIMIT 9;");
+    // var_dump($result1);exit;
+
+
+?>
 
     <!-- home section starts  -->
     
@@ -7,19 +19,16 @@
         <div class="row">
     
             <div class="content">
-                <h3><b>upto 75% off</b></h3>
+                <h3><b>Giảm giá tới <?= $rate ?>% </b></h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam deserunt nostrum accusamus. Nam alias sit necessitatibus, aliquid ex minima at!</p>
-                <a href="#" class="button">shop now</a>
+                <a href="book.php" class="button">shop now</a>
             </div>
 
             <div class="swiper books-slider">
                 <div class="swiper-wrapper">
-                    <a href="#" class="swiper-slide"><img src="./assets/image/book-1.png" alt=""></a>
-                    <a href="#" class="swiper-slide"><img src="./assets/image/book-2.png" alt=""></a>
-                    <a href="#" class="swiper-slide"><img src="./assets/image/book-3.png" alt=""></a>
-                    <a href="#" class="swiper-slide"><img src="./assets/image/book-4.png" alt=""></a>
-                    <a href="#" class="swiper-slide"><img src="./assets/image/book-5.png" alt=""></a>
-                    <a href="#" class="swiper-slide"><img src="./assets/image/book-6.png" alt=""></a>
+                    <?php while ($book =  mysqli_fetch_array($result1) ){?>
+                        <a href="book_detail.php?id=<?=$book['id']?>" class="swiper-slide"><img src="<?=$book['image']?>" alt=""></a>
+                    <?php } ?>
                 </div>
                 <img src="./assets/image/stand.png" class="stand" alt="">
             </div>
