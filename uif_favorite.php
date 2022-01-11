@@ -122,12 +122,12 @@ td {
           $current_page = (!empty($_GET['page'])) ? $_GET['page'] : 1;
           $offset = ($current_page - 1) * $item_per_page;
 
-          $result = mysqli_query($con, "SELECT books.id,tittle, image, price FROM  books 
+          $result = mysqli_query($con, "SELECT * FROM  books 
           INNER JOIN favorites ON books.id = favorites.book_id WHERE customer_id= $userid
           ORDER BY books.id ASC
           LIMIT " . $item_per_page . " OFFSET " . $offset . " " );
           
-          $totalRecords = mysqli_query($con, "SELECT books.id, tittle, image, price FROM  books 
+          $totalRecords = mysqli_query($con, "SELECT * FROM  books 
           INNER JOIN favorites ON books.id = favorites.book_id WHERE customer_id= $userid ORDER BY books.id ASC");
           $totalRecords = $totalRecords->num_rows;
           $totalPages = ceil($totalRecords / $item_per_page);
@@ -143,7 +143,8 @@ td {
                   Tên sách
                 </td>
                 <td style="text-align: center">Ảnh</td>
-                <td style="text-align: center">Giá</td>
+                <td style="text-align: center">Giảm giá</td>
+                <td style="text-align: center">Giá </td>
                 <td style="text-align: center">Xóa</td>
               </tr>
             </thead>
@@ -161,7 +162,8 @@ td {
                     <img style="width: 80px;height: 100px;"
                       src="./<?= $row['image'] ?>" alt="<?= $row['tittle'] ?>" title="<?= $row['tittle']?>" >
                   </td>
-                  <td style="text-align: center"><?= $row['price'] ?></td>
+                  <td style="text-align: center"><?=$row['discount'] ?></td>
+                  <td style="text-align: center"><?=number_format($row['price'] - $row['discount'], 0, ",", ".") ?>đ</td>
                   <td style="text-align: center"><a class="fa fa-trash" href="./uif_favor_del.php?id=<?= $row['id'] ?>" ></a></td>
                     
                 </tr>

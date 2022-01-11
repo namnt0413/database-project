@@ -12,8 +12,6 @@
             // var_dump($book_id,$user_id,$tittle,$content);exit;
              $result = mysqli_query($con, "INSERT INTO `reviews` (`id`, `book_id`, `customer_id`, `rating`, `tittle` , `content`, `created_date`, `last_updated`)
              VALUES (NULL, '$book_id', '$user_id', NULL, '$tittle' ,'$content', " . time() . ", " . time() . ");");
-
-        echo"<script>alert('Bình luận của bạn đã được gửi!')</script>";
         }
     }
 
@@ -123,7 +121,7 @@
                     		<span class="num"><?= number_format($book['discount'], 0, ",", ".") ?></span><span class="currency"> VNĐ</span><span>( <?=ceil( $book['discount']/$book['price']*100 )?>% )</span>
                     	</span> 
                     </p> <!-- discount-detail-wrap .// -->
-
+                    
                     <p class="quantity-detail-wrap"> 
                         <span class="category">Tình trạng: </span> 
 
@@ -135,10 +133,108 @@
                         
                     </p> <!-- quantity-detail-wrap .// -->
                         
-                    <div>
-                        <a href="./uif_favorite.php" style="font-size: 20px;">Yêu thích</a>
-                    </div>
+                    <?php 
+                    
+                            if (!empty($currentUser)) {
+                                $bo_id = $_GET['id'];
+                                $u_id = $currentUser['id'];
+                                $error = false;
+                            }   
+                            
+                            $exists = mysqli_query($con, "SELECT * FROM favorites WHERE book_id = '$bo_id' AND customer_id = '$u_id'"); 
+                            $numrecord = mysqli_num_rows($exists);      //sô bản ghi tìm được ứng với book_id hiện tại
+                            $exists = mysqli_fetch_array($exists);
+                            if ($numrecord != 0){           //nếu bản ghi tồn tại -> đã yêu thích 
+                                if (isset($_GET['action']) && $_GET['action'] == 'delfvr')      //thực hiện xóa 
+                                {
+                                    $result = mysqli_query($con, "DELETE FROM favorites WHERE book_id = $bo_id AND customer_id = $u_id");
+                                    // <div> Hiện lại form yêu thích 
+                                    if (isset($_GET['action']) && $_GET['action'] == 'addfvr') 
+                                    {
+                                        $result = mysqli_query($con, "INSERT INTO favorites(book_id, customer_id)
+                                        VALUES ('$bo_id', '$u_id')");
+                                    }else {
+                                            $bo_id = $_GET['id'];
+                                            $u_id = $currentUser['id'];
+                                            ?>
+                                            <form action="./book_detail.php?action=addfvr&id=<?=$bo_id?>" method="Post" enctype="multipart/form-data"autocomplete="off" id="registrationForm">
+                                                    <input type="hidden" name="book_id" id="book_id" value="<?= $bo_id ?>" />
+                                                    <input type="hidden" name="user_id" id="user_id" value="<?= $u_id?>" />
+                                                <div class="form-group">
+                                                    <div class="col-xs-12">
+                                                        <br>
+                                                        <button class="btn btn-lg btn-success" type="submit" name ="submit1" onclick="alert('Đã thêm vào yêu thích');">
+                                                        <i class="fas fa-heart" style="color :white"></i> Yêu thích </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        <?php
+                                    }
+                                    // <div >Hiện lại form yêu thích                                     
+                                }else {     //form để hủy yêu thích
+                                        $bo_id = $_GET['id'];
+                                        $u_id = $currentUser['id'];
+                                        ?>
+                                        <form action="./book_detail.php?action=delfvr&id=<?=$bo_id?>" method="Post" enctype="multipart/form-data"autocomplete="off" id="registrationForm">
+                                                <input type="hidden" name="book_id" id="book_id" value="<?= $bo_id ?>" />
+                                                <input type="hidden" name="user_id" id="user_id" value="<?= $u_id?>" />
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <br>
+                                                    <button class="btn btn-lg btn-success" type="submit" name ="submit1" onclick="alert('Đã hủy yêu thích');">
+                                                    <i class="fas fa-heart" style="color :#FF725E" ></i> Yêu thích</button>     <!-- hủy yêu thích -->
+                                                </div>
+                                            </div>
+                                        </form>
+                                    <?php
+                                }                                
+                            }else{      //nếu chưa yêu thích
+                                if (isset($_GET['action']) && $_GET['action'] == 'addfvr') 
+                                {
+                                    $result = mysqli_query($con, "INSERT INTO favorites(book_id, customer_id)
+                                    VALUES ('$bo_id', '$u_id')");
+                                    if (isset($_GET['action']) && $_GET['action'] == 'delfvr')      //form hủy yêu thích
+                                    {
+                                        $result = mysqli_query($con, "DELETE FROM favorites WHERE book_id = $bo_id AND customer_id = $u_id");
+                                        
+                                    }else {     //form để hủy yêu thích
+                                            $bo_id = $_GET['id'];
+                                            $u_id = $currentUser['id'];
+                                            ?>
+                                            <form action="./book_detail.php?action=delfvr&id=<?=$bo_id?>" method="Post" enctype="multipart/form-data"autocomplete="off" id="registrationForm">
+                                                    <input type="hidden" name="book_id" id="book_id" value="<?= $bo_id ?>" />
+                                                    <input type="hidden" name="user_id" id="user_id" value="<?= $u_id?>" />
+                                                <div class="form-group">
+                                                    <div class="col-xs-12">
+                                                        <br>
+                                                        <button class="btn btn-lg btn-success" type="submit" name ="submit1" onclick="alert('Đã hủy yêu thích');">
+                                                        <i class="fas fa-heart" style="color : #FF725E"></i> Yêu thích</button>      <!-- hủy yêu thích -->
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        <?php
+                                    } 
+                                }else {
+                                        $bo_id = $_GET['id'];
+                                        $u_id = $currentUser['id'];
+                                        ?>
+                                        <form action="./book_detail.php?action=addfvr&id=<?=$bo_id?>" method="Post" enctype="multipart/form-data"autocomplete="off" id="registrationForm">
+                                                <input type="hidden" name="book_id" id="book_id" value="<?= $bo_id ?>" />
+                                                <input type="hidden" name="user_id" id="user_id" value="<?= $u_id?>" />
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <br>
+                                                    <button class="btn btn-lg btn-success" type="submit" name ="submit1" onclick="alert('Đã thêm vào yêu thích');">
+                                                    <i class="fas fa-heart" style="color :white"></i> Yêu thích </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    <?php
+                                }
+                            }
+                            ?>
                         
+
                     <dl class="item-property">
                         <h4 class="category">Giới thiệu tóm tắt tác phẩm:</h4>
                         <dd>
@@ -205,7 +301,7 @@
                     <form method="post">
                         <textarea class="form-control" name="tittle" rows="1" placeholder="Tiêu đề" style="width: 500px;"></textarea>                            
                         <textarea class="form-control" name="content" rows="5" placeholder="Nội dung" style="width: 500px;"></textarea>                            
-                        <input type="submit" class="btn btn-primary">
+                        <input type="submit" class="btn btn-primary" onclick="alert('Bình luận đã được gửi');">
                     </form>
               </div><!-- end COMMENT FORM -->
             </div>  
