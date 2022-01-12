@@ -11,7 +11,7 @@
             $user_id = $currentUser['id'];
             // var_dump($book_id,$user_id,$tittle,$content);exit;
              $result = mysqli_query($con, "INSERT INTO `reviews` (`id`, `book_id`, `customer_id`, `rating`, `tittle` , `content`, `created_date`, `last_updated`)
-             VALUES (NULL, '$book_id', '$user_id', NULL, '$tittle' ,'$content', " . time() . ", " . time() . ");");
+             VALUES (NULL, '$book_id', '$user_id', NULL, '$tittle' ,'$content', NOW() , NOW() );");
         }
     }
 
@@ -35,11 +35,11 @@
                                 FROM `books_authors`  INNER JOIN `authors` ON books_authors.author_id = authors.id
                                 WHERE `book_id` = " . $_GET['id'] );
     // Lay ra NXB
-    $book_id = $_GET['id']; $now = time();
-    // var_dump($book_id);exit; // var_dump($now);exit; 
+    $book_id = $_GET['id']; 
+    // var_dump($book_id);exit; 
     $result4 = mysqli_query($con, "SELECT books_publishers.publisher_id,publishers.name,books_publishers.started_date
     FROM `books_publishers` INNER JOIN `publishers` ON books_publishers.publisher_id = publishers.id
-      WHERE  `book_id` = $book_id AND started_date IN (SELECT MAX(started_date) FROM books_publishers WHERE `book_id` = $book_id AND started_date <= $now )");
+      WHERE  `book_id` = $book_id AND started_date IN (SELECT MAX(started_date) FROM books_publishers WHERE `book_id` = $book_id AND started_date <= NOW() )");
     // var_dump($result4);exit;                                
 ?>   
 
@@ -332,7 +332,7 @@
                         </div>
                     </div>
                     <div class="ml-auto">
-                        <p class="text-muted pt-5 pt-sm-3"> <?= date('d/m/Y',$row_comment['created_date']) ?> </p>
+                        <p class="text-muted pt-5 pt-sm-3"> <?= $row_comment['created_date'] ?> </p>
                     </div>
                 </div>
                 <div class="row text-left">

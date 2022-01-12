@@ -31,22 +31,10 @@
 
         ?>
         <style>
-            /* table, th, td {
-                border: 1px solid black;
+            #user_listing td{
+                padding: 12px 30px;
             }
-            #user-info{
-                border: 1px solid #ccc;
-                width: 960px;
-                margin: 0 auto;
-                padding: 25px;
-            }
-            #user-info table{
-                margin: 10px auto 0 auto;
-                text-align: center;
-            }
-            #user-info h1{
-                text-align: center;
-            } */
+
         </style>
 
 
@@ -66,7 +54,7 @@
                             include './pagination.php';
                             ?>                                    
                                     <table class="table table-borderless table-striped table-earning">
-                                        <tr>
+                                        <thead id="user_listing" style="background-color: #444;color: #f4f4f4;">
                                             <td>Tài khoản</td>
                                             <td>Họ và tên đầy đủ</td>
                                             <td>Ngày sinh</td>
@@ -76,14 +64,14 @@
                                             <td>Xóa</td>
                                             <td class="text-right">Cập nhật lần cuối</td>
                                             <!-- <td class="text-right">Ngày tạo tài khoản</td> -->
-                                        </tr>
+                                        </thead>
                                         <?php
                                         while ($row = mysqli_fetch_array($result)) {
                                             ?>
                                             <tr>
                                                 <td><?= $row['username'] ?></td>
                                                 <td><?= $row['first_name']." ".$row['last_name'] ?></td>
-                                                <td><?= date('d/m/Y', $row['birthday']) ?></td>
+                                                <td><?= $row['birthday'] ?></td>
                                                 <td><?= $row['phone'] ?></td>
                                                 <td>
                                                     <?php if ($row['status'] == 1 ){ ?>
@@ -94,7 +82,7 @@
                                                 </td>
                                                 <td><a class="fa fa-edit" href="./user_edit.php?id=<?= $row['id'] ?>" style="color:dodgerblue"></a></td>
                                                 <td><a class="fa fa-trash" href="./user_delete.php?id=<?= $row['id'] ?>" style="color:crimson"></a></td>
-                                                <td><?= date('d/m/Y H:i', $row['last_updated']) ?></td>
+                                                <td><?= $row['last_updated'] ?></td>
                                                 <!-- <td> date('d/m/Y H:i', $row['created_date']) </td> -->
                                             </tr>
                                         <?php } ?>

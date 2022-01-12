@@ -164,7 +164,7 @@
 
                                                 </td>
                                                 
-                                                <td><?= date('d/m/Y H:i', $row['last_updated'])?></td>
+                                                <td><?= $row['last_updated'] ?></td>
                                                 <td>
                                                     <?php if ($row['quantity'] > 0) { ?>
                                                     <span class="status--process"><?=$row['quantity']?></span>

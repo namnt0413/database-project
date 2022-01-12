@@ -52,9 +52,14 @@
         $totalRecords = $totalRecords->num_rows;
         $totalPages = ceil($totalRecords / $item_per_page);
         if(!empty($where)){
-            $orders = mysqli_query($con, "SELECT * FROM `orders` where (".$where.") ORDER BY `id` DESC LIMIT " . $item_per_page . " OFFSET " . $offset);
+            $orders = mysqli_query($con, "SELECT `orders`.*,`customers`.`first_name`,`customers`.`last_name`  
+            FROM `orders` INNER JOIN `customers` ON `customers`.id = `orders`.`customer_id`
+            WHERE (".$where.") 
+            ORDER BY `id` DESC LIMIT " . $item_per_page . " OFFSET " . $offset);
         }else{
-            $orders = mysqli_query($con, "SELECT * FROM `orders` ORDER BY `id` DESC LIMIT " . $item_per_page . " OFFSET " . $offset);
+            $orders = mysqli_query($con, "SELECT `orders`.*,`customers`.`first_name`,`customers`.`last_name`
+            FROM `orders` INNER JOIN `customers` ON `customers`.id = `orders`.`customer_id`
+            ORDER BY `id` DESC LIMIT " . $item_per_page . " OFFSET " . $offset);
         }
         mysqli_close($con);
     ?>
@@ -113,10 +118,10 @@
                                         <tbody>
                                             <tr class="tr-shadow">
                                                 <td><?=$row['id']?></td>
-                                                <td><?=$row['fullname']?></td>
+                                                <td><?=$row['first_name']." ".$row['last_name']?></td>
                                                 <td ><?=$row['address']?></td>
                                                 <td><?=$row['phone']?></td>
-                                                <td><?=date('d/m/Y H:i', $row['created_date'])?></td>
+                                                <td><?=$row['created_date']?></td>
                                                 <td><?= number_format($row['total'], 0, ",", ".")?></td>
                                                 <td><a class="fa fa-print" href="order_printing.php?id=<?=$row['id']?>" target="_blank"></a></td>
                                                 <td><a class="fa fa-trash" href="order_delete.php?id=<?=$row['id']?>"></a></td>

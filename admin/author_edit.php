@@ -148,7 +148,7 @@
                 // CAP NHAT VAO DATABASE
                 $result = mysqli_query($con, "UPDATE `authors` 
                 SET  `first_name` = '" . $_POST['first_name'] ."',`last_name` = '" . $_POST['last_name'] ."' ,
-                   `last_updated`=" . time() . " WHERE `authors`.`id` = " . $_POST['id'] . ";");
+                   `last_updated`=NOW() WHERE `authors`.`id` = " . $_POST['id'] . ";");
                 if (!$result) {
                     $error = "Không thể cập nhật tác giả";
                 }

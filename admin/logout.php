@@ -136,7 +136,7 @@ and open the template in the editor.
             <div id="user_logout" class="box-content">
                 <h1>Đăng xuất tài khoản thành công</h1>
                 
-                <a class="back-button" href="./login.php">Đăng nhập lại vào trang Admin</a>
+                <a class="back-button" href="../login.php">Đăng nhập lại</a>
             </div>
         </div>
     </body>

@@ -97,7 +97,7 @@
                 background-color: #27ae60;
             }
 
-            .btn: hover {
+            .btn:hover {
                 background-color: #219150;
             }
         </style>
@@ -164,8 +164,9 @@
                             if (isset($_GET['action']) && $_GET['action'] == 'edit'){
                                 if (isset($_POST['password']) && isset($_POST['password2']) && ($_POST['password'] == $_POST['password2'])){
                                 $result = mysqli_query($con, "UPDATE `customers` SET 
-                                    `password` = '" . $_POST['password'] ."',
-                                    `last_updated`=" . time() . " WHERE `customers`.`id` = " . $_POST['id'] . ";");
+                                    `password` = MD5('" . $_POST['password'] ."'),
+                                    `last_updated` = NOW() 
+                                     WHERE `customers`.`id` = " . $_POST['id'] . ";");
                                     ?>
                                     <div class="content-container">
                                     <div id="edit-notify" class="box-content">

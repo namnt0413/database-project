@@ -114,7 +114,7 @@
                 background-color: #27ae60;
             }
 
-            .btn: hover {
+            .btn:hover {
                 background-color: #219150;
             }
         </style>
@@ -158,7 +158,8 @@
                             // var_dump($avatar);
                             $picid = $user['id'];
                             $result = mysqli_query($con, "UPDATE `customers` SET
-                            `avatar` =  '" . $avatar . "' 
+                            `avatar` =  '" . $avatar . "' ,
+                            `last_updated` = NOW()
                             WHERE `customers`.`id` = " . $picid . ";");
                             ?>
                                 <img src="<?= $user['avatar'] ?>" class="avatar img-circle img-thumbnail" alt="avatar" style="width:200px;height:200px;">
@@ -244,19 +245,14 @@
                         {
                             if (isset($_POST['id']) && $_POST['id'] == $user['id']) {
                             
-                            $birthday = $_POST['birthday'];
-
-                            $check = validateDateTime($birthday);
-                            if ($check) {
-                                $birthday = strtotime($birthday);
-                            }
                             $result = mysqli_query($con, "UPDATE `customers` SET 
                                 `first_name` = '" . $_POST['first_name'] ."',
                                 `last_name` = '" . $_POST['last_name'] ."' , 
-                                `birthday` = " . $birthday ." ,
+                                `birthday` = '" . $_POST['birthday'] ."' ,
                                 `phone` = '" . $_POST['phone'] ."' , 
                                 `address` = '" . $_POST['address'] ."' ,
-                                `email` = '" . $_POST['email'] . "'
+                                `email` = '" . $_POST['email'] . "',
+                                `last_updated` = NOW()
                                 WHERE `customers`.`id` = " . $_POST['id'] . ";");
                             
                             if (!$result) {
@@ -337,7 +333,7 @@
                                             <h4>Ngày sinh</h4>
                                         </label>
                                         <input type="date" class="form-control" name="birthday" id="birthday"
-                                        value="<?= date('Y-m-d', $user['birthday']) ?>" title="enter your mobile number if any.">
+                                        value="<?=$user['birthday']?>" title="enter your mobile number if any.">
                                     </div>
                                 </div>
 

@@ -127,21 +127,15 @@ and open the template in the editor.
         if (isset($_GET['action']) && $_GET['action'] == 'reg') {
             if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && !empty($_POST['password'])) {
                 // $fullname = $_POST['fullname'];
-                $birthday = $_POST['birthday'];
-                $check = validateDateTime($birthday);   // su dung ham validateDateTime trong function.php
-                if ($check) {
-                    $birthday = strtotime($birthday);
-                    $result = mysqli_query($con, "INSERT INTO `customers` (`first_name`,`last_name`,`username`, `password`, `birthday`, `phone` , `address` ,`email` , `status`, `created_date`, `last_updated`) 
-                    VALUES ('" . $_POST['first_name'] . "','" . $_POST['last_name'] . "', '" . $_POST['username'] . "', MD5('" . $_POST['password'] . "'), '" . $birthday . "','" . $_POST['phone'] . "','" . $_POST['address'] . "','" . $_POST['email'] . "' ,1, " . time() . ", '" . time() . "');");
+                    $result = mysqli_query($con, "INSERT INTO `customers` (`first_name`,`last_name`,`username`, `password`, `status`, `created_date`, `last_updated`) 
+                    VALUES ('" . $_POST['first_name'] . "','" . $_POST['last_name'] . "', '" . $_POST['username'] . "', MD5('" . $_POST['password'] . "') ,1, NOW() , NOW() );");
                     if (!$result) {
                         if (strpos(mysqli_error($con), "Duplicate entry") !== FALSE) {
                             $error = "Tài khoản đã tồn tại. Bạn vui lòng chọn tài khoản khác.";
                         }
                     }
                     mysqli_close($con);
-                } else {
-                    $error = "Ngày tháng nhập chưa chính xác";
-                }
+
                 if ($error !== false) {
                     ?>
                     <div class="content-container">
@@ -192,30 +186,14 @@ and open the template in the editor.
                             <input type="password" name="password" value="" class="input-area" id="password" placeholder="Điều kiện cho trường nhập vào"/></br>
                         </div>
                         <div class="input-block">
-                            <label>Họ và Đệm</label></br>
-                            <input type="text" name="first_name" value="" class="input-area" placeholder="Điều kiện cho trường nhập vào"/><br/>
+                            <label>Họ và tên đệm</label></br>
+                            <input type="text" name="first_name" value="" class="input-area"  placeholder="Điều kiện cho trường nhập vào"><br/>
                         </div>
                         <div class="input-block">
                             <label>Tên</label></br>
-                            <input type="text" name="last_name" value="" class="input-area" placeholder="Điều kiện cho trường nhập vào"/><br/>
+                            <input type="text" name="last_name" value="" class="input-area"  placeholder="Điều kiện cho trường nhập vào"><br/>
                         </div>
-                        <div class="input-block">
-                            <label>Ngày Sinh </label></br>
-                            <input type="text" name="birthday" value="" class="input-area" id="birthday" placeholder="Phải có dạng (DD-MM-YYYY)"/><br/>
-                        </div>
-                        <div class="input-block">
-                            <label>Số Điện Thoại</label></br>
-                            <input type="text" name="phone" value="" class="input-area" id="phone" placeholder="Điều kiện cho trường nhập vào"/><br/>
-                        </div>
-                        <div class="input-block">
-                            <label>Địa Chỉ</label></br>
-                            <input type="text" name="address" value="" class="input-area" placeholder="Điều kiện cho trường nhập vào"/><br/>
-                        </div>
-                        <div class="input-block">
-                            <label>Email</label></br>
-                            <input type="text" name="email" value="" class="input-area" id="email" placeholder="Điều kiện cho trường nhập vào"/><br/>
-                        </div>
-                        </br>
+                        
                         </br>
                         <input type="submit" value="Đăng ký" class="button"/>
                     </form>

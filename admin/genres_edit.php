@@ -148,7 +148,7 @@
                 // CAP NHAT VAO DATABASE
                 $result = mysqli_query($con, "UPDATE `genres` 
                 SET  `name` = '" . $_POST['name'] ."' ,
-                   `last_updated`=" . time() . " WHERE `genres`.`id` = " . $_POST['id'] . ";");
+                   `last_updated`= NOW()  WHERE `genres`.`id` = " . $_POST['id'] . ";");
                 if (!$result) {
                     $error = "Không thể cập nhật thể loại";
                 }

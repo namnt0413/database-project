@@ -51,10 +51,6 @@
                             <a href="blog.php">
                                 <i class="fas fa-newspaper"></i>Blog</a>
                         </li>
-                        <li>
-                            <a href="review.php">
-                                <i class="fas fa-star"></i>Review</a>
-                        </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-copy"></i>Pages</a>
@@ -89,7 +85,7 @@
                     <ul class="list-unstyled navbar__list">
                         <li>
                             <a href="chart.php">
-                                <i class="fas fa-chart-bar"></i>Biểu đồ</a>
+                                <i class="fas fa-chart-bar"></i>Thống kê</a>
                         </li>
                         <li>
                             <a href="user.php">
@@ -121,10 +117,7 @@
                             <a href="blog.php">
                                 <i class="fas fa-newspaper"></i>Quản lý danh mục tin</a>
                         </li>
-                        <li>
-                            <a href="review.php">
-                            <i class="fas fa-star"></i>Quản lý Reviews</a>
-                        </li>
+
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-copy"></i>Pages</a>

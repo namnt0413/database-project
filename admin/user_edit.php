@@ -141,17 +141,12 @@
         $error = false;
         if (isset($_GET['action']) && $_GET['action'] == 'edit') 
         {
-            if (isset($_POST['id']) && !empty($_POST['id']) && isset($_POST['password']) && !empty($_POST['password'])) 
+            if (isset($_POST['id']) && !empty($_POST['id']) ) 
             {
-                // var_dump($_POST['password']);exit;
-                    $birthday = $_POST['birthday'];
-                    $check = validateDateTime($birthday);
-                    if ($check) {
-                         $birthday = strtotime($birthday);
-                    }
-                     //upload anh dai dien
-                     $uploadedFiles = $_FILES['avatar']; // uploadFile get duoc anh 
-                     if (isset($_FILES['avatar']) && !empty($_FILES['avatar']['name'][0])) { // Dieu Kien cua thu vien anh
+                if ( !empty($_FILES['avatar']['name'])){
+                    //upload anh dai dien
+                    $uploadedFiles = $_FILES['avatar']; // uploadFile get duoc anh 
+                    if (isset($_FILES['avatar']) && !empty($_FILES['avatar']['name'][0])) { // Dieu Kien cua thu vien anh
                         $result = uploadAvatarFiles($uploadedFiles);  // upload file anh len(TV upload anh)
                         if (!empty($result['errors'])) { // neu co loi
                             $error = $result['errors'];
@@ -159,12 +154,17 @@
                             $avatar = $result['path'];
                         }
                     }
+                } else {
+                    $avatar = $_POST['created_avatar'];
+                }
+                // var_dump($_FILES['avatar']);exit;
                     // var_dump($image);    exit;                 
                 // CAP NHAT VAO DATABASE
-                $result = mysqli_query($con, "UPDATE `customers` SET `password` = MD5('" . $_POST['password'] . "'), `first_name` = '" . $_POST['first_name'] ."',
-                `last_name` = '" . $_POST['last_name'] ."' , `avatar` =  '" . $avatar . "' , `birthday` = " . $birthday ." , `phone` = '" . $_POST['phone'] ."' , `address` = '" . $_POST['address'] ."' ,
+                
+                $result = mysqli_query($con, "UPDATE `customers` SET  `first_name` = '" . $_POST['first_name'] ."',`last_name` = '" . $_POST['last_name'] ."' ,
+                 `avatar` =  '" . $avatar . "' , `birthday` = '" . $_POST['birthday'] ."' , `phone` = '" . $_POST['phone'] ."' , `address` = '" . $_POST['address'] ."' ,
                   `status` = " . $_POST['status'] . ", `email` = '" . $_POST['email'] . "', `money_spent` = '" . $_POST['money_spent'] . "',
-                   `last_updated`=" . time() . " WHERE `customers`.`id` = " . $_POST['id'] . ";");
+                   `last_updated`= NOW() WHERE `customers`.`id` = " . $_POST['id'] . ";");
                 if (!$result) {
                     $error = "Không thể cập nhật tài khoản";
                 }
@@ -211,18 +211,17 @@
                                 <!-- <div class="right-wrap-field" style="width:80px;height: 120px;margin-bottom: 40px;"> -->
                                 <?php if (isset($user['avatar'])) { ?>  <!-- Neu co anh dai dien  -->
                                         <img src="../<?= $user['avatar'] ?>" style="width: 200px;height: 200px;border-radius:100%;" /><br/>
-                                        <input type="file" name="avatar"/><br>
+                                        <input type="hidden" name="created_avatar" value="<?= $user['avatar'] ?>"/><br>
+                                        <input type="file" name="avatar" /><br>      <!-- nut choosen file-->
                                  <?php   } else { ?>
                                     <img src="../assets/image/user/user.png" style="width: 200px;height: 200px;border-radius:100%;"><br>
                                     <input type="file" name="avatar" /><br>      <!-- nut choosen file-->
-                                <?php } ?>
+                                    <?php } ?>
                                 <!-- </div> -->
                             </div>                    
 
                             <div class="input-block">
-                                <label>Mật khẩu mới</label></br>
                                 <input type="hidden" name="id" value="<?= $user['id'] ?>" />
-                                <input class="input-area" type="password" name="password" value="" />
                             </div>
                             <div class="input-block">
                                 <label>Họ và tên đệm</label></br>
@@ -235,7 +234,7 @@
                             </div>
                             <div class="input-block">
                                 <label>Ngày tháng năm sinh</label></br>
-                                <input class="input-area" type="date" name="birthday" value="<?= date('Y-m-d', $user['birthday']) ?>" />
+                                <input class="input-area" type="date" name="birthday" value="<?= (!empty($user) ? $user['birthday'] : "") ?>" />
                             </div>
                             <div class="input-block">
                                 <label>Số điện thoại</label></br>

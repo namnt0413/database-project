@@ -82,7 +82,7 @@
                                                 <td><?= $row['name'] ?></td>
                                                 <td><a class="fa fa-edit" href="./genres_edit.php?id=<?= $row['id'] ?>" style="color:dodgerblue"></a></td>
                                                 <td><a class="fa fa-trash" href="./genres_delete.php?id=<?= $row['id'] ?>" style="color:crimson"></a></td>
-                                                <td><?= date('d/m/Y H:i', $row['last_updated']) ?></td>
+                                                <td><?= $row['last_updated'] ?></td>
                                                 <!-- <td> date('d/m/Y H:i', $row['created_date']) </td> -->
                                             </tr>
                                         <?php } ?>

@@ -31,7 +31,7 @@
                 <label>Điện thoại: </label><span> <?= $orders[0]['phone'] ?></span><br/>
                  <label>Địa chỉ: </label><span> <?= $orders[0]['address'] ?></span><br/>
                 <hr/>
-                <h3>Danh sách sản phẩm</h3>
+                <h3>Danh sách sản phẩm</h3><br>
                 <ul>
                     <?php
                     $totalQuantity = 0;
@@ -40,10 +40,11 @@
                         ?>
                         <li>
                             <span class="item-name"><?= $row['book_tittle'] ?></span>
-                            <span class="item-quantity"> - SL: <?= $row['quantity'] ?> quyển</span>
+                            <span class="item-quantity"> - <?= $row['quantity'] ?> quyển </span>
+                            <span class="item-price"> - <?=  number_format(($row['price']-$row['discount'])*$row['quantity'] , 0, ",", ".") ?>đ</span>
                         </li>
                         <?php
-                        $totalMoney += ($row['price'] * $row['quantity']);
+                        $totalMoney += ( ($row['price']-$row['discount']) * $row['quantity']);
                         $totalQuantity += $row['quantity'];
                     }
                     ?>

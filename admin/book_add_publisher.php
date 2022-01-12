@@ -32,15 +32,9 @@
                         
                         if (isset($_GET['action']) && $_GET['action'] == 'create' && isset($_GET['id']) ) {
                             // include '../connect_db.php';
-                        $startedDate = $_POST['started_date'];
-                        $check = validateDateTime($startedDate);
-                        if ($check) {
-                            $startedDate = strtotime($startedDate);
-                            }
-                            
 
                             $result = mysqli_query($con, "INSERT INTO `books_publishers` (`book_id`,`publisher_id`, `started_date`)
-                            VALUES ('" . $book_id . "' , '" . $_POST['publisher_id'] . "' , " . $startedDate ." ) ");
+                            VALUES ('" . $book_id . "' , '" . $_POST['publisher_id'] . "' , '" . $_POST['started_date'] ."' ) ");
                             // var_dump($result);exit;
                             if (!$result) {
                                 $error = "Bạn đã thêm trùng Nhà xuất bản.";

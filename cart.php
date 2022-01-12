@@ -97,7 +97,7 @@
                                     $_POST['quantity'][$row['id']] = $row['quantity'];
                                     $GLOBALS['changed_cart'] = true;    // So luong hang khach mua lon hon hang ton kho
                                 } else {    // neu so luong nhap dung
-                                    $total += $row['price'] * $_POST['quantity'][$row['id']];
+                                    $total += ($row['price']-$row['discount']) * $_POST['quantity'][$row['id']];
                                     $updateString .= " when id = ".$row['id']." then quantity - ".$_POST['quantity'][$row['id']];
                                     // vd:   when id = 3 then quantity - 50 when id = 7 then quantity - 20
                                 }                                
@@ -108,19 +108,22 @@
                             //sd ham : update a set b CASE when id= when id = 3 then quantity - 50 when id = 7 then quantity - 20 END
                             //            where id=..
                            $updateQuantity = mysqli_query($con, "update `books` set quantity = CASE".$updateString." END where id in (".implode(",", array_keys($_POST['quantity'])).")");
-                            $insertOrder = mysqli_query($con, "INSERT INTO `orders` (`id`, `customer_id` , `fullname`, `phone`, `address`, `note`, `total`, `created_date`, `last_updated`) VALUES (NULL, '" . $currentUser_id . "' , '" . $_POST['fullname'] . "', '" . $_POST['phone'] . "', '" . $_POST['address'] . "', '" . $_POST['note'] . "', '" . $total . "', '" . time() . "', '" . time() . "');");
+                            $insertOrder = mysqli_query($con,
+                             "INSERT INTO `orders` (`id`, `customer_id` , `fullname`, `phone`, `address`, `note`, `total`, `created_date`, `last_updated`) 
+                            VALUES (NULL, '" . $currentUser_id . "' , '" . $_POST['fullname'] . "', '" . $_POST['phone'] . "', '" . $_POST['address'] . "',
+                             '" . $_POST['note'] . "', '" . $total . "', NOW() , NOW() );");
                             // var_dump($insertOrder);exit;
                             $orderID = $con->insert_id;
                             $insertString = ""; // viet gon lai string de insert vao
                             
                             // BANG ORDER_DETAIL
                             foreach ($orderbooks as $key => $book) {
-                                $insertString .= "(NULL, '" . $orderID . "', '" . $book['id'] . "', '" . $_POST['quantity'][$book['id']] . "', '" . $book['price'] . "', '" . time() . "', '" . time() . "')";
+                                $insertString .= "(NULL, '" . $orderID . "', '" . $book['id'] . "', '" . $_POST['quantity'][$book['id']] . "', '" . $book['price'] . "', '" . $book['discount'] . "' , NOW() , NOW() )";
                                 if ($key != count($orderbooks) - 1) {    // thi key= thang cuoi cung thi ko can dau , nua
                                     $insertString .= ",";   
                                 }
                             }
-                            $insertOrder = mysqli_query($con, "INSERT INTO `orders_details` (`id`, `order_id`, `book_id`, `quantity`, `price`, `created_date`, `last_updated`) VALUES " . $insertString . ";");
+                            $insertOrder = mysqli_query($con, "INSERT INTO `orders_details` (`id`, `order_id`, `book_id`, `quantity`, `price`, `discount` , `created_date`, `last_updated`) VALUES " . $insertString . ";");
                             $success = "Đặt hàng thành công";
                             unset($_SESSION['cart']);   // xoa phien gio hang vua nap len csdl di
 
@@ -163,7 +166,7 @@
             <?php } else { ?>
         <div class="back-to-shop"><a href="javascript:window.history.go(-2)" class="fa fa-undo" style="padding: 5px; margin-bottom: 10px;">  Quay lại Cửa hàng</a></div>
         <?php if ($GLOBALS['changed_cart']) { ?>  <!-- Check nhap qua quantity neu la true: so luong khach nhap lon qua-->   
-            <h3>Số lượng sản phẩm trong giỏ hàng đã thay đổi, do lượng sản phẩm tồn kho không đủ. Vui lòng <a href="cart.php">tải lại</a> giỏ hàng</h3>
+            <h3>Số lượng sản phẩm tồn kho không đủ. Vui lòng <a href="javascript:window.history.go(-1)">tải lại</a> giỏ hàng</h3>
             <?php } else { ?>
 
         <form id="cart-form" action="cart.php?action=submit" method="POST">
@@ -211,19 +214,19 @@
                                 </div>
                                 <div class="col-2 text-center" ><img class="img-fluid" src="<?=$row['image']?>"></div>
                                 <div class="col-2 text-center">
-                                    <p><?=$row['price']?></p>
+                                    <p><?=$row['price']-$row['discount']?></p>
                                 </div>
                                 <div class="col-1" style="padding-right: 0;;">
                                     <input type="number" value="<?= $_SESSION['cart'][$row['id']] ?>" name="quantity[<?=$row['id']?>]" size=2 style="padding:0;text-align:center"/>
                                  </div>
-                                <div class="col-2 text-center"><?= number_format($row['price'] * $_SESSION["cart"][$row['id']], 0, ",", ".") ?></div>
+                                <div class="col-2 text-center"><?= number_format( ($row['price']-$row['discount']) * $_SESSION["cart"][$row['id']], 0, ",", ".") ?></div>
                                <a href="cart.php?action=delete&id=<?= $row['id'] ?>" class="fa fa-trash" style="padding: 2px;"></a>
 
                             </div>
                         </div>
 
                     <?php
-                        $total += $row['price'] * $_SESSION["cart"][$row['id']];    //cap nhat tong so tien
+                        $total += ($row['price']-$row['discount']) * $_SESSION["cart"][$row['id']];    //cap nhat tong so tien
                         // $num++;
                         }
                     ?>                      

@@ -145,7 +145,7 @@
             // POST nhan dc day du username va password
                 include '../connect_db.php';
                 // Thêm bản ghi vào cơ sở dữ liệu
-                $result = mysqli_query($con, "INSERT INTO `genres` (`id`, `name`, `last_updated`) VALUES (NULL, '" . $_POST['name'] . "' , '" . time() . "');");
+                $result = mysqli_query($con, "INSERT INTO `genres` (`id`, `name`, `last_updated`) VALUES (NULL, '" . $_POST['name'] . "' , NOW() );");
                 // neu nhu ko insert dc : trung ten user
                 if (!$result) {
                     if (strpos(mysqli_error($con), "Duplicate entry") !== FALSE) {

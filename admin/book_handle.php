@@ -139,7 +139,7 @@
                         $error = "Bạn phải nhập tên sản phẩm";
                     } elseif (empty($_POST['price'])) {
                         $error = "Bạn phải nhập giá sản phẩm";
-                    } elseif (!empty($_POST['price']) && is_numeric(str_replace('.', '', $_POST['price'])) == false) {
+                    } elseif (!empty($_POST['price']) && is_numeric($_POST['price']) == false) {
                         $error = "Giá nhập không hợp lệ";
                     }
                     //upload anh dai dien
@@ -178,13 +178,14 @@
                         if ($_GET['action'] == 'edit' && !empty($_GET['id'])) { 
                             //Cập nhật lại sản phẩm
                             $result = mysqli_query($con, "UPDATE `books` SET `tittle` = '" . $_POST['tittle'] . "', `quantity` = '" . $_POST['quantity'] . "' ,`image` =  '" . $image . "',
-                             `price` = " . str_replace('.', '', $_POST['price']) . ", `content` = '" . $_POST['content'] . "', `last_updated` = " . time() . " WHERE `books`.`id` = " . $_GET['id']);
+                             `price` = '" . $_POST['price'] . "' ,  `discount` = '" . $_POST['discount'] . "' , `content` = '" . $_POST['content'] . "', `last_updated` = NOW() 
+                             WHERE `books`.`id` = " . $_GET['id']);
                         //    $result2 = mysqli_query($con, "UPDATE `books_authors` SET `author_id` = '" . $_POST['author_id'] . "' WHERE `books_authors`.`book_id` = " . $_GET['id']);
                         } else { 
                             //Thêm sản phẩm hoac copy san pham
-                            $result = mysqli_query($con, "INSERT INTO `books` (`id`, `tittle` , `quantity` , `image`, `price`, `content`, `created_date`, `last_updated`) 
+                            $result = mysqli_query($con, "INSERT INTO `books` (`id`, `tittle` , `quantity` , `image`, `price`, `discount` , `content`, `created_date`, `last_updated`) 
                             VALUES (NULL, '" . $_POST['tittle'] . "', '" . $_POST['quantity'] . "' , '" . $image . "',
-                             '" . str_replace('.', '', $_POST['price']) . "', '" . $_POST['content'] . "', " . time() . ", " . time() . ");");
+                             '" . $_POST['price'] . "', '" . $_POST['discount'] . "' , '" . $_POST['content'] . "', NOW() , NOW() );");
                             
                             // lay ra id sa'ch lo'n nhat chinh la id cua sach mi`nh vu`a tao 
                             //$book_add = mysqli_query($con, "SELECT MAX(id) FROM `books` "); 
@@ -204,12 +205,13 @@
                                 $insertValues = "";
                                 foreach ($galleryImages as $path) {
                                     if (empty($insertValues)) {
-                                        $insertValues = "(NULL, " . $book_id . ", '" . $path . "', " . time() . ", " . time() . ")";
+                                        $insertValues = "(NULL, " . $book_id . ", '" . $path . "', NOW() , NOW() )";
                                     } else {
-                                        $insertValues .= ",(NULL, " . $book_id . ", '" . $path . "', " . time() . ", " . time() . ")";
+                                        $insertValues .= ",(NULL, " . $book_id . ", '" . $path . "', NOW() , NOW() )";
                                     }
                                 }
-                                $result = mysqli_query($con, "INSERT INTO `books_library` (`id`, `book_id`, `path`, `created_time`, `last_updated`) VALUES " . $insertValues . ";");
+                                $result = mysqli_query($con, "INSERT INTO `books_library` (`id`, `book_id`, `path`, `created_time`, `last_updated`) 
+                                VALUES " . $insertValues . ";");
                             }
                         }
                     }
@@ -245,11 +247,11 @@
                       WHERE `book_id` = " . $_GET['id']);  // lay du lieu tu bang books vs id = $_Get['id]
                     //var_dump($result3);exit;
 
-                    $book_id = $_GET['id']; $now = time();
-                    // var_dump($book_id);exit; // var_dump($now);exit; 
+                    $book_id = $_GET['id']; 
+                    // var_dump($book_id);exit;
                     $result4 = mysqli_query($con, "SELECT books_publishers.publisher_id,publishers.name,books_publishers.started_date
                     FROM `books_publishers` INNER JOIN `publishers` ON books_publishers.publisher_id = publishers.id
-                      WHERE  `book_id` = $book_id AND started_date IN (SELECT MAX(started_date) FROM books_publishers WHERE `book_id` = $book_id AND started_date <= $now )");
+                      WHERE  `book_id` = $book_id AND started_date IN (SELECT MAX(started_date) FROM books_publishers WHERE `book_id` = $book_id AND started_date <=NOW() )");
                     // var_dump($result4);exit;
 
                     $book = $result->fetch_assoc();  // dua du lieu tu json ve dang array
@@ -340,7 +342,13 @@
 
                                 <div class="wrap-field">
                                     <label class="label-style">Giá sách: </label>
-                                    <input class="input-area" type="text" name="price" value="<?= (!empty($book) ? number_format($book['price'], 0, ",", ".") : "") ?>" />
+                                    <input class="input-area" type="text" name="price" value="<?= (!empty($book) ? $book['price'] : "") ?>" />
+                                    <div class="clear-both"></div>
+                                </div>
+
+                                <div class="wrap-field">
+                                    <label class="label-style">Giảm giá: </label>
+                                    <input class="input-area" type="text" name="discount" value="<?= (!empty($book) ? $book['discount'] : "") ?>" />
                                     <div class="clear-both"></div>
                                 </div>
 
