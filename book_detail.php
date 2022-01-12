@@ -269,14 +269,14 @@
                       <?php if ($book['quantity'] > 0) { ?>
                             <div class="amount-selection-container">
             	      		  <p class="category delete-margin">Số lượng:</p>
-                          <form id="add-to-cart-form" action="cart.php?action=add" method="POST">
-                              <div class="category row" ><input class="number-select" type="number" value="1" name="quantity[<?=$book['id']?>]" size="2" /></div> 
-                            </div>
+                            <form id="add-to-cart-form" action="cart.php?action=add" method="POST">
+                                <div class="category row" ><input class="number-select" type="number" value="1" name="quantity[<?=$book['id']?>]" size="2" /></div> 
+                                </div>
 
-                            <div class="button-container">
-                              <input class="buy-button btn btn-lg btn-primary text-uppercase" type="submit" value="Mua ngay"  />                       
-                              <a href="#" class="cart-button btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng </a>
-                              </div>
+                                <div class="button-container">
+                                    <input class="buy-button btn btn-lg btn-primary text-uppercase" type="submit" value="Mua ngay"  />                       
+                                    <a href="#" class="cart-button btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng </a>
+                                </div>
                             </form>  <!-- item-property .// -->
                             
                             

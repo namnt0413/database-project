@@ -152,23 +152,31 @@ td {
            
             while ($row = mysqli_fetch_array($result)) {
               ?>
-              
-                <tr id="table-row">
-                <td style="text-align: center"><?= $row['id'] ?></td>
-                  <td>
-                    <?= $row['tittle'] ?>
-                  </td>
-                  <td>
-                    <img style="width: 80px;height: 100px;"
-                      src="./<?= $row['image'] ?>" alt="<?= $row['tittle'] ?>" title="<?= $row['tittle']?>" >
-                  </td>
-                  <td style="text-align: center"><?=$row['discount'] ?></td>
-                  <td style="text-align: center"><?=number_format($row['price'] - $row['discount'], 0, ",", ".") ?>đ</td>
-                  <td style="text-align: center"><a class="fa fa-trash" href="./uif_favor_del.php?id=<?= $row['id'] ?>" ></a></td>
-                    
-                </tr>
-             
-            <?php } ?>
+                <a href="book_detail.php?id=<?= $row['id'] ?>">  
+                  <tr id="table-row">
+                    <td style="text-align: center">
+                      <a href="book_detail.php?id=<?= $row['id']?>"> 
+                        <?= $row['id'] ?>
+                      </a>
+                    </td>
+                    <td style="text-align: center">
+                      <a href="book_detail.php?id=<?= $row['id']?>"> 
+                        <?= $row['tittle'] ?>
+                      </a>
+                    </td>                  
+                    <td>
+                      <a href="book_detail.php?id=<?= $row['id'] ?>" class="card-img" >  
+                        <img style="width: 80px;height: 100px;"
+                          src="./<?= $row['image'] ?>" alt="<?= $row['tittle'] ?>"title="<?= $row['tittle']?>" >
+                      </a>
+                    </td>
+                    <td style="text-align: center"><?=ceil($row['discount'] / $row['price']*100) ?>%</td>
+                    <td style="text-align: center"><?=number_format($row['price'] - $row['discount'], 0, ",", ".") ?>đ</td>
+                    <td style="text-align: center"><a class="fa fa-trash" href="./uif_favor_del.php?id=<?= $row['id'] ?>" ></a></td>
+                  </tr>
+              </a>
+            <?php 
+            } ?>
           </table>
       </div><!--/col-8-->
     </div><!--/row-->
