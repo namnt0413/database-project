@@ -178,14 +178,14 @@
                         if ($_GET['action'] == 'edit' && !empty($_GET['id'])) { 
                             //Cập nhật lại sản phẩm
                             $result = mysqli_query($con, "UPDATE `books` SET `tittle` = '" . $_POST['tittle'] . "', `quantity` = '" . $_POST['quantity'] . "' ,`image` =  '" . $image . "',
-                             `price` = '" . $_POST['price'] . "' ,  `discount` = '" . $_POST['discount'] . "' , `content` = '" . $_POST['content'] . "', `last_updated` = NOW() 
+                             `price` = '" . $_POST['price'] . "' ,  `discount` = '" . $_POST['discount'] . "' , `import_price` = '" . $_POST['import_price'] . "' , `content` = '" . $_POST['content'] . "', `last_updated` = NOW() 
                              WHERE `books`.`id` = " . $_GET['id']);
                         //    $result2 = mysqli_query($con, "UPDATE `books_authors` SET `author_id` = '" . $_POST['author_id'] . "' WHERE `books_authors`.`book_id` = " . $_GET['id']);
                         } else { 
                             //Thêm sản phẩm hoac copy san pham
-                            $result = mysqli_query($con, "INSERT INTO `books` (`id`, `tittle` , `quantity` , `image`, `price`, `discount` , `content`, `created_date`, `last_updated`) 
+                            $result = mysqli_query($con, "INSERT INTO `books` (`id`, `tittle` , `quantity` , `image`, `price`, `discount` , `import_price` , `content`, `created_date`, `last_updated`) 
                             VALUES (NULL, '" . $_POST['tittle'] . "', '" . $_POST['quantity'] . "' , '" . $image . "',
-                             '" . $_POST['price'] . "', '" . $_POST['discount'] . "' , '" . $_POST['content'] . "', NOW() , NOW() );");
+                             '" . $_POST['price'] . "', '" . $_POST['discount'] . "' , '" . $_POST['import_price'] . "' , '" . $_POST['content'] . "', NOW() , NOW() );");
                             
                             // lay ra id sa'ch lo'n nhat chinh la id cua sach mi`nh vu`a tao 
                             //$book_add = mysqli_query($con, "SELECT MAX(id) FROM `books` "); 
@@ -341,7 +341,13 @@
                     <?php } ?>
 
                                 <div class="wrap-field">
-                                    <label class="label-style">Giá sách: </label>
+                                    <label class="label-style">Giá gốc: </label>
+                                    <input class="input-area" type="text" name="import_price" value="<?= (!empty($book) ? $book['import_price'] : "") ?>" />
+                                    <div class="clear-both"></div>
+                                </div>
+                                                    
+                                <div class="wrap-field">
+                                    <label class="label-style">Giá bán hiện tại: </label>
                                     <input class="input-area" type="text" name="price" value="<?= (!empty($book) ? $book['price'] : "") ?>" />
                                     <div class="clear-both"></div>
                                 </div>

@@ -127,7 +127,10 @@
                                                 <th>Tác giả</th>
                                                 <th>Cập nhật lần cuối</th>
                                                 <th>Số lượng</th>
-                                                <th>Giá</th>
+                                                <th>
+                                                    <div class="row">Giá hiện tại</div>
+                                                    <div class="row">( Giá gốc )</div>
+                                                </th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -172,7 +175,10 @@
                                                     <span class="status--denied">Hết hàng</span>
                                                     <?php } ?>
                                                 </td>
-                                                <td><?= number_format($row['price'], 0, ",", ".")?></td>
+                                                <td>
+                                                    <div class="row"><?= number_format($row['price'], 0, ",", ".")?> đ</div> 
+                                                    <div class="row">( <?= number_format($row['import_price'], 0, ",", ".")?> )</div> 
+                                                </td>
                                                 <td>
                                                     <div class="table-data-feature">
                                                         <a href="./book_handle.php?id=<?= $row['id'] ?>&task=copy&task=copy" class="item" data-toggle="tooltip" data-placement="top" title="Copy">

@@ -4,7 +4,8 @@
     // var_dump($currentUser_id);exit;
     $user = mysqli_query($con, "SELECT * FROM customers where `id` = $currentUser_id ");
 
-
+    $user_spent = mysqli_query($con, "SELECT * FROM customers where `id` = $currentUser_id ");
+    $user_spent = mysqli_fetch_assoc($user_spent);
 ?>   
 
         <link rel="stylesheet" href="./assets/css/cart.css">
@@ -122,17 +123,22 @@
                             VALUES (NULL, '" . $currentUser_id . "' , '" . $_POST['fullname'] . "', '" . $_POST['phone'] . "', '" . $_POST['address'] . "',
                              '" . $_POST['note'] . "', '" . $total . "', NOW() , NOW() );");
                             // var_dump($insertOrder);exit;
+                           
+                            // tinh tong so tien da tieu cua user
+                            $user_spent['money_spent'] += $total;
+                            $money_spent = $user_spent['money_spent'];
+                            $updateSpend = mysqli_query($con, "UPDATE customers SET money_spent = $money_spent WHERE id = $currentUser_id");
+
+                            // BANG ORDER_DETAIL
                             $orderID = $con->insert_id;
                             $insertString = ""; // viet gon lai string de insert vao
-                            
-                            // BANG ORDER_DETAIL
                             foreach ($orderbooks as $key => $book) {
-                                $insertString .= "(NULL, '" . $orderID . "', '" . $book['id'] . "', '" . $_POST['quantity'][$book['id']] . "', '" . $book['price'] . "', '" . $book['discount'] . "' , NOW() , NOW() )";
+                                $insertString .= "(NULL, '" . $orderID . "', '" . $book['id'] . "', '" . $_POST['quantity'][$book['id']] . "', '" . $book['price'] . "', '" . $book['discount'] . "' , '" . $book['import_price'] . "' , NOW() , NOW() )";
                                 if ($key != count($orderbooks) - 1) {    // thi key= thang cuoi cung thi ko can dau , nua
                                     $insertString .= ",";   
                                 }
                             }
-                            $insertOrder = mysqli_query($con, "INSERT INTO `orders_details` (`id`, `order_id`, `book_id`, `quantity`, `price`, `discount` , `created_date`, `last_updated`) VALUES " . $insertString . ";");
+                            $insertOrder = mysqli_query($con, "INSERT INTO `orders_details` (`id`, `order_id`, `book_id`, `quantity`, `price`, `discount` , `import_price` , `created_date`, `last_updated`) VALUES " . $insertString . ";");
                             $success = "Đặt hàng thành công";
                             unset($_SESSION['cart']);   // xoa phien gio hang vua nap len csdl di
 

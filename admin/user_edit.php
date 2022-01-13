@@ -250,7 +250,7 @@
                             </div>
                             <div class="input-block">
                                 <label>Tổng số tiền đã mua</label></br>
-                                <input class="input-area" type="text" name="money_spent" value="<?= (!empty($user) ?  $user['money_spent'] : "") ?>" />
+                                <span class="input-area" type="text" name="money_spent"><?= (!empty($user) ?  number_format($user['money_spent'], 0, ",", ".") : "0") ?> đ</span>
                             </div>
                             <select class="kich-hoat-button" name="status">
                                 <option <?php if (!empty($user['status'])) { ?> selected <?php } ?> value="1">Kích hoạt</option>
