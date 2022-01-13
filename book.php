@@ -18,10 +18,16 @@
 
         //Sắp xếp
         $orderField = isset($_GET['field']) ? $_GET['field'] : "";  // gan vs feild GET dc
+        // var_dump($orderField);exit;
         $orderSort = isset($_GET['sort']) ? $_GET['sort'] : "";     // gan voi orderSort GET duoc
         if(!empty($orderField) && !empty($orderSort)){
+            if( $orderField == "price" ){
+                $orderConditon = "ORDER BY (`books`.`".$orderField."`- books.discount) ".$orderSort; // = ORDER BY product.name ASC/DESC
+                $param .= "field=".$orderField."&sort=".$orderSort."&";   // gan them orderField(name) va orderSort(asc,desc) vao chuoi phan trang
+            } else {
           $orderConditon = "ORDER BY `books`.`".$orderField."` ".$orderSort; // = ORDER BY product.name ASC/DESC
           $param .= "field=".$orderField."&sort=".$orderSort."&";   // gan them orderField(name) va orderSort(asc,desc) vao chuoi phan trang
+            }
         }
 
         $item_per_page = (!empty($_GET['per_page'])) ? $_GET['per_page'] : 12;
@@ -114,30 +120,28 @@
                         <div class="form-group text-center">
                             <div class="btn-group" data-toggle="buttons"> <label class="btn btn-success form-check-label"> <input class="form-check-input" type="radio"> Reset </label> <label class="btn btn-success form-check-label active"> <input class="form-check-input" type="radio" checked> Apply </label> </div>
                         </div>
-                        <div> <label class="tick">New <input type="checkbox" checked="checked"> <span class="check"></span> </label> </div>
-                        <div> <label class="tick">Sale <input type="checkbox"> <span class="check"></span> </label> </div>
                     </div>
                     <div class="box border-bottom">
                         <div class="box-label text-uppercase d-flex align-items-center">Thể loại<button class="btn ml-auto" type="button" data-toggle="collapse" data-target="#inner-box" aria-expanded="false" aria-controls="inner-box" id="out" onclick="outerFilter()"> <span class="fas fa-plus"></span> </button> </div>
                         <div id="inner-box" class="collapse mt-2 mr-1">
-                            <div class="my-1"> <label class="tick">Thiếu nhi<input type="checkbox" checked="checked"> <span class="check"></span> </label> </div>
-                            <div class="my-1"> <label class="tick">Giáo dục<input type="checkbox"> <span class="check"></span> </label> </div>
-                            <div class="my-1"> <label class="tick">Kinh tế<input type="checkbox"> <span class="check"></span> </label> </div>
-                            <div class="my-1"> <label class="tick">Pháp luật<input type="checkbox"> <span class="check"></span> </label> </div>
-                            <div class="my-1"> <label class="tick">Tiểu thuyết<input type="checkbox"> <span class="check"></span> </label> </div>
-                            <div class="my-1"> <label class="tick">Lãng mạn, tình cảm<input type="checkbox" checked> <span class="check"></span> </label> </div>
-                            <div class="my-1"> <label class="tick">Kinh dị<input type="checkbox"> <span class="check"></span> </label> </div>
-                            <div class="my-1"> <label class="tick">Khác<input type="checkbox" checked> <span class="check"></span> </label> </div>
+                            <div class="my-1"> <label class="tick">Thiếu nhi<input type="checkbox" checked="checked"> </label> </div>
+                            <div class="my-1"> <label class="tick">Giáo dục<input type="checkbox"> </label> </div>
+                            <div class="my-1"> <label class="tick">Kinh tế<input type="checkbox"> </label> </div>
+                            <div class="my-1"> <label class="tick">Pháp luật<input type="checkbox"> </label> </div>
+                            <div class="my-1"> <label class="tick">Tiểu thuyết<input type="checkbox"> </label> </div>
+                            <div class="my-1"> <label class="tick">Lãng mạn, tình cảm<input type="checkbox" checked> </label> </div>
+                            <div class="my-1"> <label class="tick">Kinh dị<input type="checkbox"> </label> </div>
+                            <div class="my-1"> <label class="tick">Khác<input type="checkbox" checked> </label> </div>
                         </div>
                     </div>
                     <div class="box border-bottom">
                         <div class="box-label text-uppercase d-flex align-items-center">Nhà xuất bản<button class="btn ml-auto" type="button" data-toggle="collapse" data-target="#inner-box2" aria-expanded="false" aria-controls="inner-box2"><span class="fas fa-plus"></span></button> </div>
                         <div id="inner-box2" class="collapse mt-2 mr-1">
-                            <div class="my-1"> <label class="tick">Kim Đồng <input type="checkbox" checked="checked"> <span class="check"></span> </label> </div>
-                            <div class="my-1"> <label class="tick">Tri thức <input type="checkbox"> <span class="check"></span> </label> </div>
-                            <div class="my-1"> <label class="tick">Tuổi trẻ <input type="checkbox" checked> <span class="check"></span> </label> </div>
-                            <div class="my-1"> <label class="tick">ĐHBK Hà Nội <input type="checkbox"> <span class="check"></span> </label> </div>
-                            <div class="my-1"> <label class="tick">Giáo dục <input type="checkbox"> <span class="check"></span> </label> </div>
+                            <div class="my-1"> <label class="tick">Kim Đồng <input type="checkbox" checked="checked"> </label> </div>
+                            <div class="my-1"> <label class="tick">Tri thức <input type="checkbox"> </label> </div>
+                            <div class="my-1"> <label class="tick">Tuổi trẻ <input type="checkbox" checked> </label> </div>
+                            <div class="my-1"> <label class="tick">ĐHBK Hà Nội <input type="checkbox"> </label> </div>
+                            <div class="my-1"> <label class="tick">Giáo dục <input type="checkbox"> </label> </div>
                         </div>
                     </div>
                     <div class="box">
