@@ -2,6 +2,7 @@
     include 'header.php';
     $rate = 25;
 
+    //  Chon ra ngau nhien 9sp co giam gia > x%
     $result1 = mysqli_query($con, "SELECT books.image,books.id
     FROM `books`
     WHERE  (discount / price) >= ($rate / 100) 
@@ -9,6 +10,23 @@
     LIMIT 9;");
     // var_dump($result1);exit;
 
+    // Chon ra 9 san pham ban chay nhat
+    $result2 = mysqli_query($con, " SELECT SUM(orders_details.quantity)AS sum_qty , books.id,books.tittle,books.image,books.price,books.discount
+    FROM orders_details INNER JOIN books ON books.id = orders_details.book_id
+    GROUP BY book_id
+    ORDER BY sum_qty DESC
+    LIMIT 9 ");
+    // var_dump($result2);exit;
+
+    // Chon ra san pham moi nhat trong thang
+    $result3 = mysqli_query($con, "SELECT * FROM books
+    WHERE MONTH(created_date) = MONTH(NOW())");
+
+    // Chon ra sp moi ra trong tuan nay
+    $result4 = mysqli_query($con, "SELECT * FROM books
+    WHERE MONTH(created_date) = MONTH(NOW())
+    ORDER BY RAND()
+    LIMIT 9");
 
 ?>
 
@@ -26,8 +44,8 @@
 
             <div class="swiper books-slider">
                 <div class="swiper-wrapper">
-                    <?php while ($book =  mysqli_fetch_array($result1) ){?>
-                        <a href="book_detail.php?id=<?=$book['id']?>" class="swiper-slide"><img src="<?=$book['image']?>" alt=""></a>
+                    <?php while ($book1 =  mysqli_fetch_array($result1) ){?>
+                        <a href="book_detail.php?id=<?=$book1['id']?>" class="swiper-slide"><img src="<?=$book1['image']?>" alt=""></a>
                     <?php } ?>
                 </div>
                 <img src="./assets/image/stand.png" class="stand" alt="">
@@ -79,172 +97,31 @@
     <!-- featured section starts  -->
     <section class="featured" id="featured">
     
-        <h1 class="heading"> <span>featured books</span> </h1>
+        <h1 class="heading"> <span>Sách nổi bật</span> </h1>
     
         <div class="swiper featured-slider">
     
             <div class="swiper-wrapper">
-    
-                <div class="swiper-slide box">
-                    <div class="icons">
-                        <a href="#" class="fas fa-search"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
+                <?php while( $book2 = mysqli_fetch_array($result2) ){ ?>    
+                    <div class="swiper-slide box">
+                        <div class="icons">
+                            <a href="#" class="fas fa-search"></a>
+                            <a href="#" class="fas fa-heart"></a>
+                            <a href="book_detail.php?id=<?= $book2['id'] ?>" class="fas fa-eye"></a>
+                        </div>
+                        <div class="image">
+                            <a href="book_detail.php?id=<?= $book2['id'] ?>"><img src="./<?= $book2['image'] ?>" alt="<?= $book2['tittle'] ?>"></a>
+                        </div>
+                        <div class="content">
+                            <h3><?= $book2['tittle'] ?></h3>
+                            <div class="price"><?= number_format($book2['price']-$book2['discount'], 0, ",", ".") ?>đ <span><?= number_format($book2['price'], 0, ",", ".") ?>đ</span></div>
+                            <form id="add-to-cart-form" action="cart.php?action=add" method="POST">
+                                <input class="number-select" type="hidden" value="1" name="quantity[<?=$book2['id']?>]"/>
+                                <input class="buy-button btn btn-lg btn-primary text-uppercase" type="submit" value="Buy now"  /> 
+                            </form>
+                        </div>
                     </div>
-                    <div class="image">
-                        <img src="./assets/image/book-1.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>featured books</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <a href="#" class="button">add to cart</a>
-                    </div>
-                </div>
-    
-                <div class="swiper-slide box">
-                    <div class="icons">
-                        <a href="#" class="fas fa-search"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
-                    </div>
-                    <div class="image">
-                        <img src="./assets/image/book-2.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>featured books</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <a href="#" class="button">add to cart</a>
-                    </div>
-                </div>
-    
-                <div class="swiper-slide box">
-                    <div class="icons">
-                        <a href="#" class="fas fa-search"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
-                    </div>
-                    <div class="image">
-                        <img src="./assets/image/book-3.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>featured books</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <a href="#" class="button">add to cart</a>
-                    </div>
-                </div>
-    
-                <div class="swiper-slide box">
-                    <div class="icons">
-                        <a href="#" class="fas fa-search"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
-                    </div>
-                    <div class="image">
-                        <img src="./assets/image/book-4.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>featured books</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <a href="#" class="button">add to cart</a>
-                    </div>
-                </div>
-    
-                <div class="swiper-slide box">
-                    <div class="icons">
-                        <a href="#" class="fas fa-search"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
-                    </div>
-                    <div class="image">
-                        <img src="./assets/image/book-5.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>featured books</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <a href="#" class="button">add to cart</a>
-                    </div>
-                </div>
-    
-                <div class="swiper-slide box">
-                    <div class="icons">
-                        <a href="#" class="fas fa-search"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
-                    </div>
-                    <div class="image">
-                        <img src="./assets/image/book-6.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>featured books</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <a href="#" class="button">add to cart</a>
-                    </div>
-                </div>
-    
-                <div class="swiper-slide box">
-                    <div class="icons">
-                        <a href="#" class="fas fa-search"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
-                    </div>
-                    <div class="image">
-                        <img src="./assets/image/book-7.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>featured books</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <a href="#" class="button">add to cart</a>
-                    </div>
-                </div>
-    
-                <div class="swiper-slide box">
-                    <div class="icons">
-                        <a href="#" class="fas fa-search"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
-                    </div>
-                    <div class="image">
-                        <img src="./assets/image/book-8.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>featured books</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <a href="#" class="button">add to cart</a>
-                    </div>
-                </div>
-    
-                <div class="swiper-slide box">
-                    <div class="icons">
-                        <a href="#" class="fas fa-search"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
-                    </div>
-                    <div class="image">
-                        <img src="./assets/image/book-9.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>featured books</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <a href="#" class="button">add to cart</a>
-                    </div>
-                </div>
-    
-                <div class="swiper-slide box">
-                    <div class="icons">
-                        <a href="#" class="fas fa-search"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
-                    </div>
-                    <div class="image">
-                        <img src="./assets/image/book-10.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>featured books</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <a href="#" class="button">add to cart</a>
-                    </div>
-                </div>
-    
+                <?php } ?>
             </div>
 
             <div class="swiper-button-next"></div>
@@ -267,98 +144,31 @@
 
     <!-- arrivals section starts  -->
     <section class="arrivals" id="arrivals">
-        <h1 class="heading"> <span>new arrivals</span> </h1>
+        <h1 class="heading"> <span>Sách mới</span> </h1>
     
         <div class="swiper arrivals-slider">
             <a href="book.php">view all books <i class="fa fa-angle-right"></i></a>
             
+            <br><span>Sách mới ra trong tháng này</span>
             <div class="swiper-wrapper">
-    
-                <a href="#" class="swiper-slide box">
-                    <div class="image">
-                        <img src="./assets/image/book-1.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>new arrivals</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
+                <?php while ($book3 = mysqli_fetch_array($result3)){ ?>    
+                    <a href="book_detail.php?id=<?= $book3['id'] ?>" class="swiper-slide box">
+                        <div class="image">
+                            <img src="./<?= $book3['image']?>" alt="<?= $book3['tittle']?>">
                         </div>
-                    </div>
-                </a>
-    
-                <a href="#" class="swiper-slide box">
-                    <div class="image">
-                        <img src="./assets/image/book-2.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>new arrivals</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
+                        <div class="content">
+                            <h3><?= $book3['tittle']?></h3>
+                            <div class="price"><?= number_format($book3['price']-$book3['discount'], 0, ",", ".")?>đ <span><?= number_format($book3['price'], 0, ",", ".") ?>đ</span></div>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
                         </div>
-                    </div>
-                </a>
-    
-                <a href="#" class="swiper-slide box">
-                    <div class="image">
-                        <img src="./assets/image/book-3.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>new arrivals</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                </a>
-    
-                <a href="#" class="swiper-slide box">
-                    <div class="image">
-                        <img src="./assets/image/book-4.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>new arrivals</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                </a>
-    
-                <a href="#" class="swiper-slide box">
-                    <div class="image">
-                        <img src="./assets/image/book-5.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>new arrivals</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                </a>
-    
+                    </a>
+                <?php } ?>
             </div>
     
         </div>
