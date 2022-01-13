@@ -187,7 +187,7 @@
                                                 <div class="content-container">
                                                 <div id="edit-notify" class="box-content">
                                                     <h1>Đổi mật khẩu thành công</h1>
-                                                    <a class="link-button" href="uif_profile.php">Quay lại</a>
+                                                    <a class="link-button" href="uif_passedit.php">Quay lại</a>
                                                 </div>
                                                 </div>
                                             <?php
