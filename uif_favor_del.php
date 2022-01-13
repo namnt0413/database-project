@@ -182,7 +182,7 @@
                 <div class="content-container">
                     <div id="success-notify" class="box-content">
                         <h1>Đã xóa sách yêu thích</h1>
-                        <a class="link-button" href="./uif_favorite.php"> Reset</a>
+                        <a class="link-button" href="./uif_favorite.php">Quay lại</a>
                     </div>
                 </div>
             <?php } ?>

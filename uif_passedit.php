@@ -127,22 +127,37 @@
                     <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
                 </div>
 
+                <?php
+                    $current_id = $currentUser['id'];
+                    $totalmoney = mysqli_query($con, "SELECT SUM(total) AS sum FROM orders 
+                    WHERE customer_id = $current_id");
+                    $totalmoney = mysqli_fetch_assoc($totalmoney);
+                ?>
+                <?php
+                    $current_id = $currentUser['id'];
+                    $boughtbook = mysqli_query($con, "SELECT SUM(quantity) AS bought FROM orders INNER JOIN orders_details 
+                    ON orders.id = orders_details.order_id 
+                    WHERE customer_id = $current_id;");
+                    $boughtbook = mysqli_fetch_assoc($boughtbook);
+                ?>
+                <?php
+                    $current_id = $currentUser['id'];
+                    $favorbook = mysqli_query($con, "SELECT COUNT(book_id) AS numbook FROM favorites WHERE customer_id = $current_id;");
+                    $favorbook = mysqli_fetch_assoc($favorbook);
+                ?>
+                
                 <ul class="list-group">
-                    <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
+                    <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li> 
+                    <li class="list-group-item text-right">
+                        <span class="pull-left"><strong>Tổng tiền đã chi</strong></span>
+                        <?=number_format($totalmoney['sum'], 0, ",", ".") ?>đ</li>
+                    <li class="list-group-item text-right">
+                    <span class="pull-left"><strong>Số sách đã mua</strong></span>
+                    <?=$boughtbook['bought']?></li>
+                    <li class="list-group-item text-right">
+                    <span class="pull-left"><strong>Số sách đã yêu thích</strong></span>
+                    <?=$favorbook['numbook']?></li>
                 </ul>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">Social Media</div>
-                    <div class="panel-body">
-                        <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i
-                            class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i
-                            class="fa fa-google-plus fa-2x"></i>
-                    </div>
-                </div>
 
             </div>
             <!--/col-3-->
@@ -158,32 +173,44 @@
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="home">
-                        
                         <?php
                             $error = false;
                             if (isset($_GET['action']) && $_GET['action'] == 'edit'){
-                                if (isset($_POST['password']) && isset($_POST['password2']) && ($_POST['password'] == $_POST['password2'])){
-                                $result = mysqli_query($con, "UPDATE `customers` SET 
-                                    `password` = MD5('" . $_POST['password'] ."'),
-                                    `last_updated` = NOW() 
-                                     WHERE `customers`.`id` = " . $_POST['id'] . ";");
-                                    ?>
-                                    <div class="content-container">
-                                    <div id="edit-notify" class="box-content">
-                                        <h1>Đổi mật khẩu thành công</h1>
-                                        <a class="link-button" href="uif_profile.php">Quay lại</a>
-                                    </div>
-                                    </div>
-                                <?php
-                                }else {
-                                ?>
-                                <div class="content-container">
-                                    <div id="edit-notify" class="box-content">
-                                        <h1>Mật khẩu không trùng khớp</h1>
-                                        <a class="link-button" href="uif_passedit.php">Reset</a>
-                                    </div>
-                                </div>
-                                <?php
+                                if (isset($_POST['password']) && isset($_POST['password2'])){   //nếu tồn tại pass
+                                    if (!empty($_POST['password']) && !empty($_POST['password2'])){         //nếu 2 pass đều không rỗng 
+                                        if ( ($_POST['password'] == $_POST['password2'])){      //nếu mật khẩu khớp
+                                            $result = mysqli_query($con, "UPDATE `customers` SET 
+                                                `password` = MD5('" . $_POST['password'] ."'),
+                                                `last_updated` = NOW() 
+                                                 WHERE `customers`.`id` = " . $_POST['id'] . ";");
+                                                ?>
+                                                <div class="content-container">
+                                                <div id="edit-notify" class="box-content">
+                                                    <h1>Đổi mật khẩu thành công</h1>
+                                                    <a class="link-button" href="uif_profile.php">Quay lại</a>
+                                                </div>
+                                                </div>
+                                            <?php
+                                        }else {                     //mật khẩu không khớp
+                                            ?>
+                                            <div class="content-container">
+                                                <div id="edit-notify" class="box-content">
+                                                    <h1>Mật khẩu không trùng khớp</h1>
+                                                    <a class="link-button" href="uif_passedit.php">Reset</a>
+                                                </div>
+                                            </div>
+                                        <?php 
+                                        }
+                                    }else{
+                                        ?>
+                                        <div class="content-container">
+                                            <div id="edit-notify" class="box-content">
+                                                <h1>Mật khẩu không thể để trống</h1>
+                                                <a class="link-button" href="uif_passedit.php">Quay lại</a>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    }
                                 }
                             }else{
                             ?>
@@ -217,8 +244,8 @@
                                 <div class="form-group">
                                     <div class="col-xs-12">
                                         <br>
-                                        <button class="btn btn-lg btn-success" type="submit"><i
-                                                class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                        <button class="btn btn-lg btn-success" type="submit">
+                                            <i class="glyphicon glyphicon-ok-sign" ></i> Save</button>
                                     </div>
                                 </div>
                             </form>

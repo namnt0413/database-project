@@ -85,21 +85,41 @@ td {
             <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
           </div>
           
+          <?php
+              $current_id = $currentUser['id'];
+              $totalmoney = mysqli_query($con, "SELECT SUM(total) AS sum FROM orders 
+              WHERE customer_id = $current_id");
+              $totalmoney = mysqli_fetch_assoc($totalmoney);
+          ?>
+          <?php
+              $current_id = $currentUser['id'];
+              $boughtbook = mysqli_query($con, "SELECT SUM(quantity) AS bought FROM orders INNER JOIN orders_details 
+              ON orders.id = orders_details.order_id 
+              WHERE customer_id = $current_id;");
+              $boughtbook = mysqli_fetch_assoc($boughtbook);
+          ?>
+          <?php
+              $current_id = $currentUser['id'];
+              $favorbook = mysqli_query($con, "SELECT COUNT(book_id) AS numbook FROM favorites WHERE customer_id = $current_id;");
+              $favorbook = mysqli_fetch_assoc($favorbook);
+          ?>
+          
           <ul class="list-group">
-            <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
-          </ul> 
+              <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li> 
+              <li class="list-group-item text-right">
+                  <span class="pull-left"><strong>Tổng tiền đã chi</strong></span>
+                  <?=number_format($totalmoney['sum'], 0, ",", ".") ?>đ</li>
+              <li class="list-group-item text-right">
+              <span class="pull-left"><strong>Số sách đã mua</strong></span>
+              <?=$boughtbook['bought']?></li>
+              <li class="list-group-item text-right">
+              <span class="pull-left"><strong>Số sách đã yêu thích</strong></span>
+              <?=$favorbook['numbook']?></li>
+          </ul>
                
-          <div class="panel panel-default">
-            <div class="panel-heading">Social Media</div>
-            <div class="panel-body">
-            	<i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
-            </div>
-          </div>
-        </div><!--/col-4-->
+          
+      </div><!--/col-4-->
+      
     	<div class="col-sm-8">
             <ul class="nav nav-tabs">
                 <!-- <li class="active"><a data-toggle="tab" href="user_profile.php">Thông tin</a></li> -->
@@ -122,14 +142,14 @@ td {
           $current_page = (!empty($_GET['page'])) ? $_GET['page'] : 1;
           $offset = ($current_page - 1) * $item_per_page;
 
-          $result = mysqli_query($con, "SELECT *,orders.created_date FROM  orders
+          $result = mysqli_query($con, "SELECT *,orders.created_date, orders_details.quantity FROM  orders
           INNER JOIN orders_details ON orders.id = orders_details.order_id 
           INNER JOIN books ON orders_details.book_id = books.id 
           WHERE customer_id= $userid
           ORDER BY orders.created_date ASC
           LIMIT " . $item_per_page . " OFFSET " . $offset . " " );
           
-          $totalRecords = mysqli_query($con, "SELECT *, orders.created_date FROM  orders
+          $totalRecords = mysqli_query($con, "SELECT *, orders.created_date, orders_details.quantity FROM  orders
           INNER JOIN orders_details ON orders.id = orders_details.order_id 
           INNER JOIN books ON orders_details.book_id = books.id 
           WHERE customer_id= $userid
@@ -149,8 +169,8 @@ td {
                 </td>
                 <td style="text-align: center">Ảnh</td>
                 <td style="text-align: center">Giá</td>
+                <td style="text-align: center">Số lượng</td>
                 <td style="text-align: center">Ngày mua </td>
-                <td style="text-align: center">Xóa</td>
               </tr>
             </thead>
             <?php
@@ -159,14 +179,20 @@ td {
               ?>
                 <tr id="table-row">
                   <td style="text-align: center"><?= $row['id'] ?></td>
+                  
                   <td>
                     <?= $row['tittle'] ?>
                   </td>
+                  
                   <td>
                     <img style="width: 80px;height: 100px;"
                       src="./<?= $row['image'] ?>" alt="<?= $row['tittle'] ?>" title="<?= $row['tittle']?>" >
                   </td>
+                  
                   <td style="text-align: center"><?=number_format($row['price'] - $row['discount'], 0, ",", ".") ?>đ</td>
+                  
+                  <td style="text-align: center"><?=$row['quantity'] ?></td>
+
                   <td style="text-align: center">
                     <?=$row['created_date'] ?>
                     <br>
@@ -174,15 +200,6 @@ td {
                       <input class="number-select" type="hidden" value="1" name="quantity[<?=$row['id']?>]"/>
                       <input class="buy-button btn btn-lg btn-primary text-uppercase" type="submit" value="Mua lại"  /> 
                     </form>
-
-
-
-
-
-
-
-                  </td>
-                  <td style="text-align: center"><a class="fa fa-trash" href="./uif_favor_del.php?id=<?= $row['id'] ?>" ></a></td>
                 </tr>
             <?php 
             } ?>

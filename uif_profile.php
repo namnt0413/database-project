@@ -204,23 +204,40 @@
                         <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
                         <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
                     </div>
-
+                    
+                    <?php
+                        $current_id = $currentUser['id'];
+                        $totalmoney = mysqli_query($con, "SELECT SUM(total) AS sum FROM orders 
+                        WHERE customer_id = $current_id");
+                        $totalmoney = mysqli_fetch_assoc($totalmoney);
+                    ?>
+                    <?php
+                        $current_id = $currentUser['id'];
+                        $boughtbook = mysqli_query($con, "SELECT SUM(quantity) AS bought FROM orders INNER JOIN orders_details 
+                        ON orders.id = orders_details.order_id 
+                        WHERE customer_id = $current_id;");
+                        $boughtbook = mysqli_fetch_assoc($boughtbook);
+                    ?>
+                    <?php
+                        $current_id = $currentUser['id'];
+                        $favorbook = mysqli_query($con, "SELECT COUNT(book_id) AS numbook FROM favorites WHERE customer_id = $current_id;");
+                        $favorbook = mysqli_fetch_assoc($favorbook);
+                    ?>
+                    
                     <ul class="list-group">
-                        <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                        <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125</li>
-                        <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
-                        <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
-                        <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
+                        <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li> 
+                        <li class="list-group-item text-right">
+                            <span class="pull-left"><strong>Tổng tiền đã chi</strong></span>
+                            <?=number_format($totalmoney['sum'], 0, ",", ".") ?>đ</li>
+                        <li class="list-group-item text-right">
+                        <span class="pull-left"><strong>Số sách đã mua</strong></span>
+                        <?=$boughtbook['bought']?></li>
+                        <li class="list-group-item text-right">
+                        <span class="pull-left"><strong>Số sách đã yêu thích</strong></span>
+                        <?=$favorbook['numbook']?></li>
                     </ul>
 
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Social Media</div>
-                            <div class="panel-body">
-                                <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i
-                                    class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i
-                                    class="fa fa-google-plus fa-2x"></i>
-                            </div>
-                        </div>
+                    
                 </div>
                 <!--col-3-sm-3-->
             

@@ -69,6 +69,8 @@
                     break;
 
                 case "submit":
+                    $soluong = 0;
+                    $soam = 0;
                     if (isset($_POST['update_click'])) { //Cập nhật số lượng sản phẩm, update_click chinh la key
                         update_cart($con,false);    // Vi la update nen truyen vao false cho $add
                         // header('Location: ./cart.php');
@@ -83,20 +85,27 @@
                             $error = "Giỏ hàng rỗng";
                         }
                         // Ham xu ly luu gio hang database
-                        if ($error == false && !empty($_POST['quantity'])) {    // chi xu ly dat hang khi khong co loi va co san pham trong gio
+                        if ($error == false && !empty($_POST['quantity']) && ($_POST['quantity'] > 0)) {    // chi xu ly dat hang khi khong co loi va co san pham trong gio
                             // var_dump( $_POST);exit;
                             $books = mysqli_query($con, "SELECT * FROM `books` WHERE `id` IN (" . implode(",", array_keys($_POST['quantity'])) . ")");
                             $total = 0;
                             $orderbooks = array();
                             $updateString = ""; // string de update so luong vao mang books
 
+
+                            
                            // BANG ORDER
                             while ($row = mysqli_fetch_array($books)) {//gan row = tung phan tu cua books
                                 $orderbooks[] = $row;// gan tung phan tu cua orderbook vs row de tranh viec row bi xoa di
                                 if ($_POST['quantity'][$row['id']] > $row['quantity']) {    // neu quantity gui len lon hon quantity trong bang book
                                     $_POST['quantity'][$row['id']] = $row['quantity'];
+                                    $soluong ++;
                                     $GLOBALS['changed_cart'] = true;    // So luong hang khach mua lon hon hang ton kho
-                                } else {    // neu so luong nhap dung
+                                }else if ($_POST['quantity'][$row['id']] <= 0){
+                                    $_POST['quantity'][$row['id']] = 1;
+                                    $GLOBALS['changed_cart'] = true;
+                                    $soam ++;
+                                }else {    // neu so luong nhap dung
                                     $total += ($row['price']-$row['discount']) * $_POST['quantity'][$row['id']];
                                     $updateString .= " when id = ".$row['id']." then quantity - ".$_POST['quantity'][$row['id']];
                                     // vd:   when id = 3 then quantity - 50 when id = 7 then quantity - 20
@@ -165,9 +174,15 @@
                 </div>
             <?php } else { ?>
         <div class="back-to-shop"><a href="javascript:window.history.go(-2)" class="fa fa-undo" style="padding: 5px; margin-bottom: 10px;">  Quay lại Cửa hàng</a></div>
-        <?php if ($GLOBALS['changed_cart']) { ?>  <!-- Check nhap qua quantity neu la true: so luong khach nhap lon qua-->   
-            <h3>Số lượng sản phẩm tồn kho không đủ. Vui lòng <a href="javascript:window.history.go(-1)">tải lại</a> giỏ hàng</h3>
-            <?php } else { ?>
+        <?php 
+            if ($GLOBALS['changed_cart'] && $soluong!=0) { ?>  <!-- Check nhap qua quantity neu la true: so luong khach nhap lon qua-->   
+                <h3>Số lượng sản phẩm tồn kho không đủ. Vui lòng <a href="javascript:window.history.go(-1)">tải lại</a> giỏ hàng</h3>
+            <?php 
+            }else if ($GLOBALS['changed_cart'] && $soam!=0) { ?>
+                <h3>Số lượng sản phẩm đã âm. Vui lòng <a href="javascript:window.history.go(-2)">tải lại</a> giỏ hàng</h3>
+            <?php
+            }else { 
+            ?>
 
         <form id="cart-form" action="cart.php?action=submit" method="POST">
             <div class="card">
@@ -178,7 +193,7 @@
                                 <div class="col">
                                     <h4><b>GIỎ HÀNG</b></h4>
                                 </div>
-                                <div class="col align-self-center text-right text-muted">3 items</div>
+                                    <div class="col align-self-center text-right text-muted">3 items</div>
                             </div>
                         </div>
                         <!-- Hàng tiêu đề -->
