@@ -47,7 +47,7 @@
         <link rel="stylesheet" href="./assets/js/book.js">
 
         <div class="container">
-        <a href="javascript:window.history.go(-1)" class="fa fa-undo" style="padding: 5px; margin-bottom: 10px;">  Quay lại</a>
+        <a href="javascript:window.history.go(-1)" class="fa fa-undo" style="font-size: 1.5rem; margin: 10px; text-decoration: none; color: #434343; ">  Quay lại</a>
         <hr>
             <div class="card">
             	<div class="row">
@@ -74,7 +74,7 @@
             
                     <p class="author-detail-wrap" style="margin-top:20px;"> 
                       <span class="category">Tác giả: </span> 
-                      <span class="category-info price h3 text-info"> 
+                      <span class="category-info  h3 "> 
 
                         <?php
                             $where2 ="";                     
@@ -82,7 +82,7 @@
                                 $author_id = $author['author_id'];
                                 $where2 .= (!empty($where2))? " OR "."`author_id` = $author_id" : "`author_id` = $author_id"; // neu rong thi luu luon chuoi, neu ko thi them AND
                                 ?>
-                            <a href="book.php?author_id=<?= $author['author_id']?>" ><?= $author['first_name']." ".$author['last_name'].","?></a> 
+                            <a class="category-info" href="book.php?author_id=<?= $author['author_id']?>" ><?= $author['first_name']." ".$author['last_name'].","?></a> 
                             <?php }
                             // var_dump($where3);exit;
 
@@ -99,7 +99,7 @@
 
                     <p class="publisher-detail-wrap"> 
                         <span class="category">Nhà xuất bản: </span> 
-                    	<span class="category-info price h3 text-info"> 
+                    	<span class="category-info  h3 "> 
                             <?php while ($publisher = mysqli_fetch_array($result4)){ ?>
                     	        <span class=""><?=$publisher['name']?></span>
                             <?php } ?>
@@ -109,7 +109,7 @@
 
                     <p class="price-detail-wrap"> 
                         <span class="category">Giá: </span> 
-                    	<span class="category-info price h3 text-danger"> 
+                    	<span class="category-info price h3 "> 
                     		<span class="num"><?= number_format($book['price']-$book['discount'] , 0, ",", ".") ?>VNĐ</span>
                             <span style="color:black;font-size: 1.2rem;text-decoration: line-through;"><?=number_format($book['price'], 0, ",", ".") ?>đ</span>
                     	</span> 
@@ -117,7 +117,7 @@
 
                     <p class="discount-detail-wrap"> 
                         <span class="category">Tiết kiệm: </span> 
-                    	<span class="category-info price h5 text-danger"> 
+                    	<span class="category-info price h5 "> 
                     		<span class="num"><?= number_format($book['discount'], 0, ",", ".") ?></span><span class="currency"> VNĐ</span><span>( <?=ceil( $book['discount']/$book['price']*100 )?>% )</span>
                     	</span> 
                     </p> <!-- discount-detail-wrap .// -->
@@ -126,9 +126,9 @@
                         <span class="category">Tình trạng: </span> 
 
                         <?php if ($book['quantity'] > 0) { ?>
-                        	<span class="category-info price h5 text-success"> Còn hàng</span>
+                        	<span class="category-info  h5 text-success"> Còn hàng</span>
                         <?php } else { ?> 
-                          <span class="category-info price h5 text-warning"> Hết hàng</span>
+                          <span class="category-info  h5 text-warning"> Hết hàng</span>
                         <?php } ?>  
                         
                     </p> <!-- quantity-detail-wrap .// -->
@@ -160,11 +160,11 @@
                                             <form action="./book_detail.php?action=addfvr&id=<?=$bo_id?>" method="Post" enctype="multipart/form-data"autocomplete="off" id="registrationForm">
                                                     <input type="hidden" name="book_id" id="book_id" value="<?= $bo_id ?>" />
                                                     <input type="hidden" name="user_id" id="user_id" value="<?= $u_id?>" />
-                                                <div class="form-group">
-                                                    <div class="col-xs-12">
+                                                <div class=" form-group" >
+                                                    <div class=" col-xs-12">
                                                         <br>
-                                                        <button class="btn btn-lg btn-success" type="submit" name ="submit1" onclick="alert('Đã thêm vào yêu thích');">
-                                                        <i class="fas fa-heart" style="color :white"></i> Yêu thích </button>
+                                                        <button class="btn-hidden" type="submit" name ="submit1" onclick="alert('Đã thêm vào yêu thích');">
+                                                        <i class="heart-position fas fa-heart" style="color :white" ></i>  </button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -178,11 +178,11 @@
                                         <form action="./book_detail.php?action=delfvr&id=<?=$bo_id?>" method="Post" enctype="multipart/form-data"autocomplete="off" id="registrationForm">
                                                 <input type="hidden" name="book_id" id="book_id" value="<?= $bo_id ?>" />
                                                 <input type="hidden" name="user_id" id="user_id" value="<?= $u_id?>" />
-                                            <div class="form-group">
-                                                <div class="col-xs-12">
+                                            <div class=" form-group">
+                                                <div class=" col-xs-12">
                                                     <br>
-                                                    <button class="btn btn-lg btn-success" type="submit" name ="submit1" onclick="alert('Đã hủy yêu thích');">
-                                                    <i class="fas fa-heart" style="color :#FF725E" ></i> Yêu thích</button>     <!-- hủy yêu thích -->
+                                                    <button class="btn-hidden" type="submit" name ="submit1" onclick="alert('Đã hủy yêu thích');">
+                                                    <i class="heart-position fas fa-heart" style="color :#f03e3e" ></i> </button>     <!-- hủy yêu thích -->
                                                 </div>
                                             </div>
                                         </form>
@@ -204,11 +204,11 @@
                                             <form action="./book_detail.php?action=delfvr&id=<?=$bo_id?>" method="Post" enctype="multipart/form-data"autocomplete="off" id="registrationForm">
                                                     <input type="hidden" name="book_id" id="book_id" value="<?= $bo_id ?>" />
                                                     <input type="hidden" name="user_id" id="user_id" value="<?= $u_id?>" />
-                                                <div class="form-group">
-                                                    <div class="col-xs-12">
+                                                <div class=" form-group">
+                                                    <div class=" col-xs-12">
                                                         <br>
-                                                        <button class="btn btn-lg btn-success" type="submit" name ="submit1" onclick="alert('Đã hủy yêu thích');">
-                                                        <i class="fas fa-heart" style="color : #FF725E"></i> Yêu thích</button>      <!-- hủy yêu thích -->
+                                                        <button class="btn-hidden" type="submit" name ="submit1" onclick="alert('Đã hủy yêu thích');">
+                                                        <i class="heart-position fas fa-heart" style="color : #f03e3e"></i> </button>      <!-- hủy yêu thích -->
                                                     </div>
                                                 </div>
                                             </form>
@@ -221,11 +221,11 @@
                                         <form action="./book_detail.php?action=addfvr&id=<?=$bo_id?>" method="Post" enctype="multipart/form-data"autocomplete="off" id="registrationForm">
                                                 <input type="hidden" name="book_id" id="book_id" value="<?= $bo_id ?>" />
                                                 <input type="hidden" name="user_id" id="user_id" value="<?= $u_id?>" />
-                                            <div class="form-group">
-                                                <div class="col-xs-12">
+                                            <div class=" form-group">
+                                                <div class=" col-xs-12">
                                                     <br>
-                                                    <button class="btn btn-lg btn-success" type="submit" name ="submit1" onclick="alert('Đã thêm vào yêu thích');">
-                                                    <i class="fas fa-heart" style="color :white"></i> Yêu thích </button>
+                                                    <button class="btn-hidden" type="submit" name ="submit1" onclick="alert('Đã thêm vào yêu thích');">
+                                                    <i class="heart-position fas fa-heart" style="color :white"></i> </button>
                                                 </div>
                                             </div>
                                         </form>
@@ -243,15 +243,19 @@
                     </dl>
 
                     <dl class="param param-feature">
-                      <h4>Tags:</h4>
+                      <h4 class="category">Tags:</h4>
+                            <div class="grid-3-col">
                             <?php
-                            $where3 ="";                     
+                            
+                            $where3 =""; 
+                                                
                             while ($genres = mysqli_fetch_array($result3)){ 
                                 $genres_id = $genres['genres_id'];
                                 $where3 .= (!empty($where3))? " OR "."`genres_id` = $genres_id" : "`genres_id` = $genres_id"; // neu rong thi luu luon chuoi, neu ko thi them AND
                                 ?>
-                            <a href="book.php?genres_id=<?= $genres['genres_id']?>" ><h4><?= $genres['name'] ?> </h4></a> 
+                            <a href="book.php?genres_id=<?= $genres['genres_id']?>" ><h4 class="tag-content"><?= $genres['name'] ?> </h4></a> 
                             <?php }
+                            
                             // var_dump($where3);exit;
 
                                 $genres_same = mysqli_query($con, "SELECT DISTINCT books_genres.book_id,books.*
@@ -261,6 +265,7 @@
                                                     LIMIT 8;  ");  
                             // var_dump($genres_same);exit;
                             ?>
+                            </div>
                     </dl>  <!-- item-property-hor .// -->
 
                     <hr>
@@ -299,9 +304,9 @@
               <div class="row justify-content-left d-flex">
                     <h2>COMMENT  : </h2>
                     <form method="post">
-                        <textarea class="form-control" name="tittle" rows="1" placeholder="Tiêu đề" style="width: 500px;"></textarea>                            
-                        <textarea class="form-control" name="content" rows="5" placeholder="Nội dung" style="width: 500px;"></textarea>                            
-                        <input type="submit" class="btn btn-primary" onclick="alert('Bình luận đã được gửi');">
+                        <textarea class="form-control" name="tittle" rows="1" placeholder="Tiêu đề" style="width: 800px;"></textarea>                            
+                        <textarea class="form-control" name="content" rows="5" placeholder="Nội dung" style="width: 800px;"></textarea>                            
+                        <input type="submit" class="comment-button" onclick="alert('Bình luận đã được gửi');">
                     </form>
               </div><!-- end COMMENT FORM -->
             </div>  
@@ -374,7 +379,7 @@
                         <div class="price"><?= number_format($row_genres['price'], 0, ",", ".") ?>đ <span> $20.99</span></div>
                         <form id="add-to-cart-form" action="cart.php?action=add" method="POST">
                         <input class="number-select" type="hidden" value="1" name="quantity[<?=$row_genres['id']?>]"/>
-                        <input class="buy-button btn btn-lg btn-primary text-uppercase" type="submit" value="Add to cart"  /> 
+                        <input class="add-cart-button" type="submit" value="Add to cart"  /> 
                         </form>
                     </div>
                 </div>
@@ -414,7 +419,7 @@
                         <div class="price"><?= number_format($row_author['price'], 0, ",", ".") ?>đ <span> $20.99</span></div>
                         <form id="add-to-cart-form" action="cart.php?action=add" method="POST">
                         <input class="number-select" type="hidden" value="1" name="quantity[<?=$row_author['id']?>]"/>
-                        <input class="buy-button btn btn-lg btn-primary text-uppercase" type="submit" value="Add to cart"  /> 
+                        <input class="add-cart-button" type="submit" value="Add to cart"  /> 
                         </form>
                     </div>
                 </div>
@@ -455,7 +460,8 @@
             
         }
     .product-name {
-        font-size: 2.2rem;
+        font-size: 3rem;
+        margin-bottom: 4rem;
     }
     .category {
         font-size: 1.7rem;
@@ -463,7 +469,7 @@
     }
     .overview-content {
         font-size: 1.2rem;
-        font-weight: 300;
+        font-weight: 350;
     }
     .buy-button {
                 height: 40px;
@@ -486,6 +492,8 @@
 
     .category-info {
         font-size: 1.7rem;
+        color: #000;
+        font-weight: 600;
     }
 
     .amount-selection-container {
@@ -533,6 +541,92 @@
         display: flex; 
         justify-content: space-between;
         margin-bottom: 1rem;
+    }
+
+    .heart-position {
+        
+        font-size: 3rem;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: #f03e3e;
+        
+
+    }
+
+    .col-sm-7 {
+        position: relative;
+    }
+
+    .btn-hidden {
+        position: absolute;
+        
+        top: 30px;
+        right: 50px;
+        padding: 0;
+        border: none;
+        display: inline;
+        background: #fff;
+        
+    }
+    button:focus {
+        outline: none;
+    }
+    .btn-hidden:hover, .btn-hidden:active {
+        background: #fff;
+        border: none;
+        cursor: pointer;
+    }
+    .form-group {
+        height: 0; 
+        margin-bottom: 0;
+    }
+
+    .price {
+        color: #f03e3e;
+        font-weight: 700;
+    }
+
+    .grid-3-col {
+        margin-top: 1rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .add-cart-button {
+        background-color: #27ae60;
+        padding: 5px 10px;
+        letter-spacing: 0.3px;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 3px;
+        margin-top: 10px;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 17px;
+        letter-spacing: 0.3px;
+    }
+
+    .add-cart-button:hover {
+        background-color: #219150;
+    }
+
+    .form-control {
+        margin-bottom: 10px;
+        margin-left: 5px;
+        font-size: 1.5rem;
+    }
+
+    .comment-button {
+        background-color: #27ae60;
+        padding: 5px 12px;
+        letter-spacing: 0.3px;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 3px;
+        margin-top: 5px;
+        letter-spacing: 0.3px;
+        font-weight: 500;
+        font-size: 15px;
+        margin-left: 5px;
     }
 </style>
 </html>
