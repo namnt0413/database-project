@@ -71,14 +71,14 @@
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
-                        <p style="text-align:center;padding: 5px"><b>DANH SÁCH <?= $config_title ?></b></p>
+                        <p style="text-align:center;padding: 5px;font-size: 30px;"><b>DANH SÁCH <?= $config_title ?></b></p>
                         <div class="row">
                             <div class="col-md-12" style="margin-bottom:10px">
                                 <form id="<?= $config_name ?>-search-form" action="<?= $config_name ?>.php?action=search" method="POST">
-                                    <fieldset>
-                                        ID: <input type="text" name="id" value="<?= !empty($id) ? $id : "" ?>" />
-                                        Tên người nhận: <input type="text" name="fullname" value="<?= !empty($name) ? $name : "" ?>" />
-                                        <input type="submit" value="Tìm" />
+                                    <fieldset class="flex-fieldset">
+                                        <p>ID: <input class="input-area" type="text" name="id" value="<?= !empty($id) ? $id : "" ?>" /> </p>
+                                        <p>Tên người nhận: <input class="input-area" type="text" name="fullname" value="<?= !empty($name) ? $name : "" ?>" /> </p>
+                                        <input class="button" type="submit" value="Tìm" />
                                     </fieldset>
                                 </form>
                                 <select name="sort" id="sort" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
@@ -104,12 +104,12 @@
                                     <table class="table table-data2" style="margin-top:5px;">
                                         <thead style="background-color:#444;color:#f4f4f4">
                                             <tr>
-                                                <th style="color:#f4f4f4;">ID</th>
-                                                <th style="color:#f4f4f4;">Tài khoản</th>
-                                                <th style="color:#f4f4f4;">Địa chỉ nhận hàng</th>
-                                                <th style="color:#f4f4f4;">Số điện thoại</th>
-                                                <th style="color:#f4f4f4;">Ngày tạo</th>
-                                                <th style="color:#f4f4f4;">Tổng tiền</th>
+                                                <th style="color:#f4f4f4;text-align: center;">ID</th>
+                                                <th style="color:#f4f4f4;text-align: center;">Tài khoản</th>
+                                                <th style="color:#f4f4f4;text-align: center;">Địa chỉ nhận hàng</th>
+                                                <th style="color:#f4f4f4;text-align: center;width: 15%;">Số điện thoại</th>
+                                                <th style="color:#f4f4f4;text-align: center;">Ngày tạo</th>
+                                                <th style="color:#f4f4f4;text-align: center;width: 15%;">Tổng tiền</th>
                                                 <th></th>
                                                 <th></th>
                                             </tr>
@@ -117,14 +117,14 @@
                                 <?php  while ($row = mysqli_fetch_array($orders)) { ?>                                    
                                         <tbody>
                                             <tr class="tr-shadow">
-                                                <td><?=$row['id']?></td>
-                                                <td><?=$row['first_name']." ".$row['last_name']?></td>
-                                                <td ><?=$row['address']?></td>
-                                                <td><?=$row['phone']?></td>
-                                                <td><?=$row['created_date']?></td>
-                                                <td><?= number_format($row['total'], 0, ",", ".")?></td>
-                                                <td><a class="fa fa-print" href="order_printing.php?id=<?=$row['id']?>" target="_blank"></a></td>
-                                                <td><a class="fa fa-trash" href="order_delete.php?id=<?=$row['id']?>"></a></td>
+                                                <td style="text-align:center;"><?=$row['id']?></td>
+                                                <td style="text-align:center;"><?=$row['first_name']." ".$row['last_name']?></td>
+                                                <td style="text-align:center;"><?=$row['address']?></td>
+                                                <td style="text-align:center;"><?=$row['phone']?></td>
+                                                <td style="text-align:center;"><?=$row['created_date']?></td>
+                                                <td style="text-align:center;"><?= number_format($row['total'], 0, ",", ".")?></td>
+                                                <td style="text-align:center;"><a class="fa fa-print" href="order_printing.php?id=<?=$row['id']?>" target="_blank"></a></td>
+                                                <td style="text-align:center;"><a class="fa fa-trash" href="order_delete.php?id=<?=$row['id']?>"></a></td>
                                             </tr><tr class="spacer"></tr>
                                         </tbody> 
                                  <?php  } ?>
@@ -139,9 +139,7 @@
                         
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -179,6 +177,57 @@
 
 
 </body>
+<style>
+    * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+                color: #495057;
+            }
+    .fa-trash {
+        color: #f03e3e;
+    }
 
+    .fa-trash:hover {
+        color: #f03e3e;
+    }
+
+    .flex-fieldset {
+        margin-top: 30px;
+        display: flex;
+        gap: 40px;
+        margin-bottom: 30px;
+        align-items: center;
+    }
+
+    .input-area {
+        height: 30px;
+        width: 330px;
+        
+        right: 10px;
+        border-radius: 9px;
+        border: 1px solid #ccc;
+        padding: 5px;
+    }
+
+    .button {
+                
+                font-size: 15px;
+                font-weight: 600;
+                background-color: #f59f00;
+                color: #fff;
+                text-decoration: none;
+                cursor: pointer;
+                border-radius: 5px;
+                border: 0;
+                padding: 5px 15px;
+                
+            }
+
+            .button:hover, .button:active {
+                background-color: #f08c00;
+            }
+</style>
 </html>
 <!-- end document-->

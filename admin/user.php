@@ -34,7 +34,37 @@
             #user_listing td{
                 padding: 12px 30px;
             }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+                color: #495057;
+            }
+            .header-wrap {
+                display: flex; 
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+            }
 
+            .link-button:link, .link-button:visited {
+                display: inline-block; 
+                text-decoration: none; 
+                font-size: 17px;
+                font-weight: 600;
+                background-color: #f59f00;
+                color: #fff;
+                text-decoration: none;
+                cursor: pointer;
+                border-radius: 9px;
+                border: 0;
+                padding: 10px 10px;
+            }
+
+            .link-button:hover, .link-button:active {
+                background-color: #f08c00;
+            }
         </style>
 
 
@@ -45,8 +75,10 @@
                         <div class="row">
                             <!-- <div id="user-info"> -->
                              <div class="col-xl-12">
+                                 <div class="header-wrap">
                                     <h1>Danh sách tài khoản</h1>
-                                    <a class="fa fa-user-plus" href="./user_create.php">Tạo tài khoản mới</a>
+                                    <a class="link-button fa fa-user-plus" href="./user_create.php">Tạo tài khoản mới</a>
+                                </div>
                                 <div class="table-responsive table--no-card m-b-30">
                                     <!-- <table id = "user-listing" style="width: 700px;"> -->
 
@@ -55,24 +87,24 @@
                             ?>                                    
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead id="user_listing" style="background-color: #444;color: #f4f4f4;">
-                                            <td>Tài khoản</td>
-                                            <td>Họ và tên đầy đủ</td>
-                                            <td>Ngày sinh</td>
-                                            <td>Số điện thoại</td>
-                                            <td>Trạng thái</td>
-                                            <td>Sửa</td>
-                                            <td>Xóa</td>
-                                            <td class="text-right">Cập nhật lần cuối</td>
+                                            <td style="color:white; text-align:center">Tài khoản</td>
+                                            <td style="color:white; text-align:center">Họ và tên đầy đủ</td>
+                                            <td style="color:white; text-align:center">Ngày sinh</td>
+                                            <td style="color:white; text-align:center">Số điện thoại</td>
+                                            <td style="color:white; text-align:center">Trạng thái</td>
+                                            <td style="color:white; text-align:center">Sửa</td>
+                                            <td style="color:white; text-align:center">Xóa</td>
+                                            <td style="color:white; text-align:center" class="text-right">Cập nhật lần cuối</td>
                                             <!-- <td class="text-right">Ngày tạo tài khoản</td> -->
                                         </thead>
                                         <?php
                                         while ($row = mysqli_fetch_array($result)) {
                                             ?>
                                             <tr>
-                                                <td><?= $row['username'] ?></td>
-                                                <td><?= $row['first_name']." ".$row['last_name'] ?></td>
-                                                <td><?= $row['birthday'] ?></td>
-                                                <td><?= $row['phone'] ?></td>
+                                                <td style="text-align:center"><?= $row['username'] ?></td>
+                                                <td style="text-align:center"><?= $row['first_name']." ".$row['last_name'] ?></td>
+                                                <td style="text-align:center"><?= $row['birthday'] ?></td>
+                                                <td style="text-align:center"><?= $row['phone'] ?></td>
                                                 <td>
                                                     <?php if ($row['status'] == 1 ){ ?>
                                                         <span class="role member">Kich hoat</span>
@@ -80,9 +112,9 @@
                                                         <span class="role admin">Vo hieu hoa</span>
                                                     <?php } ?>
                                                 </td>
-                                                <td><a class="fa fa-edit" href="./user_edit.php?id=<?= $row['id'] ?>" style="color:dodgerblue"></a></td>
-                                                <td><a class="fa fa-trash" href="./user_delete.php?id=<?= $row['id'] ?>" style="color:crimson"></a></td>
-                                                <td><?= $row['last_updated'] ?></td>
+                                                <td style="text-align:center"><a class="fa fa-edit" href="./user_edit.php?id=<?= $row['id'] ?>" style="color:dodgerblue"></a></td>
+                                                <td style="text-align:center"><a class="fa fa-trash" href="./user_delete.php?id=<?= $row['id'] ?>" style="color:crimson"></a></td>
+                                                <td style="text-align:center"><?= $row['last_updated'] ?></td>
                                                 <!-- <td> date('d/m/Y H:i', $row['created_date']) </td> -->
                                             </tr>
                                         <?php } ?>

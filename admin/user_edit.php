@@ -48,7 +48,7 @@
             .content-container {
                 margin-top: 5rem;
                 position: relative;
-                height: 125vh;
+                height: 150vh;
                 background-image: linear-gradient(#f4f4f4, #7ac187);
 
                  /* background-image: linear-gradient(rgba(233, 236, 239, 0.603), rgba(233, 236, 239, 0.603));
