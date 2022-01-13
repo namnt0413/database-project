@@ -15,7 +15,7 @@
     <?php 
         // include 'admin_navbar.php';
         
-        $orders = mysqli_query($con, "SELECT orders.fullname, orders.address, orders.phone, orders.note, orders_details.*, books.tittle as book_tittle 
+        $orders = mysqli_query($con, "SELECT orders.fullname, orders.address, orders.phone, orders.note, orders.created_date , orders_details.*, books.tittle as book_tittle 
         FROM orders
         INNER JOIN orders_details ON Orders.id = orders_details.order_id
         INNER JOIN books ON books.id = orders_details.book_id
@@ -26,7 +26,8 @@
         ?>
         <div id="order-detail-wrapper">
             <div id="order-detail">
-                <h1>Chi tiết đơn hàng</h1>
+                <h1>Chi tiết đơn hàng</h1><br>
+                <label>Ngày đặt hàng: </label><span> <?= $orders[0]['created_date'] ?></span><br/>
                 <label>Người nhận: </label><span> <?= $orders[0]['fullname'] ?></span><br/>
                 <label>Điện thoại: </label><span> <?= $orders[0]['phone'] ?></span><br/>
                  <label>Địa chỉ: </label><span> <?= $orders[0]['address'] ?></span><br/>
