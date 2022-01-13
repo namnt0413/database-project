@@ -12,7 +12,7 @@
     .content-container {
                
                 position: relative;
-                height: 160vh;
+                height: 220vh;
                  background-image: linear-gradient(rgba(233, 236, 239, 0.603), rgba(233, 236, 239, 0.603));
                  background-image: linear-gradient(rgba(34, 34, 34, 0.603), rgba(34, 34, 34, 0.603)), url(assets/image/login-theme.jpg);
                 background-size: cover;
@@ -98,7 +98,23 @@
             .button:hover, .button:active {
                 background-color: #f08c00;
             }
-            
+            .link-button:link, .link-button:visited {
+                display: inline-block; 
+                text-decoration: none; 
+                font-size: 17px;
+                font-weight: 600;
+                background-color: #f59f00;
+                color: #fff;
+                text-decoration: none;
+                cursor: pointer;
+                border-radius: 5px;
+                border: 0;
+                padding: 5px 10px;
+            }
+
+            .link-button:hover, .link-button:active {
+                background-color: #f08c00;
+            }
 </style>
 <?php
     include 'header.php';
@@ -223,10 +239,12 @@
 
 
                 <!-- neu cap nhat xongthanh cong -->
-                <div class = "container">
-                    <div class = "error"><?= isset($error) ? $error : "Cập nhật thành công" ?></div>
-                    <a href = "book.php">Quay lại trang quản lý sách</a>
+                <div class="content-container"  style="height:90vh;">
+                <div class = "box-content" style="width:500px">
+                    <div class = "error" style="margin-bottom:20px; font-size: 20px;"><?= isset($error) ? $error : "Cập nhật thành công" ?></div>
+                    <a href = "book.php" class="link-button">Quay lại trang quản lý sách</a>
                 </div>
+            </div>
             </div><!-- end col-md-12 -->
             <?php
             }   
