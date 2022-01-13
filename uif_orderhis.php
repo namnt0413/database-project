@@ -15,7 +15,16 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <style>
-img {
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  color: #495057;
+}
+
+.page-img {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -43,10 +52,12 @@ table {
   box-shadow: 0px 2px 5px 0px rgb(0 0 0 / 10%);
 }
 thead tr {
-        background-color: #333;
+        background-color: #434343;
         color: #fff;
       }
-
+thead td {
+  color: #fff;
+}
 td {
   /* border: 1px solid #343a40; */
   padding: 16px 24px;
@@ -60,6 +71,25 @@ td {
 #table-row:nth-child(even) {
   background-color: #f5f5f5;
 }
+
+.btn-lg {
+  margin-top: 8px;
+  padding: 4.5px 9px;
+  font-size: 16px;
+  background-color: #27ae60;
+  color: #fff;
+  font-weight: 500;
+}
+
+.btn-lg:hover {
+  background-color: #219150;
+  color: #fff;
+}
+
+.nav-tabs {
+                display: flex; 
+                justify-content: space-between;
+            }
 </style>
 
 <!-- <hr> -->
@@ -76,14 +106,11 @@ td {
     <div class="row">
   		<div class="col-sm-4"><!--left col-->
         <div class="text-center">
-          <img src="<?= $currentUser['avatar'] ?>" class="avatar img-circle img-thumbnail" alt="avatar" style="width:200px;height:200px;">
+          <img src="<?= $currentUser['avatar'] ?>" class="page-img avatar img-circle img-thumbnail" alt="avatar" style="width:200px;height:200px;">
         </div>
 
         <br>
-          <div class="panel panel-default">
-            <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
-            <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
-          </div>
+          
           
           <?php
               $current_id = $currentUser['id'];
@@ -169,7 +196,7 @@ td {
                 </td>
                 <td style="text-align: center">Ảnh</td>
                 <td style="text-align: center">Giá</td>
-                <td style="text-align: center">Số lượng</td>
+                <td style="text-align: center; width: 25%">Số lượng</td>
                 <td style="text-align: center">Ngày mua </td>
               </tr>
             </thead>
@@ -185,7 +212,7 @@ td {
                   </td>
                   
                   <td>
-                    <img style="width: 80px;height: 100px;"
+                    <img class="page-img" style="width: 80px;height: 100px;"
                       src="./<?= $row['image'] ?>" alt="<?= $row['tittle'] ?>" title="<?= $row['tittle']?>" >
                   </td>
                   
@@ -198,7 +225,7 @@ td {
                     <br>
                     <form id="add-to-cart-form" action="cart.php?action=add" method="POST">
                       <input class="number-select" type="hidden" value="1" name="quantity[<?=$row['id']?>]"/>
-                      <input class="buy-button btn btn-lg btn-primary text-uppercase" type="submit" value="Mua lại"  /> 
+                      <input class="buy-button btn btn-lg text-uppercase" type="submit" value="Mua lại"  /> 
                     </form>
                 </tr>
             <?php 

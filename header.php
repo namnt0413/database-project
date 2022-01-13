@@ -111,7 +111,17 @@
     </nav>
 
 
+<style> 
+    .header-1 {
+        display: flex; 
+        align-items: center;
+    }
 
+    .user_navbar {
+        display: flex; 
+        align-items: center;
+    }
+</style>
 
 
 

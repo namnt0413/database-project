@@ -36,12 +36,17 @@
                 font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
                 color: #495057;
             }
+
+            .glyphicon {
+                color: #fff;
+            }
+
             h1 {
                 margin-bottom: 3rem;
             }
 
             h4 {
-                font-size: 1rem; 
+                font-size: 1.5rem; 
                 margin-bottom: 1rem;
             }
             label {
@@ -100,6 +105,11 @@
             .btn:hover {
                 background-color: #219150;
             }
+
+            .nav-tabs {
+                display: flex; 
+                justify-content: space-between;
+            }
         </style>
 </head>
 
@@ -122,10 +132,7 @@
                     <img src="<?= $currentUser['avatar'] ?>" class="avatar img-circle img-thumbnail" alt="avatar" style="width:200px;height:200px;">
                 </div>
             <br>
-                <div class="panel panel-default">
-                    <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
-                    <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
-                </div>
+                
 
                 <?php
                     $current_id = $currentUser['id'];

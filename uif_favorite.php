@@ -15,7 +15,16 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <style>
-img {
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    color: #495057;
+}
+            
+.page-img {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -36,17 +45,23 @@ img {
     color: var(--white);
     font-weight: 600;
 }
+
+
 table {
   border-collapse: collapse;
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0px 2px 5px 0px rgb(0 0 0 / 10%);
 }
+
 thead tr {
-        background-color: #333;
+        background-color: #434343;
         color: #fff;
       }
 
+thead td {
+  color: #fff;
+}
 td {
   /* border: 1px solid #343a40; */
   padding: 16px 24px;
@@ -60,6 +75,30 @@ td {
 #table-row:nth-child(even) {
   background-color: #f5f5f5;
 }
+
+.fa-trash {
+  color: #fa5252;
+}
+
+.fa-trash:hover {
+  color: #e03131;
+}
+
+.nav-tabs {
+                display: flex; 
+                justify-content: space-between;
+            }
+  
+.book-link:link, .book-link:visited {
+  text-decoration: none;
+  color: #495057;
+}
+
+.book-link:hover, .book-link:active {
+  text-decoration: underline;
+}
+
+
 </style>
 
 <!-- <hr> -->
@@ -76,14 +115,11 @@ td {
     <div class="row">
   		<div class="col-sm-4"><!--left col-->
         <div class="text-center">
-          <img src="<?= $currentUser['avatar'] ?>" class="avatar img-circle img-thumbnail" alt="avatar" style="width:200px;height:200px;">
+          <img src="<?= $currentUser['avatar'] ?>" class="page-img avatar img-circle img-thumbnail" alt="avatar" style="width:200px;height:200px;">
         </div>
 
         <br>
-          <div class="panel panel-default">
-            <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
-            <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
-          </div>
+          
           
           <?php
               $current_id = $currentUser['id'];
@@ -159,7 +195,7 @@ td {
             <thead>
               <tr>
                 <td style="text-align: center">ID</td>
-                <td style="text-align: center">
+                <td style="text-align: center; width: 35%">
                   Tên sách
                 </td>
                 <td style="text-align: center">Ảnh</td>
@@ -175,18 +211,18 @@ td {
                 <a href="book_detail.php?id=<?= $row['id'] ?>">  
                   <tr id="table-row">
                     <td style="text-align: center">
-                      <a href="book_detail.php?id=<?= $row['id']?>"> 
+                      <a class="book-link" href="book_detail.php?id=<?= $row['id']?>"> 
                         <?= $row['id'] ?>
                       </a>
                     </td>
                     <td style="text-align: center">
-                      <a href="book_detail.php?id=<?= $row['id']?>"> 
+                      <a class="book-link" href="book_detail.php?id=<?= $row['id']?>"> 
                         <?= $row['tittle'] ?>
                       </a>
                     </td>                  
                     <td>
-                      <a href="book_detail.php?id=<?= $row['id'] ?>" class="card-img" >  
-                        <img style="width: 80px;height: 100px;"
+                      <a class="book-link" href="book_detail.php?id=<?= $row['id'] ?>" class="card-img" >  
+                        <img class="page-img" style="width: 80px;height: 100px;"
                           src="./<?= $row['image'] ?>" alt="<?= $row['tittle'] ?>"title="<?= $row['tittle']?>" >
                       </a>
                     </td>

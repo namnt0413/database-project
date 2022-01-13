@@ -53,12 +53,15 @@
                 font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
                 color: #495057;
             }
+            .glyphicon {
+                color: #fff;
+            }
             h1 {
                 margin-bottom: 3rem;
             }
 
             h4 {
-                font-size: 1rem; 
+                font-size: 1.5rem; 
                 margin-bottom: 1rem;
             }
             label {
@@ -116,6 +119,22 @@
 
             .btn:hover {
                 background-color: #219150;
+            }
+
+            .nav-tabs {
+                display: flex; 
+                justify-content: space-between;
+            }
+
+            input[type='file'] {
+            color: transparent;
+            width: 90px;
+            }
+
+            .image_and_button {
+                display: flex;
+                flex-direction: column; 
+                align-items: center;
             }
         </style>
 </head>
@@ -176,15 +195,19 @@
                                 <?php 
                                     if (isset($user['avatar'])) { 
                                         ?>  <!-- Neu co anh dai dien  -->
+                                        <div class="image_and_button">
                                         <img src="<?= $user['avatar'] ?>" class="avatar img-circle img-thumbnail" alt="avatar" style="width:200px;height:200px;">
                                         <br>
                                         <input type="file" name="avatar"/><br>
+                                        </div>
                                     <?php   
                                     } else { 
                                         ?>
-                                        <img src="../assets/image/user/user.png"  class="avatar img-circle img-thumbnail" alt="avatar" style="width:200px;height:200px;">
-                                        <br>
-                                        <input type="file" name="avatar" /><br>      <!-- nut choosen file-->
+                                        <div class="image_and_button">
+                                            <img src="../assets/image/user/user.png"  class="avatar img-circle img-thumbnail" alt="avatar" style="width:200px;height:200px;">
+                                            <br>
+                                            <input type="file" name="avatar" /><br>      <!-- nut choosen file-->
+                                        </div>
                                         <br></br>
                                     <?php 
                                     }
@@ -200,10 +223,7 @@
                     <!-- text center -->
                     
                     </hr><br></br>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
-                        <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
-                    </div>
+                   
                     
                     <?php
                         $current_id = $currentUser['id'];
