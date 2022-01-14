@@ -28,15 +28,18 @@
                         <?php
                         $error = false;
                         
-                        if (isset($_GET['action']) && $_GET['action'] == 'create' && isset($_GET['id']) ) {
+                        if (isset($_GET['action']) && $_GET['action'] == 'create' && isset($_GET['id'])  ) {
                             // include '../connect_db.php';
-
+                            $result = false;
+                            if( !empty($_POST['started_date']) ){
+                            
                             $result = mysqli_query($con, "INSERT INTO `books_publishers` (`book_id`,`publisher_id`, `started_date`)
                             VALUES ('" . $book_id . "' , '" . $_POST['publisher_id'] . "' , '" . $_POST['started_date'] ."' ) ");
                             // var_dump($result);exit;
-                            if (!$result) {
-                                $error = "Bạn đã thêm trùng Nhà xuất bản.";
                             }
+                            if (!$result) {
+                                $error = "Bạn đã nhập sai thông tin.";
+                            } 
                             mysqli_close($con);
                             if ($error !== false) {
                                 ?>

@@ -103,19 +103,21 @@
             if ($search) { // neu co search thi lot vao ham nay , ko thi lot vao duoi vs dk order
                 $books = mysqli_query($con, "SELECT * 
                 FROM `books` INNER JOIN `books_publishers` ON books.id = books_publishers.book_id 
-                WHERE `publisher_id` = $publisher_id AND `tittle` LIKE '%" . $search . "%' ".$orderConditon."  
+                WHERE `publisher_id` = $publisher_id AND started_date = (SELECT MAX(started_date) FROM books_publishers WHERE `book_id` = books.id  AND started_date <=NOW() )
+                 AND `tittle` LIKE '%" . $search . "%' ".$orderConditon."  
                 LIMIT " . $item_per_page . " OFFSET " . $offset);
 
                 $totalRecords = mysqli_query($con, "SELECT * FROM `books` INNER JOIN `books_publishers` ON books.id = books_publishers.book_id 
-                WHERE `publisher_id` = $publisher_id AND `tittle` LIKE '%" . $search . "%'");
+                WHERE `publisher_id` = $publisher_id AND started_date = (SELECT MAX(started_date) FROM books_publishers WHERE `book_id` = books.id  AND started_date <=NOW() )
+                 AND `tittle` LIKE '%" . $search . "%'");
             } else {
             $books = mysqli_query($con, "SELECT * 
             FROM `books` INNER JOIN `books_publishers` ON books.id = books_publishers.book_id 
-            WHERE `publisher_id` = $publisher_id
+            WHERE `publisher_id` = $publisher_id AND started_date = (SELECT MAX(started_date) FROM books_publishers WHERE `book_id` = books.id  AND started_date <=NOW() )
              ".$orderConditon."  LIMIT " . $item_per_page . " OFFSET " . $offset . " ");   // sau khi cap nhat va sd orderCondition
 
             $totalRecords = mysqli_query($con, "SELECT * FROM `books` INNER JOIN `books_publishers` ON books.id = books_publishers.book_id 
-            WHERE `publisher_id` = $publisher_id ");
+            WHERE `publisher_id` = $publisher_id AND started_date = (SELECT MAX(started_date) FROM books_publishers WHERE `book_id` = books.id  AND started_date <=NOW() )");
             }
             $totalRecords = $totalRecords->num_rows;
             $totalPages = ceil($totalRecords / $item_per_page);
