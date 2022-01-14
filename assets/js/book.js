@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // For Applying Filters
   $("#inner-box").collapse(false);
   $("#inner-box2").collapse(false);
+  $("#inner-box3").collapse(false);
 
   // For changing NavBar-Toggler-Icon
   var icon = document.getElementById("icon");

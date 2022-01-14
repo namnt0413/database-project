@@ -5,9 +5,10 @@
 
     $genres = mysqli_query($con, "SELECT * FROM genres ;  "); 
     $publisher = mysqli_query($con, "SELECT * FROM publishers ;  ");  
+    $author = mysqli_query($con, "SELECT * FROM authors ;  ");  
     
 
-    if( isset($_GET['genres_id'])|| isset($_GET['publisher_id']) || isset($_GET['sort_price']) ){
+    if( isset($_GET['genres_id'])|| isset($_GET['publisher_id']) || isset($_GET['sort_price']) || isset($_GET['author_id'])){
         // var_dump(1);exit;
         if( isset($_GET['genres_id'])){
             $genres_id = $_GET['genres_id'];
@@ -120,7 +121,61 @@
             $totalPages = ceil($totalRecords / $item_per_page);
             // $books = mysqli_query($con, "SELECT * FROM `books` ORDER BY `id` ASC LIMIT " . $item_per_page . " OFFSET " . $offset);
 
-        }else{
+        } else if( isset($_GET['author_id'])) { 
+            $author_id = $_GET['author_id'];
+            // PHAN TRANG
+                $orderConditon = "";  //  String chua dieu kien order : vd ORDER BY product.name ASC/DESC
+                
+                $where = "WHERE author_id = $author_id";
+                $sortParam = "author_id=".$author_id."&";
+                $param = "author_id=".$author_id."&";
+    
+                //Tìm kiếm
+                $search = isset($_GET['tittle']) ? $_GET['tittle'] : "";// khoi tao bien search =rong hoac = get[name]
+                if ($search) {//TRONG TH co FILTER
+                $where .= "AND `tittle` LIKE '%" . $search . "%'";
+                $param .= "tittle=".$search."&";      //noi chuoi param thanh dang : name="zzzzz"&
+                $sortParam .=  "tittle=".$search."&";  // noi chuoi sortParam voi order de ket hop
+                }
+    
+                //Sắp xếp
+                $orderField = isset($_GET['field']) ? $_GET['field'] : "";  // gan vs feild GET dc
+                // var_dump($orderField);exit;
+                $orderSort = isset($_GET['sort']) ? $_GET['sort'] : "";     // gan voi orderSort GET duoc
+                if(!empty($orderField) && !empty($orderSort)){
+                    if( $orderField == "price" ){
+                        $orderConditon = "ORDER BY (`books`.`".$orderField."`- books.discount) ".$orderSort; // = ORDER BY product.name ASC/DESC
+                        $param .= "field=".$orderField."&sort=".$orderSort."&";   // gan them orderField(name) va orderSort(asc,desc) vao chuoi phan trang
+                    } else {
+                  $orderConditon = "ORDER BY `books`.`".$orderField."` ".$orderSort; // = ORDER BY product.name ASC/DESC
+                  $param .= "field=".$orderField."&sort=".$orderSort."&";   // gan them orderField(name) va orderSort(asc,desc) vao chuoi phan trang
+                    }
+                }
+    
+                $item_per_page = (!empty($_GET['per_page'])) ? $_GET['per_page'] : 4;
+                $current_page = (!empty($_GET['page'])) ? $_GET['page'] : 1;
+                $offset = ($current_page - 1) * $item_per_page;
+                if ($search) { // neu co search thi lot vao ham nay , ko thi lot vao duoi vs dk order
+                    $books = mysqli_query($con, "SELECT * 
+                    FROM `books` INNER JOIN `books_authors` ON books.id = books_authors.book_id 
+                    WHERE `author_id` = $author_id AND `tittle` LIKE '%" . $search . "%' ".$orderConditon."  
+                    LIMIT " . $item_per_page . " OFFSET " . $offset);
+    
+                    $totalRecords = mysqli_query($con, "SELECT * FROM `books` INNER JOIN `books_authors` ON books.id = books_authors.book_id 
+                    WHERE `author_id` = $author_id AND `tittle` LIKE '%" . $search . "%'");
+                } else {
+                $books = mysqli_query($con, "SELECT * 
+                FROM `books` INNER JOIN `books_authors` ON books.id = books_authors.book_id 
+                WHERE `author_id` = $author_id
+                 ".$orderConditon."  LIMIT " . $item_per_page . " OFFSET " . $offset . " ");   // sau khi cap nhat va sd orderCondition
+    
+                $totalRecords = mysqli_query($con, "SELECT * FROM `books` INNER JOIN `books_authors` ON books.id = books_authors.book_id 
+                WHERE `author_id` = $author_id ");
+                }
+                $totalRecords = $totalRecords->num_rows;
+                $totalPages = ceil($totalRecords / $item_per_page);
+                // $books = mysqli_query($con, "SELECT * FROM `books` ORDER BY `id` ASC LIMIT " . $item_per_page . " OFFSET " . $offset);            
+        } else {
             // var_dump($_GET['sort_price']);exit;
             $sort_price = $_GET['sort_price'];
 
@@ -332,6 +387,16 @@
                             <?php } ?>
                         </div>
                     </div>
+
+                    <div class="box border-bottom">
+                        <div class="box-label text-uppercase d-flex align-items-center">Tác giả<button class="btn ml-auto" type="button" data-toggle="collapse" data-target="#inner-box3" aria-expanded="false" aria-controls="inner-box3"><span class="fas fa-plus"></span></button> </div>
+                        <div id="inner-box3" class="collapse mt-2 mr-1">
+                            <?php while( $row3 = mysqli_fetch_array($author) ){ ?>
+                                <div class="my-1"> <a href="./book.php?author_id=<?=$row3['id']?>"><?=$row3['first_name']." ".$row3['last_name'] ?></a> </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+
                     <div class="box">
                         <div class="box-label text-uppercase d-flex align-items-center">Giá<button class="btn ml-auto" type="button" data-toggle="collapse" data-target="#size" aria-expanded="false" aria-controls="size"><span class="fas fa-plus"></span></button> </div>
                         <div id="size" class="collapse">
@@ -351,6 +416,29 @@
                 </div>
 
                 <div id="products">
+            <?php if(isset($_GET['genres_id'])){ 
+                $sort_genres = mysqli_query($con, "SELECT * FROM genres WHERE id = $genres_id ;  ");     
+                $sort_genres = mysqli_fetch_assoc($sort_genres) ;
+            ?>
+                    <h2>Tìm kiếm theo thể loại: <?= $sort_genres['name'] ?></h2>
+
+            <?php } else if( isset($_GET['publisher_id'])) {
+                $sort_publisher = mysqli_query($con, "SELECT * FROM publishers WHERE id = $publisher_id ;  ");     
+                $sort_publisher = mysqli_fetch_assoc($sort_publisher) ;    
+            ?>
+                    <h2>Tìm kiếm theo Nhà xuất bản: <?= $sort_publisher['name'] ?></h2>
+                
+            <?php } else if( isset($_GET['sort_price']) ){ ?>
+                <h2>Tìm kiếm theo giá < <?= $sort_price ?></h2>
+
+            <?php } else if( isset($_GET['author_id'])){ 
+                $sort_author = mysqli_query($con, "SELECT * FROM authors WHERE id = $author_id ;  ");     
+                $sort_author = mysqli_fetch_assoc($sort_author) ;         
+            ?>
+                <h2>Tìm kiếm theo tác giả: <?= $sort_author['first_name']." ".$sort_author['last_name']?></h2>
+
+            <?php } ?>
+            
                     <div class="row mx-0">
                 <?php
                   while ($row = mysqli_fetch_array($books)) {
