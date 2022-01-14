@@ -1,6 +1,7 @@
 <?php 
     include 'header.php' ;
-
+    $book_id = $_GET['id'];
+    // var_dump($book_id);
 
     if(isset($_POST['content']) && isset($_POST['tittle']) ){
         $tittle = $_POST['tittle'];
@@ -16,7 +17,7 @@
     }
 
     // lay ra thong tin sach
-    $result = mysqli_query($con, "SELECT * FROM `books` WHERE `id` = ".$_GET['id']);
+    $result = mysqli_query($con, "SELECT * FROM `books` WHERE `id` =  $book_id");
     $book = mysqli_fetch_assoc($result);
     // var_dump($book);exit;
 
@@ -101,7 +102,7 @@
                         <span class="category">Nhà xuất bản: </span> 
                     	<span class="category-info  h3 "> 
                             <?php while ($publisher = mysqli_fetch_array($result4)){ ?>
-                    	        <span class=""><?=$publisher['name']?></span>
+                                <a class="category-info" href="book.php?publisher_id=<?= $publisher['publisher_id']?>" ><?= $publisher['name']?></a> 
                             <?php } ?>
                     	</span> 
                     </p> <!-- publicsher-detail-wrap .// -->

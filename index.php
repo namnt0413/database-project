@@ -45,7 +45,7 @@
             <div class="swiper books-slider">
                 <div class="swiper-wrapper">
                     <?php while ($book1 =  mysqli_fetch_array($result1) ){?>
-                        <a href="book_detail.php?id=<?=$book1['id']?>" class="swiper-slide"><img src="<?=$book1['image']?>" alt=""></a>
+                        <a href="book_detail.php?id=<?=$book1['id']?>" class="swiper-slide"><img src="<?=$book1['image']?>" alt="" style="margin-bottom: 14px;"></a>
                     <?php } ?>
                 </div>
                 <img src="./assets/image/stand.png" class="stand" alt="">

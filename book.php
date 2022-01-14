@@ -3,17 +3,199 @@
 
     //$books = mysqli_query($con, "SELECT books.* FROM `books`  ORDER BY `id` ASC " );
 
-    // PHAN TRANG
-        $param = "";          // khoi tao bien param la chuoi trong filter de gan vs perpage va page
-        $sortParam = "";      // khoi tao sortParam la chuoi trong filter ket hop vs order
-        $orderConditon = "";  //  String chua dieu kien order : vd ORDER BY product.name ASC/DESC
-        
+    $genres = mysqli_query($con, "SELECT * FROM genres ;  "); 
+    $publisher = mysqli_query($con, "SELECT * FROM publishers ;  ");  
+    
+
+    if( isset($_GET['genres_id'])|| isset($_GET['publisher_id']) || isset($_GET['sort_price']) ){
+        // var_dump(1);exit;
+        if( isset($_GET['genres_id'])){
+            $genres_id = $_GET['genres_id'];
+        // PHAN TRANG
+            $orderConditon = "";  //  String chua dieu kien order : vd ORDER BY product.name ASC/DESC
+            
+            $where = "WHERE genres_id = $genres_id";
+            $sortParam = "genres_id=".$genres_id."&";
+            $param = "genres_id=".$genres_id."&";
+
+            //Tìm kiếm
+            $search = isset($_GET['tittle']) ? $_GET['tittle'] : "";// khoi tao bien search =rong hoac = get[name]
+            if ($search) {//TRONG TH co FILTER
+            $where .= "AND `tittle` LIKE '%" . $search . "%'";
+            $param .= "tittle=".$search."&";      //noi chuoi param thanh dang : name="zzzzz"&
+            $sortParam .=  "genres_id=".$genres_id."&tittle=".$search."&";  // noi chuoi sortParam voi order de ket hop
+            }
+
+            //Sắp xếp
+            $orderField = isset($_GET['field']) ? $_GET['field'] : "";  // gan vs feild GET dc
+            // var_dump($orderField);exit;
+            $orderSort = isset($_GET['sort']) ? $_GET['sort'] : "";     // gan voi orderSort GET duoc
+            if(!empty($orderField) && !empty($orderSort)){
+                if( $orderField == "price" ){
+                    $orderConditon = "ORDER BY (`books`.`".$orderField."`- books.discount) ".$orderSort; // = ORDER BY product.name ASC/DESC
+                    $param .= "field=".$orderField."&sort=".$orderSort."&";   // gan them orderField(name) va orderSort(asc,desc) vao chuoi phan trang
+                } else {
+              $orderConditon = "ORDER BY `books`.`".$orderField."` ".$orderSort; // = ORDER BY product.name ASC/DESC
+              $param .= "field=".$orderField."&sort=".$orderSort."&";   // gan them orderField(name) va orderSort(asc,desc) vao chuoi phan trang
+                }
+            }
+
+            $item_per_page = (!empty($_GET['per_page'])) ? $_GET['per_page'] : 4;
+            $current_page = (!empty($_GET['page'])) ? $_GET['page'] : 1;
+            $offset = ($current_page - 1) * $item_per_page;
+            if ($search) { // neu co search thi lot vao ham nay , ko thi lot vao duoi vs dk order
+                $books = mysqli_query($con, "SELECT * 
+                FROM `books` INNER JOIN `books_genres` ON books.id = books_genres.book_id 
+                WHERE `genres_id` = $genres_id AND `tittle` LIKE '%" . $search . "%' ".$orderConditon."  
+                LIMIT " . $item_per_page . " OFFSET " . $offset);
+
+                $totalRecords = mysqli_query($con, "SELECT * FROM `books` INNER JOIN `books_genres` ON books.id = books_genres.book_id 
+                WHERE `genres_id` = $genres_id AND `tittle` LIKE '%" . $search . "%'");
+            } else {
+            $books = mysqli_query($con, "SELECT * 
+            FROM `books` INNER JOIN `books_genres` ON books.id = books_genres.book_id 
+            WHERE `genres_id` = $genres_id
+             ".$orderConditon."  LIMIT " . $item_per_page . " OFFSET " . $offset . " ");   // sau khi cap nhat va sd orderCondition
+
+            $totalRecords = mysqli_query($con, "SELECT * FROM `books` INNER JOIN `books_genres` ON books.id = books_genres.book_id 
+            WHERE `genres_id` = $genres_id ");
+            }
+            $totalRecords = $totalRecords->num_rows;
+            $totalPages = ceil($totalRecords / $item_per_page);
+            // $books = mysqli_query($con, "SELECT * FROM `books` ORDER BY `id` ASC LIMIT " . $item_per_page . " OFFSET " . $offset);
+
+
+        } else if( isset($_GET['publisher_id'])) {
+            $publisher_id = $_GET['publisher_id'];
+        // PHAN TRANG
+            $orderConditon = "";  //  String chua dieu kien order : vd ORDER BY product.name ASC/DESC
+            
+            $where = "WHERE publisher_id = $publisher_id";
+            $sortParam = "publisher_id=".$publisher_id."&";
+            $param = "publisher_id=".$publisher_id."&";
+
+            //Tìm kiếm
+            $search = isset($_GET['tittle']) ? $_GET['tittle'] : "";// khoi tao bien search =rong hoac = get[name]
+            if ($search) {//TRONG TH co FILTER
+            $where .= "AND `tittle` LIKE '%" . $search . "%'";
+            $param .= "tittle=".$search."&";      //noi chuoi param thanh dang : name="zzzzz"&
+            $sortParam .=  "tittle=".$search."&";  // noi chuoi sortParam voi order de ket hop
+            }
+
+            //Sắp xếp
+            $orderField = isset($_GET['field']) ? $_GET['field'] : "";  // gan vs feild GET dc
+            // var_dump($orderField);exit;
+            $orderSort = isset($_GET['sort']) ? $_GET['sort'] : "";     // gan voi orderSort GET duoc
+            if(!empty($orderField) && !empty($orderSort)){
+                if( $orderField == "price" ){
+                    $orderConditon = "ORDER BY (`books`.`".$orderField."`- books.discount) ".$orderSort; // = ORDER BY product.name ASC/DESC
+                    $param .= "field=".$orderField."&sort=".$orderSort."&";   // gan them orderField(name) va orderSort(asc,desc) vao chuoi phan trang
+                } else {
+              $orderConditon = "ORDER BY `books`.`".$orderField."` ".$orderSort; // = ORDER BY product.name ASC/DESC
+              $param .= "field=".$orderField."&sort=".$orderSort."&";   // gan them orderField(name) va orderSort(asc,desc) vao chuoi phan trang
+                }
+            }
+
+            $item_per_page = (!empty($_GET['per_page'])) ? $_GET['per_page'] : 4;
+            $current_page = (!empty($_GET['page'])) ? $_GET['page'] : 1;
+            $offset = ($current_page - 1) * $item_per_page;
+            if ($search) { // neu co search thi lot vao ham nay , ko thi lot vao duoi vs dk order
+                $books = mysqli_query($con, "SELECT * 
+                FROM `books` INNER JOIN `books_publishers` ON books.id = books_publishers.book_id 
+                WHERE `publisher_id` = $publisher_id AND `tittle` LIKE '%" . $search . "%' ".$orderConditon."  
+                LIMIT " . $item_per_page . " OFFSET " . $offset);
+
+                $totalRecords = mysqli_query($con, "SELECT * FROM `books` INNER JOIN `books_publishers` ON books.id = books_publishers.book_id 
+                WHERE `publisher_id` = $publisher_id AND `tittle` LIKE '%" . $search . "%'");
+            } else {
+            $books = mysqli_query($con, "SELECT * 
+            FROM `books` INNER JOIN `books_publishers` ON books.id = books_publishers.book_id 
+            WHERE `publisher_id` = $publisher_id
+             ".$orderConditon."  LIMIT " . $item_per_page . " OFFSET " . $offset . " ");   // sau khi cap nhat va sd orderCondition
+
+            $totalRecords = mysqli_query($con, "SELECT * FROM `books` INNER JOIN `books_publishers` ON books.id = books_publishers.book_id 
+            WHERE `publisher_id` = $publisher_id ");
+            }
+            $totalRecords = $totalRecords->num_rows;
+            $totalPages = ceil($totalRecords / $item_per_page);
+            // $books = mysqli_query($con, "SELECT * FROM `books` ORDER BY `id` ASC LIMIT " . $item_per_page . " OFFSET " . $offset);
+
+        }else{
+            // var_dump($_GET['sort_price']);exit;
+            $sort_price = $_GET['sort_price'];
+
+                // PHAN TRANG
+                $orderConditon = "";  //  String chua dieu kien order : vd ORDER BY product.name ASC/DESC
+                
+                $where = "WHERE (price - discount) <= $sort_price ";
+                $sortParam = "sort_price=".$sort_price."&";
+                $param = "sort_price=".$sort_price."&";
+    
+                //Tìm kiếm
+                $search = isset($_GET['tittle']) ? $_GET['tittle'] : "";// khoi tao bien search =rong hoac = get[name]
+                if ($search) {//TRONG TH co FILTER
+                $where .= "AND `tittle` LIKE '%" . $search . "%'";
+                $param .= "tittle=".$search."&";      //noi chuoi param thanh dang : name="zzzzz"&
+                $sortParam .=  "tittle=".$search."&";  // noi chuoi sortParam voi order de ket hop
+                }
+    
+                //Sắp xếp
+                $orderField = isset($_GET['field']) ? $_GET['field'] : "";  // gan vs feild GET dc
+                // var_dump($orderField);exit;
+                $orderSort = isset($_GET['sort']) ? $_GET['sort'] : "";     // gan voi orderSort GET duoc
+                if(!empty($orderField) && !empty($orderSort)){
+                    if( $orderField == "price" ){
+                        $orderConditon = "ORDER BY (`books`.`".$orderField."`- books.discount) ".$orderSort; // = ORDER BY product.name ASC/DESC
+                        $param .= "field=".$orderField."&sort=".$orderSort."&";   // gan them orderField(name) va orderSort(asc,desc) vao chuoi phan trang
+                    } else {
+                  $orderConditon = "ORDER BY `books`.`".$orderField."` ".$orderSort; // = ORDER BY product.name ASC/DESC
+                  $param .= "field=".$orderField."&sort=".$orderSort."&";   // gan them orderField(name) va orderSort(asc,desc) vao chuoi phan trang
+                    }
+                }else {
+                    $orderConditon = "ORDER BY (price-discount) DESC";
+                }
+    
+                $item_per_page = (!empty($_GET['per_page'])) ? $_GET['per_page'] : 8;
+                $current_page = (!empty($_GET['page'])) ? $_GET['page'] : 1;
+                $offset = ($current_page - 1) * $item_per_page;
+                if ($search) { // neu co search thi lot vao ham nay , ko thi lot vao duoi vs dk order
+                    $books = mysqli_query($con, "SELECT * 
+                    FROM `books` 
+                    WHERE (price-discount) <= $sort_price AND `tittle` LIKE '%" . $search . "%' ".$orderConditon."  
+                    LIMIT " . $item_per_page . " OFFSET " . $offset);
+    
+                    $totalRecords = mysqli_query($con, "SELECT * FROM `books`
+                    WHERE (price-discount) <= $sort_price AND `tittle` LIKE '%" . $search . "%'");
+                } else {
+                $books = mysqli_query($con, "SELECT * 
+                FROM `books` 
+                WHERE (price-discount) <= $sort_price
+                 ".$orderConditon."  LIMIT " . $item_per_page . " OFFSET " . $offset . " ");   // sau khi cap nhat va sd orderCondition
+    
+                $totalRecords = mysqli_query($con, "SELECT * FROM `books` 
+                WHERE (price-discount) <= $sort_price ");
+                }
+                $totalRecords = $totalRecords->num_rows;
+                $totalPages = ceil($totalRecords / $item_per_page);
+                // $books = mysqli_query($con, "SELECT * FROM `books` ORDER BY `id` ASC LIMIT " . $item_per_page . " OFFSET " . $offset);
+    
+
+        }
+
+
+
+    } else {
+
+        // PHAN TRANG
+            $param = "";          // khoi tao bien param la chuoi trong filter de gan vs perpage va page
+            $sortParam = "";      // khoi tao sortParam la chuoi trong filter ket hop vs order
+            $orderConditon = "";  //  String chua dieu kien order : vd ORDER BY product.name ASC/DESC
         //Tìm kiếm
         $search = isset($_GET['tittle']) ? $_GET['tittle'] : "";// khoi tao bien search =rong hoac = get[name]
         if ($search) {//TRONG TH co FILTER
         $where = "WHERE `tittle` LIKE '%" . $search . "%'";
         $param .= "tittle=".$search."&";      //noi chuoi param thanh dang : name="zzzzz"&
-        $sortParam =  "tittle=".$search."&";  // noi chuoi sortParam voi order de ket hop
+        $sortParam .=  "tittle=".$search."&";  // noi chuoi sortParam voi order de ket hop
         }
 
         //Sắp xếp
@@ -43,8 +225,11 @@
         $totalRecords = $totalRecords->num_rows;
         $totalPages = ceil($totalRecords / $item_per_page);
         // $books = mysqli_query($con, "SELECT * FROM `books` ORDER BY `id` ASC LIMIT " . $item_per_page . " OFFSET " . $offset);
+
+    }
 ?>
 
+<?php //var_dump($sortParam);exit; ?>
         <link rel="stylesheet" href="./assets/css/book.css">
         <link rel="stylesheet" href="./assets/js/book.js">
 
@@ -56,21 +241,26 @@
                         <ul class="navbar-nav d-lg-flex align-items-lg-center">
                             <li class="nav-item active" style="border:1px solid #777;margin-left:0.5rem">
                                 <form id="book-search" method="GET">
-                                    <input style="width:300px;" type="text" value="<?=isset($_GET['tittle']) ? $_GET['tittle'] : ""?>" name="tittle" placeholder="Nhập tên sách" />
-                                    <input type="submit" value="Tìm kiếm" class="btn btn-secondary"/>
+                                    <?php if ( isset($_GET['genres_id'])|| isset($_GET['publisher_id']) ){?>
+                                        <input style="width:300px;" type="text" value="<?=isset($_GET['tittle']) ? $_GET['tittle'] : ""?>" name="tittle" placeholder="Nhập tên sách" />
+                                        <input type="submit" value="Tìm kiếm" class="btn btn-secondary"/>
+                                    <?php } else { ?>
+                                        <input style="width:300px;" type="text" value="<?=isset($_GET['tittle']) ? $_GET['tittle'] : ""?>" name="tittle" placeholder="Nhập tên sách" />
+                                        <input type="submit" value="Tìm kiếm" class="btn btn-secondary"/>
+                                    <?php } ?>    
                                 </form>
                             </li>
 
                             <li class="nav-item active" style="border:1px solid #777;margin-left:0.5rem"> 
                                 <select name="sort" id="sort" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-                                    <option value="" hidden selected>Sắp xếp theo</option>
-                                    <!-- selected: thuoc tinh html khi click vao thi the do van hien thi value do  -->
-                                    <option <?php if(isset($_GET['sort']) && $_GET['sort'] == "desc") { ?> selected <?php } ?> value="?<?=$sortParam?>field=price&sort=desc">Giá giảm dần</option>
-                                    <!-- Neu TON TAI sortParam(1 str khac cua search) thi se KET HOP ca dk search va order -->
-                                    <option <?php if(isset($_GET['sort']) && $_GET['sort'] == "asc") { ?> selected <?php } ?> value="?<?=$sortParam?>field=price&sort=asc">Giá tăng dần</option>
-                                    <option <?php if(isset($_GET['sort']) && $_GET['sort'] == "desc") { ?> selected <?php } ?> value="?<?=$sortParam?>field=created_date&sort=desc">Mới nhất</option>
-                                     <!-- Neu TON TAI sortParam(1 str khac cua search) thi se KET HOP ca dk search va order -->
-                                    <option <?php if(isset($_GET['sort']) && $_GET['sort'] == "asc") { ?> selected <?php } ?> value="?<?=$sortParam?>field=created_date&sort=asc">Cũ nhất</option>
+                                        <option value="" hidden selected>Sắp xếp theo</option>
+                                        <!-- selected: thuoc tinh html khi click vao thi the do van hien thi value do  -->
+                                        <option <?php if(isset($_GET['sort']) && $_GET['sort'] == "desc") { ?> selected <?php } ?> value="?<?=$sortParam?>field=price&sort=desc">Giá giảm dần</option>
+                                        <!-- Neu TON TAI sortParam(1 str khac cua search) thi se KET HOP ca dk search va order -->
+                                        <option <?php if(isset($_GET['sort']) && $_GET['sort'] == "asc") { ?> selected <?php } ?> value="?<?=$sortParam?>field=price&sort=asc">Giá tăng dần</option>
+                                        <option <?php if(isset($_GET['sort']) && $_GET['sort'] == "desc") { ?> selected <?php } ?> value="?<?=$sortParam?>field=created_date&sort=desc">Mới nhất</option>
+                                         <!-- Neu TON TAI sortParam(1 str khac cua search) thi se KET HOP ca dk search va order -->
+                                        <option <?php if(isset($_GET['sort']) && $_GET['sort'] == "asc") { ?> selected <?php } ?> value="?<?=$sortParam?>field=created_date&sort=asc">Cũ nhất</option>
                                 </select> 
                             </li>
                             <li class="nav-item d-lg-none d-inline-flex"> </li>
@@ -115,39 +305,47 @@
             </div>
             
             <div id="content" class="my-5">
+                
                 <div id="filterbar" class="collapse">
                     <div class="box border-bottom">
                         <div class="form-group text-center">
-                            <div class="btn-group" data-toggle="buttons"> <label class="btn btn-success form-check-label"> <input class="form-check-input" type="radio"> Reset </label> <label class="btn btn-success form-check-label active"> <input class="form-check-input" type="radio" checked> Apply </label> </div>
+                            <div class="btn-group" data-toggle="buttons">
+                                <input class=" btn btn-success" type="submit" value="Apply">
+                            </div>
                         </div>
                     </div>
+
                     <div class="box border-bottom">
                         <div class="box-label text-uppercase d-flex align-items-center">Thể loại<button class="btn ml-auto" type="button" data-toggle="collapse" data-target="#inner-box" aria-expanded="false" aria-controls="inner-box" id="out" onclick="outerFilter()"> <span class="fas fa-plus"></span> </button> </div>
                         <div id="inner-box" class="collapse mt-2 mr-1">
-                            <div class="my-1"> <label class="tick">Thiếu nhi<input type="checkbox" checked="checked"> </label> </div>
-                            <div class="my-1"> <label class="tick">Giáo dục<input type="checkbox"> </label> </div>
-                            <div class="my-1"> <label class="tick">Kinh tế<input type="checkbox"> </label> </div>
-                            <div class="my-1"> <label class="tick">Pháp luật<input type="checkbox"> </label> </div>
-                            <div class="my-1"> <label class="tick">Tiểu thuyết<input type="checkbox"> </label> </div>
-                            <div class="my-1"> <label class="tick">Lãng mạn, tình cảm<input type="checkbox" checked> </label> </div>
-                            <div class="my-1"> <label class="tick">Kinh dị<input type="checkbox"> </label> </div>
-                            <div class="my-1"> <label class="tick">Khác<input type="checkbox" checked> </label> </div>
+                            <?php while( $row1 = mysqli_fetch_array($genres) ){ ?>
+                                <div class="my-1"> <a href="./book.php?genres_id=<?=$row1['id']?>"><?=$row1['name']?></a> </div>
+                            <?php } ?>
                         </div>
                     </div>
+
                     <div class="box border-bottom">
                         <div class="box-label text-uppercase d-flex align-items-center">Nhà xuất bản<button class="btn ml-auto" type="button" data-toggle="collapse" data-target="#inner-box2" aria-expanded="false" aria-controls="inner-box2"><span class="fas fa-plus"></span></button> </div>
                         <div id="inner-box2" class="collapse mt-2 mr-1">
-                            <div class="my-1"> <label class="tick">Kim Đồng <input type="checkbox" checked="checked"> </label> </div>
-                            <div class="my-1"> <label class="tick">Tri thức <input type="checkbox"> </label> </div>
-                            <div class="my-1"> <label class="tick">Tuổi trẻ <input type="checkbox" checked> </label> </div>
-                            <div class="my-1"> <label class="tick">ĐHBK Hà Nội <input type="checkbox"> </label> </div>
-                            <div class="my-1"> <label class="tick">Giáo dục <input type="checkbox"> </label> </div>
+                            <?php while( $row2 = mysqli_fetch_array($publisher) ){ ?>
+                                <div class="my-1"> <a href="./book.php?publisher_id=<?=$row2['id']?>"><?=$row2['name']?></a> </div>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="box">
                         <div class="box-label text-uppercase d-flex align-items-center">Giá<button class="btn ml-auto" type="button" data-toggle="collapse" data-target="#size" aria-expanded="false" aria-controls="size"><span class="fas fa-plus"></span></button> </div>
                         <div id="size" class="collapse">
-                            <div class="btn-group d-flex align-items-center flex-wrap" data-toggle="buttons"> <label class="btn btn-success form-check-label"> <input class="form-check-input" type="checkbox"> `<`100 </label> <label class="btn btn-success form-check-label"> <input class="form-check-input" type="checkbox" checked> 100-200 </label> <label class="btn btn-success form-check-label"> <input class="form-check-input" type="checkbox" checked> 200-300 </label> <label class="btn btn-success form-check-label"> <input class="form-check-input" type="checkbox" checked> 300-400 </label> <label class="btn btn-success form-check-label"> <input class="form-check-input" type="checkbox" checked> 400-500 </label> <label class="btn btn-success form-check-label"> <input class="form-check-input" type="checkbox" checked>  </label> </div>
+                            <div class="btn-group d-flex align-items-center flex-wrap">
+                                <label><a href="./book.php?sort_price=50000">< 50.000</a></label> 
+                                <label><a href="./book.php?sort_price=100000">< 100.000</a></label>
+                                <label><a href="./book.php?sort_price=150000">< 150.000</a></label> 
+                                <label><a href="./book.php?sort_price=200000">< 200.000</a></label> 
+                                <label><a href="./book.php?sort_price=300000">< 300.000</a> </label> 
+                                <label><a href="./book.php?sort_price=400000">< 400.000</a> </label> 
+                                <label><a href="./book.php?sort_price=500000">< 500.000</a> </label> 
+                                <label><a href="./book.php?sort_price=1000000">< 1.000.000</a> </label> 
+                                <label><a href="./book.php?sort_price=999999999">> 1.000.000</a> </label> 
+                            </div>
                         </div>
                     </div>
                 </div>
