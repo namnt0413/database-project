@@ -57,6 +57,7 @@
                 color: #fff;
             }
             h1 {
+                font-size: 3rem; 
                 margin-bottom: 3rem;
             }
 
@@ -181,7 +182,7 @@
                             `last_updated` = NOW()
                             WHERE `customers`.`id` = " . $picid . ";");
                             ?>
-                                <img src="<?= $user['avatar'] ?>" class="avatar img-circle img-thumbnail" alt="avatar" style="width:200px;height:200px;">
+                                <img src="<?= $user['avatar'] ?>" class="avatar img-circle img-thumbnail" alt="avatar" style="width:180px;height:180px;">
                                 <p style="text-align: center;font-size:20px">Đang xử lí . . . </p>   
                                 <!-- in thử ảnh ra và nút back  -->
                                 <a  class="button" href="uif_profile.php"  >Cập nhật</a> 
@@ -196,19 +197,18 @@
                                     if (isset($user['avatar'])) { 
                                         ?>  <!-- Neu co anh dai dien  -->
                                         <div class="image_and_button">
-                                        <img src="<?= $user['avatar'] ?>" class="avatar img-circle img-thumbnail" alt="avatar" style="width:200px;height:200px;">
-                                        <br>
-                                        <input type="file" name="avatar"/><br>
+                                            <img src="<?= $user['avatar'] ?>" class="avatar img-circle img-thumbnail" alt="avatar" style="width:180px;height:180px;">
+                                            <br>
+                                            <input type="file" name="avatar"/><br>
                                         </div>
                                     <?php   
                                     } else { 
                                         ?>
                                         <div class="image_and_button">
-                                            <img src="../assets/image/user/user.png"  class="avatar img-circle img-thumbnail" alt="avatar" style="width:200px;height:200px;">
+                                            <img src="../assets/image/user/user.png"  class="avatar img-circle img-thumbnail" alt="avatar" style="width:180px;height:180px;">
                                             <br>
                                             <input type="file" name="avatar" /><br>      <!-- nut choosen file-->
                                         </div>
-                                        <br></br>
                                     <?php 
                                     }
                                     ?>

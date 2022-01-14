@@ -45,6 +45,10 @@
     color: var(--white);
     font-weight: 600;
 }
+h1 {
+    font-size: 3rem; 
+    margin-bottom: 3rem;
+}
 table {
   border-collapse: collapse;
   border-radius: 5px;
@@ -106,7 +110,7 @@ td {
     <div class="row">
   		<div class="col-sm-4"><!--left col-->
         <div class="text-center">
-          <img src="<?= $currentUser['avatar'] ?>" class="page-img avatar img-circle img-thumbnail" alt="avatar" style="width:200px;height:200px;">
+          <img src="<?= $currentUser['avatar'] ?>" class="page-img avatar img-circle img-thumbnail" alt="avatar" style="width:180px;height:180px;">
         </div>
 
         <br>

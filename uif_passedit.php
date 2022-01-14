@@ -42,6 +42,7 @@
             }
 
             h1 {
+                font-size: 3rem;
                 margin-bottom: 3rem;
             }
 
@@ -129,9 +130,9 @@
                 <!--left col-->
 
                 <div class="text-center">
-                    <img src="<?= $currentUser['avatar'] ?>" class="avatar img-circle img-thumbnail" alt="avatar" style="width:200px;height:200px;">
+                    <img src="<?= $currentUser['avatar'] ?>" class="avatar img-circle img-thumbnail" alt="avatar" style="width:180px;height:180px;">
                 </div>
-            <br>
+                <br>
                 
 
                 <?php
@@ -167,7 +168,7 @@
                 </ul>
 
             </div>
-            <!--/col-3-->
+            <!--/col-4-->
             <div class="col-sm-8">
                 <ul class="nav nav-tabs">
                     <!-- <li class="active"><a data-toggle="tab" href="user_profile.php">Thông tin</a></li> -->
