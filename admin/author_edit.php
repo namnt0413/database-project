@@ -89,7 +89,7 @@
                 width: 350px;
                 position: absolute; 
                 right: 10px;
-                border-radius: 9px;
+                border-radius: 5px;
                 border: 1px solid #ccc;
                 padding: 5px;
                 
@@ -103,7 +103,7 @@
                 color: #fff;
                 text-decoration: none;
                 cursor: pointer;
-                border-radius: 9px;
+                border-radius: 5px;
                 border: 0;
                 padding: 5px 10px;
                 
@@ -126,7 +126,7 @@
                 color: #fff;
                 text-decoration: none;
                 cursor: pointer;
-                border-radius: 9px;
+                border-radius: 5px;
                 border: 0;
                 padding: 5px 10px;
             }
