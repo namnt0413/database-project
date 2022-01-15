@@ -18,8 +18,9 @@
         include 'admin_navbar.php';
     
         // $books = mysqli_query($con, "SELECT books.* FROM `books`  ORDER BY `id` ASC " );
-
-            //      PHÂN TRANG
+        
+        //      PHÂN TRANG
+        $param = "";          // khoi tao bien param la chuoi trong filter de gan vs perpage va page
 
     if(!empty($_GET['action']) && $_GET['action'] == 'search' && !empty($_POST)){//  Neu co action GET co ten la search
         $_SESSION['book_filter'] = $_POST;      // khai bao session  'book filter' = $_POST => Khi quay ve trang chinh thi van luu lai session
@@ -33,15 +34,42 @@
                 switch ($field) {
                     case 'tittle':
                         $where .= (!empty($where))? " AND "."`".$field."` LIKE '%".$value."%'" : "`".$field."` LIKE '%".$value."%'"; // neu rong thi luu luon chuoi, neu ko thi them AND
+                        $param .= "".$field."=".$value."&";
                     break;
                     default:
                         $where .= (!empty($where))? " AND "."`".$field."` = ".$value."": "`".$field."` = ".$value."";
+                        $param .= "".$field."=".$value."&";
                     break;
                 }
             }
         }
         // var_dump($where);exit;
         extract($_SESSION['book_filter']);
+    }
+    if(!empty( $_GET['field'] )){
+        // var_dump($_GET['field']);
+        if( $_GET['field'] == 'day'){
+            // var_dump(1);
+            $where .= (!empty($where))? " AND "."DAY(`books`.`created_date`) = DAY(NOW())" : "DAY(`books`.`created_date`) = DAY(NOW())";
+            $where .= " AND YEAR(`books`.`created_date`) = YEAR(NOW())";
+            $param .= "field=day&";
+        }
+        if( $_GET['field'] == 'month'){
+            // var_dump(1);
+            $where .= (!empty($where))? " AND "."MONTH(`books`.`created_date`) = MONTH(NOW())  " : "MONTH(`books`.`created_date`) = MONTH(NOW())";
+            $where .= " AND YEAR(`books`.`created_date`) = YEAR(NOW())";
+            $param .= "field=month&";
+        }
+        if( $_GET['field'] == 'year' && $_GET['year'] == '2022'){
+            // var_dump(1);
+            $where .= (!empty($where))? " AND "."YEAR(`books`.`created_date`) = YEAR(NOW())  " : "YEAR(`books`.`created_date`) = YEAR(NOW())";
+            $param .= "field=year&year=2022&";
+        }
+        if( $_GET['field'] == 'year' && $_GET['year'] == '2021'){
+            // var_dump(1);
+            $where .= (!empty($where))? " AND "."YEAR(`books`.`created_date`) = 2021  " : "YEAR(`books`.`created_date`) = 2021 ";
+            $param .= "field=year&year=2021&";
+        }
     }
 
     $item_per_page = (!empty($_GET['per_page'])) ? $_GET['per_page'] : 8;
@@ -73,12 +101,20 @@
                                 <h3 class="title-5 m-b-35">Danh sách sản phẩm</h3>
                                 <div class="table-data__tool">
                                     <div class="table-data__tool-left">
-                                        <div class="rs-select2--light rs-select2--sm">
-                                            <select class="js-select2" name="time">
-                                                <option selected="selected">Today</option>
-                                                <option value="">3 Days</option>
-                                                <option value="">1 Week</option>
-                                            </select>
+                                        <div class="rs-select2--light rs-select2--sm" style="width:160px;">
+                                            <select class="js-select2" name="sort" id="sort" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+                                                <option value="" hidden selected>Sắp xếp theo</option>
+                                                <!-- selected: thuoc tinh html khi click vao thi the do van hien thi value do  -->
+                                                <option <?php if(isset($_GET['field']) && $_GET['field'] == "day") { ?> selected <?php } ?> value="?field=day">Trong hôm nay</option>
+
+                                                <option <?php if(isset($_GET['field']) && $_GET['field'] == "month") { ?> selected <?php } ?> value="?field=month">Trong tháng này</option>
+
+                                                <option <?php if(isset($_GET['field']) && $_GET['field'] == "year" && $_GET['year'] == "2022") { ?> selected <?php } ?> 
+                                                value="?field=year&year=2022">Trong năm nay</option>
+
+                                                <option <?php if(isset($_GET['field']) && $_GET['field'] == "year" && $_GET['year'] == "2021") { ?> selected <?php } ?> 
+                                                value="?field=year&year=2021">Trong năm 2021</option>
+                                            </select> 
                                             <div class="dropDownSelect2"></div>
                                         </div>
                                     </div>

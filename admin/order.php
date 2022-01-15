@@ -19,6 +19,7 @@
 
     $config_name = "order";
     $config_title = "ĐƠN HÀNG   ";
+    $param = "";          // khoi tao bien param la chuoi trong filter de gan vs perpage va page
 
         if(!empty($_GET['action']) && $_GET['action'] == 'search' && !empty($_POST)){
             $_SESSION[$config_name.'_filter'] = $_POST;
@@ -30,17 +31,45 @@
                 if(!empty($value)){
                     switch ($field) {
                         case 'fullname':
-                        $where .= (!empty($where))? " AND "."`".$field."` LIKE '%".$value."%'" : "`".$field."` LIKE '%".$value."%'";
+                        $where .= (!empty($where))? " AND "."`orders`.`".$field."` LIKE '%".$value."%'" : "`orders`.`".$field."` LIKE '%".$value."%'";
+                        $param .= "".$field."=".$value."&";
                         break;
                         default:
-                        $where .= (!empty($where))? " AND "."`".$field."` = ".$value."": "`".$field."` = ".$value."";
+                        $where .= (!empty($where))? " AND "."`orders`.`".$field."` = ".$value."": "`orders`.`".$field."` = ".$value."";
+                        $param .= "".$field."=".$value."&";
                         break;
                     }
                 }
             }
-            // var_dump($where);exit;
             extract($_SESSION[$config_name.'_filter']);
         }
+        if(!empty( $_GET['field'] )){
+            // var_dump($_GET['field']);
+            if( $_GET['field'] == 'day'){
+                // var_dump(1);
+                $where .= (!empty($where))? " AND "."DAY(`orders`.`created_date`) = DAY(NOW())" : "DAY(`orders`.`created_date`) = DAY(NOW())";
+                $where .= " AND YEAR(`orders`.`created_date`) = YEAR(NOW())";
+                $param .= "field=day&";
+            }
+            if( $_GET['field'] == 'month'){
+                // var_dump(1);
+                $where .= (!empty($where))? " AND "."MONTH(`orders`.`created_date`) = MONTH(NOW())  " : "MONTH(`orders`.`created_date`) = MONTH(NOW())";
+                $where .= " AND YEAR(`orders`.`created_date`) = YEAR(NOW())";
+                $param .= "field=month&";
+            }
+            if( $_GET['field'] == 'year' && $_GET['year'] == '2022'){
+                // var_dump(1);
+                $where .= (!empty($where))? " AND "."YEAR(`orders`.`created_date`) = YEAR(NOW())  " : "YEAR(`orders`.`created_date`) = YEAR(NOW())";
+                $param .= "field=year&year=2022&";
+            }
+            if( $_GET['field'] == 'year' && $_GET['year'] == '2021'){
+                // var_dump(1);
+                $where .= (!empty($where))? " AND "."YEAR(`orders`.`created_date`) = 2021  " : "YEAR(`orders`.`created_date`) = 2021 ";
+                $param .= "field=year&year=2021&";
+            }
+        }
+        // var_dump($where);
+
         $item_per_page = (!empty($_GET['per_page'])) ? $_GET['per_page'] : 10;
         $current_page = (!empty($_GET['page'])) ? $_GET['page'] : 1;
         $offset = ($current_page - 1) * $item_per_page;
@@ -61,7 +90,7 @@
             FROM `orders` INNER JOIN `customers` ON `customers`.id = `orders`.`customer_id`
             ORDER BY `id` DESC LIMIT " . $item_per_page . " OFFSET " . $offset);
         }
-        mysqli_close($con);
+        // mysqli_close($con);
     ?>
 
 
@@ -77,19 +106,22 @@
                                 <form id="<?= $config_name ?>-search-form" action="<?= $config_name ?>.php?action=search" method="POST">
                                     <fieldset class="flex-fieldset">
                                         <p>ID: <input class="input-area" type="text" name="id" value="<?= !empty($id) ? $id : "" ?>" /> </p>
-                                        <p>Tên người nhận: <input class="input-area" type="text" name="fullname" value="<?= !empty($name) ? $name : "" ?>" /> </p>
+                                        <p>Tên người nhận: <input class="input-area" type="text" name="fullname" value="<?= !empty($fullname) ? $fullname : "" ?>" /> </p>
                                         <input class="button" type="submit" value="Tìm" />
                                     </fieldset>
                                 </form>
                                 <select name="sort" id="sort" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
                                     <option value="" hidden selected>Sắp xếp theo</option>
                                     <!-- selected: thuoc tinh html khi click vao thi the do van hien thi value do  -->
-                                    <option>Trong tuần này</option>
-                                    <!-- Neu TON TAI sortParam(1 str khac cua search) thi se KET HOP ca dk search va order -->
-                                    <option>Trong tháng này</option>
-                                    <option >Trong quý này</option>
-                                     <!-- Neu TON TAI sortParam(1 str khac cua search) thi se KET HOP ca dk search va order -->
- 
+                                    <option <?php if(isset($_GET['field']) && $_GET['field'] == "day") { ?> selected <?php } ?> value="?field=day">Trong hôm nay</option>
+
+                                    <option <?php if(isset($_GET['field']) && $_GET['field'] == "month") { ?> selected <?php } ?> value="?field=month">Trong tháng này</option>
+
+                                    <option <?php if(isset($_GET['field']) && $_GET['field'] == "year" && $_GET['year'] == "2022") { ?> selected <?php } ?> 
+                                    value="?field=year&year=2022">Trong năm nay</option>
+
+                                    <option <?php if(isset($_GET['field']) && $_GET['field'] == "year" && $_GET['year'] == "2021") { ?> selected <?php } ?> 
+                                    value="?field=year&year=2021">Trong năm 2021</option>
                                 </select> 
                             </div>
                                 

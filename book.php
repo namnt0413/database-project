@@ -310,14 +310,21 @@
 
                             <li class="nav-item active" style="border:1px solid #777;margin-left:0.5rem"> 
                                 <select name="sort" id="sort" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-                                        <option value="" hidden selected>Sắp xếp theo</option>
+                                    <option value="" hidden selected>Sắp xếp theo</option>
                                         <!-- selected: thuoc tinh html khi click vao thi the do van hien thi value do  -->
-                                        <option <?php if(isset($_GET['sort']) && $_GET['sort'] == "desc") { ?> selected <?php } ?> value="?<?=$sortParam?>field=price&sort=desc">Giá giảm dần</option>
+                                        <option <?php if( isset($_GET['sort']) && $_GET['field'] == "price" && $_GET['sort'] == "desc") { ?> selected <?php } ?>
+                                         value="?<?=$sortParam?>field=price&sort=desc">Giá giảm dần</option>
+
                                         <!-- Neu TON TAI sortParam(1 str khac cua search) thi se KET HOP ca dk search va order -->
-                                        <option <?php if(isset($_GET['sort']) && $_GET['sort'] == "asc") { ?> selected <?php } ?> value="?<?=$sortParam?>field=price&sort=asc">Giá tăng dần</option>
-                                        <option <?php if(isset($_GET['sort']) && $_GET['sort'] == "desc") { ?> selected <?php } ?> value="?<?=$sortParam?>field=created_date&sort=desc">Mới nhất</option>
+                                        <option <?php if((isset($_GET['sort']) && $_GET['field']) =="price" && $_GET['sort'] == "asc") { ?> selected <?php } ?>
+                                         value="?<?=$sortParam?>field=price&sort=asc">Giá tăng dần</option>
+                                        
+                                         <option <?php if(isset($_GET['sort']) && $_GET['field'] == "created_date" && $_GET['sort'] == "desc") { ?> selected <?php } ?> 
+                                         value="?<?=$sortParam?>field=created_date&sort=desc">Mới nhất</option>
+                                         
                                          <!-- Neu TON TAI sortParam(1 str khac cua search) thi se KET HOP ca dk search va order -->
-                                        <option <?php if(isset($_GET['sort']) && $_GET['sort'] == "asc") { ?> selected <?php } ?> value="?<?=$sortParam?>field=created_date&sort=asc">Cũ nhất</option>
+                                        <option <?php if(isset($_GET['sort']) && ($_GET['field'])== "created_date" && $_GET['sort'] == "asc") { ?> selected <?php } ?> 
+                                        value="?<?=$sortParam?>field=created_date&sort=asc">Cũ nhất</option>                                        
                                 </select> 
                             </li>
                             <li class="nav-item d-lg-none d-inline-flex"> </li>
