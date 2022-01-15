@@ -18,11 +18,22 @@
         $GLOBALS['changed_cart'] = false;   // bien de check so luong sp khach nhap : true-quantity lon qua, false- quantity < so luong trong kho
         $error = false;
         $success = false;
+        $total_quantity = 0;
+
 
 //NEU TON TAI ACTION get duoc        
-        if (isset($_GET['action'])) {
+        if (isset($_GET['action'] )) {
+
+            // var_dump($_GET);exit;
+            if( isset($_GET['id'] )){
+                $book_id = $_GET["id"];
+            }
+            if( empty($_POST) ){
+                $_POST['quantity'][$book_id] = 1;
+            }
+            // var_dump($_POST);exit;            
             // ham xu ly cong them san pham khi add hoac chi cap nhat lai sp    
-                                     // $add : true-neu la them thi phai += quantity  false-neu chi cap nhat thi gan =
+            // $add : true-neu la them thi phai += quantity  false-neu chi cap nhat thi gan =
             function update_cart($con,$add ) {  
                 foreach ($_POST['quantity'] as $id => $quantity) {
                     //trong bien POST['quantity'] co id:$book['id'] value: quantity[<?=$book['id']?]
@@ -49,10 +60,9 @@
                             $GLOBALS['changed_cart'] = true;
                             }
                         
-                        }// end else
+                        }// end else                   
                 }   //end foreach
             }// end function
-
 
             switch ($_GET['action']) {
                 case "add":
@@ -198,9 +208,17 @@
                         <div class="title">
                             <div class="row">
                                 <div class="col">
-                                    <h4><b>GIỎ HÀNG</b></h4>
+                                    <h2><b>GIỎ HÀNG</b></h2>
                                 </div>
-                                    <div class="col align-self-center text-right text-muted">3 items</div>
+                                    <div class="col align-self-center text-right text-muted">
+                                        <?php
+                                             foreach ($_SESSION["cart"] as $id => $quantity) {
+                                                $total_quantity += $quantity;
+                                            }
+                                        ?>
+                                        <h4>Tổng số lượng: <?= $total_quantity ?></h4>
+                                    </div>
+
                             </div>
                         </div>
                         <!-- Hàng tiêu đề -->

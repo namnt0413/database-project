@@ -47,6 +47,9 @@
         <link rel="stylesheet" href="./assets/css/book_detail.css">
         <link rel="stylesheet" href="./assets/js/book.js">
 
+   
+
+
         <div class="container">
         <a href="javascript:window.history.go(-1)" class="fa fa-undo" style="font-size: 1.5rem; margin: 10px; text-decoration: none; color: #434343; ">  Quay lại</a>
         <hr>
@@ -275,15 +278,16 @@
                       <?php if ($book['quantity'] > 0) { ?>
                             <div class="amount-selection-container">
             	      		  <p class="category delete-margin">Số lượng:</p>
-                            <form id="add-to-cart-form" action="cart.php?action=add" method="POST">
+                            <form id="add-to-cart-form" action="cart.php?action=add&id=<?=$book['id']?>" method="POST">
                                 <div class="category row" ><input class="number-select" type="number" value="1" name="quantity[<?=$book['id']?>]" size="2" /></div> 
                                 </div>
 
                                 <div class="button-container">
                                     <input class="buy-button btn btn-lg btn-primary text-uppercase" type="submit" value="Mua ngay"  />                       
-                                    <a href="#" class="cart-button btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng </a>
                                 </div>
                             </form>  <!-- item-property .// -->
+                            <button data-id="<?=$book['id']?>" class="btn-add-to-cart btn btn-lg btn-outline-primary text-uppercase" style="background-color:#f59f00;color:#fff">
+                             <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng </button>
                             
                             
                       <?php } else { ?>
@@ -378,10 +382,8 @@
                     <div class="content">
                         <h3><?= $row_genres['tittle'] ?></h3>
                         <div class="price"><?= number_format($row_genres['price'], 0, ",", ".") ?>đ <span> $20.99</span></div>
-                        <form id="add-to-cart-form" action="cart.php?action=add" method="POST">
-                        <input class="number-select" type="hidden" value="1" name="quantity[<?=$row_genres['id']?>]"/>
-                        <input class="add-cart-button" type="submit" value="Add to cart"  /> 
-                        </form>
+                        <button data-id="<?=$row_genres['id']?>" class="btn-add-to-cart btn btn-lg btn-outline-primary text-uppercase" style="background-color:#f59f00;color:#fff">
+                             <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng </button>
                     </div>
                 </div>
             <?php } ?>
@@ -418,10 +420,8 @@
                     <div class="content">
                         <h3><?= $row_author['tittle'] ?></h3>
                         <div class="price"><?= number_format($row_author['price'], 0, ",", ".") ?>đ <span> $20.99</span></div>
-                        <form id="add-to-cart-form" action="cart.php?action=add" method="POST">
-                        <input class="number-select" type="hidden" value="1" name="quantity[<?=$row_author['id']?>]"/>
-                        <input class="add-cart-button" type="submit" value="Add to cart"  /> 
-                        </form>
+                        <button data-id="<?=$row_author['id']?>" class="btn-add-to-cart btn btn-lg btn-outline-primary text-uppercase" style="background-color:#f59f00;color:#fff">
+                             <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng </button>
                     </div>
                 </div>
             <?php } ?>
@@ -437,7 +437,7 @@
             
   </body>
   <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script></body>
@@ -452,6 +452,35 @@
     
     <!-- custom js file link  -->
   <script src="./assets/js/main.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".btn-add-to-cart").click(function(event) {
+                let id = $(this).data("id");
+                // alert('Da bam san pham' + id);
+                <?php $total_quantity+=1; ?>
+                $.ajax({
+                    url: "cart.php",
+                    type: "GET",
+                    // dataType: "dataType",
+                    data: {action: "add",id: id},
+                  })
+                .done(function() {
+                    console.log("success");
+                    alert("Đã thêm sản phẩm vào giỏ hàng!");
+                    document.getElementById("quantity").innerHTML = "<?=$total_quantity?>";
+                })
+                .fail(function() {
+                    console.log("error");
+                    alert("Đã xảy ra lỗi!");
+                });
+
+            });
+
+        });
+
+    </script>
 <style>
      * {
             padding: 0;

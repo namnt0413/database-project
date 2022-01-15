@@ -115,10 +115,8 @@
                         <div class="content">
                             <h3><?= $book2['tittle'] ?></h3>
                             <div class="price"><?= number_format($book2['price']-$book2['discount'], 0, ",", ".") ?>đ <span><?= number_format($book2['price'], 0, ",", ".") ?>đ</span></div>
-                            <form id="add-to-cart-form" action="cart.php?action=add" method="POST">
-                                <input class="number-select" type="hidden" value="1" name="quantity[<?=$book2['id']?>]"/>
-                                <input class="buy-button btn btn-lg btn-primary text-uppercase" type="submit" value="Buy now"  /> 
-                            </form>
+                            <button data-id="<?=$book2['id']?>" class="btn-add-to-cart btn btn-lg btn-outline-primary text-uppercase" style="background-color:#f59f00;color:#fff">
+                             <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng </button>
                         </div>
                     </div>
                 <?php } ?>
@@ -152,22 +150,18 @@
             <br><span>Sách mới ra trong tháng này</span>
             <div class="swiper-wrapper">
                 <?php while ($book3 = mysqli_fetch_array($result3)){ ?>    
-                    <a href="book_detail.php?id=<?= $book3['id'] ?>" class="swiper-slide box">
+                    <div class="swiper-slide box">
                         <div class="image">
-                            <img src="./<?= $book3['image']?>" alt="<?= $book3['tittle']?>">
+                            <a href="book_detail.php?id=<?= $book3['id']?>"><img src="./<?= $book3['image']?>" alt="<?= $book3['tittle']?>"></a>
                         </div>
                         <div class="content">
                             <h3><?= $book3['tittle']?></h3>
                             <div class="price"><?= number_format($book3['price']-$book3['discount'], 0, ",", ".")?>đ <span><?= number_format($book3['price'], 0, ",", ".") ?>đ</span></div>
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
+                            <br>
+                            <button data-id="<?=$book3['id']?>" class="btn-add-to-cart btn btn-lg btn-outline-primary text-uppercase" style="background-color:#f59f00;color:#fff">
+                             <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng </button>
                         </div>
-                    </a>
+                    </div>
                 <?php } ?>
             </div>
     
@@ -525,6 +519,35 @@
     <!-- custom js file link  -->
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/header.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".btn-add-to-cart").click(function(event) {
+                let id = $(this).data("id");
+                // alert('Da bam san pham' + id);
+                <?php $total_quantity+=1; ?>
+                $.ajax({
+                    url: "cart.php",
+                    type: "GET",
+                    // dataType: "dataType",
+                    data: {action: "add",id: id},
+                  })
+                .done(function() {
+                    console.log("success");
+                    alert("Đã thêm sản phẩm vào giỏ hàng!");
+                    document.getElementById("quantity").innerHTML = "<?=$total_quantity?>";
+                })
+                .fail(function() {
+                    console.log("error");
+                    alert("Đã xảy ra lỗi!");
+                });
+
+            });
+
+        });
+
+    </script>
 
 
 </body>

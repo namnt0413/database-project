@@ -41,6 +41,7 @@
         
         <!-- KIEM TRA DANG NHAP -->
         <?php
+        $total_quantity=0;
         session_start();
         include './connect_db.php';
         include './function.php';
@@ -55,8 +56,18 @@
             $currentUser = $_SESSION['current_user'];
         ?>
             <ul class="user_navbar">
-                <li><a href="#" class="fas fa-heart"></a></li>
+                <li><a href="uif_favorite.php" class="fas fa-heart"></a></li>
                 <li><a href="cart.php" class="fas fa-shopping-cart"></a></li>
+                <?php
+                if(isset($_SESSION['cart'])){
+                     foreach ($_SESSION["cart"] as $id => $quantity) {
+                        $total_quantity += $quantity;
+                    }
+                }    
+                ?>
+                <span style="padding: 5px;color:aliceblue;background-color:red;border-radius:100%" id="quantity"><?=$total_quantity?></span>
+                
+                                        
                 <li><a href="#" class="avatar"><img src="./<?= isset($currentUser['avatar']) ? $currentUser['avatar'] : "assets/image/user/user.png"?>" alt="" style="width: 40px;height:40px;border-radius: 100%;"></a></li>
                 <li id="has_subnav">
                     <?= $currentUser['first_name']?>
@@ -86,9 +97,9 @@
                 <?php } ?>
                 <a href="index.php" class="nav_link">Trang chủ</a>
                 <a href="book.php" class="nav_link">Cửa hàng</a>
-                <a href="reviews.php" class="nav_link">Reviews</a>
                 <a href="blogs.php" class="nav_link">Bài viết</a>
                 <a href="contact.php" class="nav_link">Liên hệ</a>
+                <a href="uif_profile.php" class="nav_link">Cập nhật thông tin</a>
             </nav>
         </div>
     
@@ -105,9 +116,9 @@
         <?php } ?>
         <a href="index.php" class="fas fa-home"></a>
         <a href="book.php" class="fas fa-book"></a>
-        <a href="reviews.php" class="fas fa-comments"></a>
+        <a href="uif_profile.php" class="fas fa-user"></a>
         <a href="blogs.php" class="fas fa-blog"></a>
-        <a href="contact.php" class="fas fa-phone"></a>
+        <a href="contact.php" class="fas fa-envelope-square"></a>
     </nav>
 
 
