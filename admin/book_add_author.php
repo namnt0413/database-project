@@ -76,7 +76,7 @@
                                                 </br>
                                                 <select name="author_id" id="">
                                         <?php while( $row = mysqli_fetch_array($author) ){ ?>
-                                                    <option value="<?= $row['id'] ?>"><?= $row['first_name']." ".$row['last_name'] ?></option>
+                                                    <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
                                         <?php } ?>
                                                 </select>
                                                     <!-- <input class="input-area" type="text" name="author_id" value="" /> -->

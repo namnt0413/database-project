@@ -17,7 +17,7 @@
 
     <?php 
         include '../connect_db.php';
-        
+        $param ="";
         $item_per_page = (!empty($_GET['per_page'])) ? $_GET['per_page'] : 8;
         $current_page = (!empty($_GET['page'])) ? $_GET['page'] : 1;
         $offset = ($current_page - 1) * $item_per_page;
@@ -112,10 +112,16 @@
                                                         <span class="role admin">Vo hieu hoa</span>
                                                     <?php } ?>
                                                 </td>
+                                        <?php if($row['id'] != 1){ ?>    
                                                 <td style="text-align:center"><a class="fa fa-edit" href="./user_edit.php?id=<?= $row['id'] ?>" style="color:dodgerblue"></a></td>
                                                 <td style="text-align:center"><a class="fa fa-trash" href="./user_delete.php?id=<?= $row['id'] ?>" style="color:crimson"></a></td>
                                                 <td style="text-align:center"><?= $row['last_updated'] ?></td>
                                                 <!-- <td> date('d/m/Y H:i', $row['created_date']) </td> -->
+                                        <?php } else { ?>
+                                                <td style="text-align:center"></td>
+                                                <td style="text-align:center"></td>
+                                                <td style="text-align:center"><?= $row['last_updated'] ?></td>
+                                        <?php }  ?>
                                             </tr>
                                         <?php } ?>
                                     </table>

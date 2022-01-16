@@ -142,12 +142,12 @@
         // var_dump($_POST['id']);exit;
         if (isset($_GET['action']) && $_GET['action'] == 'edit') 
         {
-            if (isset($_POST['first_name']) && !empty($_POST['first_name']) && isset($_POST['last_name']) && !empty($_POST['last_name']) ) 
+            if (isset($_POST['name']) && !empty($_POST['name']) ) 
             {
                 
                 // CAP NHAT VAO DATABASE
                 $result = mysqli_query($con, "UPDATE `authors` 
-                SET  `first_name` = '" . $_POST['first_name'] ."',`last_name` = '" . $_POST['last_name'] ."' ,
+                SET  `name` = '" . $_POST['name'] ."',
                    `last_updated`=NOW() WHERE `authors`.`id` = " . $_POST['id'] . ";");
                 if (!$result) {
                     $error = "Không thể cập nhật tác giả";
@@ -189,18 +189,14 @@
                 <div class="content-container">
                     <div id="edit_user" class="box-content">
                         <div class="row"><a href="javascript:window.history.go(-1)" class="fa fa-undo" style="padding: 5px; margin-bottom: 10px;">  Quay lại</a></div>
-                        <h1>Sửa tác giả "<?= $author['first_name']." ".$author['last_name'] ?>"</h1>
+                        <h1>Sửa tác giả "<?= $author['name'] ?>"</h1>
                         <form action="./author_edit.php?action=edit" method="Post" enctype="multipart/form-data" autocomplete="off">  
                             <div class="input-block">
                                 <input class="input-area" type="hidden" name="id" value="<?= (!empty($author) ? $author['id'] : "") ?>" />
                             </div>
                             <div class="input-block">
-                                <label>Họ và tên đệm</label></br>
-                                <input class="input-area" type="text" name="first_name" value="<?= (!empty($author) ? $author['first_name'] : "") ?>" />
-                            </div>
-                            <div class="input-block">
                                 <label>Tên</label></br>
-                                <input class="input-area" type="text" name="last_name" value="<?= (!empty($author) ? $author['last_name'] : "") ?>" />
+                                <input class="input-area" type="text" name="name" value="<?= (!empty($author) ? $author['name'] : "") ?>" />
                             </div>
                             <input class="button btn-success"  type="submit" value=" Chỉnh sửa " />
                         </form>

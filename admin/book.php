@@ -85,7 +85,7 @@
     if(!empty($where)){ // neu ton tai where - tuc la dang filter thi su dung ham nay
         $books_filter = mysqli_query($con, "SELECT * FROM `books` where (".$where.") ORDER BY `id` DESC LIMIT " . $item_per_page . " OFFSET " . $offset);
     }else{  // neu ko thi phan trang binh thuong
-        $books_filter = mysqli_query($con, "SELECT * FROM `books` ORDER BY `id` ASC LIMIT " . $item_per_page . " OFFSET " . $offset);
+        $books_filter = mysqli_query($con, "SELECT * FROM `books` ORDER BY `id` DESC LIMIT " . $item_per_page . " OFFSET " . $offset);
     }
   
     ?>
@@ -192,13 +192,13 @@
                                                 
                                                 <td class="desc">
                                         <?php
-                                        $author = mysqli_query($con, "SELECT authors.first_name,authors.last_name
+                                        $author = mysqli_query($con, "SELECT authors.name
                                                                     FROM `books_authors`  INNER JOIN `authors` ON books_authors.author_id = authors.id
                                                                                         INNER JOIN `books` ON books_authors.book_id = books.id
                                                                     WHERE `books_authors`.`book_id` = $row_id                    
                                                                                   ");  
                                         while ($row2 = mysqli_fetch_array($author)){ ?>
-                                            <a href="" style="font-size: 0.8rem;"><?= $row2['first_name']." ".$row2['last_name'].","?></a>
+                                            <a href="" style="font-size: 0.8rem;"><?= $row2['name'].","?></a>
                                         <?php } ?>
 
                                                 </td>

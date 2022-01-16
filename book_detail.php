@@ -32,7 +32,7 @@
     //var_dump($result3);exit;
     
     // Lay ra tac gia
-    $result2 = mysqli_query($con, "SELECT authors.first_name,authors.last_name, books_authors.author_id
+    $result2 = mysqli_query($con, "SELECT authors.name, books_authors.author_id
                                 FROM `books_authors`  INNER JOIN `authors` ON books_authors.author_id = authors.id
                                 WHERE `book_id` = " . $_GET['id'] );
     // Lay ra NXB
@@ -86,7 +86,7 @@
                                 $author_id = $author['author_id'];
                                 $where2 .= (!empty($where2))? " OR "."`author_id` = $author_id" : "`author_id` = $author_id"; // neu rong thi luu luon chuoi, neu ko thi them AND
                                 ?>
-                            <a class="category-info" href="book.php?author_id=<?= $author['author_id']?>" ><?= $author['first_name']." ".$author['last_name'].","?></a> 
+                            <a class="category-info" href="book.php?author_id=<?= $author['author_id']?>" ><?= $author['name'].","?></a> 
                             <?php }
                             // var_dump($where3);exit;
 

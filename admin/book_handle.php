@@ -255,7 +255,7 @@
                     FROM `books` WHERE `id` = " . $_GET['id']);  // lay du lieu tu bang books vs id = $_Get['id]
                     // var_dump($result);exit;  
 
-                    $result2 = mysqli_query($con, "SELECT books_authors.author_id,authors.first_name,authors.last_name
+                    $result2 = mysqli_query($con, "SELECT books_authors.author_id,authors.name
                     FROM `books_authors` INNER JOIN `authors` ON books_authors.author_id = authors.id
                       WHERE `book_id` = " . $_GET['id']);  // lay du lieu tu bang books vs id = $_Get['id]
                     //var_dump($result2);exit;
@@ -313,7 +313,7 @@
                             while ($author = mysqli_fetch_array($result2)){ 
                             // var_dump($author['author_id']);
                         ?>
-                                <span style="padding: 5px;background-color:white;" ><?=$author['first_name']." ".$author['last_name']?></span>
+                                <span style="padding: 5px;background-color:white;" ><?=$author['name']?></span>
                                 <a href="book_delete_author.php?author_id=<?= $author['author_id']?>&id=<?= $book['id'] ?>" class="fa fa-trash"></a>
                                 <div class="clear-both"></div>                            
                         <?php } ?>

@@ -138,15 +138,14 @@
         </style>
         <?php
         $error = false;
-        // var_dump($_POST['first_name']);exit;
         // neu ton tai cation GET = create
         if (isset($_GET['action']) && $_GET['action'] == 'create') {
-            if (!empty($_POST['first_name']) && !empty($_POST['last_name'])) {
+            if (!empty($_POST['name']) ) {
             // POST nhan dc day du username va password
                 include '../connect_db.php';
                 // Thêm bản ghi vào cơ sở dữ liệu
-                $result = mysqli_query($con, "INSERT INTO `authors` (`id`, `first_name`, `last_name`, `last_updated`) 
-                VALUES (NULL, '" . $_POST['first_name'] . "' , '" . $_POST['last_name'] . "' , NOW() );");
+                $result = mysqli_query($con, "INSERT INTO `authors` (`id`, `name`, `last_updated`) 
+                VALUES (NULL, '" . $_POST['name'] . "' , NOW() );");
                 // neu nhu ko insert dc : trung ten user
                 if (!$result) {
                     if (strpos(mysqli_error($con), "Duplicate entry") !== FALSE) {
@@ -168,7 +167,7 @@
                     <div class="content-container">
                         <div id="success-notify" class="box-content">
                             <h1>Chúc mừng</h1>
-                            <h4>Bạn đã tạo thành công tác giả <?= $_POST['first_name']." ".$_POST['last_name'] ?></h4>
+                            <h4>Bạn đã tạo thành công tác giả <?= $_POST['name'] ?></h4>
                             <a class="link-button" href="javascript:window.history.go(-2)">Danh sách tác giả</a>
                         </div>
                     </div>
@@ -188,13 +187,8 @@
                     <h1>Tạo tác giả</h1>
                     <form action="./author_create.php?action=create" method="Post" autocomplete="off">
                         <div class="input-block">
-                            <label>Họ và tên đệm</label></br>
-                            <input class="input-area" type="text" name="first_name" value="" />
-                        </div>
-                        <br>
-                        <div class="input-block">
                             <label>Tên</label></br>
-                            <input class="input-area" type="text" name="last_name" value="" />
+                            <input class="input-area" type="text" name="name" value="" />
                         </div>
                         <br><br>
                         <input class="button "  type="submit" value="Tạo tác giả" />

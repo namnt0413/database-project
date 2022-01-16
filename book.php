@@ -401,7 +401,7 @@
                         <div class="box-label text-uppercase d-flex align-items-center">Tác giả<button class="btn ml-auto" type="button" data-toggle="collapse" data-target="#inner-box3" aria-expanded="false" aria-controls="inner-box3"><span class="fas fa-plus"></span></button> </div>
                         <div id="inner-box3" class="collapse mt-2 mr-1">
                             <?php while( $row3 = mysqli_fetch_array($author) ){ ?>
-                                <div class="my-1"> <a href="./book.php?author_id=<?=$row3['id']?>"><?=$row3['first_name']." ".$row3['last_name'] ?></a> </div>
+                                <div class="my-1"> <a href="./book.php?author_id=<?=$row3['id']?>"><?=$row3['name'] ?></a> </div>
                             <?php } ?>
                         </div>
                     </div>
@@ -444,7 +444,7 @@
                 $sort_author = mysqli_query($con, "SELECT * FROM authors WHERE id = $author_id ;  ");     
                 $sort_author = mysqli_fetch_assoc($sort_author) ;         
             ?>
-                <h2>Tìm kiếm theo tác giả: <?= $sort_author['first_name']." ".$sort_author['last_name']?></h2>
+                <h2>Tìm kiếm theo tác giả: <?= $sort_author['name']?></h2>
 
             <?php } ?>
             
@@ -461,13 +461,13 @@
                                 <div class="card-info" style="margin-top: 0.5rem;">
                                     <div class="text-muted mt-auto">
                                         <?php
-                                        $author = mysqli_query($con, "SELECT authors.first_name,authors.last_name
+                                        $author = mysqli_query($con, "SELECT authors.name
                                                                     FROM `books_authors`  INNER JOIN `authors` ON books_authors.author_id = authors.id
                                                                                         INNER JOIN `books` ON books_authors.book_id = books.id
                                                                     WHERE `books_authors`.`book_id` = $row_id                    
                                                                                   ");  
                                         while ($row2 = mysqli_fetch_array($author)){ ?>
-                                            <a href="" style="font-size: 1.2rem;color:#219150;"><?= $row2['first_name']." ".$row2['last_name'].","?></a>
+                                            <a href="" style="font-size: 1.2rem;color:#219150;"><?= $row2['name'].","?></a>
                                         <?php } ?>
                                     </div>
 
