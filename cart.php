@@ -37,7 +37,7 @@
             function update_cart($con,$add ) {  
                 foreach ($_POST['quantity'] as $id => $quantity) {
                     //trong bien POST['quantity'] co id:$book['id'] value: quantity[<?=$book['id']?]
-                    if ($quantity == 0) {   // neu so luong = 0 thi khong luu phien cua sp nua
+                    if ($quantity <= 0) {   // neu so luong = 0 thi khong luu phien cua sp nua
                         unset($_SESSION["cart"][$id]);
                     } else {
                         if (!isset($_SESSION["cart"][$id])) {
@@ -143,12 +143,12 @@
 
                             // BANG ORDER_DETAIL
                             foreach ($orderbooks as $key => $book) {
-                                $insertString .= "(NULL, '" . $orderID . "', '" . $book['id'] . "', '" . $_POST['quantity'][$book['id']] . "', '" . $book['price'] . "', '" . $book['discount'] . "' , '" . $book['import_price'] . "' , NOW() , NOW() )";
+                                $insertString .= "(NULL, '" . $orderID . "', '" . $book['id'] . "', '" . $_POST['quantity'][$book['id']] . "', '" . $book['price'] . "', '" . $book['discount'] . "' , '" . $book['import_price'] . "' )";
                                 if ($key != count($orderbooks) - 1) {    // thi key= thang cuoi cung thi ko can dau , nua
                                     $insertString .= ",";   
                                 }
                             }
-                            $insertOrder = mysqli_query($con, "INSERT INTO `orders_details` (`id`, `order_id`, `book_id`, `quantity`, `price`, `discount` , `import_price` , `created_date`, `last_updated`) VALUES " . $insertString . ";");
+                            $insertOrder = mysqli_query($con, "INSERT INTO `orders_details` (`id`, `order_id`, `book_id`, `quantity`, `price`, `discount` , `import_price`) VALUES " . $insertString . ";");
                             // var_dump($insertString);exit;
                             $success = "Đặt hàng thành công";
                             unset($_SESSION['cart']);   // xoa phien gio hang vua nap len csdl di
@@ -190,7 +190,7 @@
                     <?= $success ?>. <a href="book.php">Tiếp tục mua hàng</a>
                 </div>
             <?php } else { ?>
-        <div class="back-to-shop"><a href="javascript:window.history.go(-2)" class="fa fa-undo" style="padding: 5px; margin-bottom: 10px;">  Quay lại Cửa hàng</a></div>
+        <div class="back-to-shop"><a href="book.php" class="fa fa-undo" style="padding: 5px; margin-bottom: 10px;">  Quay lại Cửa hàng</a></div>
         <?php 
             if ($GLOBALS['changed_cart'] && $soluong!=0) { ?>  <!-- Check nhap qua quantity neu la true: so luong khach nhap lon qua-->   
                 <h3>Số lượng sản phẩm tồn kho không đủ. Vui lòng <a href="javascript:window.history.go(-1)">tải lại</a> giỏ hàng</h3>
