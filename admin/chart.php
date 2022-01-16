@@ -15,43 +15,76 @@
         <div class="page-container">
 
     <?php 
-         
         // include 'admin_navbar.php';
+         
 
-    // DOANH THU, LAI SUAT TRONG NAM 2021    
-    if( isset($_GET['name']) && $_GET['name'] == "sale_chart") {
-    $where = "";
-    if( isset($_GET['year']) && $_GET['year'] =="2022"){
-        $where .= "YEAR(created_date) = 2022";
-    }else{
-        $where .= "YEAR(created_date) = 2021";
+// DOANH THU, LAI SUAT TRONG NAM 2021    
+    $where1 = "";
+    if( isset($_GET['name']) && $_GET['name'] == "sale_chart" && $_GET['year'] != "2022") {
+        if( isset($_GET['year']) && $_GET['year'] =="2021"){
+            $where1 .= "YEAR(created_date) = 2021";
+        }
+    } else {
+    $where1 .= "YEAR(created_date) = 2022";
     }
-
-    $months = ''; $sales = ''; $imports = ''; $profits = '';   
+    $month1s = ''; $sales = ''; $imports = ''; $profits = '';   
     $sale_chart = mysqli_query($con, 
     "SELECT MONTH(created_date) AS month, SUM((price-discount)*quantity) AS sale,SUM(import_price*quantity) AS import, SUM((price-discount-import_price)*quantity) AS profit 
     FROM `orders_details` INNER JOIN orders ON orders_details.order_id = orders.id
-    WHERE (".$where.") 
+    WHERE (".$where1.") 
     GROUP BY (month)");
 
     while ($row = mysqli_fetch_array($sale_chart)){
-        $month =  $row['month'];
+        $month1 =  $row['month'];
         $sale = $row['sale'];
         $import = $row['import'];
         $profit = $row['profit'];
 
-        $months = $months.$month.',';
+        $month1s = $month1s.$month1.',';
         $sales = $sales.$sale.',';
         $imports = $imports.$import.',';
         $profits = $profits.$profit.',';
     }
-    $months = trim($months, "," );
+    $month1s = trim($month1s, "," );
     $sales = trim($sales, "," );
     $imports = trim($imports, "," );
     $profits = trim($profits, "," ); 
-    // var_dump( $months, $sales, $imports);exit;
+    // var_dump( $months1, $sales, $imports);exit;
 
+
+// SO LUONG SACH VA DON HANG TRONG NAM
+    $where2 = "";
+    if( isset($_GET['name']) && $_GET['name'] == "bookorder_chart" && $_GET['year'] != "2022") {
+        if( isset($_GET['year']) && $_GET['year'] =="2021"){
+            $where2 .= "YEAR(created_date) = 2021";
+        }
+    } else {
+    $where2 .= "YEAR(created_date) = 2022";
     }
+    $month2s = ''; $book2s = ''; $order2s = '';   
+    $bookorder_chart = mysqli_query($con, 
+    "SELECT MONTH(created_date) AS thang ,SUM(quantity) AS sach, COUNT(DISTINCT orders.id) AS donhang
+    FROM `orders_details` INNER JOIN orders ON orders_details.order_id = orders.id
+    WHERE (".$where2.") 
+    GROUP BY thang");
+
+    while ($row = mysqli_fetch_array($bookorder_chart)){
+        $month2 =  $row['thang'];
+        $book2 = $row['sach'];
+        $order2 = $row['donhang'];
+
+        $month2s = $month2s.$month2.',';
+        $book2s = $book2s.$book2.',';
+        $order2s = $order2s.$order2.',';
+    }
+    $month2s = trim($month2s, "," );
+    $book2s = trim($book2s, "," );
+    $order2s = trim($order2s, "," );
+
+
+
+
+    
         
 
 
@@ -60,78 +93,14 @@
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="au-card recent-report">
-                                    <div class="au-card-inner">
-                                        <h3 class="title-2">recent reports</h3>
-                                        <div class="chart-info">
-                                            <div class="chart-info__left">
-                                                <div class="chart-note">
-                                                    <span class="dot dot--blue"></span>
-                                                    <span>products</span>
-                                                </div>
-                                                <div class="chart-note mr-0">
-                                                    <span class="dot dot--green"></span>
-                                                    <span>services</span>
-                                                </div>
-                                            </div>
-                                            <div class="chart-info__right">
-                                                <div class="chart-statis">
-                                                    <span class="index incre">
-                                                        <i class="zmdi zmdi-long-arrow-up"></i>25%</span>
-                                                    <span class="label">products</span>
-                                                </div>
-                                                <div class="chart-statis mr-0">
-                                                    <span class="index decre">
-                                                        <i class="zmdi zmdi-long-arrow-down"></i>10%</span>
-                                                    <span class="label">services</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="recent-report__chart">
-                                            <canvas id="recent-rep-chart"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="au-card chart-percent-card">
-                                    <div class="au-card-inner">
-                                        <h3 class="title-2 tm-b-5">char by %</h3>
-                                        <div class="row no-gutters">
-                                            <div class="col-xl-6">
-                                                <div class="chart-note-wrap">
-                                                    <div class="chart-note mr-0 d-block">
-                                                        <span class="dot dot--blue"></span>
-                                                        <span>products</span>
-                                                    </div>
-                                                    <div class="chart-note mr-0 d-block">
-                                                        <span class="dot dot--red"></span>
-                                                        <span>services</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6">
-                                                <div class="percent-chart">
-                                                    <canvas id="percent-chart"></canvas>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
 
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner">
-                                        <h3 class="title-2 m-b-40">Doanh số theo đầu sách</h3>
+                                        <h3 class="title-2 m-b-40">Doanh số bán hàng theo đầu sách</h3>
                                         <select name="sort" id="sort" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" style="margin-bottom: 20px">
-                                            <option value="" hidden selected>Thống kê theo</option>
-                                            <option <?php if(isset($_GET['name']) && $_GET['name'] == "sale_chart" && $_GET['year'] == "2022") { ?> selected <?php } ?> 
-                                    value="?&name=sale_chart&year=2022">Năm 2022</option>
+                                            <option selected value="?&name=sale_chart&year=2022">Năm 2022</option>
                                             <option <?php if(isset($_GET['name']) && $_GET['name'] == "sale_chart" && $_GET['year'] == "2021") { ?> selected <?php } ?> 
                                     value="?&name=sale_chart&year=2021" data-year="2021" class="sale_chart">Năm 2021</option>
                                         </select>
@@ -142,8 +111,13 @@
                             <div class="col-lg-6">
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner">
-                                        <h3 class="title-2 m-b-40">Team Commits</h3>
-                                        <canvas id="team-chart"></canvas>
+                                        <h3 class="title-2 m-b-40">Số lượng sách và đơn hàng trong năm</h3>
+                                        <select name="sort" id="sort" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" style="margin-bottom: 20px">
+                                            <option selected value="?&name=bookorder_chart&year=2022">Năm 2022</option>
+                                            <option <?php if(isset($_GET['name']) && $_GET['name'] == "bookorder_chart" && $_GET['year'] == "2021") { ?> selected <?php } ?> 
+                                    value="?&name=bookorder_chart&year=2021" data-year="2021" class="sale_chart">Năm 2021</option>
+                                        </select>
+                                        <canvas id="barChart"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -153,11 +127,12 @@
                             <div class="col-lg-6">
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner">
-                                        <h3 class="title-2 m-b-40">Bar chart</h3>
-                                        <canvas id="barChart"></canvas>
+                                        <h3 class="title-2 m-b-40">Team Commits</h3>
+                                        <canvas id="team-chart"></canvas>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-lg-6">
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner">
@@ -224,6 +199,68 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="au-card recent-report">
+                                    <div class="au-card-inner">
+                                        <h3 class="title-2">recent reports</h3>
+                                        <div class="chart-info">
+                                            <div class="chart-info__left">
+                                                <div class="chart-note">
+                                                    <span class="dot dot--blue"></span>
+                                                    <span>products</span>
+                                                </div>
+                                                <div class="chart-note mr-0">
+                                                    <span class="dot dot--green"></span>
+                                                    <span>services</span>
+                                                </div>
+                                            </div>
+                                            <div class="chart-info__right">
+                                                <div class="chart-statis">
+                                                    <span class="index incre">
+                                                        <i class="zmdi zmdi-long-arrow-up"></i>25%</span>
+                                                    <span class="label">products</span>
+                                                </div>
+                                                <div class="chart-statis mr-0">
+                                                    <span class="index decre">
+                                                        <i class="zmdi zmdi-long-arrow-down"></i>10%</span>
+                                                    <span class="label">services</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="recent-report__chart">
+                                            <canvas id="recent-rep-chart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="au-card chart-percent-card">
+                                    <div class="au-card-inner">
+                                        <h3 class="title-2 tm-b-5">char by %</h3>
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-6">
+                                                <div class="chart-note-wrap">
+                                                    <div class="chart-note mr-0 d-block">
+                                                        <span class="dot dot--blue"></span>
+                                                        <span>products</span>
+                                                    </div>
+                                                    <div class="chart-note mr-0 d-block">
+                                                        <span class="dot dot--red"></span>
+                                                        <span>services</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="percent-chart">
+                                                    <canvas id="percent-chart"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                         
 
                         <div class="row">
                             <div class="col-md-12">
@@ -278,7 +315,7 @@
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: [ <?php echo $months ?> ],
+          labels: ["Thg1","Thg2","Thg3","Thg4","Thg5","Thg6","Thg7","Thg8","Thg9","Thg10","Thg11","Thg12" ],
           type: 'line',
           defaultFontFamily: 'Poppins',
           datasets: [{
@@ -292,7 +329,7 @@
             pointBorderColor: 'transparent',
             pointBackgroundColor: 'rgba(0,103,255,0.75)',
           }, {
-            label: "Chi phí nhập về",
+            label: "Chi phí gốc",
             data: [ <?php echo $imports ?> ],
             backgroundColor: 'transparent',
             borderColor: 'rgba(220,53,69,0.5)',
@@ -372,6 +409,66 @@
         }
       });
     }
+  } catch (error) {
+    console.log(error);
+  }
+
+  try {
+    //bar chart
+    var ctx = document.getElementById("barChart");
+    if (ctx) {
+      ctx.height = 200;
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        defaultFontFamily: 'Poppins',
+        data: {
+          labels: ["Thg1","Thg2","Thg3","Thg4","Thg5","Thg6","Thg7","Thg8","Thg9","Thg10","Thg11","Thg12"],
+          datasets: [
+            {
+              label: "Tổng số sách bán được",
+              data: [ <?php echo $book2s ?> ],
+              borderColor: "rgba(0, 123, 255, 0.9)",
+              borderWidth: "0",
+              backgroundColor: "rgba(0, 123, 255, 0.5)",
+              fontFamily: "Poppins"
+            },
+            {
+              label: "Tổng số đơn hàng",
+              data: [ <?php echo $order2s ?> ],
+              borderColor: "rgba(255,0,68,0.9)",
+              borderWidth: "0",
+              backgroundColor: "rgba(255,0,68,0.5)",
+              fontFamily: "Poppins"
+            }
+          ]
+        },
+        options: {
+          legend: {
+            position: 'top',
+            labels: {
+              fontFamily: 'Poppins'
+            }
+
+          },
+          scales: {
+            xAxes: [{
+              ticks: {
+                fontFamily: "Poppins"
+
+              }
+            }],
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                fontFamily: "Poppins"
+              }
+            }]
+          }
+        }
+      });
+    }
+
+
   } catch (error) {
     console.log(error);
   }
