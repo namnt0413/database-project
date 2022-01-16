@@ -49,7 +49,7 @@
     $sales = trim($sales, "," );
     $imports = trim($imports, "," );
     $profits = trim($profits, "," ); 
-    // var_dump( $months1, $sales, $imports);exit;
+    // var_dump( $month1s, $sales, $imports);
 
 
 // SO LUONG SACH VA DON HANG TRONG NAM
@@ -83,9 +83,37 @@
 
 
 
+//  THONG KE THEO THE LOAI SACH
+    $where3 = "";
+    if( isset($_GET['name']) && $_GET['name'] == "genres_chart" && $_GET['year'] != "2022") {
+        if( isset($_GET['year']) && $_GET['year'] =="2021"){
+            $where3 .= "YEAR(created_date) = 2021";
+        }
+    } else {
+    $where3 .= "YEAR(created_date) = 2022";
+    }
+    $genres3s = ''; $quantities = '';   
+    $genres_chart = mysqli_query($con, 
+    "SELECT genres.name AS theloai ,SUM(quantity) AS soluong  FROM `orders_details` 
+    INNER JOIN books_genres ON orders_details.book_id = books_genres.book_id
+    INNER JOIN orders ON orders_details.order_id = orders.id
+    INNER JOIN genres ON genres.id = books_genres.genres_id
+    WHERE (".$where3.") 
+    GROUP BY(genres_id)");
 
-    
-        
+    while ($row = mysqli_fetch_array($genres_chart)){
+        $genres3 = '"'.$row['theloai'].'"' ;
+        $quantity = $row['soluong'];
+
+        $genres3s = $genres3s.$genres3.',';
+        $quantities = $quantities.$quantity.',';
+    }
+    $genres3s = trim($genres3s, "," );
+    $quantities = trim($quantities, "," );
+    // $test = '"a","b"';
+    // var_dump($genres3s,$quantities);
+
+
 
 
      ?>
@@ -127,6 +155,30 @@
                             <div class="col-lg-6">
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner">
+                                        <h3 class="title-2 m-b-40">Thống kê lượng sách bán được theo Thể loại</h3>
+                                        <select name="sort" id="sort" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" style="margin-bottom: 20px">
+                                            <option selected value="?&name=genres_chart&year=2022">Năm 2022</option>
+                                            <option <?php if(isset($_GET['name']) && $_GET['name'] == "genres_chart" && $_GET['year'] == "2021") { ?> selected <?php } ?> 
+                                    value="?&name=genres_chart&year=2021" data-year="2021" class="genres_chart">Năm 2021</option>
+                                        </select>
+                                        <canvas id="doughutChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="au-card m-b-30">
+                                    <div class="au-card-inner">
+                                        <h3 class="title-2 m-b-40">Single Bar Chart</h3>
+                                        <canvas id="singelBarChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="au-card m-b-30">
+                                    <div class="au-card-inner">
                                         <h3 class="title-2 m-b-40">Team Commits</h3>
                                         <canvas id="team-chart"></canvas>
                                     </div>
@@ -152,14 +204,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="au-card m-b-30">
-                                    <div class="au-card-inner">
-                                        <h3 class="title-2 m-b-40">Doughut Chart</h3>
-                                        <canvas id="doughutChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
 
                         <div class="row">
@@ -181,24 +226,6 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="au-card m-b-30">
-                                    <div class="au-card-inner">
-                                        <h3 class="title-2 m-b-40">Single Bar Chart</h3>
-                                        <canvas id="singelBarChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="au-card m-b-30">
-                                    <div class="au-card-inner">
-                                        <h3 class="title-2 m-b-40">Single Bar Chart</h3>
-                                        <canvas id="singelBarChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="au-card recent-report">
@@ -234,32 +261,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="au-card chart-percent-card">
-                                    <div class="au-card-inner">
-                                        <h3 class="title-2 tm-b-5">char by %</h3>
-                                        <div class="row no-gutters">
-                                            <div class="col-xl-6">
-                                                <div class="chart-note-wrap">
-                                                    <div class="chart-note mr-0 d-block">
-                                                        <span class="dot dot--blue"></span>
-                                                        <span>products</span>
-                                                    </div>
-                                                    <div class="chart-note mr-0 d-block">
-                                                        <span class="dot dot--red"></span>
-                                                        <span>services</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6">
-                                                <div class="percent-chart">
-                                                    <canvas id="percent-chart"></canvas>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>                         
 
                         <div class="row">
@@ -280,6 +281,7 @@
     </div>
 
     <!-- Jquery JS-->
+     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
     <script src="vendor/bootstrap-4.1/popper.min.js"></script>
@@ -299,6 +301,7 @@
     <script src="vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="vendor/select2/select2.min.js">
     </script>
+   
 
     <!-- Main JS-->
     <script src="js/main.js"></script>
@@ -467,11 +470,71 @@
         }
       });
     }
-
-
   } catch (error) {
     console.log(error);
   }
+
+  //doughut chart
+  try {
+    var ctx = document.getElementById("doughutChart");
+    if (ctx) {
+      ctx.height = 150;
+      var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          datasets: [{
+            data: [ <?php echo $quantities ?> ],
+            backgroundColor: [
+              "rgba(255,0,0,0.65)",
+              "rgba(0,239,255,0.65)",
+              "rgba(255,137,0,0.65)",
+              "rgba(145,0,255,0.65)",
+              "rgba(0,255,60,0.65)",
+              "rgba(255,0,179,0.65)",
+              "rgba(239,255,0,0.65)",
+              "rgba(9,0,255,0.65)",
+              "rgba(80,80,80,0.65)",
+              "rgba(6,255,173,0.65)",
+              "rgba(255,6,106,0.65)",
+              "rgba(165,255,6,0.65)"
+            ],
+            hoverBackgroundColor: [
+              "rgba(255,0,0,0.9)",
+              "rgba(0,239,255,0.9)",
+              "rgba(255,137,0,0.9)",
+              "rgba(145,0,255,0.9)",
+              "rgba(0,255,60,0.9)",
+              "rgba(255,0,179,0.9)",
+              "rgba(239,255,0,0.9)",
+              "rgba(9,0,255,0.9)",
+              "rgba(80,80,80,0.9)",
+              "rgba(6,255,173,0.9)",
+              "rgba(255,6,106,0.9)",
+              "rgba(165,255,6,0.9)"
+            ]
+          }],
+          labels: [ <?php echo $genres3s ?>]
+        },
+        options: {
+          legend: {
+            position: 'top',
+            labels: {
+              fontFamily: 'Poppins'
+            }
+
+          },
+          responsive: true
+        }
+      });
+    }
+
+    } catch (error) {
+    console.log(error);
+    }
+
+
+  
+
 
 })(jQuery);
     </script>
