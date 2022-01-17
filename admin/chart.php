@@ -92,7 +92,15 @@
     } else {
     $where3 .= "YEAR(created_date) = 2022";
     }
-    $genres3s = ''; $quantities = '';   
+    $genres3s = ''; $quantities = ''; $total ='';
+    $total = mysqli_query($con,"SELECT SUM(quantity) AS tongsoluong  FROM `orders_details` 
+    INNER JOIN books_genres ON orders_details.book_id = books_genres.book_id
+    INNER JOIN orders ON orders_details.order_id = orders.id
+    INNER JOIN genres ON genres.id = books_genres.genres_id
+    WHERE (".$where3.") ");
+    $total = mysqli_fetch_assoc($total);
+    // var_dump($total);
+    
     $genres_chart = mysqli_query($con, 
     "SELECT genres.name AS theloai ,SUM(quantity) AS soluong  FROM `orders_details` 
     INNER JOIN books_genres ON orders_details.book_id = books_genres.book_id
@@ -103,7 +111,7 @@
 
     while ($row = mysqli_fetch_array($genres_chart)){
         $genres3 = '"'.$row['theloai'].'"' ;
-        $quantity = $row['soluong'];
+        $quantity = ceil($row['soluong']/$total['tongsoluong']*100);
 
         $genres3s = $genres3s.$genres3.',';
         $quantities = $quantities.$quantity.',';
@@ -157,7 +165,7 @@
                             <div class="col-lg-6">
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner">
-                                        <h3 class="title-2 m-b-40">Thống kê lượng sách bán được theo Thể loại</h3>
+                                        <h3 class="title-2 m-b-40">Tỉ lệ số lượng sách bán được theo Thể loại (%)</h3>
                                         <select name="sort" id="sort" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" style="margin-bottom: 20px">
                                             <option selected value="?&name=genres_chart&year=2022">Năm 2022</option>
                                             <option <?php if(isset($_GET['name']) && $_GET['name'] == "genres_chart" && $_GET['year'] == "2021") { ?> selected <?php } ?> 
@@ -177,7 +185,7 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-lg-6">
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner">
@@ -378,7 +386,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>                         
+                        </div>                          -->
 
                         <div class="row">
                             <div class="col-md-12">

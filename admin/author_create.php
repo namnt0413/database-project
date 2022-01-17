@@ -95,7 +95,7 @@
                 width: 350px;
                 position: absolute; 
                 right: 10px;
-                border-radius: 9px;
+                border-radius: 5px;
                 border: 1px solid #ccc;
                 padding: 5px;
                 

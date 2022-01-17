@@ -9,13 +9,13 @@
 ?>   
 
         <link rel="stylesheet" href="./assets/css/cart.css">
-
+        
         <?php
         if (!isset($_SESSION["cart"])) {
             $_SESSION["cart"] = array();    // khoi tao SESSION["cart"] = 1 array rong neu chua co
         }
         
-        $GLOBALS['changed_cart'] = false;   // bien de check so luong sp khach nhap : true-quantity lon qua, false- quantity < so luong trong kho
+        $GLOBALS['changed_cart'] = false;   // bien de check so luong sp khach nhap : true-quantity lon qua, false- quantity <d so luong trong kho
         $error = false;
         $success = false;
         $total_quantity = 0;
@@ -177,26 +177,38 @@
             //  $book['images'] = mysqli_fetch_all($imgLibrary, MYSQLI_ASSOC);
         ?>
 
-
+    
 <!-- NEU KHONG GET DUOC DU LIEU THI => LOT VAO HAM DE POST LEN -->        
         <div class="container">
         <!-- KIEM TRA DIEU KIEN -->
             <?php if (!empty($error)) { ?> 
-                <div id="notify-msg">
-                    <?= $error ?>. <a href="cart.php">Quay lại</a>
+                <div class="content-container">
+                    <div class="content-container" id="notify-msg">
+                        <?= $error ?>. <a href="cart.php">Quay lại</a>
+                    </div>
                 </div>
             <?php } elseif (!empty($success)) { ?>
-                <div id="notify-msg">
-                    <?= $success ?>. <a href="book.php">Tiếp tục mua hàng</a>
+                <div class="content-container">
+                    <div class="box-content" id="notify-msg">
+                        <?= $success ?>. <a href="book.php">Tiếp tục mua hàng</a>
+                    </div>
                 </div>
             <?php } else { ?>
         <div class="back-to-shop"><a href="book.php" class="fa fa-undo" style="padding: 5px; margin-bottom: 10px;">  Quay lại Cửa hàng</a></div>
         <?php 
-            if ($GLOBALS['changed_cart'] && $soluong!=0) { ?>  <!-- Check nhap qua quantity neu la true: so luong khach nhap lon qua-->   
-                <h3>Số lượng sản phẩm tồn kho không đủ. Vui lòng <a href="javascript:window.history.go(-1)">tải lại</a> giỏ hàng</h3>
+            if ($GLOBALS['changed_cart'] && $soluong!=0) { ?>  <!-- Check nhap qua quantity neu la true: so luong khach nhap lon qua-->  
+                <div class="content-container">
+                    <div class="box-content"> 
+                    <h3>Số lượng sản phẩm tồn kho không đủ. Vui lòng <a href="javascript:window.history.go(-1)">tải lại</a> giỏ hàng</h3>
+                    </div>
+                </div>
             <?php 
             }else if ($GLOBALS['changed_cart'] && $soam!=0) { ?>
+            <div class="content-container">
+                <div class="box-content">
                 <h3>Số lượng sản phẩm đã âm. Vui lòng <a href="javascript:window.history.go(-2)">tải lại</a> giỏ hàng</h3>
+                </div>
+            </div>
             <?php
             }else { 
             ?>
@@ -223,19 +235,19 @@
                         </div>
                         <!-- Hàng tiêu đề -->
                         <div class="row" style="border-top: 1px solid rgba(0,0,0,.1);">
-                            <div class="row main align-items-center">
-                                <div style="padding: 5px;">STT</div>
-                                <div class="col-4">
-                                    <div class="row text-muted">Tên sách</div>
+                            <div class="title-container row main align-items-center">
+                                <div style="padding: 5px; margin-left: 10px; color: #fff; font-size: 15px;">STT</div>
+                                <div  >
+                                    <div class="row" style="color: #fff; font-size: 15px;" >Tên sách</div>
                                 </div>
-                                <div class="col-2 text-center" >Hình ảnh</div>
-                                <div class="col-2 text-center">
-                                    <p>Đơn giá</p>
+                                <div  style="color: #fff; font-size: 15px;" >Hình ảnh</div>
+                                <div  >
+                                    <p style="color: #fff; font-size: 15px;">Đơn giá</p>
                                 </div>
-                                <div class="col-1" style="padding-right: 0;">
+                                <div style=" color: #fff; font-size: 15px;">
                                     Số lượng
                                  </div>
-                                <div class="col-2 text-center">Thành tiền</div>
+                                <div  style = "color: #fff; font-size: 15px;">Thành tiền</div>
                             </div>
                         </div>
 
@@ -246,20 +258,20 @@
                     while ($row = mysqli_fetch_array($books )) { ?>
 
                         <div class="row" style="border-top: 1px solid rgba(0,0,0,.1);">
-                            <div class="row main align-items-center">
-                                <div style="padding: 5px;"><?=$num++;?></div>
-                                <div class="col-4">
-                                    <div class="row text-muted"><?=$row['tittle']?></div>
-                                    <div class="row"></div>
+                            <div class="detail-container row main align-items-center">
+                                <div style="margin-left: 10px;padding: 5px;"><?=$num++;?></div>
+                                <div >
+                                    <div ><?=$row['tittle']?></div>
+                                    <div ></div>
                                 </div>
-                                <div class="col-2 text-center" ><img class="img-fluid" src="<?=$row['image']?>"></div>
-                                <div class="col-2 text-center">
+                                <div ><img class="img-fluid"  style="height: 100px; width: auto" src="<?=$row['image']?>"></div>
+                                <div >
                                     <p><?=$row['price']-$row['discount']?></p>
                                 </div>
-                                <div class="col-1" style="padding-right: 0;;">
-                                    <input type="number" value="<?= $_SESSION['cart'][$row['id']] ?>" name="quantity[<?=$row['id']?>]" size=2 style="padding:0;text-align:center"/>
+                                <div  style="padding-right: 0;">
+                                    <input style="width: 70px;"type="number" value="<?= $_SESSION['cart'][$row['id']] ?>" name="quantity[<?=$row['id']?>]" size=2 style="padding:0;text-align:center"/>
                                  </div>
-                                <div class="col-2 text-center"><?= number_format( ($row['price']-$row['discount']) * $_SESSION["cart"][$row['id']], 0, ",", ".") ?></div>
+                                <div ><?= number_format( ($row['price']-$row['discount']) * $_SESSION["cart"][$row['id']], 0, ",", ".") ?></div>
                                <a href="cart.php?action=delete&id=<?= $row['id'] ?>" class="fa fa-trash" style="padding: 2px;"></a>
 
                             </div>
@@ -272,17 +284,20 @@
                     ?>                      
 
                         <!-- row tính tổng tiền -->
-                        <div class="row" style="border-top: 1px solid rgba(0,0,0,.1);">
-                            <div class="row main align-items-center">
+                        <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); ">
+                            <div class="sum-container row main align-items-center" style ="border-bottom: 1px solid rgba(0,0,0,.1);">
                                 <div style="padding: 5px;">&nbsp;</div>
-                                <div class="col-4">
+                                <div>
                                     <div class="row text-muted">Tổng Tiền Hàng</div>
                                 </div>
-                                <div class="col-2 text-center" >&nbsp;</div>
-                                <div class="col-2 text-center">&nbsp;</div>
-                                <div class="col-1" style="padding-right: 0;">&nbsp;</div>
-                                <div class="col-2 text-center"><?= number_format($total, 0, ",", ".") ?></div>
-                                <input type="submit" name="update_click" value="Cập nhật" />
+                                <div >&nbsp;</div>
+                                <div>&nbsp;</div>
+                                <div style="padding-right: 0;">&nbsp;</div>
+                                <div><?= number_format($total, 0, ",", ".") ?></div>
+                                
+                            </div>
+                            <div class="button-container">
+                            <input class="update-button" type="submit" name="update_click" value="Cập nhật" />
                             </div>
                         </div>
 
@@ -297,42 +312,42 @@
                 <div class="row">
                     <div class="col-md-11 summary" style="margin:auto;">
                         <div>
-                            <h5><b> ĐƠN HÀNG </b></h5>
+                            <h5 style="text-align: center; margin-bottom: 50px;"><b style="font-size: 30px;"> ĐƠN HÀNG </b></h5>
                         </div>
                         <hr>
                         <div class="row">
-                        <div class="col text-left">TỔNG TIỀN HÀNG</div>
+                        <div class="col text-left" style="margin-bottom: 10px">TỔNG TIỀN HÀNG</div>
                             <div class="col text-right"> <?= isset($total) ? number_format($total, 0, ",", ".") : "" ?></div>
                         </div>
 
                         <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                             <div class="col-6">
-                                <p>Người nhận hàng</p> <input type="text" value="<?= isset($row_user['last_name']) ? $row_user['first_name']." ".$row_user['last_name'] : ""?>" name="fullname"  placeholder="Nhập Tên">
+                                <p style="margin-bottom: 10px">Người nhận hàng</p> <input style="padding: 5px; border-radius: 3px" type="text" value="<?= isset($row_user['last_name']) ? $row_user['first_name']." ".$row_user['last_name'] : ""?>" name="fullname"  placeholder="Nhập Tên">
                             </div>
                             <div class="col-6">
-                                <p>Số điện thoại</p> <input type="text" value="<?= isset($row_user['phone']) ? $row_user['phone'] : ""?>" name="phone" placeholder="Nhập SĐT">
+                                <p style="margin-bottom: 10px">Số điện thoại</p> <input style="padding: 5px; border-radius: 3px" type="text" value="<?= isset($row_user['phone']) ? $row_user['phone'] : ""?>" name="phone" placeholder="Nhập SĐT">
                             </div>
                         </div>   
                         <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                             <div class="col-6">
-                                <p>Địa chỉ</p> <input type="text" value="<?= isset($row_user['address']) ? $row_user['address'] : ""?>" name="address" placeholder="Nhập Địa chỉ">
+                                <p style="margin-bottom: 10px">Địa chỉ</p> <input style="padding: 5px; border-radius: 3px" type="text" value="<?= isset($row_user['address']) ? $row_user['address'] : ""?>" name="address" placeholder="Nhập Địa chỉ">
                             </div>
                             <div class="col-6">
-                                <p>Cách giao hàng</p> 
-                                <select>
+                                <p style="margin-bottom: 10px">Cách giao hàng</p> 
+                                <select style="padding: 5px; border-radius: 3px">
                                     <option class="text-muted">Giao hàng thông thường - 5.000đ</option>
                                     <option class="text-muted">Giao hàng nhanh - 20000đ</option>
                                 </select>
                             </div>
                         </div>   
                         <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                            <p>Ghi chú: </p><textarea name="note" cols="128" rows="6" style="margin:auto;"></textarea>
+                            <p style="margin-bottom: 10px">Ghi chú: </p><textarea style="padding: 5px; border-radius: 3px" name="note" cols="128" rows="6" style="margin:auto;"></textarea>
                         </div>
                         <div class="row" style="justify-content:center; border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                             <p>TỔNG THANH TOÁN : <b class="text-danger" style="font-size:1.5rem"><?= isset($total) ? number_format($total, 0, ",", ".") : "" ?></b></p>   
                         </div>
-                        <div class="row">
-                           <input id="order_click" type="submit" name="order_click" value="Đặt hàng" />
+                        <div class="button-container">
+                           <input class="order-button" type="submit" name="order_click" value="Đặt hàng" />
                         </div>
                     </div>
                 </div>    
@@ -361,4 +376,98 @@
 <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
 <script type='text/javascript' src=''></script>
 <script type='text/javascript' src=''></script> -->
+<style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  color: #495057;
+  font-size: 15px;
+}
+.content-container {
+                margin-top: 5rem;
+                position: relative;
+                height: 20vh;
+                 /* background-image: linear-gradient(rgba(233, 236, 239, 0.603), rgba(233, 236, 239, 0.603));
+                 background-image: linear-gradient(rgba(34, 34, 34, 0.603), rgba(34, 34, 34, 0.603)), url(assets/image/login-theme.jpg);
+                background-size: cover; */
+                
+
+            }
+
+            .box-content{
+                margin: 0 auto;
+                width: 500px;
+                
+                text-align: center;
+                padding: 20px;
+                
+                /* border: 1px solid #ccc; */
+                position: absolute;
+                box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.07);
+               
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgb(256,256,256,0.9);
+            }
+        .title-container {
+            color: #fff;
+            background-color: #434343;
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 1.5fr 1fr 1.5fr;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+.detail-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1.5fr 1fr 1fr 0.5fr;
+    
+    
+}
+.sum-container {
+    display: grid;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1.5fr 1fr 1fr 0.5fr;
+    
+}
+p {
+    margin-bottom: 0;
+}
+
+.update-button {
+    background-color: #27ae60;
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 50px;
+    width: 400px;
+}
+
+.update-button:hover {
+    background-color: #219150;
+    cursor: pointer;
+}
+
+.button-container {
+    width: 100%;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.order-button {
+    background-color: #27ae60;
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 50px;
+    width: 400px;
+}
+
+.order-button:hover {
+    background-color: #219150;
+    cursor: pointer;
+}
+</style>
 </html>

@@ -141,7 +141,7 @@
                 margin-bottom: 20px;
             }
             .content-container {
-                margin-top: 1rem;
+                margin-top: 3.3rem;
                 position: relative;
                 height: 90vh;
                  /* background-image: linear-gradient(rgba(233, 236, 239, 0.603), rgba(233, 236, 239, 0.603));

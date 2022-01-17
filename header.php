@@ -65,7 +65,7 @@
                     }
                 }    
                 ?>
-                <span style="padding: 5px;color:aliceblue;background-color:red;border-radius:100%" id="quantity"><?=$total_quantity?></span>
+                <span class="item-count" style="" id="quantity"><?=$total_quantity?></span>
                 
                                         
                 <li><a href="#" class="avatar"><img src="./<?= isset($currentUser['avatar']) ? $currentUser['avatar'] : "assets/image/user/user.png"?>" alt="" style="width: 40px;height:40px;border-radius: 100%;"></a></li>
@@ -100,6 +100,7 @@
                 <a href="blogs.php" class="nav_link">Bài viết</a>
                 <a href="contact.php" class="nav_link">Liên hệ</a>
                 <a href="uif_profile.php" class="nav_link">Cập nhật thông tin</a>
+                <a href="#" class="nav_link">Đăng xuất</a>
             </nav>
         </div>
     
@@ -131,6 +132,21 @@
     .user_navbar {
         display: flex; 
         align-items: center;
+    }
+
+    .item-count {
+        display: flex;
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+        color:aliceblue;
+        background-color:red;
+        border-radius:100%;
+        margin-top: 25px;
     }
 </style>
 

@@ -94,7 +94,7 @@ and open the template in the editor.
                 align-items: center;
                 justify-content: center;
                 cursor: pointer;
-                border-radius: 9px;
+                border-radius: 5px;
             }
 
             .username > placeholder {
@@ -158,7 +158,7 @@ and open the template in the editor.
                 cursor: pointer;
                 justify-content: center;
                 align-items: center;
-                border-radius: 9px;
+                border-radius: 5px;
             }
 
             .click-dang-ky a:hover, .click-dang-ky a:active {
