@@ -17,9 +17,20 @@
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
-                        <li>
-                            <a href="chart.php">
-                                <i class="fas fa-chart-bar"></i>Statistics</a>
+                    <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-chart-bar"></i>Thống kê</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="statistic_sale.php">Thống kê doanh số</a>
+                                </li>
+                                <li>
+                                    <a href="statistic_user.php">Thống kê người dùng</a>
+                                </li>
+                                <li>
+                                    <a href="statistic_book.php">Thống kê sách</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="user.php">
@@ -83,9 +94,21 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li>
-                            <a href="chart.php">
+
+                    <li class="has-sub">
+                            <a class="js-arrow" href="#">
                                 <i class="fas fa-chart-bar"></i>Thống kê</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="statistic_sale.php">Thống kê doanh số</a>
+                                </li>
+                                <li>
+                                    <a href="statistic_user.php">Thống kê người dùng</a>
+                                </li>
+                                <li>
+                                    <a href="statistic_book.php">Thống kê sách</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="user.php">
@@ -116,22 +139,6 @@
                         <li>
                             <a href="blog.php">
                                 <i class="fas fa-newspaper"></i>Quản lý danh mục tin</a>
-                        </li>
-
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Pages</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="login.php">Login</a>
-                                </li>
-                                <li>
-                                    <a href="register.php">Register</a>
-                                </li>
-                                <li>
-                                    <a href="forget-pass.php">Forget Password</a>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
                 </nav>
