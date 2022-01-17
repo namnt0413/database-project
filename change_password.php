@@ -180,7 +180,7 @@ and open the template in the editor.
                 color: #fff;
                 text-decoration: none;
                 cursor: pointer;
-                border-radius: 9px;
+                border-radius: 5px;
                 border: 0;
                 padding: 5px 10px;
                 letter-spacing: 0.3px;
@@ -253,7 +253,7 @@ and open the template in the editor.
                 cursor: pointer;
                 justify-content: center;
                 align-items: center;
-                border-radius: 9px;
+                border-radius: 5px;
             }
 
             .dang-nhap-lai:hover, .dang-nhap-lai:active {

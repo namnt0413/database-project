@@ -100,6 +100,7 @@
                 <a href="blogs.php" class="nav_link">Bài viết</a>
                 <a href="contact.php" class="nav_link">Liên hệ</a>
                 <a href="uif_profile.php" class="nav_link">Cập nhật thông tin</a>
+                <a href="#" class="nav_link">Đăng xuất</a>
             </nav>
         </div>
     
