@@ -98,7 +98,7 @@
                                
 
                                 <!-- Filter -->
-                                <h3 class="title-5 m-b-35">Danh sách sản phẩm</h3>
+                                <h3 class="title-5 m-b-35" style="text-align: center; font-size: 30px; text-transform: uppercase; font-weight: 700; margin-bottom: 50px">Danh sách sản phẩm</h3>
                                 <div class="table-data__tool">
                                     <div class="table-data__tool-left">
                                         <div class="rs-select2--light rs-select2--sm" style="width:160px;">
@@ -122,9 +122,9 @@
                                     <div class="table-data__tool-center">
                                     <form id="book-search-form" action="book.php?action=search" method="POST">
                                     <fieldset>
-                                    ID: <input style="width: 160px;border: 1px solid rgba(0,0,0,.1);" type="text" name="id" value="<?=!empty($id)?$id:""?>" />
-                                    Tên sản phẩm: <input style="width: 160px;border: 1px solid rgba(0,0,0,.1);" type="text" name="tittle" value="<?=!empty($tittle)?$tittle:""?>" />
-                                    <input  type="submit" value="Tìm" />
+                                    <p>ID: <input style="padding: 5px; border-radius: 5px; width: 160px;border: 1px solid rgba(0,0,0,.1);" type="text" name="id" value="<?=!empty($id)?$id:""?>" /></p>
+                                    <p>Tên sản phẩm: <input style="padding: 5px; border-radius: 5px; width: 160px;border: 1px solid rgba(0,0,0,.1);" type="text" name="tittle" value="<?=!empty($tittle)?$tittle:""?>" /></p>
+                                    <input  class="au-btn au-btn-icon au-btn--green au-btn--small" type="submit" value="Tìm" />
                                     </fieldset>
                                     </form>
                                     </div>
@@ -158,26 +158,27 @@
                                                         <span class="au-checkmark"></span>
                                                     </label>
                                                 </th>
-                                                <th>Tên</th>
-                                                <th>Ảnh</th>
-                                                <th>Tác giả</th>
-                                                <th>Cập nhật lần cuối</th>
-                                                <th>Số lượng</th>
-                                                <th>
-                                                    <div class="row">Giá hiện tại</div>
-                                                    <div class="row">( Giá gốc )</div>
-                                                </th>
+                                                <th id="table-thead-color">Tên</th>
+                                                <th id="table-thead-color">Ảnh</th>
+                                                <th id="table-thead-color">Tác giả</th>
+                                                <th id="table-thead-color">Cập nhật lần cuối</th>
+                                                <th id="table-thead-color">Số lượng</th>
+                                                <th id="table-thead-color" style="width: 20%">
+                                                    <div class="row">Giá hiện tại (Giá gốc)</div>
+                                                    
+                                                </th class="table-thead-color">
                                                 <th></th>
                                             </tr>
                                         </thead>
-                                    
+                                    <tbody>
                                     <?php
+                                    
                                     while ($row = mysqli_fetch_array($books_filter) ) {
                                         // đặt biến $row_id để sau này gọi trong mysqli không bị lỗi
                                         $row_id = $row['id'];
                                         // var_dump($row_id);exit;
                                     ?>
-                                        <tbody>
+                                        
                                             <tr class="tr-shadow">
                                                 <td>
                                                     <label class="au-checkbox">
@@ -235,8 +236,9 @@
                                             <tr class="spacer"></tr>
                               
                                             
-                                        </tbody> 
+                                        
                                     <?php } ?>
+                                    </tbody> 
                                     </table><!-- end table -->
                             <?php
                             include './pagination.php';
@@ -289,6 +291,54 @@
     <?php }  ?>   <!-- end else -->
 
 </body>
+<style>
+     * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+            
+        }
+        .table {
+            margin-top: 30px;
+        }
+        table {
+            border-collapse: collapse;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0px 2px 5px 0px rgb(0 0 0 / 10%);
+            
+        }
 
+        thead {
+                background: #434343;
+                margin-bottom: 10px;
+            }
+
+        #table-thead-color{
+        color: #fff;
+        }
+        td {
+        /* border: 1px solid #343a40; */
+        padding: 16px 24px;
+        text-align: left;
+        
+        }
+
+       
+    
+    #table-row:nth-child(odd) {
+    background-color: #fff;
+    }
+
+    #table-row:nth-child(even) {
+    background-color: #f5f5f5;
+    }
+    fieldset {
+        display: flex;
+        align-items: center; 
+        gap: 20px;
+    }
+</style>
 </html>
 <!-- end document-->
