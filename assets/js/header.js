@@ -5,11 +5,6 @@ const navbar = document.querySelector(".navbar");
 const avatar = document.querySelector(".avatar");
 // let a = 0;
 document.querySelector(".avatar").addEventListener("click", function () {
-  // if (avatar.style.display === "none") {
-  //   avatar.style.display = "";
-  // }
-  // sub_user_nav.style.removeProperty("display");
-  // console.log(sub_user_nav.style);
   const check = sub_user_nav.style.display;
   console.log(check);
   if (!sub_user_nav.style.display || sub_user_nav.style.display === "none") {
@@ -17,8 +12,6 @@ document.querySelector(".avatar").addEventListener("click", function () {
   } else {
     sub_user_nav.style.display = "none";
   }
-
-  // avatar.style.display = true;
 });
 
 const handleOver = function (opacity, e) {
