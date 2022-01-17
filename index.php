@@ -105,7 +105,8 @@
                 <?php while( $book2 = mysqli_fetch_array($result2) ){ ?>    
                     <div class="swiper-slide box">
                         <div class="icons">
-                            <a href="#" class="fas fa-search"></a>
+                            <button data-id="<?=$book2['id']?>" class="btn-add-to-cart" style="background-color:var(--white)">
+                             <i class="fas fa-shopping-cart"></i></button>
                             <a href="#" class="fas fa-heart"></a>
                             <a href="book_detail.php?id=<?= $book2['id'] ?>" class="fas fa-eye"></a>
                         </div>
@@ -115,8 +116,7 @@
                         <div class="content">
                             <h3><?= $book2['tittle'] ?></h3>
                             <div class="price"><?= number_format($book2['price']-$book2['discount'], 0, ",", ".") ?>đ <span><?= number_format($book2['price'], 0, ",", ".") ?>đ</span></div>
-                            <button data-id="<?=$book2['id']?>" class="btn-add-to-cart btn btn-lg btn-outline-primary text-uppercase" style="background-color:#f59f00;color:#fff">
-                             <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng </button>
+
                         </div>
                     </div>
                 <?php } ?>
