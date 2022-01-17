@@ -75,7 +75,7 @@ and open the template in the editor.
                 color: #fff;
                 text-decoration: none;
                 cursor: pointer;
-                border-radius: 9px;
+                border-radius: 5px;
                 border: 0;
                 padding: 5px 10px;
             }
