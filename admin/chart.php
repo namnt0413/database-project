@@ -131,6 +131,7 @@
                     <div class="container-fluid">
 
                         <div class="row">
+                          
                             <div class="col-lg-6">
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner">
@@ -144,6 +145,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="col-lg-6">
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner">
@@ -207,8 +209,42 @@
                             <div class="col-lg-6">
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner">
-                                        <h3 class="title-2 m-b-40">Line Chart</h3>
-                                        <canvas id="lineChart"></canvas>
+                                    <h3 class="title-2 m-b-40">Top 10 khách hàng đem lại nguồn doanh thu nhất</h3>
+                                      <?php
+                                        $topfvr = mysqli_query($con, "SELECT id, first_name,last_name,money_spent
+                                        FROM `customers`
+                                        ORDER BY money_spent DESC
+                                        LIMIT 10");
+                                      ?>
+                                      <table class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                          <tr>
+                                            <td style="text-align: center">ID</td>
+                                            <td style="text-align: center">Họ và tên</td>
+                                            <td style="text-align: center">Số tiền đã mua</td>
+                                          </tr>
+                                        </thead>
+                                        <?php
+
+                                        // gán row = fetch arr vì fetch arr là duyệt từng hàng, còn assoc là lấy tất cả cho vào 1 hàng
+                                        while ($rowfvr=mysqli_fetch_array($topfvr)) {       
+                                          ?>
+                                              <tr id="table-row">
+                                                <td style="text-align: center">
+                                                    <?=$rowfvr['id']?>
+                                                </td>
+                                                <td style="text-align: center">
+                                                    <?=$rowfvr['first_name']." ".$rowfvr['last_name']?>
+                                                </td>         
+                                                <td style="text-align: center">
+                                                    <?=number_format($rowfvr['money_spent'], 0, ",", ".") ?>đ
+                                                </td>               
+                                              </tr>
+                                          </a>
+                                        <?php 
+                                        } 
+                                        ?>
+                                      </table>
                                     </div>
                                 </div>
                             </div>
@@ -219,16 +255,87 @@
                             <div class="col-lg-6">
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner">
-                                        <h3 class="title-2 m-b-40">Pie Chart</h3>
-                                        <canvas id="pieChart"></canvas>
+                                      <h3 class="title-2 m-b-40">Top 10 cuốn sách được yêu thích nhất</h3>
+                                      <?php
+                                        $topfvr = mysqli_query($con, "SELECT book_id, books.tittle AS bname ,COUNT(book_id) AS b_id
+                                        FROM `favorites`INNER JOIN books ON favorites.book_id = books.id 
+                                        GROUP BY(book_id)
+                                        ORDER BY b_id DESC 
+                                        LIMIT 10;");
+                                      ?>
+                                      <table class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                          <tr>
+                                            <td style="text-align: center">ID</td>
+                                            <td style="text-align: center">Tên sách</td>
+                                            <td style="text-align: center">Số lượt yêu thích</td>
+                                          </tr>
+                                        </thead>
+                                        <?php
+
+                                        // gán row = fetch arr vì fetch arr là duyệt từng hàng, còn assoc là lấy tất cả cho vào 1 hàng
+                                        while ($rowfvr=mysqli_fetch_array($topfvr)) {       
+                                          ?>
+                                              <tr id="table-row">
+                                                <td style="text-align: left">
+                                                    <?=$rowfvr['book_id']?>
+                                                </td>
+                                                <td style="text-align: left">
+                                                    <?=$rowfvr['bname']?>
+                                                </td>         
+                                                <td style="text-align: left">
+                                                    <?=$rowfvr['b_id']?>
+                                                </td>               
+                                              </tr>
+                                          </a>
+                                        <?php 
+                                        } 
+                                        ?>
+                                      </table>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner">
-                                        <h3 class="title-2 m-b-40">Polar Chart</h3>
-                                        <canvas id="polarChart"></canvas>
+                                      <h3 class="title-2 m-b-40">Top 10 cuốn sách bán chạy nhất</h3>
+                                        <?php
+                                        $topsell = mysqli_query($con, "SELECT book_id,SUM(orders_details.quantity) AS tongsoluong, books.tittle AS btittle
+                                        FROM `orders_details` 
+                                        INNER JOIN books
+                                        ON orders_details.book_id = books.id
+                                        GROUP BY book_id
+                                        ORDER BY tongsoluong DESC
+                                        LIMIT 10");
+                                        ?>
+                                        <table class="table table-borderless table-striped table-earning">
+                                          <thead>
+                                            <tr>
+                                              <td style="text-align: center">ID</td>
+                                              <td style="text-align: center; width: 35%">Tên sách</td>
+                                              <td style="text-align: center">Số lượng đã bán</td>
+                                            </tr>
+                                          </thead>
+                                          <?php
+
+                                          while ($rowsell=mysqli_fetch_array($topsell)) {
+                                            ?>
+                                                <tr id="table-row">
+                                                  <td style="text-align: left">
+                                                      <?=$rowsell['book_id']?>
+                                                  </td>
+                                                  <td style="text-align: left">
+                                                      <?=$rowsell['btittle']?>
+                                                  </td>         
+                                                  <td style="text-align: left">
+                                                      <?=$rowsell['tongsoluong']?>
+                                                  </td>               
+                                                </tr>
+                                            </a>
+                                          <?php 
+                                          } 
+                                          ?>
+                                        </table>                                        
                                     </div>
                                 </div>
                             </div>
@@ -238,34 +345,44 @@
                             <div class="col-lg-6">
                                 <div class="au-card recent-report">
                                     <div class="au-card-inner">
-                                        <h3 class="title-2">recent reports</h3>
-                                        <div class="chart-info">
-                                            <div class="chart-info__left">
-                                                <div class="chart-note">
-                                                    <span class="dot dot--blue"></span>
-                                                    <span>products</span>
-                                                </div>
-                                                <div class="chart-note mr-0">
-                                                    <span class="dot dot--green"></span>
-                                                    <span>services</span>
-                                                </div>
-                                            </div>
-                                            <div class="chart-info__right">
-                                                <div class="chart-statis">
-                                                    <span class="index incre">
-                                                        <i class="zmdi zmdi-long-arrow-up"></i>25%</span>
-                                                    <span class="label">products</span>
-                                                </div>
-                                                <div class="chart-statis mr-0">
-                                                    <span class="index decre">
-                                                        <i class="zmdi zmdi-long-arrow-down"></i>10%</span>
-                                                    <span class="label">services</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="recent-report__chart">
-                                            <canvas id="recent-rep-chart"></canvas>
-                                        </div>
+                                    <h3 class="title-2 m-b-40">Top 10 cuốn sách ít được mua</h3>
+                                        <?php
+                                        $topsell = mysqli_query($con, "SELECT book_id,SUM(orders_details.quantity) AS tongsoluong, books.tittle AS btittle
+                                        FROM `orders_details` 
+                                        INNER JOIN books
+                                        ON orders_details.book_id = books.id
+                                        GROUP BY book_id
+                                        ORDER BY tongsoluong ASC
+                                        LIMIT 10");
+                                        ?>
+                                        <table class="table table-borderless table-striped table-earning">
+                                          <thead>
+                                            <tr>
+                                              <td style="text-align: center">ID</td>
+                                              <td style="text-align: center; width: 35%">Tên sách</td>
+                                              <td style="text-align: center">Số lượng đã bán</td>
+                                            </tr>
+                                          </thead>
+                                          <?php
+
+                                          while ($rowsell=mysqli_fetch_array($topsell)) {
+                                            ?>
+                                                <tr id="table-row">
+                                                  <td style="text-align: left">
+                                                      <?=$rowsell['book_id']?>
+                                                  </td>
+                                                  <td style="text-align: left">
+                                                      <?=$rowsell['btittle']?>
+                                                  </td>         
+                                                  <td style="text-align: left">
+                                                      <?=$rowsell['tongsoluong']?>
+                                                  </td>               
+                                                </tr>
+                                            </a>
+                                          <?php 
+                                          } 
+                                          ?>
+                                        </table>    
                                     </div>
                                 </div>
                             </div>

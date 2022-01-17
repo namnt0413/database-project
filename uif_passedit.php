@@ -155,7 +155,7 @@
                 ?>
                 
                 <ul class="list-group">
-                    <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li> 
+                    <li class="list-group-item text-muted">Hoạt động<i class="fa fa-dashboard fa-1x"></i></li> 
                     <li class="list-group-item text-right">
                         <span class="pull-left"><strong>Tổng tiền đã chi</strong></span>
                         <?=number_format($totalmoney['sum'], 0, ",", ".") ?>đ</li>
