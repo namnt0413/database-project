@@ -72,7 +72,7 @@
                 <li id="has_subnav">
                     <?= $currentUser['first_name']?>
                     <?= $currentUser['last_name']?> 
-                    <ul class="sub_user_nav hidden">
+                    <ul class="sub_user_nav">
                         <li><a href="uif_profile.php" style="font-size: 13px;" >Cập nhật thông tin</a></li>
                         <li><a href="#" style="font-size: 13px;" >Lịch sử mua hàng</a></li>
                         <li><a href="#" style="font-size: 13px;" >Sản phẩm yêu thích</a></li>

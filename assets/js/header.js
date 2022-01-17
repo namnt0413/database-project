@@ -2,13 +2,23 @@
 
 const sub_user_nav = document.querySelector(".sub_user_nav");
 const navbar = document.querySelector(".navbar");
+const avatar = document.querySelector(".avatar");
 // let a = 0;
 document.querySelector(".avatar").addEventListener("click", function () {
-  if (sub_user_nav.classList.contains("hidden")) {
-    sub_user_nav.classList.remove("hidden");
+  // if (avatar.style.display === "none") {
+  //   avatar.style.display = "";
+  // }
+  // sub_user_nav.style.removeProperty("display");
+  // console.log(sub_user_nav.style);
+  const check = sub_user_nav.style.display;
+  console.log(check);
+  if (!sub_user_nav.style.display || sub_user_nav.style.display === "none") {
+    sub_user_nav.style.display = "block";
   } else {
-    sub_user_nav.classList.add("hidden");
+    sub_user_nav.style.display = "none";
   }
+
+  // avatar.style.display = true;
 });
 
 const handleOver = function (opacity, e) {
@@ -17,7 +27,7 @@ const handleOver = function (opacity, e) {
     const siblings = link.closest(".navbar").querySelectorAll(".nav_link");
 
     siblings.forEach((element) => {
-      if (element != link) element.style.opacity = opacity;
+      if (element !== link) element.style.opacity = opacity;
     });
   }
 };
