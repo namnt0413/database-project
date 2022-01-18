@@ -53,7 +53,7 @@
                 margin: 0;
             }
             .content-container {
-                margin-top: 5rem;
+                margin-top: 0;
                 position: relative;
                 height: 90vh;
                  /* background-image: linear-gradient(rgba(233, 236, 239, 0.603), rgba(233, 236, 239, 0.603));

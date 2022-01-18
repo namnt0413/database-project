@@ -72,12 +72,12 @@
                 <li id="has_subnav">
                     <?= $currentUser['first_name']?>
                     <?= $currentUser['last_name']?> 
-                    <ul class="sub_user_nav">
-                        <li><a href="uif_profile.php" style="font-size: 13px;" >Cập nhật thông tin</a></li>
-                        <li><a href="#" style="font-size: 13px;" >Lịch sử mua hàng</a></li>
-                        <li><a href="#" style="font-size: 13px;" >Sản phẩm yêu thích</a></li>
-                        <li><a href="change_password.php" style="font-size: 13px;" >Đổi mật khẩu</a></li>
-                        <li><a href="logout.php" style="font-size: 13px;" >Đăng xuất</a></li>
+                    <ul class="user_nav_info-container sub_user_nav" style="z-index: 9999">
+                        <li ><a id="user_nav_info"  href="uif_profile.php" style="font-size: 14px;" >Cập nhật thông tin</a></li>
+                        <li ><a id="user_nav_info" href="#" style="font-size: 14px;" >Lịch sử mua hàng</a></li>
+                        <li ><a id="user_nav_info" href="#" style="font-size: 14px;" >Sản phẩm yêu thích</a></li>
+                        <li ><a id="user_nav_info" href="change_password.php" style="font-size: 14px;" >Đổi mật khẩu</a></li>
+                        <li ><a id="user_nav_info" href="logout.php" style="font-size: 14px;" >Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>
@@ -124,16 +124,31 @@
 
 
 <style> 
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  
+}
     .header-1 {
         display: flex; 
         align-items: center;
     }
-
+    .sub_user_nav {
+        top: 40px; 
+        left: -25px;
+    }
     .user_navbar {
         display: flex; 
         align-items: center;
     }
-
+    .user_nav_info-container li {
+        width: 200px;
+        height: 40px;
+        
+        
+    }
     .item-count {
         display: flex;
         width: 20px;
@@ -147,6 +162,30 @@
         background-color:red;
         border-radius:100%;
         margin-top: 25px;
+    }
+
+    #user_nav_info:link, #user_nav_info:visited
+    {
+        display: flex; 
+        align-items: center;
+        justify-content:center;
+        width: 100%;
+        height: 100%;
+        padding: 5px 20px;
+        margin-left: 0;
+    }
+
+    #user_nav_info:hover, #user_nav_info:active {
+        background-color:#e9f7ef;
+        margin-left: 0;
+    }
+    .user_nav_info-container {
+        
+        display: flex; 
+        flex-direction: column;
+        align-items: center;
+        
+        box-shadow: 0 0 20px rgb(122, 122, 122);
     }
 </style>
 
