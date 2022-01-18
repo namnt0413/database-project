@@ -97,10 +97,10 @@
                 <?php } ?>
                 <a href="index.php" class="nav_link">Trang chủ</a>
                 <a href="book.php" class="nav_link">Cửa hàng</a>
-                <a href="blogs.php" class="nav_link">Bài viết</a>
+                <!-- <a href="blogs.php" class="nav_link">Bài viết</a> -->
                 <a href="contact.php" class="nav_link">Liên hệ</a>
-                <a href="uif_profile.php" class="nav_link">Cập nhật thông tin</a>
-                <a href="#" class="nav_link">Đăng xuất</a>
+                <!-- <a href="uif_profile.php" class="nav_link">Cập nhật thông tin</a> -->
+                <!-- <a href="#" class="nav_link">Đăng xuất</a> -->
             </nav>
         </div>
     
@@ -181,7 +181,7 @@
     }
     .user_nav_info-container {
         
-        display: flex; 
+        display: none; 
         flex-direction: column;
         align-items: center;
         

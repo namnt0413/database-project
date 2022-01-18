@@ -179,19 +179,19 @@ and open the template in the editor.
                     <form action="./register.php?action=reg" method="Post" autocomplete="off">
                         <div class="input-block">
                             <label>Username</label></br>
-                            <input type="text" name="username" value="" class="input-area"  placeholder="Điều kiện cho trường nhập vào"><br/>
+                            <input type="text" name="username" value="" class="input-area"  placeholder=""><br/>
                         </div>
                         <div class="input-block">
                             <label>Password</label></br>
-                            <input type="password" name="password" value="" class="input-area" id="password" placeholder="Điều kiện cho trường nhập vào"/></br>
+                            <input type="password" name="password" value="" class="input-area" id="password" placeholder=""/></br>
                         </div>
                         <div class="input-block">
                             <label>Họ và tên đệm</label></br>
-                            <input type="text" name="first_name" value="" class="input-area"  placeholder="Điều kiện cho trường nhập vào"><br/>
+                            <input type="text" name="first_name" value="" class="input-area"  placeholder=""><br/>
                         </div>
                         <div class="input-block">
                             <label>Tên</label></br>
-                            <input type="text" name="last_name" value="" class="input-area"  placeholder="Điều kiện cho trường nhập vào"><br/>
+                            <input type="text" name="last_name" value="" class="input-area"  placeholder=""><br/>
                         </div>
                         
                         </br>
@@ -202,5 +202,6 @@ and open the template in the editor.
             <?php
         }
         ?>
+        <script src="./assets/js/register.js"></script>
     </body>
 </html>

@@ -38,8 +38,7 @@
     
             <div class="content">
                 <h3><b>Giảm giá tới <?= $rate ?>% </b></h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam deserunt nostrum accusamus. Nam alias sit necessitatibus, aliquid ex minima at!</p>
-                <a href="book.php" class="button">shop now</a>
+                <a href="book.php" class="button">Mua ngay</a>
             </div>
 
             <div class="swiper books-slider">
@@ -130,13 +129,13 @@
 
 
     <!-- newsletter section starts -->
-    <section class="newsletter">
+    <!-- <section class="newsletter">
         <form action="">
             <h3>subscribe for latest updates</h3>
             <input type="email" name="" placeholder="enter your email" id="" class="box">
             <input type="submit" value="subscribe" class="button">
         </form>
-    </section>
+    </section> -->
     <!-- newsletter section ends -->
 
 
@@ -265,7 +264,7 @@
 
 
     <!-- deal section starts  -->
-    <section class="deal">
+    <!-- <section class="deal">
     
         <div class="content">
             <h3>deal of the day</h3>
@@ -278,7 +277,7 @@
             <img src="./assets/image/deal-img.jpg" alt="">
         </div>
     
-    </section>
+    </section> -->
     <!-- deal section ends -->
 
 
@@ -379,7 +378,7 @@
 
 
     <!-- blogs section starts  -->
-    <section class="blogs" id="blogs">
+    <!-- <section class="blogs" id="blogs">
     
         <h1 class="heading"> <span>our blogs</span> </h1>
         <a class="link_blogs" href="blogs.php">view all blogs <i class="fa fa-angle-right"></i></a>
@@ -447,13 +446,13 @@
     
         </div>
     
-    </section>
+    </section> -->
     <!-- blogs section ends -->
 
 
 
     <!-- footer section starts  -->
-    <section class="footer">
+    <!-- <section class="footer">
     
         <div class="box-container">
     
@@ -503,9 +502,7 @@
             <a href="#" class="fab fa-pinterest"></a>
         </div>
     
-        <div class="credit"> created by <span>mr. web designer</span> | all rights reserved! </div>
-    
-    </section>
+    </section> -->
     <!-- footer section ends -->
 
     

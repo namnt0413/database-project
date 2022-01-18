@@ -8,9 +8,7 @@ document
   .addEventListener("click", function (e) {
     if (username.value === "") {
       e.preventDefault();
-      // console.log(username);
       username.placeholder = "Hãy nhập tài khoản của bạn";
-      // username.placeholder.style.color = "red";
     }
 
     if (password.value === "") {

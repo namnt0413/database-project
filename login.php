@@ -97,10 +97,6 @@ and open the template in the editor.
                 border-radius: 5px;
             }
 
-            .username > placeholder {
-                color: 'red';
-            }
-
             .dang-nhap-button:hover, .dang-nhap-button:active {
                 background-color: #219150;
             }
