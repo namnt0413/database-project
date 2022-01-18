@@ -172,7 +172,7 @@
                 if ($error !== false) 
                 {
                     ?>
-                    <div class="content-container" style="height:90vh">
+                    <div class="content-container" style="height:90vh;margin-top: 2rem;">
                         <div id="error-notify" class="box-content">
                             <h1>Thông báo</h1>
                             <h4><?= $error ?></h4>
@@ -180,7 +180,7 @@
                         </div>
                     </div>
                 <?php } else { ?>
-                    <div class="content-container" style="height:90vh">
+                    <div class="content-container" style="height:90vh;margin-top: 2rem;">
                         <div id="edit-notify" class="box-content">
                             <h1><?= ($error !== false) ? $error : "Sửa tài khoản thành công" ?></h1>
                             <a class="link-button" href="javascript:window.history.go(-2)">Danh sách tài khoản</a>
@@ -189,7 +189,7 @@
                 <?php } ?>
             <?php } else { ?>
                 <div class="content-container">
-                    <div id="edit-notify" class="box-content">
+                    <div id="edit-notify" class="box-content" style="height:90vh;margin-top: 2rem;">
                         <h1>Vui lòng nhập đủ thông tin để sửa tài khoản</h1>
                         <a class="button" href="javascript:window.history.go(-1)">Quay lại sửa tài khoản</a>
                     </div>

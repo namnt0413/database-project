@@ -441,6 +441,40 @@ console.log(error);
     
     <?php } ?><!-- end else -->
 </body>
+<style>
+   * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+               
+            }
+            table {
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0px 2px 5px 0px rgb(0 0 0 / 10%);
+}
+thead tr {
+        background-color: #434343;
+        color: #fff;
+      }
+thead td {
+  color: #fff;
+}
+td {
+  /* border: 1px solid #343a40; */
+  padding: 16px 24px;
+  text-align: left;
+  
+}
+#table-row:nth-child(odd) {
+  background-color: #fff;
+}
 
+#table-row:nth-child(even) {
+  background-color: #f5f5f5;
+}      
+</style>
 </html>
 <!-- end document-->

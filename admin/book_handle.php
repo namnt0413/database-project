@@ -12,7 +12,7 @@
     .content-container {
                
                 position: relative;
-                height: 160vh;
+                height: 210vh;
                  background-image: linear-gradient(rgba(233, 236, 239, 0.603), rgba(233, 236, 239, 0.603));
                  background-image: linear-gradient(rgba(34, 34, 34, 0.603), rgba(34, 34, 34, 0.603)), url(assets/image/login-theme.jpg);
                 background-size: cover;
