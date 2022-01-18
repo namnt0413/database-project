@@ -13,75 +13,14 @@
 
         <!-- PAGE CONTAINER-->
         <div class="page-container">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 
     <?php 
         // include 'admin_navbar.php';
          
-
-// DOANH THU, LAI SUAT TRONG NAM 2021    
-    $where1 = "";
-    if( isset($_GET['name']) && $_GET['name'] == "sale_chart" && $_GET['year'] != "2022") {
-        if( isset($_GET['year']) && $_GET['year'] =="2021"){
-            $where1 .= "YEAR(created_date) = 2021";
-        }
-    } else {
-    $where1 .= "YEAR(created_date) = 2022";
-    }
-    $month1s = ''; $sales = ''; $imports = ''; $profits = '';   
-    $sale_chart = mysqli_query($con, 
-    "SELECT MONTH(created_date) AS month, SUM((price-discount)*quantity) AS sale,SUM(import_price*quantity) AS import, SUM((price-discount-import_price)*quantity) AS profit 
-    FROM `orders_details` INNER JOIN orders ON orders_details.order_id = orders.id
-    WHERE (".$where1.") 
-    GROUP BY (month)");
-
-    while ($row = mysqli_fetch_array($sale_chart)){
-        $month1 =  $row['month'];
-        $sale = $row['sale'];
-        $import = $row['import'];
-        $profit = $row['profit'];
-
-        $month1s = $month1s.$month1.',';
-        $sales = $sales.$sale.',';
-        $imports = $imports.$import.',';
-        $profits = $profits.$profit.',';
-    }
-    $month1s = trim($month1s, "," );
-    $sales = trim($sales, "," );
-    $imports = trim($imports, "," );
-    $profits = trim($profits, "," ); 
-    // var_dump( $month1s, $sales, $imports);
-
-
-// SO LUONG SACH VA DON HANG TRONG NAM
-    $where2 = "";
-    if( isset($_GET['name']) && $_GET['name'] == "bookorder_chart" && $_GET['year'] != "2022") {
-        if( isset($_GET['year']) && $_GET['year'] =="2021"){
-            $where2 .= "YEAR(created_date) = 2021";
-        }
-    } else {
-    $where2 .= "YEAR(created_date) = 2022";
-    }
-    $month2s = ''; $book2s = ''; $order2s = '';   
-    $bookorder_chart = mysqli_query($con, 
-    "SELECT MONTH(created_date) AS thang ,SUM(quantity) AS sach, COUNT(DISTINCT orders.id) AS donhang
-    FROM `orders_details` INNER JOIN orders ON orders_details.order_id = orders.id
-    WHERE (".$where2.") 
-    GROUP BY thang");
-
-    while ($row = mysqli_fetch_array($bookorder_chart)){
-        $month2 =  $row['thang'];
-        $book2 = $row['sach'];
-        $order2 = $row['donhang'];
-
-        $month2s = $month2s.$month2.',';
-        $book2s = $book2s.$book2.',';
-        $order2s = $order2s.$order2.',';
-    }
-    $month2s = trim($month2s, "," );
-    $book2s = trim($book2s, "," );
-    $order2s = trim($order2s, "," );
-
-
 
 //  THONG KE THEO THE LOAI SACH
     $where3 = "";
@@ -100,7 +39,7 @@
     WHERE (".$where3.") ");
     $total = mysqli_fetch_assoc($total);
     // var_dump($total);
-    
+
     $genres_chart = mysqli_query($con, 
     "SELECT genres.name AS theloai ,SUM(quantity) AS soluong  FROM `orders_details` 
     INNER JOIN books_genres ON orders_details.book_id = books_genres.book_id
@@ -109,17 +48,110 @@
     WHERE (".$where3.") 
     GROUP BY(genres_id)");
 
-    while ($row = mysqli_fetch_array($genres_chart)){
-        $genres3 = '"'.$row['theloai'].'"' ;
-        $quantity = ceil($row['soluong']/$total['tongsoluong']*100);
-
-        $genres3s = $genres3s.$genres3.',';
-        $quantities = $quantities.$quantity.',';
+    // $data = array();
+    // while($row = mysqli_fetch_array($genres_chart))
+    // {
+    // $data[] = array(
+    // 'label'  => $row['theloai'],
+    // 'value'  => ceil($row['soluong']/$total['tongsoluong']*100)
+    // );
+    // }
+    // $data = json_encode($data);
+    $genres = '';
+    while($row = mysqli_fetch_array($genres_chart))
+    {
+     $genres .= "{ label: '".$row["theloai"]."', value: ".$row['soluong']."}, ";
     }
-    $genres3s = trim($genres3s, "," );
-    $quantities = trim($quantities, "," );
-    // $test = '"a","b"';
-    // var_dump($genres3s,$quantities);
+    $genres = substr($genres, 0, -2);
+    // var_dump($genres);
+
+
+
+//THONG KE THEO GIA
+    $where4 = "";
+    if( isset($_GET['name']) && $_GET['name'] == "price_chart" && $_GET['year'] != "2022") {
+        if( isset($_GET['year']) && $_GET['year'] =="2021"){
+            $where4 .= "YEAR(created_date) = 2021";
+        }
+    } else {
+    $where4 .= "YEAR(created_date) = 2022";
+    }
+    $price = ''; $quantity4 = '';$quantity4s;
+    $price1=0;$price2=0;$price3=0;$price4=0;$price5=0;$price6=0;$price7=0;$price8=0;$price9=0;
+    $price1s=0;$price2s=0;$price3s=0;$price4s=0;$price5s=0;$price6s=0;$price7s=0;$price8s=0;$price9s=0;
+
+    $price_chart = mysqli_query($con," SELECT price- discount AS gia , SUM(quantity) AS soluong 
+    FROM `orders_details` INNER JOIN orders ON orders_details.order_id = orders.id
+    WHERE (".$where4.") 
+    GROUP BY (gia) ASC ");
+
+    $price_charts = mysqli_query($con," SELECT book_id ,price- discount AS gia , COUNT( book_id) AS soluong 
+    FROM `books` INNER JOIN favorites ON favorites.book_id = books.id
+    WHERE (".$where4.") 
+    GROUP BY (gia) ASC");
+
+
+    while ($row4 = mysqli_fetch_array($price_chart)){
+      // var_dump($row4['gia'],$row4['soluong']);
+      if($row4['gia'] <= 50000 ){
+          $price1 += $row4['soluong'];
+      } else if( 50000 < $row4['gia'] && $row4['gia'] <= 100000  ){
+        $price2 += $row4['soluong'];
+      } else if( 100000 < $row4['gia'] && $row4['gia'] <= 150000 ){
+        $price3 += $row4['soluong'];
+      } else if( 150000 < $row4['gia'] && $row4['gia'] <= 200000 ){
+        $price4 += $row4['soluong'];
+      } else if( 200000 < $row4['gia'] && $row4['gia'] <= 300000 ){
+        $price5 += $row4['soluong'];
+      } else if( 300000 < $row4['gia'] && $row4['gia'] <= 400000 ){
+        $price6 += $row4['soluong'];
+      } else if( 400000 < $row4['gia'] && $row4['gia'] <= 500000 ){
+        $price7 += $row4['soluong'];
+      } else if( 500000 < $row4['gia'] && $row4['gia'] <= 1000000 ){
+        $price8 += $row4['soluong'];
+      } else {
+        $price9 += $row4['soluong'];
+      }
+    }
+    $quantity4=array($price1,$price2,$price3,$price4,$price5,$price6,$price7,$price8,$price9); 
+    $quantity4 = json_encode($quantity4);
+
+    while ($row4s = mysqli_fetch_array($price_charts)){
+      // var_dump($row4['gia'],$row4['soluong']);
+      if($row4s['gia'] <= 50000 ){
+          $price1s += $row4s['soluong'];
+      } else if( 50000 < $row4s['gia'] && $row4s['gia'] <= 100000  ){
+        $price2s += $row4s['soluong'];
+      } else if( 100000 < $row4s['gia'] && $row4s['gia'] <= 150000 ){
+        $price3s += $row4s['soluong'];
+      } else if( 150000 < $row4s['gia'] && $row4s['gia'] <= 200000 ){
+        $price4s += $row4s['soluong'];
+      } else if( 200000 < $row4s['gia'] && $row4s['gia'] <= 300000 ){
+        $price5s += $row4s['soluong'];
+      } else if( 300000 < $row4s['gia'] && $row4s['gia'] <= 400000 ){
+        $price6s += $row4s['soluong'];
+      } else if( 400000 < $row4s['gia'] && $row4s['gia'] <= 500000 ){
+        $price7s += $row4s['soluong'];
+      } else if( 500000 < $row4s['gia'] && $row4s['gia'] <= 1000000 ){
+        $price8s += $row4s['soluong'];
+      } else {
+        $price9s += $row4s['soluong'];
+      }
+    }
+    $quantity4s=array($price1s,$price2s,$price3s,$price4s,$price5s,$price6s,$price7s,$price8s,$price9s); 
+    $quantity4s = json_encode($quantity4s);
+
+
+
+
+    $query = "SELECT * FROM account";
+    $result = mysqli_query($con, $query);
+    $chart_data = '';
+    while($row = mysqli_fetch_array($result))
+    {
+      $chart_data .= "{ year:'".$row["year"]."', profit:".$row["profit"].", purchase:".$row["purchase"].", sale:".$row["sale"]."}, ";
+    }
+    $chart_data = substr($chart_data, 0, -2);
 
 
 
@@ -129,7 +161,36 @@
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="au-card m-b-30">
+                                    <div class="au-card-inner">
+                                        <h3 class="title-2 m-b-40">Tỉ lệ số lượng sách bán được theo Thể loại (%)</h3>
+                                        <select name="sort" id="sort" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" style="margin-bottom: 20px">
+                                            <option selected value="?&name=genres_chart&year=2022">Năm 2022</option>
+                                            <option <?php if(isset($_GET['name']) && $_GET['name'] == "genres_chart" && $_GET['year'] == "2021") { ?> selected <?php } ?> 
+                                    value="?&name=genres_chart&year=2021" data-year="2021" class="genres_chart">Năm 2021</option>
+                                        </select>
+                                           <div id="genres_chart"></div>
+                                          <div id="legend" class="donut-legend"></div>
 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="au-card m-b-30">
+                                    <div class="au-card-inner">
+                                        <h3 class="title-2 m-b-40">Số sách bán được theo giá</h3>
+                                        <select name="sort" id="sort" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" style="margin-bottom: 20px">
+                                            <option selected value="?&name=price_chart&year=2022">Năm 2022</option>
+                                            <option <?php if(isset($_GET['name']) && $_GET['name'] == "price_chart" && $_GET['year'] == "2021") { ?> selected <?php } ?> 
+                                    value="?&name=price_chart&year=2021" data-year="2021" class="price_chart">Năm 2021</option>
+                                        </select>
+                                        <canvas id="singelBarChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class="col-lg-6">
@@ -268,29 +329,6 @@
                             </div>
                         </div>                          
                         <div class="row">
-                            <div class="col-lg-6">
-                                <div class="au-card m-b-30">
-                                    <div class="au-card-inner">
-                                        <h3 class="title-2 m-b-40">Tỉ lệ số lượng sách bán được theo Thể loại (%)</h3>
-                                        <select name="sort" id="sort" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" style="margin-bottom: 20px">
-                                            <option selected value="?&name=genres_chart&year=2022">Năm 2022</option>
-                                            <option <?php if(isset($_GET['name']) && $_GET['name'] == "genres_chart" && $_GET['year'] == "2021") { ?> selected <?php } ?> 
-                                    value="?&name=genres_chart&year=2021" data-year="2021" class="genres_chart">Năm 2021</option>
-                                        </select>
-                                        <canvas id="doughutChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="au-card m-b-30">
-                                    <div class="au-card-inner">
-                                        <h3 class="title-2 m-b-40">Single Bar Chart</h3>
-                                        <canvas id="singelBarChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
                                     <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
@@ -337,138 +375,31 @@
 (function ($) {
   // USE STRICT
   "use strict";        
-    //Sales chart
-    try {
-    var ctx = document.getElementById("sales-chart");
+    
+
+      // single bar chart
+      try {
+    var ctx = document.getElementById("singelBarChart");
     if (ctx) {
       ctx.height = 150;
       var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ["Thg1","Thg2","Thg3","Thg4","Thg5","Thg6","Thg7","Thg8","Thg9","Thg10","Thg11","Thg12" ],
-          type: 'line',
-          defaultFontFamily: 'Poppins',
-          datasets: [{
-            label: "Doanh thu",
-            data: [ <?php echo $sales ?> ],
-            backgroundColor: 'transparent',
-            borderColor: 'rgba(0,103,255,0.5)',
-            borderWidth: 3,
-            pointStyle: 'circle',
-            pointRadius: 5,
-            pointBorderColor: 'transparent',
-            pointBackgroundColor: 'rgba(0,103,255,0.75)',
-          }, {
-            label: "Chi phí gốc",
-            data: [ <?php echo $imports ?> ],
-            backgroundColor: 'transparent',
-            borderColor: 'rgba(220,53,69,0.5)',
-            borderWidth: 3,
-            pointStyle: 'circle',
-            pointRadius: 5,
-            pointBorderColor: 'transparent',
-            pointBackgroundColor: 'rgba(220,53,69,0.75)',
-          }, {
-            label: "Lãi",
-            data: [ <?php echo $profits ?> ],
-            backgroundColor: 'transparent',
-            borderColor: 'rgba(40,167,69,0.5)',
-            borderWidth: 3,
-            pointStyle: 'circle',
-            pointRadius: 5,
-            pointBorderColor: 'transparent',
-            pointBackgroundColor: 'rgba(40,167,69,0.75)',
-          }]
-        },
-        options: {
-          responsive: true,
-          tooltips: {
-            mode: 'index',
-            titleFontSize: 12,
-            titleFontColor: '#000',
-            bodyFontColor: '#000',
-            backgroundColor: '#fff',
-            titleFontFamily: 'Poppins',
-            bodyFontFamily: 'Poppins',
-            cornerRadius: 3,
-            intersect: false,
-          },
-          legend: {
-            display: false,
-            labels: {
-              usePointStyle: true,
-              fontFamily: 'Poppins',
-            },
-          },
-          scales: {
-            xAxes: [{
-              display: true,
-              gridLines: {
-                display: false,
-                drawBorder: false
-              },
-              scaleLabel: {
-                display: false,
-                labelString: 'Month'
-              },
-              ticks: {
-                fontFamily: "Poppins"
-              }
-            }],
-            yAxes: [{
-              display: true,
-              gridLines: {
-                display: false,
-                drawBorder: false
-              },
-              scaleLabel: {
-                display: true,
-                labelString: 'Value',
-                fontFamily: "Poppins"
-
-              },
-              ticks: {
-                fontFamily: "Poppins"
-              }
-            }]
-          },
-          title: {
-            display: false,
-            text: 'Normal Legend'
-          }
-        }
-      });
-    }
-  } catch (error) {
-    console.log(error);
-  }
-
-  try {
-    //bar chart
-    var ctx = document.getElementById("barChart");
-    if (ctx) {
-      ctx.height = 200;
-      var myChart = new Chart(ctx, {
         type: 'bar',
-        defaultFontFamily: 'Poppins',
         data: {
-          labels: ["Thg1","Thg2","Thg3","Thg4","Thg5","Thg6","Thg7","Thg8","Thg9","Thg10","Thg11","Thg12"],
+          labels: ["<50k", "50-100k", "100-150k", "150-200k", "200-300k", "300-400k", "400-500k","500-1000k",">1000k"],
           datasets: [
             {
-              label: "Tổng số sách bán được",
-              data: [ <?php echo $book2s ?> ],
-              borderColor: "rgba(0, 123, 255, 0.9)",
+              label: "Số sách bán được",
+              data: <?php echo $quantity4 ?> ,
+              borderColor: "rgba(121, 14, 201, 0.9)",
               borderWidth: "0",
-              backgroundColor: "rgba(0, 123, 255, 0.5)",
-              fontFamily: "Poppins"
+              backgroundColor: "rgba(121, 14, 201, 0.5)"
             },
             {
-              label: "Tổng số đơn hàng",
-              data: [ <?php echo $order2s ?> ],
-              borderColor: "rgba(255,0,68,0.9)",
+              label: "Số sách được yêu thích",
+              data: <?php echo $quantity4s ?> ,
+              borderColor: "rgba(223, 225, 6, 0.9)",
               borderWidth: "0",
-              backgroundColor: "rgba(255,0,68,0.5)",
-              fontFamily: "Poppins"
+              backgroundColor: "rgba(223, 225, 6, 0.5)"
             }
           ]
         },
@@ -478,13 +409,13 @@
             labels: {
               fontFamily: 'Poppins'
             }
-
+          
           },
           scales: {
             xAxes: [{
               ticks: {
                 fontFamily: "Poppins"
-
+              
               }
             }],
             yAxes: [{
@@ -497,69 +428,10 @@
         }
       });
     }
-  } catch (error) {
-    console.log(error);
-  }
-
-  //doughut chart
-  try {
-    var ctx = document.getElementById("doughutChart");
-    if (ctx) {
-      ctx.height = 150;
-      var myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          datasets: [{
-            data: [ <?php echo $quantities ?> ],
-            backgroundColor: [
-              "rgba(255,0,0,0.65)",
-              "rgba(0,239,255,0.65)",
-              "rgba(255,137,0,0.65)",
-              "rgba(145,0,255,0.65)",
-              "rgba(0,255,60,0.65)",
-              "rgba(255,0,179,0.65)",
-              "rgba(239,255,0,0.65)",
-              "rgba(9,0,255,0.65)",
-              "rgba(80,80,80,0.65)",
-              "rgba(6,255,173,0.65)",
-              "rgba(255,6,106,0.65)",
-              "rgba(165,255,6,0.65)"
-            ],
-            hoverBackgroundColor: [
-              "rgba(255,0,0,0.9)",
-              "rgba(0,239,255,0.9)",
-              "rgba(255,137,0,0.9)",
-              "rgba(145,0,255,0.9)",
-              "rgba(0,255,60,0.9)",
-              "rgba(255,0,179,0.9)",
-              "rgba(239,255,0,0.9)",
-              "rgba(9,0,255,0.9)",
-              "rgba(80,80,80,0.9)",
-              "rgba(6,255,173,0.9)",
-              "rgba(255,6,106,0.9)",
-              "rgba(165,255,6,0.9)"
-            ]
-          }],
-          labels: [ <?php echo $genres3s ?>]
-        },
-        options: {
-          legend: {
-            position: 'top',
-            labels: {
-              fontFamily: 'Poppins'
-            }
-
-          },
-          responsive: true
-        }
-      });
-    }
-
+    
     } catch (error) {
     console.log(error);
-    }
-
-
+    }    
   
 
 
@@ -591,10 +463,44 @@
 
         });
 
-    </script>
-
-
     
+
+// DONUT CHART
+  var total = <?= $total['tongsoluong'] ?>;
+   console.log(total);
+  var donutChart = Morris.Donut({
+    element: 'genres_chart',
+    data: [<?php echo $genres ?>],
+     formatter: function (value, data) { 
+     return Math.round(value/total*100) + '%'; 
+    },
+    colors: [
+        'rgba(255,0,0,0.65)',
+        'rgba(0,239,255,0.65)',
+        'rgba(255,137,0,0.65)',
+        'rgba(145,0,255,0.65)',
+        'rgba(0,255,60,0.65)',
+        'rgba(255,0,179,0.65)',
+        'rgba(239,255,0,0.65)',
+        'rgba(9,0,255,0.65)',
+        'rgba(80,80,80,0.65)',
+        'rgba(6,255,173,0.65)',
+        'rgba(255,6,106,0.65)',
+        'rgba(165,255,6,0.65)'
+      ]
+  });
+    donutChart.options.data.forEach(function(label, i) {
+      var legendItem = $('<span></span>').text( label['label'] + " ( " +label['value'] + " )" ).prepend('<br><span>&nbsp;</span>');
+      legendItem.find('span')
+        .css('backgroundColor', donutChart.options.colors[i])
+        .css('width', '20px')
+        .css('display', 'inline-block')
+        .css('margin', '5px');
+      $('#legend').append(legendItem)
+    });
+
+
+    </script>
     <?php } ?><!-- end else -->
 </body>
 

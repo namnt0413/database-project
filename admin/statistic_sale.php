@@ -15,7 +15,7 @@
         <div class="page-container">
 
     <?php 
-        // include 'admin_navbar.php';
+        include 'admin_navbar.php';
          
 
 // DOANH THU, LAI SUAT TRONG NAM 2021    
@@ -166,7 +166,7 @@
                             <div class="col-lg-6">
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner">
-                                        <h3 class="title-2 m-b-40">Team Commits</h3>
+                                        <h3 class="title-2 m-b-40">Doanh thu giữa các năm</h3>
                                         <canvas id="team-chart"></canvas>
                                     </div>
                                 </div>
@@ -175,8 +175,7 @@
                             <div class="col-lg-6">
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner">
-                                        <h3 class="title-2 m-b-40">Rader chart</h3>
-                                        <canvas id="radarChart"></canvas>
+
                                     </div>
                                 </div>
                             </div>
@@ -234,7 +233,7 @@
     try {
     var ctx = document.getElementById("sales-chart");
     if (ctx) {
-      ctx.height = 150;
+      ctx.height = 200;
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -394,66 +393,6 @@
     console.log(error);
   }
 
-  //doughut chart
-  try {
-    var ctx = document.getElementById("doughutChart");
-    if (ctx) {
-      ctx.height = 150;
-      var myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          datasets: [{
-            data: [ <?php echo $quantities ?> ],
-            backgroundColor: [
-              "rgba(255,0,0,0.65)",
-              "rgba(0,239,255,0.65)",
-              "rgba(255,137,0,0.65)",
-              "rgba(145,0,255,0.65)",
-              "rgba(0,255,60,0.65)",
-              "rgba(255,0,179,0.65)",
-              "rgba(239,255,0,0.65)",
-              "rgba(9,0,255,0.65)",
-              "rgba(80,80,80,0.65)",
-              "rgba(6,255,173,0.65)",
-              "rgba(255,6,106,0.65)",
-              "rgba(165,255,6,0.65)"
-            ],
-            hoverBackgroundColor: [
-              "rgba(255,0,0,0.9)",
-              "rgba(0,239,255,0.9)",
-              "rgba(255,137,0,0.9)",
-              "rgba(145,0,255,0.9)",
-              "rgba(0,255,60,0.9)",
-              "rgba(255,0,179,0.9)",
-              "rgba(239,255,0,0.9)",
-              "rgba(9,0,255,0.9)",
-              "rgba(80,80,80,0.9)",
-              "rgba(6,255,173,0.9)",
-              "rgba(255,6,106,0.9)",
-              "rgba(165,255,6,0.9)"
-            ]
-          }],
-          labels: [ <?php echo $genres3s ?>]
-        },
-        options: {
-          legend: {
-            position: 'top',
-            labels: {
-              fontFamily: 'Poppins'
-            }
-
-          },
-          responsive: true
-        }
-      });
-    }
-
-    } catch (error) {
-    console.log(error);
-    }
-
-
-  
 
 
 })(jQuery);

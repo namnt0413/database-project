@@ -17,109 +17,36 @@
     <?php 
         // include 'admin_navbar.php';
          
-
-// DOANH THU, LAI SUAT TRONG NAM 2021    
-    $where1 = "";
-    if( isset($_GET['name']) && $_GET['name'] == "sale_chart" && $_GET['year'] != "2022") {
+    // THONG KE SO KHACH HANG MOI
+    $where5 = ""; $new_users=""; $spend_users="";  
+    if( isset($_GET['name']) && $_GET['name'] == "user_chart" && $_GET['year'] != "2022") {
         if( isset($_GET['year']) && $_GET['year'] =="2021"){
-            $where1 .= "YEAR(created_date) = 2021";
+            $where5 .= "YEAR(customers.created_date) = 2021";
         }
     } else {
-    $where1 .= "YEAR(created_date) = 2022";
+    $where5 .= "YEAR(customers.created_date) = 2022";
     }
-    $month1s = ''; $sales = ''; $imports = ''; $profits = '';   
-    $sale_chart = mysqli_query($con, 
-    "SELECT MONTH(created_date) AS month, SUM((price-discount)*quantity) AS sale,SUM(import_price*quantity) AS import, SUM((price-discount-import_price)*quantity) AS profit 
-    FROM `orders_details` INNER JOIN orders ON orders_details.order_id = orders.id
-    WHERE (".$where1.") 
-    GROUP BY (month)");
-
-    while ($row = mysqli_fetch_array($sale_chart)){
-        $month1 =  $row['month'];
-        $sale = $row['sale'];
-        $import = $row['import'];
-        $profit = $row['profit'];
-
-        $month1s = $month1s.$month1.',';
-        $sales = $sales.$sale.',';
-        $imports = $imports.$import.',';
-        $profits = $profits.$profit.',';
-    }
-    $month1s = trim($month1s, "," );
-    $sales = trim($sales, "," );
-    $imports = trim($imports, "," );
-    $profits = trim($profits, "," ); 
-    // var_dump( $month1s, $sales, $imports);
-
-
-// SO LUONG SACH VA DON HANG TRONG NAM
-    $where2 = "";
-    if( isset($_GET['name']) && $_GET['name'] == "bookorder_chart" && $_GET['year'] != "2022") {
-        if( isset($_GET['year']) && $_GET['year'] =="2021"){
-            $where2 .= "YEAR(created_date) = 2021";
-        }
-    } else {
-    $where2 .= "YEAR(created_date) = 2022";
-    }
-    $month2s = ''; $book2s = ''; $order2s = '';   
-    $bookorder_chart = mysqli_query($con, 
-    "SELECT MONTH(created_date) AS thang ,SUM(quantity) AS sach, COUNT(DISTINCT orders.id) AS donhang
-    FROM `orders_details` INNER JOIN orders ON orders_details.order_id = orders.id
-    WHERE (".$where2.") 
+    $user_new = mysqli_query($con,"SELECT MONTH(created_date) AS thang , COUNT(id) AS soluong
+    FROM `customers` WHERE (".$where5.") 
     GROUP BY thang");
 
-    while ($row = mysqli_fetch_array($bookorder_chart)){
-        $month2 =  $row['thang'];
-        $book2 = $row['sach'];
-        $order2 = $row['donhang'];
+    $user_spend = mysqli_query($con,"SELECT MONTH(customers.created_date) AS thang , COUNT(DISTINCT customer_id) AS soluong
+    FROM `customers` INNER JOIN orders ON customers.id = orders.customer_id
+    WHERE (".$where5.") AND MONTH(orders.created_date)=MONTH(customers.created_date) AND YEAR(orders.created_date) = YEAR(customers.created_date)
+    GROUP BY thang");
 
-        $month2s = $month2s.$month2.',';
-        $book2s = $book2s.$book2.',';
-        $order2s = $order2s.$order2.',';
+    while ($row_user = mysqli_fetch_array($user_new)){
+      $new_user = $row_user['soluong'];
+     $new_users = $new_users.$new_user.',';
     }
-    $month2s = trim($month2s, "," );
-    $book2s = trim($book2s, "," );
-    $order2s = trim($order2s, "," );
-
-
-
-//  THONG KE THEO THE LOAI SACH
-    $where3 = "";
-    if( isset($_GET['name']) && $_GET['name'] == "genres_chart" && $_GET['year'] != "2022") {
-        if( isset($_GET['year']) && $_GET['year'] =="2021"){
-            $where3 .= "YEAR(created_date) = 2021";
-        }
-    } else {
-    $where3 .= "YEAR(created_date) = 2022";
+    while ($row_spend = mysqli_fetch_array($user_spend) ){
+      $spend_user = $row_spend['soluong'];
+      $spend_users = $spend_users.$spend_user.',';
     }
-    $genres3s = ''; $quantities = ''; $total ='';
-    $total = mysqli_query($con,"SELECT SUM(quantity) AS tongsoluong  FROM `orders_details` 
-    INNER JOIN books_genres ON orders_details.book_id = books_genres.book_id
-    INNER JOIN orders ON orders_details.order_id = orders.id
-    INNER JOIN genres ON genres.id = books_genres.genres_id
-    WHERE (".$where3.") ");
-    $total = mysqli_fetch_assoc($total);
-    // var_dump($total);
-    
-    $genres_chart = mysqli_query($con, 
-    "SELECT genres.name AS theloai ,SUM(quantity) AS soluong  FROM `orders_details` 
-    INNER JOIN books_genres ON orders_details.book_id = books_genres.book_id
-    INNER JOIN orders ON orders_details.order_id = orders.id
-    INNER JOIN genres ON genres.id = books_genres.genres_id
-    WHERE (".$where3.") 
-    GROUP BY(genres_id)");
 
-    while ($row = mysqli_fetch_array($genres_chart)){
-        $genres3 = '"'.$row['theloai'].'"' ;
-        $quantity = ceil($row['soluong']/$total['tongsoluong']*100);
-
-        $genres3s = $genres3s.$genres3.',';
-        $quantities = $quantities.$quantity.',';
-    }
-    $genres3s = trim($genres3s, "," );
-    $quantities = trim($quantities, "," );
-    // $test = '"a","b"';
-    // var_dump($genres3s,$quantities);
+    $new_users = trim($new_users, "," );
+    $spend_users = trim($spend_users, "," );
+    // var_dump($new_users);
 
 
 
@@ -129,6 +56,31 @@
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
+                    <div class="row">
+                            <div class="col-lg-6">
+                                <div class="au-card m-b-30">
+                                    <div class="au-card-inner">
+                                        <h3 class="title-2 m-b-40">Thống kê lượng người dùng mới theo tháng</h3>
+                                        <select name="sort" id="sort" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" style="margin-bottom: 20px">
+                                            <option selected value="?&name=user_chart&year=2022">Năm 2022</option>
+                                            <option <?php if(isset($_GET['name']) && $_GET['name'] == "user_chart" && $_GET['year'] == "2021") { ?> selected <?php } ?> 
+                                    value="?&name=user_chart&year=2021" data-year="2021" class="user_chart">Năm 2021</option>
+                                        </select>
+                                        <canvas id="lineChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="au-card m-b-30">
+                                    <div class="au-card-inner">
+                                          <h3 align="center">Last 10 Years Profit, Purchase and Sale Data</h3>   
+                                          <br /><br />
+                                          <div id="chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row">
                           <div class="col-lg-6">
                             <div class="au-card m-b-30">
@@ -382,225 +334,74 @@
   "use strict";        
     //Sales chart
     try {
-    var ctx = document.getElementById("sales-chart");
-    if (ctx) {
-      ctx.height = 150;
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ["Thg1","Thg2","Thg3","Thg4","Thg5","Thg6","Thg7","Thg8","Thg9","Thg10","Thg11","Thg12" ],
-          type: 'line',
-          defaultFontFamily: 'Poppins',
-          datasets: [{
-            label: "Doanh thu",
-            data: [ <?php echo $sales ?> ],
-            backgroundColor: 'transparent',
-            borderColor: 'rgba(0,103,255,0.5)',
-            borderWidth: 3,
-            pointStyle: 'circle',
-            pointRadius: 5,
-            pointBorderColor: 'transparent',
-            pointBackgroundColor: 'rgba(0,103,255,0.75)',
-          }, {
-            label: "Chi phí gốc",
-            data: [ <?php echo $imports ?> ],
-            backgroundColor: 'transparent',
-            borderColor: 'rgba(220,53,69,0.5)',
-            borderWidth: 3,
-            pointStyle: 'circle',
-            pointRadius: 5,
-            pointBorderColor: 'transparent',
-            pointBackgroundColor: 'rgba(220,53,69,0.75)',
-          }, {
-            label: "Lãi",
-            data: [ <?php echo $profits ?> ],
-            backgroundColor: 'transparent',
-            borderColor: 'rgba(40,167,69,0.5)',
-            borderWidth: 3,
-            pointStyle: 'circle',
-            pointRadius: 5,
-            pointBorderColor: 'transparent',
-            pointBackgroundColor: 'rgba(40,167,69,0.75)',
-          }]
-        },
-        options: {
-          responsive: true,
-          tooltips: {
-            mode: 'index',
-            titleFontSize: 12,
-            titleFontColor: '#000',
-            bodyFontColor: '#000',
-            backgroundColor: '#fff',
-            titleFontFamily: 'Poppins',
-            bodyFontFamily: 'Poppins',
-            cornerRadius: 3,
-            intersect: false,
-          },
-          legend: {
-            display: false,
-            labels: {
-              usePointStyle: true,
-              fontFamily: 'Poppins',
-            },
-          },
-          scales: {
-            xAxes: [{
-              display: true,
-              gridLines: {
-                display: false,
-                drawBorder: false
-              },
-              scaleLabel: {
-                display: false,
-                labelString: 'Month'
-              },
-              ticks: {
-                fontFamily: "Poppins"
-              }
-            }],
-            yAxes: [{
-              display: true,
-              gridLines: {
-                display: false,
-                drawBorder: false
-              },
-              scaleLabel: {
-                display: true,
-                labelString: 'Value',
-                fontFamily: "Poppins"
 
-              },
-              ticks: {
-                fontFamily: "Poppins"
-              }
-            }]
-          },
-          title: {
-            display: false,
-            text: 'Normal Legend'
+//line chart
+var ctx = document.getElementById("lineChart");
+if (ctx) {
+  ctx.height = 150;
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ["Thg1","Thg2","Thg3","Thg4","Thg5","Thg6","Thg7","Thg8","Thg9","Thg10","Thg11","Thg12"],
+      defaultFontFamily: "Poppins",
+      datasets: [
+        {
+          label: "Số người dùng mới trong tháng",
+          borderColor: "rgba(43,195,9,0.9)",
+          borderWidth: "1",
+          backgroundColor: "rgba(43,195,9,0.2)",
+          data: [ <?php echo $new_users ?> ]
+        },
+        {
+          label: "Số người dùng mới trong tháng đó đã tham gia mua hàng",
+          borderColor: "rgba(0, 45, 251, 0.9)",
+          borderWidth: "1",
+          backgroundColor: "rgba(0, 45, 251, 0.2)",
+          pointHighlightStroke: "rgba(26,179,148,1)",
+          data: [ <?php echo $spend_users ?> ]
+        }
+      ]
+    },
+    options: {
+      legend: {
+        position: 'top',
+        labels: {
+          fontFamily: 'Poppins'
+        }
+
+      },
+      responsive: true,
+      tooltips: {
+        mode: 'index',
+        intersect: false
+      },
+      hover: {
+        mode: 'nearest',
+        intersect: true
+      },
+      scales: {
+        xAxes: [{
+          ticks: {
+            fontFamily: "Poppins"
+
           }
-        }
-      });
-    }
-  } catch (error) {
-    console.log(error);
-  }
-
-  try {
-    //bar chart
-    var ctx = document.getElementById("barChart");
-    if (ctx) {
-      ctx.height = 200;
-      var myChart = new Chart(ctx, {
-        type: 'bar',
-        defaultFontFamily: 'Poppins',
-        data: {
-          labels: ["Thg1","Thg2","Thg3","Thg4","Thg5","Thg6","Thg7","Thg8","Thg9","Thg10","Thg11","Thg12"],
-          datasets: [
-            {
-              label: "Tổng số sách bán được",
-              data: [ <?php echo $book2s ?> ],
-              borderColor: "rgba(0, 123, 255, 0.9)",
-              borderWidth: "0",
-              backgroundColor: "rgba(0, 123, 255, 0.5)",
-              fontFamily: "Poppins"
-            },
-            {
-              label: "Tổng số đơn hàng",
-              data: [ <?php echo $order2s ?> ],
-              borderColor: "rgba(255,0,68,0.9)",
-              borderWidth: "0",
-              backgroundColor: "rgba(255,0,68,0.5)",
-              fontFamily: "Poppins"
-            }
-          ]
-        },
-        options: {
-          legend: {
-            position: 'top',
-            labels: {
-              fontFamily: 'Poppins'
-            }
-
-          },
-          scales: {
-            xAxes: [{
-              ticks: {
-                fontFamily: "Poppins"
-
-              }
-            }],
-            yAxes: [{
-              ticks: {
-                beginAtZero: true,
-                fontFamily: "Poppins"
-              }
-            }]
+        }],
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            fontFamily: "Poppins"
           }
-        }
-      });
-    }
-  } catch (error) {
-    console.log(error);
-  }
+        }]
+      }
 
-  //doughut chart
-  try {
-    var ctx = document.getElementById("doughutChart");
-    if (ctx) {
-      ctx.height = 150;
-      var myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          datasets: [{
-            data: [ <?php echo $quantities ?> ],
-            backgroundColor: [
-              "rgba(255,0,0,0.65)",
-              "rgba(0,239,255,0.65)",
-              "rgba(255,137,0,0.65)",
-              "rgba(145,0,255,0.65)",
-              "rgba(0,255,60,0.65)",
-              "rgba(255,0,179,0.65)",
-              "rgba(239,255,0,0.65)",
-              "rgba(9,0,255,0.65)",
-              "rgba(80,80,80,0.65)",
-              "rgba(6,255,173,0.65)",
-              "rgba(255,6,106,0.65)",
-              "rgba(165,255,6,0.65)"
-            ],
-            hoverBackgroundColor: [
-              "rgba(255,0,0,0.9)",
-              "rgba(0,239,255,0.9)",
-              "rgba(255,137,0,0.9)",
-              "rgba(145,0,255,0.9)",
-              "rgba(0,255,60,0.9)",
-              "rgba(255,0,179,0.9)",
-              "rgba(239,255,0,0.9)",
-              "rgba(9,0,255,0.9)",
-              "rgba(80,80,80,0.9)",
-              "rgba(6,255,173,0.9)",
-              "rgba(255,6,106,0.9)",
-              "rgba(165,255,6,0.9)"
-            ]
-          }],
-          labels: [ <?php echo $genres3s ?>]
-        },
-        options: {
-          legend: {
-            position: 'top',
-            labels: {
-              fontFamily: 'Poppins'
-            }
-
-          },
-          responsive: true
-        }
-      });
     }
+  });
+}
 
-    } catch (error) {
-    console.log(error);
-    }
+
+} catch (error) {
+console.log(error);
+}
 
 
   
