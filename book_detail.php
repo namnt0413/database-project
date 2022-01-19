@@ -337,9 +337,6 @@
                     <div class=""> <img class="profile-pic" src="./<?=  isset($row_comment['avatar']) ? $row_comment['avatar'] : "assets/image/user/user.png"?>" alt="" style="width: 40px;height:40px;border-radius: 100%;"> </div>
                     <div class="d-flex flex-column">
                         <h3 class="mt-2 mb-0"> <?= $row_comment['first_name']." ".$row_comment['last_name'] ?> </h3>
-                        <div>
-                            <p class="text-left"><span class="text-muted">4.0</span> <span class="fa fa-star star-active ml-3"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-inactive"></span></p>
-                        </div>
                     </div>
                     <div class="ml-auto">
                         <p class="text-muted pt-5 pt-sm-3"> <?= $row_comment['created_date'] ?> </p>
@@ -381,7 +378,7 @@
                     </div>
                     <div class="content">
                         <h3><?= $row_genres['tittle'] ?></h3>
-                        <div class="price"><?= number_format($row_genres['price'], 0, ",", ".") ?>đ <span> $20.99</span></div>
+                        <div class="price"><?= number_format($row_genres['price']-$row_genres['discount'], 0, ",", ".") ?>đ <span> <?= number_format($row_genres['price'], 0, ",", ".") ?></span></div>
                         <button data-id="<?=$row_genres['id']?>" class="btn-add-to-cart btn btn-lg btn-outline-primary text-uppercase" style="background-color:#f59f00;color:#fff">
                              <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng </button>
                     </div>
@@ -419,7 +416,7 @@
                     </div>
                     <div class="content">
                         <h3><?= $row_author['tittle'] ?></h3>
-                        <div class="price"><?= number_format($row_author['price'], 0, ",", ".") ?>đ <span> $20.99</span></div>
+                        <div class="price"><?= number_format($row_author['price']-$row_author['discount'], 0, ",", ".") ?>đ <span> <?= number_format($row_author['price'], 0, ",", ".") ?></span></div>
                         <button data-id="<?=$row_author['id']?>" class="btn-add-to-cart btn btn-lg btn-outline-primary text-uppercase" style="background-color:#f59f00;color:#fff">
                              <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng </button>
                     </div>
