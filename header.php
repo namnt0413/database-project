@@ -32,7 +32,7 @@
             <a href="index.php" class="logo"> <i class="fas fa-book"></i> bookly </a>
     
             <form action="" class="search-form">
-                <input type="search" name="" placeholder="search here..." id="search-box">
+                <input type="search" name="" placeholder="Tìm kiếm ở đây ..." id="search-box">
                 <label for="search-box" class="fas fa-search"></label>
             </form>
     
