@@ -101,13 +101,14 @@
                                       </tr>
                                     </thead>
                                     <?php
-
+                                    
                                     // gán row = fetch arr vì fetch arr là duyệt từng hàng, còn assoc là lấy tất cả cho vào 1 hàng
+                                    $i = 1;
                                     while ($rowuser=mysqli_fetch_array($topusers)) {       
                                       ?>
                                           <tr id="table-row">
                                             <td style="text-align: center">
-                                                <?=$rowuser['id']?>
+                                                <?=$i++?>
                                             </td>
                                             <td style="text-align: left">
                                                 <?=$rowuser['first_name']." ".$rowuser['last_name']?>
@@ -258,11 +259,12 @@
                                     <?php
 
                                     // gán row = fetch arr vì fetch arr là duyệt từng hàng, còn assoc là lấy tất cả cho vào 1 hàng
+                                    $i = 1;
                                     while ($rowcmt=mysqli_fetch_array($topcmt)) {       
                                       ?>
                                           <tr id="table-row">
                                             <td style="text-align: center">
-                                                <?=$rowcmt['customer_id']?>
+                                                <?=$i++?>
                                             </td>
                                             <td style="text-align: left">
                                                 <?=$rowcmt['first_name']." ".$rowcmt['last_name']?>
@@ -285,13 +287,7 @@
 
                                                
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                                </div>
-                            </div>
-                        </div>
+                        
                      
                     </div>   <!-- end container -->
                 </div>
