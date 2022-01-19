@@ -4,7 +4,7 @@
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="index.html">
-                            <img src="images/icon/logo.png" alt="CoolAdmin" />
+                            <img src="images/icon/Book-Icon.png" alt="CoolAdmin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -58,10 +58,6 @@
                             <a href="order.php">
                                 <i class="fas fa-shopping-cart"></i>Order</a>
                         </li>
-                        <li>
-                            <a href="blog.php">
-                                <i class="fas fa-newspaper"></i>Blog</a>
-                        </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-copy"></i>Pages</a>
@@ -88,7 +84,10 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="index.php">
-                    <img src="images/icon/logo.png" alt="Cool Admin" />
+                    <div style="display:flex; align-items:center;gap: 10px">
+                        <img src="images/icon/Book-Icon.png" alt="Admin" style="width: 50px;height:auto;"/>
+                        <p style="font-size:30px;font-weight: 600;color:#27ae60">ADMIN</p>
+                    </div>
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -114,7 +113,7 @@
                             <a href="user.php">
                                 <i class="fas fa-user"></i>Quản lý thành viên</a>
                         </li>
-                        <li class="active has-sub">
+                        <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tags"></i>Quản lý sản phẩm</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
@@ -135,10 +134,6 @@
                         <li>
                             <a href="order.php">
                                 <i class="fas fa-shopping-cart"></i>Quản lý đơn hàng</a>
-                        </li>
-                        <li>
-                            <a href="blog.php">
-                                <i class="fas fa-newspaper"></i>Quản lý danh mục tin</a>
                         </li>
                     </ul>
                 </nav>

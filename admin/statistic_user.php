@@ -57,7 +57,8 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                     <div class="row">
-                            <div class="col-lg-6">
+                      <div class="col-lg-6">
+
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner">
                                         <h3 class="title-2 m-b-40">Thống kê lượng người dùng mới theo tháng</h3>
@@ -69,62 +70,8 @@
                                         <canvas id="lineChart"></canvas>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="au-card m-b-30">
-                                    <div class="au-card-inner">
-                                          <h3 align="center">Last 10 Years Profit, Purchase and Sale Data</h3>   
-                                          <br /><br />
-                                          <div id="chart"></div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-
-                        <div class="row">
-                          <div class="col-lg-6">
-                            <div class="au-card m-b-30">
-                              <div class="au-card-inner">
-                                <h3 class="title-2 m-b-40">Top 10 khách hàng đem lại nguồn doanh thu nhất</h3>
-                                  <?php
-                                    $topusers = mysqli_query($con, "SELECT id, first_name,last_name,money_spent
-                                    FROM `customers`
-                                    ORDER BY money_spent DESC
-                                    LIMIT 10");
-                                  ?>
-                                  <table class="table table-borderless table-striped table-earning">
-                                    <thead>
-                                      <tr>
-                                        <td style="text-align: center">ID</td>
-                                        <td style="text-align: center">Họ và tên</td>
-                                        <td style="text-align: center">Số tiền đã mua</td>
-                                      </tr>
-                                    </thead>
-                                    <?php
-                                    
-                                    // gán row = fetch arr vì fetch arr là duyệt từng hàng, còn assoc là lấy tất cả cho vào 1 hàng
-                                    $i = 1;
-                                    while ($rowuser=mysqli_fetch_array($topusers)) {       
-                                      ?>
-                                          <tr id="table-row">
-                                            <td style="text-align: center">
-                                                <?=$i++?>
-                                            </td>
-                                            <td style="text-align: left">
-                                                <?=$rowuser['first_name']." ".$rowuser['last_name']?>
-                                            </td>         
-                                            <td style="text-align: center">
-                                                <?=number_format($rowuser['money_spent'], 0, ",", ".") ?>đ
-                                            </td>               
-                                          </tr>
-                                      </a>
-                                    <?php 
-                                    } 
-                                    ?>
-                                  </table>
-                              </div>
-                            </div>
-                          </div>
+                        
                           <div class="col-lg-6">
                             <div class="au-card m-b-30">
                               <div class="au-card-inner">
@@ -283,6 +230,54 @@
                           </div>                          
                         </div>
 
+
+                        </div>
+
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="au-card m-b-30">
+                              <div class="au-card-inner">
+                                <h3 class="title-2 m-b-40">Top 10 khách hàng đem lại nguồn doanh thu nhất</h3>
+                                  <?php
+                                    $topusers = mysqli_query($con, "SELECT id, first_name,last_name,money_spent
+                                    FROM `customers`
+                                    ORDER BY money_spent DESC
+                                    LIMIT 10");
+                                  ?>
+                                  <table class="table table-borderless table-striped table-earning">
+                                    <thead>
+                                      <tr>
+                                        <td style="text-align: center">ID</td>
+                                        <td style="text-align: center">Họ và tên</td>
+                                        <td style="text-align: center">Số tiền đã mua</td>
+                                      </tr>
+                                    </thead>
+                                    <?php
+                                    
+                                    // gán row = fetch arr vì fetch arr là duyệt từng hàng, còn assoc là lấy tất cả cho vào 1 hàng
+                                    $i = 1;
+                                    while ($rowuser=mysqli_fetch_array($topusers)) {       
+                                      ?>
+                                          <tr id="table-row">
+                                            <td style="text-align: center">
+                                                <?=$i++?>
+                                            </td>
+                                            <td style="text-align: left">
+                                                <?=$rowuser['first_name']." ".$rowuser['last_name']?>
+                                            </td>         
+                                            <td style="text-align: center">
+                                                <?=number_format($rowuser['money_spent'], 0, ",", ".") ?>đ
+                                            </td>               
+                                          </tr>
+                                      </a>
+                                    <?php 
+                                    } 
+                                    ?>
+                                  </table>
+                              </div>
+                            </div>
+                          </div>
+                          
                         
 
                                                
