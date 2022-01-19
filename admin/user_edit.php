@@ -163,7 +163,7 @@
                 
                 $result = mysqli_query($con, "UPDATE `customers` SET  `first_name` = '" . $_POST['first_name'] ."',`last_name` = '" . $_POST['last_name'] ."' ,
                  `avatar` =  '" . $avatar . "' , `birthday` = '" . $_POST['birthday'] ."' , `phone` = '" . $_POST['phone'] ."' , `address` = '" . $_POST['address'] ."' ,
-                  `status` = " . $_POST['status'] . ", `email` = '" . $_POST['email'] . "', `money_spent` = '" . $_POST['money_spent'] . "',
+                  `status` = " . $_POST['status'] . ", `email` = '" . $_POST['email'] . "',
                    `last_updated`= NOW() WHERE `customers`.`id` = " . $_POST['id'] . ";");
                 if (!$result) {
                     $error = "Không thể cập nhật tài khoản";
