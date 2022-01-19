@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 17, 2022 at 05:05 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th1 19, 2022 lúc 08:10 AM
+-- Phiên bản máy phục vụ: 10.4.22-MariaDB
+-- Phiên bản PHP: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,38 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `database_project`
+-- Cơ sở dữ liệu: `database_project`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account`
---
-
-CREATE TABLE `account` (
-  `id` int(11) NOT NULL,
-  `year` int(11) NOT NULL,
-  `purchase` int(11) NOT NULL,
-  `sale` int(11) NOT NULL,
-  `profit` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `account`
---
-
-INSERT INTO `account` (`id`, `year`, `purchase`, `sale`, `profit`) VALUES
-(1, 2018, 5000, 7000, 2000),
-(2, 2019, 3500, 5000, 1500),
-(3, 2020, 6000, 6800, 800),
-(4, 2021, 4500, 5500, 1000),
-(5, 2022, 3400, 4500, 1100);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `authors`
+-- Cấu trúc bảng cho bảng `authors`
 --
 
 CREATE TABLE `authors` (
@@ -59,28 +34,25 @@ CREATE TABLE `authors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `authors`
+-- Đang đổ dữ liệu cho bảng `authors`
 --
 
 INSERT INTO `authors` (`id`, `name`, `last_updated`) VALUES
-(1, 'Nguyễn Nhật Ánh ', '2021-12-16 15:42:49'),
-(2, 'Lý Quí Trung', '2022-01-12 07:26:32'),
-(3, 'Dương Quá', '2022-01-12 15:13:07'),
-(4, 'Huấn Hoa Hồng', '2022-01-12 15:13:04'),
-(5, 'David J Pollay', '2022-01-12 15:13:00'),
-(6, 'Yi Doo Woo', '2022-01-12 15:12:57'),
-(12, 'Trần Dần', '2022-01-12 15:12:54'),
-(13, 'Khá Bảnh', '2022-01-12 15:12:52'),
-(14, 'Dũng Trọc', '2022-01-12 15:12:49'),
-(15, 'Lê Tùng Vân', '2022-01-12 15:12:46'),
-(16, 'TEST 12/1', '2022-01-12 15:13:18'),
-(17, 'Trần Đức Bo', '2022-01-12 16:53:25'),
-(18, 'Lộc Fuho', '2022-01-14 16:25:14');
+(1, 'Robin Sharma', '2022-01-19 17:18:30'),
+(2, 'Tony Buổi Sáng', '2022-01-19 05:55:23'),
+(3, 'Rosie Nguyễn', '2022-01-19 09:07:23'),
+(4, 'Robert T Kiyosaki', '2022-01-19 09:41:23'),
+(5, 'Napoleon Hill', '2022-01-19 13:55:23'),
+(6, 'Jim Collins', '2022-01-19 16:55:23'),
+(7, 'Diệp Tiểu Ngư', '2022-01-19 11:55:23'),
+(8, 'Philip Kotler', '2022-01-19 08:55:23'),
+(9, 'Nguyễn Trọng Nhân', '2022-01-19 11:55:23'),
+(10, 'Jack D Schwager', '2022-01-19 10:55:23');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `blogs`
+-- Cấu trúc bảng cho bảng `blogs`
 --
 
 CREATE TABLE `blogs` (
@@ -95,7 +67,7 @@ CREATE TABLE `blogs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `books`
+-- Cấu trúc bảng cho bảng `books`
 --
 
 CREATE TABLE `books` (
@@ -113,53 +85,25 @@ CREATE TABLE `books` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `books`
+-- Đang đổ dữ liệu cho bảng `books`
 --
 
 INSERT INTO `books` (`id`, `tittle`, `image`, `price`, `discount`, `import_price`, `quantity`, `content`, `publication_date`, `created_date`, `last_updated`) VALUES
-(25, 'Đệ nhất kiếm tiền', 'assets/image/book/book20.png', 50000, 10000, 35000, 14, '                                        Ra xã hội làm ăn bươn chải, liều thì ăn nhiều, không liều thì ăn ít. Muốn thành công thì phải chấp nhận trải qua đắng cay ngọt bùi. Làm ăn muốn kiếm kiếm được tiền thì phải chấp nhận mạo hiểm một chút nhưng trong tầm kiểm soát. Sau này chỉ có làm, chịu khó cần cù thì bù siêng năng , chỉ có làm thì mới có ăn.                                                                                                                                                                                                                                                                                                                ', NULL, '2021-07-01 00:00:00', '2022-01-13 22:20:45'),
-(26, 'Bài Học Diệu Kỳ Từ Chiếc Xe Rác (bản đặc biệt )', 'assets/image/book/book22.jpg\r\n', 91500, 35000, 50000, 28, 'Hạnh phúc không ở ngoài tầm tay\r\n\r\nPhép lịch sự không hề mất.\r\n\r\nCam kết nói Không với \"xe rác\" khiến cho hạnh phúc và phép lịch sự trở thành hiện thực. Điều này hỗ trợ điều kia trong một vòng tròn khép kín.\r\n\r\nMục lục\r\n\r\nCam kết thứ nhất: Hãy bỏ qua những \"chiếc xe rác\"\r\nCam kết thứ hai: Đừng tự \"vấy bẩn\" cuộc sống của mình\r\nCam kết thứ ba: Đừng biến mình thành \"chiếc xe rác\"\r\nCam kết thứ tư: Giúp người khác thôi \"xả rác\"\r\nCam kết thứ năm: Cuộc sống không có \"xe rác\"\r\nCam kết thứ sáu: Xây dựng một gia đình không có \"xe rác\"\r\nCam kết thứ bảy: Xây dựng môi trường làm việc không có \"xe rác\"                                                                                                        ', NULL, '2021-08-19 00:31:00', '2021-08-23 00:47:00'),
-(27, 'Hòm thư số 110', 'assets/image/book/book23.png', 127500, 20000, 100000, 0, 'Tình yêu của anh nhón chân rón rén bước                                                                                                                                                                                                                                                                                                                                                         \r\nEm đã bước vào vườn hoa của anh rồi nhỉ.\r\nDù chưa được cho phép.\r\n\r\nỞ độ tuổi 30, bận bịu trong nhịp sống thường ngày quen thuộc khiến Jin Sol lẳng lặng đem cất những rung động tình yêu xa xỉ vào góc sâu trái tim. Mục tiêu cô đề ra là “Đừng để lòng vướng bận”. Song lẽ dĩ nhiên, trời chẳng chiều lòng người, đợt cải tổ nhân sự định kỳ của đài phát thanh đã mang đến cho cô một cộng sự khó nhằn - một nhà sản xuất chương trình còn sáng tác cả thơ. Để đối phó với anh ta, dường như mọi sự phòng bị là không đủ, hoặc chỉ một cốc smoothie đã đủ…\r\n\r\nViết về những con người gần gũi trong cuộc đời bình dị, những người lớn dù đã khoác lên mình lớp vỏ trưởng thành song vẫn còn vô số khuyết điểm cũng như nhược điểm, ngày ngày vẫn đối mặt với nỗi cô đơn trong chừng mực cho phép, đây là câu chuyện “thử yêu thêm lần nữa” của họ, của bạn và của tôi.                                                                                                                                                                                                                                                                                                                                                                     ', NULL, '2021-09-02 16:29:00', '2022-01-12 14:04:34'),
-(31, 'Test2', 'assets/image/book/book-9(1).png', 180000, 50000, 120000, 1, '                                        Test book 2                                                                                                                                                                                                                                                                                                               ', NULL, '2021-09-14 07:09:00', '2022-01-12 14:11:26'),
-(49, 'Test3', 'assets/image/book/book7.png', 250000, 16000, 220000, 0, '                                                                         Test Book so 3                                                                                                                                   ', NULL, '2021-09-23 13:17:00', '2021-09-24 13:17:00'),
-(52, 'Test Book5', 'assets/image/book/book-2(1).png', 599999, 25000, 560000, 12, 'Test Book 5                                                            ', NULL, '2021-10-10 16:47:00', '2021-10-12 12:29:00'),
-(54, 'Test6', 'assets/image/book/book-10(1).png', 220000, 45000, 180000, 11, '                                                                    ', NULL, '2021-10-19 12:17:00', '2021-10-21 14:43:00'),
-(55, 'Mắt biếc', 'assets/image/book/book1_gallery(1).jpg', 250000, 30000, 210000, 25, ' Một tác phẩm được nhiều người bình chọn là hay nhất của nhà văn này. Một tác phẩm đang được dịch và giới thiệu tại Nhật Bản (theo thông tin từ các báo)… Bởi sự trong sáng của một tình cảm, bởi cái kết thúc rất, rất buồn khi suốt câu chuyện vẫn là những điều vui, buồn lẫn lộn (cái kết thúc không như mong đợi của mọi người). Cũng bởi, mắt biếc… năm xưa nay đâu (theo lời một bài hát)                                                                                                                                    ', NULL, '2021-10-26 11:21:00', '2021-10-27 01:18:00'),
-(56, 'Test61', 'assets/image/book/book-10(1).png', 210000, 20000, 180000, 19, '                                                                                                                                                                                                                    ', NULL, '2021-10-29 08:29:00', '2021-10-29 13:15:00'),
-(57, 'Test62', 'assets/image/book/book-5(1).png', 300000, 52000, 240000, 4, '                                                                                                                                                                                                                                                                                                                                                                    ', NULL, '2021-11-18 04:29:00', '2021-11-18 09:29:00'),
-(58, 'Test68', 'assets/image/book/book-3(1).png', 290000, 50000, 240000, 12, '                                                                                                                                                                                                                                                                                                                                                                                                                                        ', NULL, '2021-11-29 10:24:00', '2021-11-30 07:32:00'),
-(59, 'Test63', 'assets/image/book/book-1(1).png', 260000, 40000, 210000, 15, '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ', NULL, '2021-11-23 14:35:00', '2021-11-25 09:22:00'),
-(60, 'Test66', 'assets/image/book/book-7(1).png', 270000, 50000, 215000, 14, '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ', NULL, '2021-11-26 10:29:00', '2021-11-21 12:41:00'),
-(61, 'Test67', 'assets/image/book/book-9(1).png', 280000, 50000, 220000, 18, '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ', NULL, '2021-11-18 04:29:00', '2021-11-19 08:29:00'),
-(62, 'Test Book 15/1', 'assets/image/book/book5(1).png', 699999, 60000, 630000, 22, 'Test Book 5                                                                                                                                ', NULL, '2021-12-04 07:18:22', '2022-01-15 00:36:20'),
-(63, 'Test Book5', 'assets/image/book/book-2(1).png', 599999, 0, 560000, 24, '                                    Test Book 5                                                                                            ', NULL, '2021-12-07 03:11:00', '2021-12-07 12:26:22'),
-(64, 'Test 16/1', 'assets/image/book/book-5(1).png', 250000, 0, 240000, 0, ' Test Book so 3                                                                                                                                                                                                                                       ', NULL, '2021-12-07 03:36:22', '2022-01-15 00:36:59'),
-(68, 'Đệ nhất kiếm tiền', 'assets/image/book/book5(1).png', 550000, 80000, 460000, 100, '                                                                                                                                                                                                                                                                                                Ra xã hội làm ăn bươn chải, liều thì ăn nhiều, không liều thì ăn ít. Muốn thành công thì phải chấp nhận trải qua đắng cay ngọt bùi. Làm ăn muốn kiếm kiếm được tiền thì phải chấp nhận mạo hiểm một chút nhưng trong tầm kiểm soát. Sau này chỉ có làm, chịu khó cần cù thì bù siêng năng , chỉ có làm thì mới có ăn.                                                                                                                                                                                                                                                                    ', NULL, '2021-12-02 08:18:22', '2021-12-07 13:18:22'),
-(70, 'Test10', 'assets/image/book/book21(1).png', 240000, 80000, 150000, 0, '                                     T.T        T.T        T.T        T.T        T.T        T.T        T.T        T.T        T.T                                                                                                   ', NULL, '2021-12-30 06:26:22', '2021-12-07 08:06:22'),
-(72, 'Test3', 'assets/image/book/book7.png', 250000, 70000, 175000, 0, '                                                                                                             Test Book so 3                                                                                                                                                                   ', NULL, '2021-12-07 04:29:22', '2021-12-07 18:28:22'),
-(73, 'Test Book5', 'assets/image/book/book-2(1).png', 599999, 0, 560000, 21, '                                                                            Test Book 5                                                                                                                                ', NULL, '2021-12-14 16:45:22', '2021-12-15 19:37:22'),
-(74, 'Test5', 'assets/image/book/book7.png', 250000, 10000, 220000, 6, '                                    Test Book so 3                                                                                                                                                                                                   ', NULL, '2021-11-10 10:18:22', '2021-12-22 11:26:22'),
-(75, 'Test Book 70', 'assets/image/book/book2_gallery.jpg', 590000, 0, 540000, 22, ' Test Book 5                                                                                                                                ', NULL, '2021-12-09 08:18:22', '2022-01-15 00:02:30'),
-(77, 'Test Book 72', 'assets/image/book/book-7(1).png', 570000, 10000, 540000, 24, 'test 14/1 OK                                                                                                                      ', NULL, '2021-12-07 08:18:22', '2022-01-15 00:34:42'),
-(78, 'Test Book5', 'assets/image/book/book-2(1).png', 560000, 0, 540000, 25, '                                    Test Book 5                                                                                            ', NULL, '2021-12-07 08:18:22', '2021-12-07 14:18:22'),
-(79, 'Test Book51', 'assets/image/book/book-2(1).png', 550000, 0, 540000, 25, '                                    Test Book 5                                                                                            ', NULL, '2022-01-14 13:49:00', '2022-01-19 13:49:00'),
-(80, 'Test Book52', 'assets/image/book/book-2(1).png', 540000, 0, 540000, 25, '                                    Test Book 5                                                                                            ', NULL, '2022-01-12 13:49:00', '2022-01-12 13:49:00'),
-(81, 'Test Book53', 'assets/image/book/book-1.png', 53000, 0, 40000, 22, '                                    Test Book 5                                                                                            ', NULL, '2022-01-12 13:49:00', '2022-01-12 13:49:00'),
-(83, 'Test Book55', 'assets/image/book/book-2.png', 510000, 0, 460000, 24, '                                    Test Book 5                                                                                            ', NULL, '2022-01-12 13:49:00', '2022-01-12 13:49:00'),
-(84, 'Test Book56', 'assets/image/book/book-4.png', 50000, 20000, 25000, 5, '                                    Test Book 5                                                                                            ', NULL, '2022-01-12 13:49:00', '2022-01-12 13:49:00'),
-(85, 'Test Book57', 'assets/image/book/book-6.png', 699999, 0, 650000, 24, '                                    Test Book 5                                                                                            ', NULL, '2022-01-12 13:49:00', '2022-01-12 13:49:00'),
-(86, 'Test Book58', 'assets/image/book/book-8.png', 799999, 0, 780000, 24, '                                    Test Book 5                                                                                            ', NULL, '2022-01-12 13:49:00', '2022-01-12 13:49:00'),
-(87, 'Test Book59', 'assets/image/book/book-7.png', 899999, 0, 850000, 22, '                                    Test Book 5                                                                                            ', NULL, '2022-01-12 13:49:00', '2022-01-12 13:49:00'),
-(88, 'Test Book50', 'assets/image/book/book-3.png', 999999, 0, 950000, 25, '                                    Test Book 5                                                                                            ', NULL, '2022-01-12 13:49:00', '2022-01-12 13:49:00'),
-(89, 'Cho tôi xin một vé đi tuổi thơ', 'assets/image/book/book2_.jpg', 200000, 50000, 150000, 13, 'TEST ADD REMOVE AUTHOR      \r\nTEST ADD REMOVE AUTHOR      TEST ADD REMOVE AUTHOR      TEST ADD REMOVE AUTHOR      TEST ADD REMOVE AUTHOR      TEST ADD REMOVE AUTHOR      TEST ADD REMOVE AUTHOR      TEST ADD REMOVE AUTHOR      TEST ADD REMOVE AUTHOR                                                                                                                ', NULL, '2022-01-12 13:49:00', '2022-01-12 13:49:00'),
-(90, 'Cho tôi xin một vé đi tuổi thơ phần 2', 'assets/image/book/book2_.jpg', 200000, 0, 178000, 0, 'TEST ADD REMOVE AUTHOR      \r\nTEST ADD REMOVE AUTHOR      TEST ADD REMOVE AUTHOR      TEST ADD REMOVE AUTHOR      TEST ADD REMOVE AUTHOR      TEST ADD REMOVE AUTHOR      TEST ADD REMOVE AUTHOR      TEST ADD REMOVE AUTHOR      TEST ADD REMOVE AUTHOR       \r\nWHEN COPY                                                                                                                                                                                 ', NULL, '2022-01-12 13:49:00', '2022-01-12 13:49:00'),
-(91, 'Test20', 'assets/image/book/motduatre(1).jpg', 250000, 50000, 220000, 15, 'TEST20                                                                    ', NULL, '2022-01-12 14:12:26', '2022-01-12 14:12:26'),
-(92, 'Test14/1', 'assets/image/book/book2_.jpg', 200000, 20000, 165000, 9, 'test14/1                                ', NULL, '2022-01-13 21:47:39', '2022-01-13 21:47:39');
+(1, 'Nhà lãnh đạo không chức danh', 'assets/image/book/1.png', 80000, 10000, 68000, 30, 'Làm thế nào để làm việc và tạo ảnh hưởng với mọi người như một siêu sao, bất chấp bạn đang ở vị trí nào\r\nMột phương pháp để nhận biết và nắm bắt cơ hội vào những thời điểm thay đổi\r\nNhững bí mật thật sự của sự đổi mới\r\nMột chiến lược tức thời để xây dựng đội nhóm tuyệt vời và trở thành một nhà cung cấp ngoạn mục của khách hàng\r\nNhững thủ thuật cứng rắn giúp trở nên mạnh mẽ cả về thể chất lẫn tinh thần để có thể đi đầu trong lĩnh vực của bạn\r\nNhững phương thức thực tế để đánh bại sự căng thẳng, xây dựng một ý chí bất bại, giải phóng năng lượng, và cân bằng cuộc sống cá nhân                                                                                                                                                  ', NULL, '2021-03-19 10:08:41', '2022-01-19 10:19:37'),
+(2, 'Trên Đường Băng', 'assets/image/book/2.png', 100000, 12000, 80000, 35, '                                        Nếu như tuổi trẻ vẫn chưa bỏ bạn quá xa, hãy đọc cuốn sách này ít nhất một lần.Trên đường băng của (dượng) Tony (các bạn trẻ gọi Tony như thế, chính tác giả đã viết như vậy trong phần mở đầu) là một trong những quyển sách bán chạy nhất, nổi tiếng nhất, hoặc là các lí do khác .Nhưng mà bất kể vì lý do gì mà bạn đang tính là sẽ mua quyển sách này thì GOBE có thể chắc chắn rằng bạn đã không lãng phí tiền bạc của mình đâu .Làm thế nào vào được những trường Ivy League.Làm thế nào để xin được việc.Làm thế nào để có vốn khởi nghiệp                                                                                                            ', NULL, '2021-02-19 10:23:41', '2022-01-19 10:24:34'),
+(3, 'Tuổi trẻ đáng giá bao nhiêu', 'assets/image/book/3.png', 90000, 5000, 75000, 18, ' “Bạn hối tiếc vì không nắm bắt lấy một cơ hội nào đó, chẳng có ai phải mất ngủ.\r\n\r\nBạn trải qua những ngày tháng nhạt nhẽo với công việc bạn căm ghét, người ta chẳng hề bận lòng.\r\n\r\nBạn có chết mòn nơi xó tường với những ước mơ dang dở, đó không phải là việc của họ.\r\n\r\nSuy cho cùng, quyết định là ở bạn. Muốn có điều gì hay không là tùy bạn.\r\n\r\nNên hãy làm những điều bạn thích. Hãy đi theo tiếng nói trái tim. Hãy sống theo cách bạn cho là mình nên sống.\r\n\r\nVì sau tất cả, chẳng ai quan tâm.”\r\n\r\n“Tôi đã đọc quyển sách này một cách thích thú. Có nhiều kiến thức và kinh nghiệm hữu ích, những điều mới mẻ ngay cả với người gần trung niên như tôi.\r\n\r\nTuổi trẻ đáng giá bao nhiêu? được tác giả chia làm 3 phần: HỌC, LÀM, ĐI.\r\n\r\nNhưng tôi thấy cuốn sách còn thể hiện một phần thứ tư nữa, đó là ĐỌC.\r\n\r\nHãy đọc sách, nếu bạn đọc sách một cách bền bỉ, sẽ đến lúc bạn bị thôi thúc không ngừng bởi ý muốn viết nên cuốn sách của riêng mình.\r\n\r\nNếu tôi còn ở tuổi đôi mươi, hẳn là tôi sẽ đọc Tuổi trẻ đáng giá bao nhiêu?                                                                                                             ', NULL, '2021-09-19 10:27:39', '2022-01-19 10:29:36'),
+(4, 'Content Bạc Tỷ', 'assets/image/book/4.png', 119000, 20000, 90000, 47, '                                        Kinh doanh muốn phát triển lâu dài thì content phải có hiệu quả. Content hiệu quả là content có thể hái ra tiền. Rất nhiều content được chú trọng từng câu chữ với những câu văn bay bổng nhưng lại không thể mang lại hấp dẫn đối với người đọc. Viết content cũng giống việc móc nối các thông tin lại với nhau, “Content bạc tỷ” sẽ chỉ ra cho bạn 4 bước cụ thể để xây dựng chiến dịch viết một bài quảng cáo chuyên nghiệp: “Nói những gì – Nói với ai – Nói ở đâu – Nói thế nào”. Nói một cách dễ hiểu hơn thì chính là xem khách hàng là đối tượng để tán gẫu, chúng ta áp dụng đúng bốn điều trên sẽ khiến cuộc trò chuyện đạt được hiệu quả cao hơn.                                                                                                           ', NULL, '2021-08-19 10:32:51', '2022-01-19 10:33:39'),
+(5, 'Tiếp Thị 4.0', 'assets/image/book/5.png', 100000, 10000, 80000, 26, '                                        Quyển cẩm nang vô cùng cần thiết cho những người làm tiếp thị trong thời đại số. Được viết bởi cha đẻ ngành tiếp thị hiện đại, cùng hai đồng tác giả là lãnh đạo của công ty MarkPlus, quyển sách sẽ giúp bạn lèo lái thế giới không ngừng kết nối và khách hàng không ngừng thay đổi để có được nhiều khách hàng hơn, xây dựng thương hiệu hiệu quả hơn, và cuối cùng kinh doanh thành công hơn. Ngày nay khách hàng không có nhiều thời gian và sự chú ý dành cho thương hiệu của bạn – và họ còn bị bao quanh bởi vô số các chọn lựa. Bạn phải tách khỏi đám đông, phải nổi trội, để gây sự chú ý và truyền đạt thông điệp mà khách hàng muốn nghe.                                                                                             ', NULL, '2021-07-19 10:36:19', '2022-01-19 10:37:22'),
+(6, 'Bóc Phốt Tài Chính', 'assets/image/book/6.png', 149000, 12000, 100000, 25, '                                        - Lương thấp không bao giờ nuôi được đam mê\r\n\r\n- Thế hệ trẻ bỏ việc văn phòng để chạy Grab, thực tế hay hiểu sai?\r\n\r\n- Con gái yêu vì tiền là thực dụng hay lẽ thường?\r\n\r\nPhong cách viết đơn giản và dễ tiếp cận, “Bóc phốt tài chính” chính xác đã “lột trần” những khái niệm từ đơn giản cho đến phức tạp nhất trong lĩnh vực tài chính. Đây là cuốn sách dành cho tất cả mọi người, dù bạn là sinh viên, nhân viên hay làm trong những lĩnh vực ít tiếp xúc với chứng khoán thì vẫn hiểu được nội dung của cuốn sách. Những câu chuyện được tác giả “gần gũi hoá” trở nên thực tế và phản ánh đúng thực trạng đời sống hiện nay dưới góc nhìn tài chính.                                                                                           ', NULL, '2021-06-19 10:39:59', '2022-01-19 10:42:04'),
+(7, 'Phù Thủy Sàn Chứng Khoán', 'assets/image/book/7(1).png', 163000, 13000, 120000, 18, 'Sách-Phù thuỷ sàn chứng khoán\r\nCuốn sách gồm một loạt các cuộc phỏng vấn với các nhà giao dịch thành công và nổi tiếng nhất, với nhiều chi tiết nhất về câu chuyện thành công và những bí mật kinh nghiệm chuyên môn của họ.                                                                                                                                                                        ', NULL, '2021-09-19 10:46:17', '2022-01-19 10:50:50'),
+(8, 'Dạy Con Làm Giàu 2', 'assets/image/book/8.png', 250000, 20000, 200000, 42, '                                         Bạn đang đi học? Bạn vừa ra trường và chưa có việc làm? Bạn đang làm việc với mức lương ổn định? Bạn đang làm cho một công ty tư nhân tư nhân? Bạn là một chủ doanh nghiệp nhỏ? Bạn muốn được thoải mái về tiền bạc ? “Dạy con làm giàu tập 2” sẽ là bước khởi đầu cho bạn - những quan điểm mới về đồng vốn và cách sử dụng tiền hiệu quả.                                                                                                               ', NULL, '2021-10-19 10:54:05', '2022-01-19 10:56:38'),
+(9, 'Nghĩ Giàu & Làm Giàu', 'assets/image/book/9.png', 108000, 30000, 70000, 40, '                                        Nghĩ giàu Làm giàu là một trong những cuốn sách bán chạy nhất trên thế giới mọi thời đại.\r\nNó đã được tái bản hơn 60 triệu bản và phát hành với hàng trăm ngôn ngữ trên thế giới, được công nhận là cuốn sách tạo ra nhiều triệu phú nhất                                                                                                                                                                        ', NULL, '2021-11-19 10:59:11', '2022-01-19 11:02:18'),
+(10, 'Từ Tốt Đến Vĩ Đại', 'assets/image/book/10.png', 110500, 10000, 90000, 43, 'Jim Collins cùng nhóm nghiên cứu đã miệt mài nghiên cứu những công ty có bước nhảy vọt và bền vững để rút ra những kết luận sát sườn, những yếu tố cần kíp để đưa công ty từ tốt đến vĩ đại. Đó là những yếu tố khả năng lãnh đạo, con người, văn hóa, kỷ luật, công nghệ… Những yếu tố này được nhóm nghiên cứu xem xét tỉ mỉ và kiểm chứng cụ thể qua 11 công ty nhảy vọt lên vĩ đại. Mỗi kết luận của nhóm nghiên cứu đều hữu ích, vượt thời gian, ý nghĩa vô cùng to lớn đối với mọi lãnh đạo và quản lý ở mọi loại hình công ty (từ công ty có nền tảng và xuất phát tốt đến những công ty mới khởi nghiệp), và mọi lĩnh vực ngành nghề. Đây là cuốn sách nên đọc đối với bất kỳ lãnh đạo hay quản lý nào!                                                                                                                                               ', NULL, '2021-12-19 11:04:31', '2022-01-19 11:06:02');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `books_authors`
+-- Cấu trúc bảng cho bảng `books_authors`
 --
 
 CREATE TABLE `books_authors` (
@@ -168,73 +112,25 @@ CREATE TABLE `books_authors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `books_authors`
+-- Đang đổ dữ liệu cho bảng `books_authors`
 --
 
 INSERT INTO `books_authors` (`author_id`, `book_id`) VALUES
-(1, 26),
-(1, 27),
-(1, 31),
-(1, 52),
-(1, 54),
-(1, 55),
-(1, 59),
-(1, 60),
-(1, 72),
-(1, 89),
-(1, 90),
-(2, 26),
-(2, 27),
-(2, 49),
-(2, 52),
-(2, 54),
-(2, 62),
-(2, 64),
-(2, 84),
-(3, 26),
-(3, 49),
-(3, 54),
-(3, 60),
-(3, 77),
-(3, 85),
-(4, 25),
-(4, 54),
-(4, 58),
-(4, 61),
-(4, 70),
-(4, 73),
-(4, 78),
-(4, 85),
-(5, 56),
-(5, 62),
-(6, 57),
-(6, 64),
-(6, 74),
-(6, 87),
-(12, 75),
-(12, 77),
-(12, 79),
-(12, 81),
-(12, 83),
-(13, 63),
-(13, 81),
-(13, 86),
-(13, 91),
-(14, 68),
-(14, 81),
-(14, 86),
-(15, 49),
-(15, 63),
-(15, 80),
-(15, 81),
-(15, 83),
-(15, 88),
-(18, 92);
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 8),
+(5, 9),
+(6, 10),
+(7, 4),
+(8, 5),
+(9, 6),
+(10, 7);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `books_genres`
+-- Cấu trúc bảng cho bảng `books_genres`
 --
 
 CREATE TABLE `books_genres` (
@@ -243,76 +139,25 @@ CREATE TABLE `books_genres` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `books_genres`
+-- Đang đổ dữ liệu cho bảng `books_genres`
 --
 
 INSERT INTO `books_genres` (`book_id`, `genres_id`) VALUES
-(25, 2),
-(25, 3),
-(25, 5),
-(26, 6),
-(26, 8),
-(27, 6),
-(31, 7),
-(49, 1),
-(49, 8),
-(52, 3),
-(54, 5),
-(55, 6),
-(56, 2),
-(57, 4),
-(57, 5),
-(58, 1),
-(58, 6),
-(59, 8),
-(60, 3),
-(61, 1),
-(61, 8),
-(62, 2),
-(62, 6),
-(63, 8),
-(64, 4),
-(64, 6),
-(68, 5),
-(68, 8),
-(70, 3),
-(70, 7),
-(72, 1),
-(72, 4),
-(73, 3),
-(74, 1),
-(74, 5),
-(75, 6),
-(77, 1),
-(78, 1),
-(79, 8),
-(80, 5),
-(81, 4),
-(81, 6),
-(81, 7),
-(81, 12),
-(83, 2),
-(83, 3),
-(84, 1),
-(84, 2),
-(84, 5),
-(85, 5),
-(85, 8),
-(86, 2),
-(86, 4),
-(87, 6),
-(87, 12),
-(88, 12),
-(89, 4),
-(90, 2),
-(91, 6),
-(91, 7),
-(92, 8);
+(1, 1),
+(2, 1),
+(3, 4),
+(4, 3),
+(5, 3),
+(6, 6),
+(7, 7),
+(8, 1),
+(9, 1),
+(10, 6);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `books_library`
+-- Cấu trúc bảng cho bảng `books_library`
 --
 
 CREATE TABLE `books_library` (
@@ -324,37 +169,33 @@ CREATE TABLE `books_library` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `books_library`
+-- Đang đổ dữ liệu cho bảng `books_library`
 --
 
 INSERT INTO `books_library` (`id`, `book_id`, `path`, `created_time`, `last_updated`) VALUES
-(36, 25, 'assets/image/book/book21(1).png', '0000-00-00', '0000-00-00'),
-(38, 31, 'assets/image/book/book-9(1).png', '0000-00-00', '0000-00-00'),
-(39, 31, 'assets/image/book/book-10(1).png', '0000-00-00', '0000-00-00'),
-(58, 55, 'assets/image/book/book1(1).jpg', '0000-00-00', '0000-00-00'),
-(59, 55, 'assets/image/book/book1_gallery(1)(1).jpg', '0000-00-00', '0000-00-00'),
-(60, 55, 'assets/image/book/book1_gallery_(2)(1).jpg', '0000-00-00', '0000-00-00'),
-(74, 26, 'assets/image/book/book2_.jpg', '0000-00-00', '0000-00-00'),
-(75, 26, 'assets/image/book/book2_gallery_(2).jpg', '0000-00-00', '0000-00-00'),
-(76, 26, 'assets/image/book/book2_gallery.jpg', '0000-00-00', '0000-00-00'),
-(80, 89, 'assets/image/book/book-2(1).png', '0000-00-00', '0000-00-00'),
-(81, 89, 'assets/image/book/book3(1).png', '0000-00-00', '0000-00-00'),
-(82, 89, 'assets/image/book/book-3(1).png', '0000-00-00', '0000-00-00'),
-(83, 90, 'assets/image/book/book-2(1).png', '0000-00-00', '0000-00-00'),
-(84, 90, 'assets/image/book/book3(1).png', '0000-00-00', '0000-00-00'),
-(85, 90, 'assets/image/book/book-3(1).png', '0000-00-00', '0000-00-00'),
-(86, 27, 'assets/image/book/book-9(1)(1).png', '2022-01-12', '2022-01-12'),
-(87, 91, 'assets/image/book/nhagiakim(1).jpg', '2022-01-12', '2022-01-12'),
-(88, 92, 'assets/image/book/book1(1).jpg', '2022-01-13', '2022-01-13'),
-(89, 92, 'assets/image/book/book-1(1).png', '2022-01-13', '2022-01-13'),
-(90, 77, 'assets/image/book/book-4(1).png', '2022-01-15', '2022-01-15'),
-(91, 77, 'assets/image/book/book-5(1).png', '2022-01-15', '2022-01-15'),
-(92, 77, 'assets/image/book/book-6(1).png', '2022-01-15', '2022-01-15');
+(1, 1, 'assets/image/book/1a.png', '2022-01-19', '2022-01-19'),
+(2, 1, 'assets/image/book/1b.png', '2022-01-19', '2022-01-19'),
+(3, 2, 'assets/image/book/2a.png', '2022-01-19', '2022-01-19'),
+(4, 2, 'assets/image/book/2b.png', '2022-01-19', '2022-01-19'),
+(5, 3, 'assets/image/book/3a.png', '2022-01-19', '2022-01-19'),
+(6, 3, 'assets/image/book/3b.png', '2022-01-19', '2022-01-19'),
+(7, 4, 'assets/image/book/4a.png', '2022-01-19', '2022-01-19'),
+(8, 5, 'assets/image/book/5a.png', '2022-01-19', '2022-01-19'),
+(9, 5, 'assets/image/book/5b.png', '2022-01-19', '2022-01-19'),
+(10, 6, 'assets/image/book/6a.png', '2022-01-19', '2022-01-19'),
+(11, 6, 'assets/image/book/6b.png', '2022-01-19', '2022-01-19'),
+(12, 7, 'assets/image/book/7a(1).png', '2022-01-19', '2022-01-19'),
+(13, 7, 'assets/image/book/7b(1).png', '2022-01-19', '2022-01-19'),
+(14, 8, 'assets/image/book/8a.png', '2022-01-19', '2022-01-19'),
+(15, 8, 'assets/image/book/8b.png', '2022-01-19', '2022-01-19'),
+(16, 9, 'assets/image/book/9a.png', '2022-01-19', '2022-01-19'),
+(17, 10, 'assets/image/book/10a.png', '2022-01-19', '2022-01-19'),
+(18, 10, 'assets/image/book/10b.png', '2022-01-19', '2022-01-19');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `books_publishers`
+-- Cấu trúc bảng cho bảng `books_publishers`
 --
 
 CREATE TABLE `books_publishers` (
@@ -364,61 +205,25 @@ CREATE TABLE `books_publishers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `books_publishers`
+-- Đang đổ dữ liệu cho bảng `books_publishers`
 --
 
 INSERT INTO `books_publishers` (`book_id`, `publisher_id`, `started_date`) VALUES
-(25, 4, '2021-09-22'),
-(26, 2, '2021-10-18'),
-(26, 3, '2021-10-06'),
-(27, 7, '2021-11-03'),
-(27, 9, '2021-11-10'),
-(31, 1, '2022-01-12'),
-(31, 3, '2022-01-11'),
-(49, 10, '2019-08-13'),
-(52, 7, '2011-07-04'),
-(54, 8, '2022-01-13'),
-(55, 3, '2022-01-04'),
-(55, 10, '2022-01-14'),
-(56, 1, '2021-12-01'),
-(56, 3, '2021-12-08'),
-(57, 9, '2018-06-30'),
-(58, 4, '2009-01-15'),
-(59, 2, '2021-09-16'),
-(60, 5, '2005-08-02'),
-(60, 8, '2021-07-27'),
-(61, 7, '2020-08-16'),
-(62, 3, '2021-03-17'),
-(63, 9, '2022-01-12'),
-(64, 5, '2022-01-15'),
-(68, 4, '2017-11-28'),
-(73, 1, '2021-10-20'),
-(74, 4, '2022-01-12'),
-(75, 8, '2021-08-04'),
-(77, 1, '2007-07-13'),
-(77, 2, '2022-01-08'),
-(77, 3, '2016-06-15'),
-(77, 10, '2022-04-15'),
-(78, 10, '2022-01-04'),
-(79, 10, '2022-01-04'),
-(80, 10, '2022-01-15'),
-(81, 9, '2022-01-04'),
-(83, 3, '2015-01-30'),
-(84, 4, '2022-01-17'),
-(84, 9, '2021-12-27'),
-(85, 10, '2021-09-10'),
-(86, 2, '2012-12-31'),
-(87, 10, '2019-10-07'),
-(88, 9, '2022-01-05'),
-(89, 7, '2010-08-15'),
-(91, 5, '2022-01-04'),
-(92, 5, '2022-01-12'),
-(92, 9, '2022-01-11');
+(1, 4, '2019-12-20'),
+(2, 1, '2021-07-01'),
+(3, 8, '2016-11-10'),
+(4, 3, '2018-11-11'),
+(5, 1, '2021-01-01'),
+(6, 7, '2020-07-15'),
+(7, 10, '2021-08-05'),
+(8, 1, '2021-06-06'),
+(9, 9, '2019-10-10'),
+(10, 4, '2021-03-03');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customers`
+-- Cấu trúc bảng cho bảng `customers`
 --
 
 CREATE TABLE `customers` (
@@ -439,39 +244,27 @@ CREATE TABLE `customers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `customers`
+-- Đang đổ dữ liệu cho bảng `customers`
 --
 
 INSERT INTO `customers` (`id`, `username`, `password`, `first_name`, `last_name`, `avatar`, `birthday`, `phone`, `address`, `email`, `status`, `money_spent`, `last_updated`, `created_date`) VALUES
-(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'Shop', 'Admin', './assets/image/user/admin(1).jpg', '0000-00-00', '00000000', '', 'bookshop@gmail.com', 1, 1205000, '2022-01-12 10:39:31', '2001-01-01 00:00:00'),
-(3, 'test', 'e10adc3949ba59abbe56e057f20f883e', 'Tester', '1st', 'assets/image/user/pic-1.png', '0000-00-00', '0123456789', 'DH Bach Khoa, Hai Ba Trung, Ha Noi', 'test@yahoo.com', 1, 2148000, '2022-01-12 10:39:31', '2021-01-12 00:00:00'),
-(7, 'test3', 'e10adc3949ba59abbe56e057f20f883e', 'Tester', '3rd', 'assets/image/user/pic-5.png', '0000-00-00', '088889999', 'Phường Bách Khoa, Hai Bà Trưng, Hà Nội', 'test3@gmail.com', 0, 2065000, '2022-01-12 10:39:31', '2021-12-17 00:00:00'),
-(9, 'Bloger', 'e10adc3949ba59abbe56e057f20f883e', '', 'Blog', 'assets/image/user/pic-2.png', '0000-00-00', '0234987650', 'Tokyo,Japan', 'blogger@outlook.com', 1, 1707500, '2022-01-12 10:39:31', '2021-12-19 00:00:00'),
-(10, 'Shiper', 'e10adc3949ba59abbe56e057f20f883e', NULL, 'shipper', 'assets/image/user/pic-3.png', '0000-00-00', '0987654321', 'Nguyễn Xiển,Thanh Xuân, Hà Nội', 'shipper@outlook.com', 0, 0, '2022-01-12 10:39:31', '2022-01-24 00:00:00'),
-(13, 'accountant', 'e10adc3949ba59abbe56e057f20f883e', NULL, 'accountant', 'assets/image/user/pic-4.png', '0000-00-00', '044444444', 'Hà Nội', 'accountant@outlook.com', 1, 939499, '2022-01-12 10:39:31', '2022-01-30 00:00:00'),
-(16, 'test5', 'e10adc3949ba59abbe56e057f20f883e', 'Test', '5th', 'assets/image/user/scroll(1).png', '0000-00-00', '123456789', 'Hà Nội', '', 1, 2537000, '2022-01-12 15:11:47', '2021-12-30 00:00:00'),
-(17, 'test6', 'e10adc3949ba59abbe56e057f20f883e', 'Tester', '6th', 'assets/image/user/pic-3(1).png', '0000-00-00', '', '', 'namnt0413@gmail.com', 0, 6383000, '2022-01-12 14:44:51', '2021-12-07 08:18:22'),
-(18, 'test7', 'e10adc3949ba59abbe56e057f20f883e', 'Test', 'số 7', './assets/image/user/pic-6(1)(1).png', '2022-01-11', '0367099786', 'Tokyo,Japan', 'test7@yahoo.com.vn', 1, 6841500, '2022-01-15 21:22:13', '2021-12-27 00:00:00'),
-(20, 'test8', 'e10adc3949ba59abbe56e057f20f883e', 'tester', 'số 8', 'assets/image/user/snake(1).png', '2019-06-06', '0987654321', 'Thanh Trì, Hà Nội', 'test8@gmail.com', 1, 962500, '2022-01-12 13:45:36', '2021-12-21 00:00:00'),
-(22, 'test11', 'e10adc3949ba59abbe56e057f20f883e', 'Asuna', 'Yuuki', 'assets/image/user/pic-4(1).png', '0000-00-00', '0367099786', 'Thanh Trì, Hà Nội', 'namnt0413@gmail.com.vn', 1, 0, '2022-01-12 10:39:31', '2021-12-27 00:00:00'),
-(24, 'test_upload_image', 'e10adc3949ba59abbe56e057f20f883e', 'TEST', 'UPLOAD_IMAGE', 'assets/image/user/nam(1).jpg', '0000-00-00', '0123456789', 'Hà Nội', 'namnt0413@gmail.com', 0, 0, '2022-01-12 10:39:31', '2021-11-15 00:00:00'),
-(25, 'namnt0413', 'e10adc3949ba59abbe56e057f20f883e', 'Nguyễn Tuấn ', 'Nam ', './assets/image/user/harry-potter-slytherin-crest-sticker-india(1)(1).jpg', '2001-04-13', '0367099786', 'Vĩnh Quỳnh, Thanh Trì, Hà Nội', 'namnt0413@gmail.com', 1, 5835000, '2022-01-16 21:54:02', '2021-12-28 00:00:00'),
-(35, 'test12', 'e10adc3949ba59abbe56e057f20f883e', 'Developer', 'số 12', 'assets/image/user/su_tu(1).png', '2001-03-13', '0987654312', 'Vĩnh Quỳnh, Thanh Trì, Hà Nội', 'namnt0413@yahoo.com', 1, 150000, '2022-01-12 13:36:45', '2022-01-12 11:41:03'),
-(37, 'aaaaaâ', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2022-01-12 17:09:21', '2022-01-12 17:09:21'),
-(38, 'zzzzzzzzzz', 'e10adc3949ba59abbe56e057f20f883e', 'zzzzzzzz', 'zzzzzzzzz', NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-11-06 17:54:31', '2021-10-26 17:54:31'),
-(39, 'xxxxxx', 'e10adc3949ba59abbe56e057f20f883e', 'xxxxxx', 'xxxxxxxxxx', NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-10-05 23:54:31', '2021-10-19 11:19:31'),
-(40, 'ccccc', 'ccccc', 'cccccc', 'ccccccccc', NULL, NULL, NULL, NULL, NULL, 1, 0, '2022-01-12 17:56:18', '2021-09-10 09:38:18'),
-(41, 'vvvvvvv', 'vvvvvvvvv', 'vvvvvvvv', 'vvvvvvv', NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-10-30 15:00:18', '2021-10-01 17:12:18'),
-(42, 'bbbbbbb', 'bbbbbbbb', 'bbbbbbbbbbb', 'bbbbbbbbbbbbb', NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-08-19 23:57:47', '2021-08-09 23:57:47'),
-(43, 'nnnnnnnn', 'nnnnnnnnn', 'nnnnnnn', 'nnnnnn', NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-09-17 11:38:07', '2021-09-17 11:38:07'),
-(44, 'test13/1', 'e10adc3949ba59abbe56e057f20f883e', 'test', '13/1', NULL, NULL, NULL, NULL, NULL, 1, 0, '2022-01-13 21:42:13', '2022-01-13 21:42:13'),
-(45, 'testaa', '123456', 'test', 'test', NULL, NULL, NULL, NULL, NULL, 1, 0, '2022-01-13 15:45:16', '2022-01-13 15:45:16'),
-(46, 'test14/1', 'e10adc3949ba59abbe56e057f20f883e', 'Test', '14/1', './assets/image/user/pic-3(1).png', '2022-01-13', '123456789', 'Hà Nội', 'namnt0413@gmail.com', 1, 951500, '2022-01-13 23:21:44', '2022-01-13 21:46:36');
+(1, 'admin', 'fbf17d2aaa8998f26d73fd9eebce1607', 'Shop', 'Admin', './assets/image/user/Book-Icon.png', '0000-00-00', '0964747288', 'Hà Nội', 'bookly@gmail.com', 1, 0, '2021-01-19 11:14:57', '2021-01-19 00:20:44'),
+(2, 'phuongnh', 'e13dd027be0f2152ce387ac0ea83d863', 'Nguyễn Hồng', 'Phương', './assets/image/user/avatar-03.jpg', '0000-00-00', '0385496431', 'Hà Nội', 'phuongnh@gmail.com', 1, 2332500, '2021-02-19 11:09:39', '2021-02-19 11:07:32'),
+(3, 'congvt', 'e82c4b19b8151ddc25d4d93baf7b908f', 'Vũ Tài', 'Công', './assets/image/user/avatar-03.jpg', NULL, '0989999123', 'Hải Dương', 'congvt@gmail.com', 1, 402000, '2021-03-19 11:18:42', '2021-03-19 11:18:42'),
+(4, 'haiquang', '96e79218965eb72c92a549dd5a330112', 'Nguyễn Quang', 'Hải', './assets/image/user/avatar-03.jpg', NULL, '0989999274', 'Yên Bái', 'haiquang@gamil.com', 1, 920000, '2021-04-19 11:38:50', '2021-04-19 11:38:50'),
+(5, 'dungbt', '96e79218965eb72c92a549dd5a330112', 'Bùi Tiến', 'Dũng', './assets/image/user/avatar-02.jpg', NULL, '0989999273', 'Thanh Hóa', 'dungbt@gmail.com', 1, 697000, '2021-05-19 11:51:26', '2021-05-19 11:49:52'),
+(6, 'anleminh', '96e79218965eb72c92a549dd5a330112', 'Lê Minh', 'An', './assets/image/user/avatar-06.jpg', '2014-03-19', '0989999273', 'Thái bình', 'leminhan@gmail.com', 1, 148000, '2022-06-19 11:57:41', '2021-06-19 11:55:09'),
+(7, 'minhlevu', '96e79218965eb72c92a549dd5a330112', 'Lê Vũ', 'Minh', './assets/image/user/avatar-06.jpg', NULL, '0989999299', 'Ninh Bình', 'levuminh@gmail.com', 1, 210000, '2022-07-19 06:00:40', '2021-07-19 06:00:40'),
+(8, 'phuongnt', '96e79218965eb72c92a549dd5a330112', 'Nguyễn Thanh', 'Phương', './assets/image/user/avatar-02.jpg', NULL, '0978999666', 'TP HCM', 'phuongnt@gmail.com', 1, 0, '2022-01-19 07:04:58', '2021-08-19 07:04:58'),
+(9, 'duanlv', '96e79218965eb72c92a549dd5a330112', 'Lê Văn', 'Đức', './assets/image/user/avatar-03.jpg', NULL, '0989999273', 'Huế', NULL, 1, 286000, '2022-01-19 07:04:58', '2022-09-19 07:04:58'),
+(10, 'thanhnv', '96e79218965eb72c92a549dd5a330112', 'Nguyễn Văn', 'Thanh', './assets/image/user/avatar-03.jpg', NULL, '0989999273', 'Đà Nẵng', NULL, 1, 0, '2022-01-19 07:07:51', '2021-10-19 07:07:51'),
+(11, 'manhdd', '96e79218965eb72c92a549dd5a330112', 'Đỗ Duy', 'Mạnh', './assets/image/user/avatar-03.jpg', NULL, '0989999273', 'Hà Giang', NULL, 1, 893000, '2022-01-19 07:07:51', '2021-11-19 07:07:51'),
+(12, 'huypd', '96e79218965eb72c92a549dd5a330112', 'Phạm Đức', 'Huy', './assets/image/user/avatar-03.jpg', NULL, '0989999273', 'Nghệ An', NULL, 1, 976000, '2022-01-19 07:07:51', '2021-12-19 07:07:51');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `favorites`
+-- Cấu trúc bảng cho bảng `favorites`
 --
 
 CREATE TABLE `favorites` (
@@ -480,39 +273,33 @@ CREATE TABLE `favorites` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `favorites`
+-- Đang đổ dữ liệu cho bảng `favorites`
 --
 
 INSERT INTO `favorites` (`book_id`, `customer_id`) VALUES
-(25, 3),
-(25, 17),
-(25, 18),
-(25, 25),
-(25, 46),
-(26, 17),
-(26, 25),
-(31, 25),
-(49, 25),
-(54, 25),
-(55, 25),
-(56, 25),
-(60, 25),
-(64, 25),
-(68, 25),
-(70, 25),
-(72, 25),
-(74, 25),
-(75, 25),
-(84, 1),
-(84, 25),
-(89, 25),
-(91, 18),
-(92, 18);
+(1, 6),
+(1, 7),
+(2, 2),
+(2, 3),
+(2, 5),
+(2, 9),
+(3, 5),
+(3, 12),
+(4, 5),
+(4, 9),
+(6, 5),
+(6, 11),
+(7, 11),
+(8, 12),
+(9, 6),
+(9, 11),
+(10, 5),
+(10, 12);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `genres`
+-- Cấu trúc bảng cho bảng `genres`
 --
 
 CREATE TABLE `genres` (
@@ -522,48 +309,22 @@ CREATE TABLE `genres` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `genres`
+-- Đang đổ dữ liệu cho bảng `genres`
 --
 
 INSERT INTO `genres` (`id`, `name`, `last_updated`) VALUES
-(1, 'Ngoại ngữ', '2022-01-12 15:13:35'),
-(2, 'Kỹ năng sống', '2022-01-12 15:13:51'),
-(3, 'Kinh tế ', '2022-01-12 15:13:48'),
-(4, 'Thiếu nhi', '2022-01-12 15:13:45'),
-(5, 'Trí tuệ', '2022-01-12 15:13:42'),
-(6, 'Tâm lý, tình cảm', '2022-01-12 15:13:40'),
-(7, 'Chính trị,pháp luật', '2022-01-12 15:13:35'),
-(8, 'Học tập', '2022-01-12 15:13:32'),
-(12, 'Ngôn tình', '2022-01-12 15:13:29'),
-(13, 'TEST GENRES', '2022-01-12 15:13:59');
+(1, 'Bài học kinh doanh', '2022-01-19 04:09:58'),
+(2, 'Quản trị-Lãnh đạo', '2022-01-19 04:09:58'),
+(3, 'Marketing-Bán hàng', '2022-01-19 04:09:58'),
+(4, 'Phát triển bản thân', '2022-01-19 04:28:22'),
+(5, 'Kỹ năng sống', '2022-01-19 04:28:22'),
+(6, 'Phân tích kinh doanh', '2022-01-19 04:41:18'),
+(7, 'Đầu tư', '2022-01-19 04:47:36');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `like_table`
---
-
-CREATE TABLE `like_table` (
-  `id` int(11) NOT NULL,
-  `framework` varchar(100) NOT NULL,
-  `likes` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `like_table`
---
-
-INSERT INTO `like_table` (`id`, `framework`, `likes`) VALUES
-(2, '<100000', 10),
-(3, '10000<150000', 2),
-(4, 'Yii', 3),
-(5, 'CakePHP', 6),
-(6, 'Codeigniter', 5);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `orders`
+-- Cấu trúc bảng cho bảng `orders`
 --
 
 CREATE TABLE `orders` (
@@ -581,65 +342,30 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `orders`
+-- Đang đổ dữ liệu cho bảng `orders`
 --
 
 INSERT INTO `orders` (`id`, `customer_id`, `fullname`, `phone`, `address`, `note`, `total`, `created_date`, `required_date`, `status`, `last_updated`) VALUES
-(4, 3, 'Test', '0123456789', 'Tạ Quang Bửu, phường Bách Khoa, Hai Bà Trưng, Hà Nội', 'Giao hàng vào 24h ngày 25/12', 732000, '2021-12-24 08:12:00', NULL, 1, '2021-12-24 08:12:00'),
-(7, 13, ' accountant', '044444444', '123 Trần Duy Hưng, Trung Hòa, Cầu Giấy, Hà Nội', 'Đóng gói bằng thùng, hộp bằng bìa cứng bên ngoài (trừ các sản phẩm khó bể vỡ và biến dạng như quần áo, vải, ...). \r\nĐối với hàng hóa dễ vỡ: cần được bọc kín, gia cố bằng mút, xốp, giấy báo bên trong hộp đóng gói để đảm bảo không bể vỡ trong suốt quá trình vận chuyển.\r\nĐối với hàng hóa có chứa chất lỏng: cần được bọc bằng bao bì chống thấm trước khi gói.\r\nĐối với hàng hóa đặc biệt như có chứa chất lỏng, hàng dễ vỡ, hàng dễ móp méo, …: phải được dán cảnh báo “Hàng dễ vỡ” bên ngoài bao bì đóng gói.', 2399998, '2021-11-11 11:29:00', NULL, 1, '2021-11-11 11:29:00'),
-(8, 17, 'Tester 6th', '0987654321', '90 Nguyễn Tuân, Thanh Xuân, Hà Nội, Việt Nam', 'Quy cách đóng gói đối với sản phẩm là hàng dễ vỡ (sành sứ, thủy tinh, gương, kính, …):\r\nChuẩn bị nguyên vật liệu: Túi khí, băng keo, thùng carton, mút xốp, tem “Hàng dễ vỡ”.\r\n\r\nCác bước thực hiện:\r\nBước 1: Dùng xốp bọc kín từ 2 - 3 lớp và dùng băng keo để gia cố.\r\nBước 2: Đặt sản phẩm vào thùng carton, dùng mút xốp, tấm bọt khí… chèn cố định sản phẩm cho vừa khít, không còn khoảng trống so với thùng carton; sau đó dùng băng keo gia cố thùng carton.\r\nBước 3: Dán tem “Hàng dễ vỡ” và phiếu giao nhận hàng bên ngoài thùng.', 5264997, '2021-09-16 16:40:16', NULL, 1, '2021-09-16 16:40:16'),
-(9, 16, 'Test 5th', '0123456789', 'Mai Chí Thọ, Khu đô thị Việt Hưng, Giang Biên, Long Biên, Hà Nội', 'Quy cách đóng gói đối với hàng có chứa chất lỏng như sữa, nước giải khát, bia, rượu:\r\nChuẩn bị nguyên vật liệu: Tấm bọt khí, băng keo, thùng carton, tem “Hàng dễ vỡ”\r\n\r\nCác bước thực hiện:\r\n\r\nBước 1: Bọc kín sản phẩm bằng tấm bọt khí hoặc các vật liệu chống va đập và chống thấm nước.\r\nBước 2: Dùng băng keo để cố định sản phẩm\r\nBước 3: Dán tem “Hàng dễ vỡ” và phiếu giao nhận hàng bên ngoài thùng.', 1047000, '2021-07-19 12:49:33', NULL, 1, '2022-01-07 12:49:33'),
-(18, 25, 'Nguyễn Tuấn Nam', '0367099786', 'Vĩnh Quỳnh, Thanh Trì, Hà Nội', 'aaaaaaaaâ', 1500000, '2022-01-01 00:00:00', NULL, 1, '2022-01-01 00:00:00'),
-(19, 35, 'Tester  số 12', '0123456789', 'Hà Nội', 'AAAAAAAAAAA', 150000, '2021-12-28 11:52:53', NULL, 1, '2022-01-12 11:52:53'),
-(21, 17, 'Tester 6th', '0123456789', 'Hà Nội', 'TEST ORDER 2', 113000, '2021-09-15 14:53:32', NULL, 1, '2022-01-12 14:53:32'),
-(22, 17, 'Tester 6th', '0123456789', 'Hà Nội', 'TEST 3 ', 215000, '2021-09-21 14:59:44', NULL, 1, '2022-01-12 14:59:44'),
-(23, 17, 'Tester 6th', '0123456789', 'Hà Nội', 'TEST ORDER DETAIL 4', 790000, '2021-06-22 15:03:48', NULL, 1, '2022-01-12 15:03:48'),
-(24, 25, 'Nguyễn Tuấn Nam', '0367099786', 'Vĩnh Quỳnh, Thanh Trì, Hà Nội', 'TEST UIF 13/1', 233500, '2022-01-13 16:24:19', NULL, 1, '2022-01-13 16:24:19'),
-(25, 25, 'Nguyễn Tuấn Nam', '0367099786', 'Vĩnh Quỳnh, Thanh Trì, Hà Nội', '', 260000, '2022-01-13 16:25:26', NULL, 1, '2022-01-13 16:25:26'),
-(26, 18, 'Tester 7th', '0367099786', 'Tokyo,Japan', '', 2515998, '2021-04-21 16:32:44', NULL, 1, '2022-01-13 16:32:44'),
-(27, 18, 'Tester 7th', '0367099786', 'Tokyo,Japan', '', 1080000, '2021-03-10 16:33:34', NULL, 1, '2022-01-13 16:33:34'),
-(28, 3, 'Tester 1st', '0123456789', 'DH Bach Khoa, Hai Ba Trung, Ha Noi', '', 904000, '2022-01-13 16:35:41', NULL, 1, '2022-01-13 16:35:41'),
-(30, 1, 'Shop Admin', '00000000', 'aaaaaaaaaa', 'aaaaaaaaaaâ', 960000, '2022-01-13 16:41:34', NULL, 1, '2022-01-13 16:41:34'),
-(31, 1, 'Shop Admin', '00000000', 'aaaaaaâ', 'aaaaaaaaâ', 25000, '2022-01-13 16:41:57', NULL, 1, '2022-01-13 16:41:57'),
-(32, 46, 'Test 14/1', '123456789', 'aaaaaaaa', 'aaaaaa', 446500, '2021-08-10 12:19:03', NULL, 1, '2022-01-13 21:50:03'),
-(33, 46, 'Test 14/1', '123456789', 'Hà Nội', '', 56500, '2021-08-25 22:00:19', NULL, 1, '2022-01-13 22:00:19'),
-(34, 46, 'Test 14/1', '123456789', 'Hà Nội', 'aaaaa', 169500, '2021-05-26 22:01:14', NULL, 1, '2022-01-13 22:01:14'),
-(36, 46, 'Test 14/1', '123456789', 'Hà Nội', '', 248000, '2021-03-16 22:03:05', NULL, 1, '2022-01-13 22:03:05'),
-(37, 46, 'Test 14/1', '123456789', 'Hà Nội', '', 1000, '2021-01-13 22:19:14', NULL, 1, '2022-01-13 22:19:14'),
-(38, 46, 'Test 14/1', '123456789', 'Hà Nội', '', 30000, '2021-01-14 22:19:50', NULL, 1, '2022-01-13 22:19:50'),
-(56, 25, 'Nguyễn Tuấn Nam', '0367099786', 'Vĩnh Quỳnh, Thanh Trì, Hà Nội', '14/1 Test Money_spent', 96500, '2021-12-04 01:17:42', NULL, 1, '2022-01-14 01:17:42'),
-(57, 18, 'Nguyễn Thị Huyền', '0367099786', 'Tokyo,Japan', '', 574999, '2022-01-14 13:42:52', NULL, 1, '2022-01-14 13:42:52'),
-(58, 1, 'Shop Admin', '00000000', 'TEst', '', 220000, '2021-01-15 19:14:49', NULL, 1, '2022-01-15 19:14:49'),
-(59, 18, 'Test số 7', '0367099786', 'Tokyo,Japan', '', 1242500, '2021-12-17 02:56:25', NULL, 1, '2022-01-16 02:56:25'),
-(60, 18, 'Test số 7', '0367099786', 'Tokyo,Japan', '', 1428000, '2021-01-29 02:59:32', NULL, 1, '2022-01-16 02:59:32'),
-(64, 25, 'Nguyễn Tuấn  Nam ', '0367099786', 'Vĩnh Quỳnh, Thanh Trì, Hà Nội', '', 361000, '2021-01-16 12:58:38', NULL, 1, '2022-01-16 12:58:38'),
-(65, 25, 'Nguyễn Tuấn  Nam ', '0367099786', 'Vĩnh Quỳnh, Thanh Trì, Hà Nội', '', 1707999, '2021-02-19 08:06:16', NULL, 1, '2021-02-19 08:06:16'),
-(66, 25, 'Nguyễn Tuấn  Nam ', '0367099786', 'Vĩnh Quỳnh, Thanh Trì, Hà Nội', '', 250000, '2021-04-13 16:27:52', NULL, 1, '2021-04-13 16:27:52'),
-(67, 3, 'Tester 1st', '0123456789', 'DH Bach Khoa, Hai Ba Trung, Ha Noi', '', 428000, '2021-06-29 07:39:24', NULL, 1, '2021-06-29 07:39:24'),
-(68, 3, 'Tester 1st', '0123456789', 'DH Bach Khoa, Hai Ba Trung, Ha Noi', '', 987999, '2021-05-18 16:49:24', NULL, 1, '2021-05-18 16:49:24'),
-(69, 7, 'Tester 3rd', '088889999', 'Phường Bách Khoa, Hai Bà Trưng, Hà Nội', '', 890000, '2021-07-04 18:32:48', NULL, 1, '2021-07-04 18:32:48'),
-(70, 7, 'Tester 3rd', '088889999', 'Phường Bách Khoa, Hai Bà Trưng, Hà Nội', '', 1174998, '2021-08-18 17:47:26', NULL, 1, '2022-08-18 17:47:26'),
-(71, 16, 'Test 5th', '123456789', 'Hà Nội', '', 899999, '2021-01-18 06:21:01', NULL, 1, '2022-01-16 13:07:01'),
-(72, 16, 'Test 5th', '123456789', 'Hà Nội', '', 560000, '2021-03-20 15:25:21', NULL, 1, '2022-01-16 13:07:21'),
-(73, 16, 'Test 5th', '123456789', 'Hà Nội', '', 30000, '2021-08-30 16:19:48', NULL, 1, '2022-01-16 13:07:48'),
-(74, 20, 'tester số 8', '0987654321', 'Thanh Trì, Hà Nội', '', 93000, '2021-09-27 06:23:10', NULL, 1, '2022-01-16 13:10:16'),
-(75, 20, 'tester số 8', '0987654321', 'Thanh Trì, Hà Nội', '', 448000, '2021-10-05 17:52:37', NULL, 1, '2022-01-16 13:10:37'),
-(76, 20, 'tester số 8', '0987654321', 'Thanh Trì, Hà Nội', '', 421500, '2021-02-24 16:10:59', NULL, 1, '2022-01-16 13:10:59'),
-(77, 13, ' accountant', '044444444', 'Hà Nội', '', 83000, '2021-12-02 21:55:01', NULL, 1, '2022-01-16 13:13:01'),
-(78, 13, ' accountant', '044444444', 'Hà Nội', '', 56500, '2021-12-27 18:25:08', NULL, 1, '2022-01-16 13:13:08'),
-(79, 13, ' accountant', '044444444', 'Hà Nội', '', 599999, '2021-01-26 18:23:20', NULL, 1, '2022-01-16 13:13:20'),
-(80, 13, ' accountant', '044444444', 'Hà Nội', '', 200000, '2021-11-30 05:33:32', NULL, 1, '2022-01-16 13:13:32'),
-(81, 9, ' Blog', '0234987650', 'Tokyo,Japan', '', 1107999, '2021-10-21 13:16:02', NULL, 1, '2022-01-16 13:16:02'),
-(82, 9, ' Blog', '0234987650', 'Tokyo,Japan', '', 139500, '2021-11-06 16:28:36', NULL, 1, '2022-01-16 13:16:36'),
-(83, 9, ' Blog', '0234987650', 'Tokyo,Japan', '', 460000, '2021-10-14 15:22:23', NULL, 1, '2022-01-16 13:22:23'),
-(84, 25, 'Nguyễn Tuấn  Nam ', '0367099786', 'Vĩnh Quỳnh, Thanh Trì, Hà Nội', 'test16/1', 306500, '2021-05-20 21:57:21', NULL, 1, '2022-01-16 21:57:21'),
-(85, 25, 'Nguyễn Tuấn  Nam ', '0367099786', 'Vĩnh Quỳnh, Thanh Trì, Hà Nội', '', 296500, '2021-03-08 07:35:57', NULL, 1, '2022-01-16 22:46:57'),
-(86, 25, 'Nguyễn Tuấn  Nam ', '0367099786', 'Vĩnh Quỳnh, Thanh Trì, Hà Nội', '', 822999, '2021-04-07 08:06:00', NULL, 1, '2022-01-16 22:48:00');
+(1, 2, 'Nguyễn Hồng Phương', '0989999999', 'Hà Nội ', 'giao hàng vào giờ hành chính', 406000, '2022-01-19 07:11:13', NULL, 1, '2022-01-19 11:11:13'),
+(2, 3, 'Vũ Tài Công', '0123456789', 'Hải Phòng', '', 402000, '2021-12-19 08:20:33', NULL, 1, '2022-01-19 11:20:33'),
+(3, 2, 'Nguyễn Hồng Phương', '0989999999', 'Hà Nội', '', 426500, '2021-11-19 11:23:57', NULL, 1, '2022-01-19 11:23:57'),
+(4, 2, 'Nguyễn Hồng Phương', '0989999999', 'Hà Nội', '', 1500000, '2021-10-19 16:24:31', NULL, 1, '2022-01-19 11:24:31'),
+(5, 4, 'Phạm Văn Cương', '0388499767', 'Nam Định', 'giao hàng vào buổi sáng', 920000, '2022-09-19 07:40:14', NULL, 1, '2022-01-19 11:40:14'),
+(6, 5, 'Nguyễn Thanh Huyền', '0989976499', 'Thanh Hóa', '', 338000, '2022-08-19 11:51:58', NULL, 1, '2022-01-19 11:51:58'),
+(7, 5, 'Nguyễn Thanh Huyền', '0367898001', 'Thanh Hóa', '', 359000, '2022-07-19 08:54:45', NULL, 1, '2022-01-19 11:54:45'),
+(8, 6, 'Lê Minh An', '0398999378', 'Thái Bình', '', 148000, '2022-06-19 15:56:57', NULL, 1, '2022-01-19 11:56:57'),
+(9, 7, 'Lê Vũ Minh', '0989999299', 'Ninh Bình', '', 210000, '2022-05-19 12:05:37', NULL, 1, '2022-01-19 12:05:37'),
+(10, 11, 'Đỗ Duy Mạnh', '0989999273', 'Hà Giang', '', 600000, '2022-04-19 13:15:38', NULL, 1, '2022-01-19 13:15:38'),
+(11, 11, 'Đỗ Duy Mạnh', '0989999273', 'Hà Giang', '', 137000, '2022-03-19 13:15:48', NULL, 1, '2022-01-19 13:15:48'),
+(12, 11, 'Đỗ Duy Mạnh', '0989999273', 'Hà Giang', '', 156000, '2021-02-19 13:16:03', NULL, 1, '2022-01-19 13:16:03'),
+(13, 12, 'Phạm Đức Huy', '0989999273', 'Nghệ An', 'Giao hàng buổi chiều', 690000, '2021-01-19 19:18:19', NULL, 1, '2022-01-19 13:18:19'),
+(14, 12, 'Phạm Đức Huy', '0989999273', 'Nghệ An', '', 286000, '2021-03-19 13:19:44', NULL, 1, '2022-01-19 13:19:44'),
+(15, 9, 'Lê Văn Đức', '0989999273', 'Huế', '', 286000, '2021-02-19 18:20:48', NULL, 1, '2022-01-19 13:20:48');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders_details`
+-- Cấu trúc bảng cho bảng `orders_details`
 --
 
 CREATE TABLE `orders_details` (
@@ -653,111 +379,41 @@ CREATE TABLE `orders_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `orders_details`
+-- Đang đổ dữ liệu cho bảng `orders_details`
 --
 
 INSERT INTO `orders_details` (`id`, `order_id`, `book_id`, `quantity`, `price`, `discount`, `import_price`) VALUES
-(5, 4, 26, 8, 91500, 0, 65000),
-(14, 7, 25, 2, 500000, 0, 420000),
-(17, 7, 62, 2, 699999, 0, 640000),
-(19, 8, 26, 10, 91500, 0, 55000),
-(21, 8, 73, 3, 599999, 0, 510000),
-(22, 9, 27, 2, 127500, 0, 102000),
-(23, 9, 55, 2, 250000, 0, 208000),
-(24, 9, 70, 1, 240000, 0, 190000),
-(42, 18, 25, 3, 500000, 0, 420000),
-(43, 19, 25, 3, 50000, 0, 26000),
-(45, 21, 26, 2, 91500, 0, 65000),
-(46, 22, 27, 2, 127500, 20000, 85000),
-(47, 23, 54, 2, 220000, 45000, 150000),
-(48, 23, 55, 2, 250000, 30000, 200000),
-(49, 24, 25, 2, 50000, 49000, 0),
-(50, 24, 26, 1, 91500, 35000, 40000),
-(51, 24, 54, 1, 220000, 45000, 160000),
-(52, 25, 31, 2, 180000, 50000, 105000),
-(53, 26, 31, 3, 180000, 50000, 90000),
-(54, 26, 52, 2, 599999, 25000, 545000),
-(55, 26, 57, 2, 300000, 52000, 220000),
-(56, 26, 58, 2, 290000, 50000, 210000),
-(57, 27, 58, 2, 290000, 50000, 0),
-(58, 27, 91, 3, 250000, 50000, 196000),
-(59, 28, 60, 6, 270000, 50000, 200000),
-(63, 30, 84, 2, 50000, 20000, 22000),
-(64, 30, 89, 6, 200000, 50000, 115000),
-(65, 31, 25, 25, 50000, 49000, 0),
-(66, 32, 26, 1, 91500, 35000, 50000),
-(67, 32, 31, 3, 180000, 50000, 120000),
-(68, 33, 26, 1, 91500, 35000, 50000),
-(69, 34, 26, 3, 91500, 35000, 42000),
-(71, 36, 57, 1, 300000, 52000, 220000),
-(72, 37, 25, 1, 50000, 49000, 0),
-(73, 38, 25, 1, 50000, 20000, 25000),
-(88, 56, 25, 1, 50000, 10000, 35000),
-(89, 56, 26, 1, 91500, 35000, 50000),
-(90, 57, 52, 1, 599999, 25000, 520000),
-(91, 58, 55, 1, 250000, 30000, 210000),
-(92, 64, 26, 2, 91500, 35000, 50000),
-(93, 64, 57, 1, 300000, 52000, 220000),
-(94, 65, 57, 1, 300000, 52000, 210000),
-(95, 65, 61, 1, 280000, 50000, 200000),
-(96, 65, 62, 1, 699999, 60000, 600000),
-(97, 65, 75, 1, 590000, 0, 510000),
-(98, 66, 59, 1, 260000, 40000, 186000),
-(99, 66, 84, 1, 50000, 20000, 18000),
-(100, 67, 57, 1, 300000, 52000, 215000),
-(101, 67, 92, 1, 200000, 20000, 165000),
-(102, 68, 25, 1, 50000, 10000, 23000),
-(103, 68, 57, 1, 300000, 52000, 220000),
-(104, 68, 85, 1, 699999, 0, 590000),
-(105, 69, 58, 1, 290000, 50000, 210000),
-(106, 69, 68, 1, 550000, 80000, 420000),
-(107, 69, 84, 1, 50000, 20000, 15000),
-(108, 69, 89, 1, 200000, 50000, 120000),
-(109, 70, 52, 1, 599999, 25000, 520000),
-(110, 70, 63, 1, 599999, 0, 550000),
-(111, 71, 87, 1, 899999, 0, 830000),
-(112, 72, 77, 1, 570000, 10000, 540000),
-(113, 73, 84, 1, 50000, 20000, 25000),
-(114, 74, 25, 1, 50000, 10000, 25000),
-(115, 74, 81, 1, 53000, 0, 40000),
-(116, 75, 57, 1, 300000, 52000, 218000),
-(117, 75, 91, 1, 250000, 50000, 180000),
-(118, 76, 26, 1, 91500, 35000, 25000),
-(119, 76, 54, 1, 220000, 45000, 170000),
-(120, 76, 56, 1, 210000, 20000, 170000),
-(121, 77, 81, 1, 53000, 0, 40000),
-(122, 77, 84, 1, 50000, 20000, 18000),
-(123, 78, 26, 1, 91500, 35000, 50000),
-(124, 79, 73, 1, 599999, 0, 540000),
-(125, 80, 91, 1, 250000, 50000, 160000),
-(126, 81, 57, 1, 300000, 52000, 220000),
-(127, 81, 84, 2, 50000, 20000, 25000),
-(128, 81, 86, 1, 799999, 0, 730000),
-(129, 82, 26, 1, 91500, 35000, 45000),
-(130, 82, 81, 1, 53000, 0, 40000),
-(131, 82, 84, 1, 50000, 20000, 18000),
-(132, 83, 58, 1, 290000, 50000, 210000),
-(133, 83, 59, 1, 260000, 40000, 200000),
-(134, 59, 26, 1, 91500, 35000, 50000),
-(135, 59, 83, 2, 510000, 0, 470000),
-(136, 59, 31, 1, 180000, 50000, 110000),
-(137, 59, 56, 1, 210000, 20000, 170000),
-(138, 60, 89, 1, 200000, 50000, 140000),
-(139, 60, 57, 1, 300000, 52000, 220000),
-(140, 60, 77, 1, 570000, 10000, 560000),
-(141, 60, 68, 1, 550000, 80000, 450000),
-(142, 84, 26, 1, 91500, 35000, 50000),
-(143, 84, 59, 1, 260000, 40000, 210000),
-(144, 84, 84, 1, 50000, 20000, 25000),
-(145, 85, 26, 1, 91500, 35000, 50000),
-(146, 85, 58, 1, 290000, 50000, 240000),
-(147, 86, 52, 1, 599999, 25000, 560000),
-(148, 86, 57, 1, 300000, 52000, 240000);
+(1, 1, 2, 2, 100000, 12000, 80000),
+(2, 1, 8, 1, 250000, 20000, 200000),
+(3, 2, 1, 1, 80000, 10000, 68000),
+(4, 2, 2, 2, 100000, 12000, 80000),
+(5, 2, 9, 2, 108000, 30000, 70000),
+(6, 3, 4, 1, 119000, 20000, 90000),
+(7, 3, 5, 1, 100000, 10000, 80000),
+(8, 3, 6, 1, 149000, 12000, 100000),
+(9, 3, 10, 1, 110500, 10000, 90000),
+(10, 4, 7, 10, 163000, 13000, 120000),
+(11, 5, 8, 4, 250000, 20000, 200000),
+(12, 6, 6, 1, 149000, 12000, 100000),
+(13, 6, 10, 2, 110500, 10000, 90000),
+(14, 7, 3, 1, 90000, 5000, 75000),
+(15, 7, 6, 2, 149000, 12000, 100000),
+(16, 8, 1, 1, 80000, 10000, 68000),
+(17, 8, 9, 1, 108000, 30000, 70000),
+(18, 9, 1, 3, 80000, 10000, 68000),
+(19, 10, 7, 4, 163000, 13000, 120000),
+(20, 11, 6, 1, 149000, 12000, 100000),
+(21, 12, 9, 2, 108000, 30000, 70000),
+(22, 13, 8, 3, 250000, 20000, 200000),
+(23, 14, 3, 1, 90000, 5000, 75000),
+(24, 14, 10, 2, 110500, 10000, 90000),
+(25, 15, 2, 1, 100000, 12000, 80000),
+(26, 15, 4, 2, 119000, 20000, 90000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `publishers`
+-- Cấu trúc bảng cho bảng `publishers`
 --
 
 CREATE TABLE `publishers` (
@@ -767,25 +423,25 @@ CREATE TABLE `publishers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `publishers`
+-- Đang đổ dữ liệu cho bảng `publishers`
 --
 
 INSERT INTO `publishers` (`id`, `name`, `last_updated`) VALUES
-(1, 'Kim Đồng', '2022-01-12 15:43:56'),
-(2, 'Tri thức', '2022-01-12 15:14:25'),
-(3, 'Giáo dục', '2022-01-12 15:14:23'),
-(4, 'Bách Khoa Hà Nội', '2022-01-12 15:14:18'),
-(5, 'Thanh niên', '2022-01-12 15:14:20'),
-(7, 'Lao động', '2022-01-12 15:14:15'),
-(8, 'Hồng Đức', '2022-01-12 15:14:13'),
-(9, 'Chính trị Quốc Gia', '2022-01-12 15:14:10'),
-(10, 'Văn hóa', '2022-01-12 15:14:08'),
-(11, 'TEST PUBLISHER', '2022-01-12 15:14:34');
+(1, 'NXB Trẻ', '2022-01-19 04:13:13'),
+(2, 'NXB Hội Nhà Văn', '2022-01-19 04:13:13'),
+(3, 'NXB Hà Nội', '2022-01-19 04:13:13'),
+(4, 'NXB Tổng Hợp', '2022-01-19 04:13:13'),
+(5, 'NXB Lao Động', '2022-01-19 04:13:13'),
+(6, 'NXB Công Thương', '2022-01-19 04:15:38'),
+(7, 'NXB Bách Khoa', '2022-01-19 04:15:38'),
+(8, 'NXB Kim Đồng', '2022-01-19 04:15:38'),
+(9, 'NXB Thanh Niên', '2022-01-19 04:15:38'),
+(10, 'NXB Giáo Dục', '2022-01-19 04:15:38');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reviews`
+-- Cấu trúc bảng cho bảng `reviews`
 --
 
 CREATE TABLE `reviews` (
@@ -800,80 +456,66 @@ CREATE TABLE `reviews` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `reviews`
+-- Đang đổ dữ liệu cho bảng `reviews`
 --
 
 INSERT INTO `reviews` (`id`, `book_id`, `customer_id`, `rating`, `tittle`, `content`, `created_date`, `last_updated`) VALUES
-(3, 25, 1, NULL, 'Sách nhảm nhí', 'Sách có rất nhiều lỗi chính tả, câu cú không theo một quy chuẩn nào, \"thích là viết tắt, thích là viết hoa\".', '2021-12-09 08:19:00', '2021-12-09 08:19:00'),
-(4, 25, 9, NULL, 'Sách hay, thú vị', '10 loại livestream để bán hàng hiệu quả nhất, trong đó có \"bí kíp\" là livestream cùng chuyên gia, người nổi tiếng...', '2021-12-15 04:18:00', '2021-12-15 04:18:00'),
-(6, 25, 18, NULL, 'Sách hay', 'giúp toàn thể những người kinh doanh trong và ngoài nước thành công', '2021-11-17 22:50:09', '2021-11-17 22:50:09'),
-(8, 55, 9, NULL, 'Đáng Đọc, Đáng Suy Ngẫm', 'Tôi biết đến Nguyễn Nhật Ánh là nhà văn tuổi thơ, từng trang sách của ông chứa đựng bao khát khao tuổi mới lớn, hoài bão , tương lai và có cả dư vị ngọt ngào của mối tình đầu. Nhưng có lẽ tôi quen với những truyện mang hơi hướng nhẹ nhàng, nên khi đọc sang Mắt biếc, tôi thấy ám ảnh. Đầu truyện là hình ảnh đẹp của dôi bạn trẻ qua con đường đầy sim, anh đàn cho cô nghe những bài tình ca tự sáng tác, khung cảnh ấy khiến cho người ta không thể quên.Và rằng ai cũng nghĩ anh sẽ bày tỏ lòng mình, hai người hạnh phúc đến cuối đời. Nhưng đến với Mắt biếc, ta sẽ thấy nhiều hơn thế, nó phản ánh chân thật tâm trạng của chàng trai, mối tình ấy chàng đã chôn chặt quá lâu khiến nó biến thành bi kịch.Tôi từng nghĩ nếu anh nói với cô từ sớm, lúc mà hai đứa chưa lên thành phố, thì mọi chuyện sẽ khác.Có lẽ hai đứa sẽ không bên nhau, và chuyện tình đó sẽ có kết thúc tốt đẹp hơn. Anh và cô hai con người trái ngược, một kẻ sống quá bình lặng, kẻ thì mãi mê chạy theo những giá trị ảo của đời. Đến cuối truyện, tôi thấy tội cho Trà Long, đáng lẽ em có hạnh phúc trọn vẹn sau bao biến cố gia đình.Ấy vậy mà ... Gấp lại trang sách, tôi thấy kết thúc thật đau nhưng đúng. Kẻ đi không vui, người ở lại thêm buồn. Cuốn sách này đáng để đặt trong tủ sách nhà bạn, bởi nó nhắc mỗi chúng ta về sai lầm của anh và cô, là nếu yêu thì nói chứ đừng giữ trong tim.', '2021-12-31 23:59:59', '2022-01-01 23:59:59'),
-(10, 55, 13, NULL, 'Buồn ơi là buồn!', 'Hoàng Thị Thương Huyền  13/03/2015\r\nĐây là cuốn sách mà tôi yêu nhất của Nguyễn Nhật Ánh, lần đầu tiên tôi được đọc nó là vào hè năm tôi sắp lên lớp 11. Đến nay, đã là sinh viên năm thứ 4, tôi không nhớ nổi bao nhiêu lần tôi đã lần giở lại nó, bao nhiêu lần tôi khóc vì nó, bao nhiêu lần tôi đi tìm lại những người mà tôi thương trong đó. Tôi thương Ngạn vì một tình yêu mãi mãi không bao giờ được đáp lại, tôi thương Trà Long vì người mình thương mãi mãi xa xôi, tôi thương Hà Lan vì mãi mãi đánh mất tình yêu thật sự, mãi mãi đánh mất cuộc đời. Với tôi, đó là cuốn sách buồn nhất, lấy đi nhiều nước mắt nhất của Nguyễn Nhật Ánh. Nhưng, đó mới là cuộc sống, cuộc sống này đâu phải chỉ có màu hồng, đâu chỉ có niềm vui và nụ cười. Đâu đó, rất nhiều trong xã hội này, còn những góc khuất của tâm hồn, còn những sai lầm và còn những tình yêu mãi mãi nhưng vô vọng, đơn giản chỉ là cách ta lựa chọn xử sự với cuộc đời như thế nào thôi. Nhưng sự lựa chọn của Ngạn sao nghiệt ngã quá...', '2022-01-01 07:30:04', '2022-01-01 07:30:04'),
-(12, 25, 22, NULL, '悪い本', '嫌いだ‼', '2022-01-06 11:13:49', '2022-01-06 11:13:49'),
-(14, 26, 22, NULL, 'OK', 'OK', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(15, 26, 9, NULL, 'Test', 'Test ', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(17, 59, 18, NULL, 'Test sách cùng tác giả', 'OK chạy ổn', '2022-01-09 06:36:05', '2022-01-09 06:36:05'),
-(18, 59, 18, NULL, 'Test sách cùng tác giả', 'OK chạy ổn', '2022-01-09 06:36:05', '2022-01-09 06:36:05'),
-(19, 25, 25, NULL, 'â', 'â', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(20, 90, 1, NULL, 'a', 'a', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(21, 25, 18, NULL, 'aa', 'aa', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(22, 25, 18, NULL, 'aa', 'aa', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(23, 25, 18, NULL, 'aa', 'aa', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(24, 25, 18, NULL, 'bbbbb', 'bbbbbb', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(25, 25, 35, NULL, 'Test ', 'Test lại Ngày tháng theo kiểu dữ liệu DATETIME', '2022-01-12 11:56:04', '2022-01-12 11:56:04'),
-(26, 25, 46, NULL, 'test', 'test', '2022-01-13 21:52:20', '2022-01-13 21:52:20');
+(1, 2, 4, NULL, '', 'Sách Hay, Rất bổ ích\r\n', '2022-01-19 11:43:26', '2022-01-19 11:43:26'),
+(2, 1, 4, NULL, '', 'Sách giao nhanh, đúng giờ hành chính\r\nGiá cả hợp lí', '2022-01-19 11:44:01', '2022-01-19 11:44:01'),
+(3, 8, 4, NULL, '', 'Sách hơi mắc, tuy nhiên nội dung rất hay và hữu ích. \r\nSẽ ủng hộ shop nhiêu hơn\r\n', '2022-01-19 11:44:43', '2022-01-19 11:44:43'),
+(4, 6, 5, NULL, '', 'Sách giá rẻ, Nội dung hay', '2022-01-19 11:51:08', '2022-01-19 11:51:08'),
+(5, 10, 5, NULL, '', 'Bìa sách khá mỏng, Shop tư vấn nhiệt tình', '2022-01-19 11:54:12', '2022-01-19 11:54:12'),
+(6, 9, 6, NULL, '', 'Sách Có nhiều ví dụ thực tiễn rất thiết thực', '2022-01-19 11:55:54', '2022-01-19 11:55:54'),
+(7, 1, 6, NULL, '', 'Giao hàng Nhanh, Sách rất hay', '2022-01-19 11:56:35', '2022-01-19 11:56:35'),
+(8, 1, 7, NULL, '', 'Đã mua của shop 3 lần nhưng lần nào cũng rất hài lòng\r\n', '2022-01-19 12:05:23', '2022-01-19 12:05:23'),
+(9, 10, 12, NULL, '', 'Nội dung sách rất hay', '2022-01-19 13:18:59', '2022-01-19 13:18:59'),
+(10, 3, 12, NULL, '', 'Sách rất hay, Sẽ còn ủng hộ shop nhiều\r\n', '2022-01-19 13:19:37', '2022-01-19 13:19:37');
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `account`
---
-ALTER TABLE `account`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `authors`
+-- Chỉ mục cho bảng `authors`
 --
 ALTER TABLE `authors`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `blogs`
+-- Chỉ mục cho bảng `blogs`
 --
 ALTER TABLE `blogs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `books`
+-- Chỉ mục cho bảng `books`
 --
 ALTER TABLE `books`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `books_authors`
+-- Chỉ mục cho bảng `books_authors`
 --
 ALTER TABLE `books_authors`
   ADD UNIQUE KEY `author_id` (`author_id`,`book_id`),
   ADD KEY `books_authors_ibfk_2` (`book_id`);
 
 --
--- Indexes for table `books_genres`
+-- Chỉ mục cho bảng `books_genres`
 --
 ALTER TABLE `books_genres`
   ADD UNIQUE KEY `book_id` (`book_id`,`genres_id`),
   ADD KEY `books_genres_ibfk_2` (`genres_id`);
 
 --
--- Indexes for table `books_library`
+-- Chỉ mục cho bảng `books_library`
 --
 ALTER TABLE `books_library`
   ADD PRIMARY KEY (`id`),
   ADD KEY `product_id` (`book_id`);
 
 --
--- Indexes for table `books_publishers`
+-- Chỉ mục cho bảng `books_publishers`
 --
 ALTER TABLE `books_publishers`
   ADD UNIQUE KEY `book_id_2` (`book_id`,`publisher_id`),
@@ -881,40 +523,34 @@ ALTER TABLE `books_publishers`
   ADD KEY `publisher_id` (`publisher_id`);
 
 --
--- Indexes for table `customers`
+-- Chỉ mục cho bảng `customers`
 --
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Indexes for table `favorites`
+-- Chỉ mục cho bảng `favorites`
 --
 ALTER TABLE `favorites`
   ADD UNIQUE KEY `book_id` (`book_id`,`customer_id`),
   ADD KEY `favorites_ibfk_2` (`customer_id`);
 
 --
--- Indexes for table `genres`
+-- Chỉ mục cho bảng `genres`
 --
 ALTER TABLE `genres`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `like_table`
---
-ALTER TABLE `like_table`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `orders`
+-- Chỉ mục cho bảng `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `customer_id` (`customer_id`);
 
 --
--- Indexes for table `orders_details`
+-- Chỉ mục cho bảng `orders_details`
 --
 ALTER TABLE `orders_details`
   ADD PRIMARY KEY (`id`),
@@ -922,13 +558,13 @@ ALTER TABLE `orders_details`
   ADD KEY `product_id` (`book_id`);
 
 --
--- Indexes for table `publishers`
+-- Chỉ mục cho bảng `publishers`
 --
 ALTER TABLE `publishers`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `reviews`
+-- Chỉ mục cho bảng `reviews`
 --
 ALTER TABLE `reviews`
   ADD PRIMARY KEY (`id`),
@@ -936,134 +572,122 @@ ALTER TABLE `reviews`
   ADD KEY `customer_id` (`customer_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `account`
---
-ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `authors`
+-- AUTO_INCREMENT cho bảng `authors`
 --
 ALTER TABLE `authors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `blogs`
+-- AUTO_INCREMENT cho bảng `blogs`
 --
 ALTER TABLE `blogs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `books`
+-- AUTO_INCREMENT cho bảng `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `books_library`
+-- AUTO_INCREMENT cho bảng `books_library`
 --
 ALTER TABLE `books_library`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT for table `customers`
+-- AUTO_INCREMENT cho bảng `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `genres`
+-- AUTO_INCREMENT cho bảng `genres`
 --
 ALTER TABLE `genres`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `like_table`
---
-ALTER TABLE `like_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
-
---
--- AUTO_INCREMENT for table `orders`
+-- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `orders_details`
+-- AUTO_INCREMENT cho bảng `orders_details`
 --
 ALTER TABLE `orders_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
-
---
--- AUTO_INCREMENT for table `publishers`
---
-ALTER TABLE `publishers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT for table `reviews`
---
-ALTER TABLE `reviews`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT cho bảng `publishers`
+--
+ALTER TABLE `publishers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT cho bảng `reviews`
+--
+ALTER TABLE `reviews`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `books_authors`
+-- Các ràng buộc cho bảng `books_authors`
 --
 ALTER TABLE `books_authors`
   ADD CONSTRAINT `books_authors_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`),
   ADD CONSTRAINT `books_authors_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `books_genres`
+-- Các ràng buộc cho bảng `books_genres`
 --
 ALTER TABLE `books_genres`
   ADD CONSTRAINT `books_genres_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `books_genres_ibfk_2` FOREIGN KEY (`genres_id`) REFERENCES `genres` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `books_library`
+-- Các ràng buộc cho bảng `books_library`
 --
 ALTER TABLE `books_library`
   ADD CONSTRAINT `books_library_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `books_publishers`
+-- Các ràng buộc cho bảng `books_publishers`
 --
 ALTER TABLE `books_publishers`
   ADD CONSTRAINT `books_publishers_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `books_publishers_ibfk_2` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `favorites`
+-- Các ràng buộc cho bảng `favorites`
 --
 ALTER TABLE `favorites`
   ADD CONSTRAINT `favorites_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `favorites_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `orders`
+-- Các ràng buộc cho bảng `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `orders_details`
+-- Các ràng buộc cho bảng `orders_details`
 --
 ALTER TABLE `orders_details`
   ADD CONSTRAINT `orders_details_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `orders_details_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `reviews`
+-- Các ràng buộc cho bảng `reviews`
 --
 ALTER TABLE `reviews`
   ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -1073,4 +697,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
