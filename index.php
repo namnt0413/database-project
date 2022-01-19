@@ -144,7 +144,7 @@
         <h1 class="heading"> <span>Sách mới</span> </h1>
     
         <div class="swiper arrivals-slider">
-            <a href="book.php">view all books <i class="fa fa-angle-right"></i></a>
+            <a href="book.php">Tất cả sách mới <i class="fa fa-angle-right"></i></a>
             
             <br><span>Sách mới ra trong tháng này</span>
             <div class="swiper-wrapper">
@@ -166,98 +166,8 @@
     
         </div>
     
-        <div class="swiper arrivals-slider">
-    
-            <div class="swiper-wrapper">
-    
-                <a href="#" class="swiper-slide box">
-                    <div class="image">
-                        <img src="./assets/image/book-6.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>new arrivals</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                </a>
-    
-                <a href="#" class="swiper-slide box">
-                    <div class="image">
-                        <img src="./assets/image/book-7.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>new arrivals</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                </a>
-    
-                <a href="#" class="swiper-slide box">
-                    <div class="image">
-                        <img src="./assets/image/book-8.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>new arrivals</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                </a>
-    
-                <a href="#" class="swiper-slide box">
-                    <div class="image">
-                        <img src="./assets/image/book-9.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>new arrivals</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                </a>
-    
-                <a href="#" class="swiper-slide box">
-                    <div class="image">
-                        <img src="./assets/image/book-10.png" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>new arrivals</h3>
-                        <div class="price">$15.99 <span>$20.99</span></div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                </a>
-    
-            </div>
-    
-        </div>
+       
+               
     </section>
     <!-- arrivals section ends -->
 
@@ -284,8 +194,8 @@
 
     <!-- reviews section starts  -->
     <section class="reviews" id="reviews">
-        <h1 class="heading"> <span>client's reviews</span> </h1>
-        <a href="reviews.php">view all reviews <i class="fa fa-angle-right"></i></a>
+        <h1 class="heading"> <span>Review của khách hàng</span> </h1>
+        <a href="reviews.php">Tất cả review  <i class="fa fa-angle-right"></i></a>
         
         <div class="swiper reviews-slider">
     
@@ -293,8 +203,8 @@
     
                 <div class="swiper-slide box">
                     <img src="./assets/image/pic-1.png" alt="">
-                    <h3>john deo</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur nihil ipsa placeat. Aperiam at sint, eos ex similique facere hic.</p>
+                    <h3>Noobmaster69</h3>
+                    <p>Mình thích cách sắp xếp ở đây, tầng 1 có khá nhiều sácht, nên ai muốn tìm những thể loại mình thích thì có thể tham khảo. Riêng mình thì mình thích tầng trên cùng, có nhiều cuốn sách kén người đọc vì to và nặng. Có các thể loại nhân chủng, chính trị, xã hội. Điểm cộng lớn nhất ở đây là cách sắp xếp sách.</p>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -306,8 +216,8 @@
     
                 <div class="swiper-slide box">
                     <img src="./assets/image/pic-2.png" alt="">
-                    <h3>john deo</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur nihil ipsa placeat. Aperiam at sint, eos ex similique facere hic.</p>
+                    <h3>Dan Hauer</h3>
+                    <p>Mình thích không khí của tiệm này, nằm một mình, không chen chúc với các tiệm sách cũ khác. Nên tránh được cảm giác “lựa hàng” khi đi mua sách. Đại loại là không ưng ở đây thì ghé qua chỗ khác… Bác chủ thoải mái, sách chuyên môn cũng có nhiều. Nếu có dịp đi đường sách cũ thì sau mình sẽ làm thêm review.</p>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -319,8 +229,8 @@
     
                 <div class="swiper-slide box">
                     <img src="./assets/image/pic-3.png" alt="">
-                    <h3>john deo</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur nihil ipsa placeat. Aperiam at sint, eos ex similique facere hic.</p>
+                    <h3>John Wick</h3>
+                    <p>Hiệu sách dành cho người đi làm là đây. Tầng 1 chọn sách, tầng 2 tha hồ chọn văn phòng phẩm, bút, sổ tay, giá phải chăng hơn các tiệm văn phòng phẩm khác. Nói chung là cách sắp xếp không gian sách ở tầng 1 khá là hiện đại, phù hợp cho người lớn tới lựa sách, chỗ gửi xe rộng, các đồ dùng văn phòng ở đây cũng nhiều.</p>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -331,8 +241,8 @@
                 </div>
                 <div class="swiper-slide box">
                     <img src="./assets/image/pic-4.png" alt="">
-                    <h3>john deo</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur nihil ipsa placeat. Aperiam at sint, eos ex similique facere hic.</p>
+                    <h3>Justin Bieber</h3>
+                    <p>Hiệu sách dành cho người đi làm là đây. Tầng 1 chọn sách, tầng 2 tha hồ chọn văn phòng phẩm, bút, sổ tay, giá phải chăng hơn các tiệm văn phòng phẩm khác. Nói chung là cách sắp xếp không gian sách ở tầng 1 khá là hiện đại, phù hợp cho người lớn tới lựa sách, chỗ gửi xe rộng, các đồ dùng văn phòng ở đây cũng nhiều.</p>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -344,8 +254,8 @@
     
                 <div class="swiper-slide box">
                     <img src="./assets/image/pic-5.png" alt="">
-                    <h3>john deo</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur nihil ipsa placeat. Aperiam at sint, eos ex similique facere hic.</p>
+                    <h3>Amber Heard</h3>
+                    <p>Hiệu sách dành cho người đi làm là đây. Tầng 1 chọn sách, tầng 2 tha hồ chọn văn phòng phẩm, bút, sổ tay, giá phải chăng hơn các tiệm văn phòng phẩm khác. Nói chung là cách sắp xếp không gian sách ở tầng 1 khá là hiện đại, phù hợp cho người lớn tới lựa sách, chỗ gửi xe rộng, các đồ dùng văn phòng ở đây cũng nhiều.</p>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -357,8 +267,8 @@
     
                 <div class="swiper-slide box">
                     <img src="./assets/image/pic-6.png" alt="">
-                    <h3>john deo</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur nihil ipsa placeat. Aperiam at sint, eos ex similique facere hic.</p>
+                    <h3>Johnny Depp</h3>
+                    <p>Mình thích không khí của tiệm này, nằm một mình, không chen chúc với các tiệm sách cũ khác. Nên tránh được cảm giác “lựa hàng” khi đi mua sách. Đại loại là không ưng ở đây thì ghé qua chỗ khác… Bác chủ thoải mái, sách chuyên môn cũng có nhiều. Nếu có dịp đi đường sách cũ thì sau mình sẽ làm thêm review.</p>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
