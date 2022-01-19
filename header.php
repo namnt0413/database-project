@@ -74,8 +74,8 @@
                     <?= $currentUser['last_name']?> 
                     <ul class="user_nav_info-container sub_user_nav" style="z-index: 9999">
                         <li ><a id="user_nav_info"  href="uif_profile.php" style="font-size: 14px;" >Cập nhật thông tin</a></li>
-                        <li ><a id="user_nav_info" href="#" style="font-size: 14px;" >Lịch sử mua hàng</a></li>
-                        <li ><a id="user_nav_info" href="#" style="font-size: 14px;" >Sản phẩm yêu thích</a></li>
+                        <li ><a id="user_nav_info" href="uif_orderhis.php" style="font-size: 14px;" >Lịch sử mua hàng</a></li>
+                        <li ><a id="user_nav_info" href="uif_favorite.php" style="font-size: 14px;" >Sản phẩm yêu thích</a></li>
                         <li ><a id="user_nav_info" href="change_password.php" style="font-size: 14px;" >Đổi mật khẩu</a></li>
                         <li ><a id="user_nav_info" href="logout.php" style="font-size: 14px;" >Đăng xuất</a></li>
                     </ul>

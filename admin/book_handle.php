@@ -12,7 +12,7 @@
     .content-container {
                
                 position: relative;
-                height: 210vh;
+                height: 200vh;
                  background-image: linear-gradient(rgba(233, 236, 239, 0.603), rgba(233, 236, 239, 0.603));
                  background-image: linear-gradient(rgba(34, 34, 34, 0.603), rgba(34, 34, 34, 0.603)), url(assets/image/login-theme.jpg);
                 background-size: cover;
@@ -61,7 +61,7 @@
                 width: 600px;
                 position: absolute; 
                 right: 10px;
-                border-radius: 9px;
+                border-radius: 5px;
                 border: 1px solid #ccc;
                 padding: 5px;
             }
@@ -88,7 +88,7 @@
                 color: #fff;
                 text-decoration: none;
                 cursor: pointer;
-                border-radius: 9px;
+                border-radius: 5px;
                 border: 0;
                 padding: 5px 40px;
                 margin-top: 20px;

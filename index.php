@@ -62,31 +62,31 @@
             <i class="fas fa-shipping-fast"></i>
             <div class="content">
                 <h3>free shipping</h3>
-                <p>order over $100</p>
+                <p>Với đơn lớn hơn 200k</p>
             </div>
         </div>
     
         <div class="icons">
             <i class="fas fa-lock"></i>
             <div class="content">
-                <h3>secure payment</h3>
-                <p>100 secure payment</p>
+                <h3>Giao dịch an toàn</h3>
+                <p>100% an toàn</p>
             </div>
         </div>
     
         <div class="icons">
             <i class="fas fa-redo-alt"></i>
             <div class="content">
-                <h3>easy returns</h3>
-                <p>10 days returns</p>
+                <h3>Hoàn tiền 100%</h3>
+                <p>Trong vòng 10 ngày</p>
             </div>
         </div>
     
         <div class="icons">
             <i class="fas fa-headset"></i>
             <div class="content">
-                <h3>24/7 support</h3>
-                <p>call us anytime</p>
+                <h3>Hỗ trợ 24/7</h3>
+                <p>Trừ ngày lễ Tết</p>
             </div>
         </div>
     </section>

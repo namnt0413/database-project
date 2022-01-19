@@ -283,7 +283,7 @@
                                 </div>
 
                                 <div class="button-container">
-                                    <input class="buy-button btn btn-lg btn-primary text-uppercase" type="submit" value="Mua ngay"  />                       
+                                    <input class="buy-button btn btn-lg text-uppercase" type="submit" value="Mua ngay"  />                       
                                 </div>
                             </form>  <!-- item-property .// -->
                             <button data-id="<?=$book['id']?>" class="btn-add-to-cart btn btn-lg btn-outline-primary text-uppercase" style="background-color:#f59f00;color:#fff">
@@ -589,8 +589,8 @@
     .btn-hidden {
         position: absolute;
         
-        top: 30px;
-        right: 50px;
+        top: 20px;
+        right: 40px;
         padding: 0;
         border: none;
         display: inline;

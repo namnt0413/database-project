@@ -137,6 +137,7 @@
             }
         </style>
         <?php
+        include 'admin_navbar.php';
         $error = false;
         // var_dump($_POST['first_name']);exit;
         // neu ton tai cation GET = create

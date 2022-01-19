@@ -53,7 +53,7 @@
                 margin: 0;
             }
             .content-container {
-                margin-top: 0;
+                margin-top: 5rem;
                 position: relative;
                 height: 90vh;
                  /* background-image: linear-gradient(rgba(233, 236, 239, 0.603), rgba(233, 236, 239, 0.603));
@@ -137,6 +137,7 @@
             }
         </style>
         <?php
+        include 'admin_navbar.php';
         $error = false;
         // neu ton tai cation GET = create
         if (isset($_GET['action']) && $_GET['action'] == 'create') {
