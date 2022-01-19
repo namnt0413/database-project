@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 19, 2022 at 01:24 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th1 19, 2022 lúc 03:58 PM
+-- Phiên bản máy phục vụ: 10.4.22-MariaDB
+-- Phiên bản PHP: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `database_project`
+-- Cơ sở dữ liệu: `database_project`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `authors`
+-- Cấu trúc bảng cho bảng `authors`
 --
 
 CREATE TABLE `authors` (
@@ -34,7 +34,7 @@ CREATE TABLE `authors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `authors`
+-- Đang đổ dữ liệu cho bảng `authors`
 --
 
 INSERT INTO `authors` (`id`, `name`, `last_updated`) VALUES
@@ -56,12 +56,20 @@ INSERT INTO `authors` (`id`, `name`, `last_updated`) VALUES
 (16, 'O\'henry', '2022-01-19 12:10:04'),
 (17, 'Ernest Hemingway', '2022-01-19 12:10:08'),
 (18, 'Khốn Ỷ Nguy Lâu', '2022-01-19 12:35:21'),
-(19, 'Thiên Diễn', '2022-01-19 12:43:49');
+(19, 'Thiên Diễn', '2022-01-19 12:43:49'),
+(20, 'Niccolò Machiavelli', '2022-01-19 14:56:55'),
+(21, 'Lý Vĩnh Linh', '2022-01-19 15:07:40'),
+(22, 'Nguyễn Thị Kim', '2022-01-19 15:07:40'),
+(23, 'Emmanuel Macron', '2022-01-19 15:11:13'),
+(24, 'Svetlana Alexievich', '2022-01-19 15:14:46'),
+(25, 'Ron Chernow', '2022-01-19 15:20:45'),
+(26, 'Lê Quýnh', '2022-01-19 15:24:08'),
+(27, 'Phil Knight', '2022-01-19 15:28:49');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `blogs`
+-- Cấu trúc bảng cho bảng `blogs`
 --
 
 CREATE TABLE `blogs` (
@@ -76,7 +84,7 @@ CREATE TABLE `blogs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `books`
+-- Cấu trúc bảng cho bảng `books`
 --
 
 CREATE TABLE `books` (
@@ -94,12 +102,12 @@ CREATE TABLE `books` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `books`
+-- Đang đổ dữ liệu cho bảng `books`
 --
 
 INSERT INTO `books` (`id`, `tittle`, `image`, `price`, `discount`, `import_price`, `quantity`, `content`, `publication_date`, `created_date`, `last_updated`) VALUES
 (1, 'Nhà lãnh đạo không chức danh', 'assets/image/book/1_.png', 80000, 10000, 68000, 28, '                                                                                Làm thế nào để làm việc và tạo ảnh hưởng với mọi người như một siêu sao, bất chấp bạn đang ở vị trí nào\r\nMột phương pháp để nhận biết và nắm bắt cơ hội vào những thời điểm thay đổi\r\nNhững bí mật thật sự của sự đổi mới\r\nMột chiến lược tức thời để xây dựng đội nhóm tuyệt vời và trở thành một nhà cung cấp ngoạn mục của khách hàng\r\nNhững thủ thuật cứng rắn giúp trở nên mạnh mẽ cả về thể chất lẫn tinh thần để có thể đi đầu trong lĩnh vực của bạn\r\nNhững phương thức thực tế để đánh bại sự căng thẳng, xây dựng một ý chí bất bại, giải phóng năng lượng, và cân bằng cuộc sống cá nhân                                                                                                                                                                                                                          ', NULL, '2021-03-19 10:08:41', '2022-01-19 16:12:12'),
-(2, 'Trên Đường Băng', 'assets/image/book/2.png', 100000, 12000, 80000, 31, '                                        Nếu như tuổi trẻ vẫn chưa bỏ bạn quá xa, hãy đọc cuốn sách này ít nhất một lần.Trên đường băng của (dượng) Tony (các bạn trẻ gọi Tony như thế, chính tác giả đã viết như vậy trong phần mở đầu) là một trong những quyển sách bán chạy nhất, nổi tiếng nhất, hoặc là các lí do khác .Nhưng mà bất kể vì lý do gì mà bạn đang tính là sẽ mua quyển sách này thì GOBE có thể chắc chắn rằng bạn đã không lãng phí tiền bạc của mình đâu .Làm thế nào vào được những trường Ivy League.Làm thế nào để xin được việc.Làm thế nào để có vốn khởi nghiệp                                                                                                            ', NULL, '2021-02-19 10:23:41', '2022-01-19 10:24:34'),
+(2, 'Trên Đường Băng', 'assets/image/book/2.png', 100000, 12000, 80000, 30, '                                        Nếu như tuổi trẻ vẫn chưa bỏ bạn quá xa, hãy đọc cuốn sách này ít nhất một lần.Trên đường băng của (dượng) Tony (các bạn trẻ gọi Tony như thế, chính tác giả đã viết như vậy trong phần mở đầu) là một trong những quyển sách bán chạy nhất, nổi tiếng nhất, hoặc là các lí do khác .Nhưng mà bất kể vì lý do gì mà bạn đang tính là sẽ mua quyển sách này thì GOBE có thể chắc chắn rằng bạn đã không lãng phí tiền bạc của mình đâu .Làm thế nào vào được những trường Ivy League.Làm thế nào để xin được việc.Làm thế nào để có vốn khởi nghiệp                                                                                                            ', NULL, '2021-02-19 10:23:41', '2022-01-19 10:24:34'),
 (3, 'Tuổi trẻ đáng giá bao nhiêu', 'assets/image/book/3.png', 90000, 5000, 75000, 14, ' “Bạn hối tiếc vì không nắm bắt lấy một cơ hội nào đó, chẳng có ai phải mất ngủ.\r\n\r\nBạn trải qua những ngày tháng nhạt nhẽo với công việc bạn căm ghét, người ta chẳng hề bận lòng.\r\n\r\nBạn có chết mòn nơi xó tường với những ước mơ dang dở, đó không phải là việc của họ.\r\n\r\nSuy cho cùng, quyết định là ở bạn. Muốn có điều gì hay không là tùy bạn.\r\n\r\nNên hãy làm những điều bạn thích. Hãy đi theo tiếng nói trái tim. Hãy sống theo cách bạn cho là mình nên sống.\r\n\r\nVì sau tất cả, chẳng ai quan tâm.”\r\n\r\n“Tôi đã đọc quyển sách này một cách thích thú. Có nhiều kiến thức và kinh nghiệm hữu ích, những điều mới mẻ ngay cả với người gần trung niên như tôi.\r\n\r\nTuổi trẻ đáng giá bao nhiêu? được tác giả chia làm 3 phần: HỌC, LÀM, ĐI.\r\n\r\nNhưng tôi thấy cuốn sách còn thể hiện một phần thứ tư nữa, đó là ĐỌC.\r\n\r\nHãy đọc sách, nếu bạn đọc sách một cách bền bỉ, sẽ đến lúc bạn bị thôi thúc không ngừng bởi ý muốn viết nên cuốn sách của riêng mình.\r\n\r\nNếu tôi còn ở tuổi đôi mươi, hẳn là tôi sẽ đọc Tuổi trẻ đáng giá bao nhiêu?                                                                                                             ', NULL, '2021-09-19 10:27:39', '2022-01-19 10:29:36'),
 (4, 'Truyện Tây Bắc', 'assets/image/book/15.png', 119000, 20000, 90000, 46, '“Đọc Truyện Tây Bắc, chúng ta có cảm tưởng đó vừa là một bản cáo trạng, vừa là một khúc tình ca: cáo trạng đối với phong kiến miền núi và thực dân, tình ca ngợi khen cảnh đẹp, tập quán hay, tinh thần cách mạng, quan hệ giữa người và người Tây Bắc, như bản tình ca viết với một bút pháp trữ tình nồng đượm và nên thơ.\r\n\r\n”Giáo sư HUỲNH LÝ“\r\n\r\nTruyện Vợ chồng A Phủ cũng như tập Truyện Tây Bắc nói chung bộc lộ rõ nét phong cách của Tô Hoài: màu sắc dân tộc đậm đà; chất thơ, chất trữ tình đằm thắm, lời văn giàu tính tạo hình.”', NULL, '2021-08-19 10:32:51', '2022-01-19 16:08:10'),
 (5, 'Tiếp Thị 4.0', 'assets/image/book/5.png', 100000, 10000, 80000, 25, '                                        Quyển cẩm nang vô cùng cần thiết cho những người làm tiếp thị trong thời đại số. Được viết bởi cha đẻ ngành tiếp thị hiện đại, cùng hai đồng tác giả là lãnh đạo của công ty MarkPlus, quyển sách sẽ giúp bạn lèo lái thế giới không ngừng kết nối và khách hàng không ngừng thay đổi để có được nhiều khách hàng hơn, xây dựng thương hiệu hiệu quả hơn, và cuối cùng kinh doanh thành công hơn. Ngày nay khách hàng không có nhiều thời gian và sự chú ý dành cho thương hiệu của bạn – và họ còn bị bao quanh bởi vô số các chọn lựa. Bạn phải tách khỏi đám đông, phải nổi trội, để gây sự chú ý và truyền đạt thông điệp mà khách hàng muốn nghe.                                                                                             ', NULL, '2021-07-19 10:36:19', '2022-01-19 10:37:22'),
@@ -119,7 +127,7 @@ INSERT INTO `books` (`id`, `tittle`, `image`, `price`, `discount`, `import_price
 (19, 'Thằng gù Nhà thờ Đức bà', 'assets/image/book/sach-thang-gu-nha-tho-duc-ba.jpg', 213000, 0, 179000, 20, 'Nhà thờ Đức bà như một nhân chứng lịch sử, tạo ra một cuộc hoán đổi ngoạn mục giữa hai con người đại diện cho hai tầng lớp xã hội khác nhau. Một linh mục cao sang, quyền lực, được mọi con người từ dưới nhà thờ Đức bà nhìn lên, cảm thấy ông ta thật vĩ đại, lớn lao, nhưng tên gù đứng trên đỉnh của ngọn tháp nhà thờ, nhìn xuống dưới thấy người linh mục, ông ta thật nhỏ bé, tầm thường, và cũng là con người trần tục như ai. Là một tên gù bị xã hội cự tuyệt, ngay cả người linh mục nhận nuôi hắn cũng không phải vì lòng tốt mà chỉ là muốn để cái đức lại cho em ông ta, cứ tưởng như hắn cũng chỉ là một viên đá bị lỗi của tạo hóa, vậy mà hắn cũng biết yêu, biết ghen, biết buồn. Và chính tình yêu đã đưa hắn đi đến tận cùng cảm xúc của loài người. Kết thúc của tác phẩm để lại nhiều ám ảnh cho người đọc.                                                                                                                ', NULL, '2022-01-19 17:45:39', '2022-01-19 17:54:47'),
 (20, 'Ngày Cuối Cùng Của Một Tử Tù', 'assets/image/book/ngay_cuoi_cung_cua_mot_tu_tu_1_2020_11_19_16_19_08.jpg', 95000, 15000, 75000, 30, 'Tác phẩm ghi lại 24 giờ cuối cùng của cuộc đời một tử tù qua nhật ký của nhân vật xưng tôi - nhân vật không tên tuổi, lai lịch, không nguồn gốc tội lỗi, không ai biết anh ta phạm tội gì đến nỗi trở thành tử tù. Anh ta kể về không gian sinh tồn là nhà tù, những con người va chạm với anh ta trong 24 giờ đó là bạn tù, linh mục, cai ngục... và những người phụ nữ trong tâm tưởng gồm mẹ, vợ và con gái. Tất cả những suy tư đó đan xen với dòng suy nghĩ về việc anh ta sắp bị thi hành án.\r\n\r\nTác phẩm này gần như chứa đừng đầy đủ phong cách, mô típ nhân vật và chủ đề quen thuộc trong sáng tác văn xuôi của Victor Hugo. Đặc biệt hơn nữa, có lẽ đây là tác phẩm chứa đựng nhiều tâm sự thầm kín, những nhức nhối khôn cùng của một nhà văn suốt đời đấu tranh cho quyền “được sống” của con người: án tử hình và sự xóa bỏ vĩnh viễn nó khỏi cuộc sống nhân loại.                                                                            ', NULL, '2022-01-19 17:48:57', '2022-01-19 17:48:57'),
 (21, 'Cuốn Theo Chiều Gió', 'assets/image/book/8936203360035.jpg', 567000, 23000, 515000, 50, 'Lấy bối cảnh thời Nội chiến và tái thiết với các cuộc chiến ác liệt, những mâu thuẫn sâu sắc về chính trị, xã hội và cảnh đói nghèo sau chiến tranh, Cuốn theo chiều gió kể về Scarlett O’Hara, cô tiểu thư mắt xanh với dòng máu Ireland kiêu hãnh. Từ cô thiếu nữ mười sáu tuổi sống trong nhung lụa, bồng bột theo đuổi tình yêu, Scarlett đã đi qua những tháng ngày tuyệt vọng nhất, nếm trải mất mát, để cứu lấy mảnh đất Tara thân yêu, cứu lấy gia đình. Nhưng mặc cho phong ba bão táp của cuộc đời, nàng vẫn giữ đó niềm lạc quan vô tận. Và giữa thời thế loạn lạc, bên cạnh nàng vẫn có một Rhett Butler ngang tàng và bất cần nhưng luôn dành cho Scarlett tình yêu và sự dung túng, một Melanie Hamilton dịu dàng thương mến đã đồng hành với nàng qua mọi đau thương, cũng như một Ashley Wilkes hiền hòa luôn đắm chìm trong hoài niệm. Tất cả họ đã sống, đã yêu và đã tạo nên những hình tượng văn chương bất hủ, xóa nhòa mọi chuẩn mực, khiến người đọc vừa yêu vừa ghét, vừa nhớ mãi không quên.                                                                                                                ', NULL, '2022-01-19 17:52:44', '2022-01-19 17:54:27'),
-(22, 'Sherlock Holmes Toàn Tập (Hộp 3 Cuốn)', 'assets/image/book/untitled_2_2.png', 360000, 88000, 220000, 49, '  Có lẽ kể từ khi văn học viết trở thành một phần không thể thiếu trong đời sống tinh thần của con người, đã có rất nhiều nhân vật bước ra từ trang sách của các nhà văn đi vào đời sống, thậm chí trở thành những biểu tượng bất hủ trong tâm thức nhân loại. Sherlock Holmes của Athur Conan Doyle cũng giống như Don Quixote của Cervantes, Jean Valjean của Victor Hugo, AQ của Lỗ Tấn hay Túy Kiều của Nguyễn Du… đã thoát thai từ một nhân vật hư cấu và trở thành một biểu tượng của đời sống. Tuy nhiên, trong trường hợp Sherlock Holmes, ngoài những siêu kỉ lục về một trong những tác phẩm văn học bán chạy nhất thế giới, một trong những nhân vật văn học được nhiều người biết đến nhất, một nhân vật văn học được tôn vinh dưới rất nhiều hình thức (Viện bảo tàng mang tên Sherlock Holmes, Hội những người hâm mộ Sherlock Holmes, thậm chí là đạo Sherlockian do những người hâm mộ cuồng nhiệt nhân vật này lập nên)..., thì điều đặc biệt hơn cả là phương pháp suy diễn logic của Sherlock Holmes đã được các cơ quan bảo vệ pháp luật sừng sỏ của Anh quốc như MI6 và Scotland Yard đưa vào giáo trình huấn luyện cho nhân viên của họ.                                                                          ', NULL, '2022-01-19 17:59:43', '2022-01-19 17:59:43'),
+(22, 'Sherlock Holmes (Hộp 3 Cuốn)', 'assets/image/book/untitled_2_2.png', 360000, 88000, 220000, 49, '                                          Có lẽ kể từ khi văn học viết trở thành một phần không thể thiếu trong đời sống tinh thần của con người, đã có rất nhiều nhân vật bước ra từ trang sách của các nhà văn đi vào đời sống, thậm chí trở thành những biểu tượng bất hủ trong tâm thức nhân loại. Sherlock Holmes của Athur Conan Doyle cũng giống như Don Quixote của Cervantes, Jean Valjean của Victor Hugo, AQ của Lỗ Tấn hay Túy Kiều của Nguyễn Du… đã thoát thai từ một nhân vật hư cấu và trở thành một biểu tượng của đời sống. Tuy nhiên, trong trường hợp Sherlock Holmes, ngoài những siêu kỉ lục về một trong những tác phẩm văn học bán chạy nhất thế giới, một trong những nhân vật văn học được nhiều người biết đến nhất, một nhân vật văn học được tôn vinh dưới rất nhiều hình thức (Viện bảo tàng mang tên Sherlock Holmes, Hội những người hâm mộ Sherlock Holmes, thậm chí là đạo Sherlockian do những người hâm mộ cuồng nhiệt nhân vật này lập nên)..., thì điều đặc biệt hơn cả là phương pháp suy diễn logic của Sherlock Holmes đã được các cơ quan bảo vệ pháp luật sừng sỏ của Anh quốc như MI6 và Scotland Yard đưa vào giáo trình huấn luyện cho nhân viên của họ.                                                                                                              ', NULL, '2022-01-19 17:59:43', '2022-01-19 21:06:50'),
 (23, 'Đồi Gió Hú ', 'assets/image/book/doi_gio_hu___tai_ban_2018_1_2018_10_29_11_46_36.jpg', 120000, 12000, 80000, 49, 'Đồi gió hú, câu chuyện cổ điển về tình yêu ngang trái và tham vọng chiếm hữu, cuốn tiểu thuyết dữ dội và bí ẩn về Catherine Earnshaw, cô con gái nổi loạn của gia đình Earnshaw, với gã đàn ông thô ráp và điên rồ mà cha cô mang về nhà rồi đặt tên là Heathcliff, được trình diễn trên cái nền những đồng truông, quả đồi nước Anh cô quạnh và ban sơ không kém gì chính tình yêu của họ. Từ nhỏ đến lớn, sự gắn bó của họ ngày càng trở nên ám ảnh. Gia đình, địa vị xã hội, và cả số phận rắp tâm chống lại họ, bản tính dữ dội và ghen tuông tột độ cũng hủy diệt họ, vậy nên toàn bộ thời gian hai con người yêu nhau đó đã sống trong thù hận và tuyệt vọng, mà cái chết chỉ có ý nghĩa khởi đầu. Một khởi đầu mới để hai linh hồn mãnh liệt đó được tự do tái ngộ, khi những cơn gió hoang vắng và điên cuồng tràn về quanh các lâu đài trong Đồi gió hú...                                                                            ', NULL, '2022-01-19 18:03:45', '2022-01-19 18:03:45'),
 (24, 'Chiếc Lá Cuối Cùng', 'assets/image/book/chiec-la-cuoi-cung-bia1.jpg', 95000, 15000, 67150, 40, ' O’ Henry tên thật là William Sydney Porter (1862 - 1910) là nhà văn nổi tiếng người Mỹ với lối viết truyện ngắn độc đáo, hấp dẫn. Với 10 tập truyện đã được xuất bản, ông được xem là nhà văn có bút lực dồi dào và được so sánh với bậc thầy người Nga Anton Checkhov (1860-1904). Nhiều sáng tác của ông đã trở thành những truyện ngắn mẫu mực và kinh điển.\r\n\r\nTập truyện ngắn “Chiếc lá cuối cùng” do Nhà xuất bản Văn học phát hành tháng 4 năm 2020 gồm 13 truyện ngắn đặc sắc của O’ Henry. Trong đó, truyện ngắn “Chiếc lá cuối cùng”  được lấy làm tiêu đề cho tập truyện. Đây là phẩm quen thuộc với các thế hệ học sinh Việt Nam, được trích dạy trong chương trình Trung học cơ sở và để lại nhiều ấn tượng sâu sắc đáng nhớ bởi tính nhân văn trong truyện.                                    ', NULL, '2022-01-19 18:12:43', '2022-01-19 18:51:36'),
 (25, 'O.Henry - Truyện Ngắn Chọn Lọc', 'assets/image/book/2021_06_23_09_20_42_1-390x510.jpg', 125000, 22000, 80000, 20, '  O. Henry là cây bút truyện ngắn có bút lực dồi dào nổi tiếng ở Mỹ. Ông nổi tiếng với những tác phẩm có kết thúc bất ngờ, những tình huống ngẫu nhiên, pha trộn nét mỉa mai châm biếm và giọng điệu thương cảm, xót xa khi viết về những người lao động bình thường, những con người sống dưới đáy của một xã hội xa hoa giàu có.\r\n\r\nTruyện ngắn của O. Henry thể hiện nét đa dạng của xã hội Mỹ đương thời. Người ta có thể tìm thấy những nhân vật làm các nghề mà chính tác giả đã trải qua, và còn nữa: chủ cửa hiệu, nhân viên bán hàng, ký giả, họa sĩ, bác sĩ…                                                                          ', NULL, '2022-01-19 18:15:10', '2022-01-19 18:15:10'),
@@ -127,15 +135,30 @@ INSERT INTO `books` (`id`, `tittle`, `image`, `price`, `discount`, `import_price
 (27, 'Ông Già Và Biển Cả', 'assets/image/book/2017_08_30_11_53_17_1-390x510.jpg', 245000, 20000, 156000, 40, 'The last novel Ernest Hemingway saw published, \"The Old Man and the Sea\" has proved itself to be one of the enduring works of American fiction. It is the story of an old Cuban fisherman and his supreme ordeal: a relentless, agonizing battle with a giant marlin far out in the Gulf Stream. Using the simple. powerful language of a fable, Hemingway takes the timeless themes of courage in the face of defeat and personal triumph won from loss and transforms them into a magnificnet twentieth-century classic.                                                                            ', NULL, '2022-01-19 18:27:42', '2022-01-19 18:27:42'),
 (28, 'Chuông Nguyện Hồn Ai ', 'assets/image/book/image_180164_1_8.jpg', 155000, 20000, 105000, 45, 'Nhà văn Mỹ lừng danh Ernest Hemingway, tên đầy đủ là Ernest Miller Hemingway, sinh năm 1899 tại Oak Park, bang Illinois, có bố là bác sĩ và mẹ là ca sĩ. E. Hemingway học hành dang dở, chưa qua trung học đã trốn nhà trốn trường bỏ đi kiếm sống, từ làm công ở trang trại, làm túi đấm ở lò quyền Anh đến làm thông tín viên cho tờ “Kansas City Star”… Chiến tranh thế giới thứ nhất (1914-1918) nổ ra, E. Hemingway tình nguyện làm lái xe cứu thương cho Hội Chữ thập đỏ ở vùng Bắc Italy và bị thương tại đó, mở đầu cho hàng trăm vết thương ông mang trên mình khi sống sót bước ra khỏi cuộc chiến.                                                                            ', NULL, '2022-01-19 18:31:38', '2022-01-19 18:31:38'),
 (29, 'Truyện Ngắn Ernest Hemingway', 'assets/image/book/2020_07_11_09_53_52_1-390x510.jpg', 222000, 30000, 172000, 30, ' Tập truyện này được in lần đầu vào năm 1996, được tái bản năm 1998, năm tôi bảo vệ luận án tiến sĩ về nhân vật của Ernest Hemingway. Đa số truyện trong tập này là do tôi dịch để phục vụ đề tài nghiên cứu. Công việc đó, giờ nhìn lại quả quá sức tưởng tượng. Thử hình dung, một người thực sự bắt đầu học tiếng Anh từ năm 1992 (hồi phổ thông chỉ bập bõm đôi chữ), vừa học cao học, vừa làm nghiên cứu sinh, vừa xoay xở đủ cách để kiếm sống, hằng đêm đánh vật với từng con chữ Anh ngữ trong sách của một bậc thầy văn chương để cố chuyển tải cho được hồn cốt của ông quả là điều diệu kỳ. Phải nói, tôi đã trưởng thành rất nhiều từ những trang viết của Hemingway. Tôi yêu quý và ngưỡng mộ ông, một phần như là kẻ mang nợ phong cách, tư tưởng ông. Lần in lại này, tôi bổ sung thêm hai truyện do Lê Nguyên Phương chuyển ngữ, đưa con số tác phẩm lên 60 truyện. Hai mươi năm nay, vì vấn đề bản quyền mà sách chưa được in lại. Lần này, nhờ nỗ lực của Nhà xuất bản Tổng hợp Thành phố Hồ Chí Minh mà sách được ra mắt bạn đọc.                                                                           ', NULL, '2022-01-19 18:33:30', '2022-01-19 18:33:30'),
-(30, 'Gần Mặt Cách Lòng', 'assets/image/book/bia-1_gan-mat-cach-long.jpg', 149000, 20000, 0, 108996, 'Để báo ơn, Thẩm Mặc đồng ý thực hiện một giao dịch kỳ lạ với quý ngài doanh nhân thành đạt– Quý Minh Hiên, để bảo toàn hạnh phúc vẹn tròn cho em gái của ngài Quý. Cậu vô tình vướng vào một mối quan hệ phức tạp, hoàn toàn không biết phải làm sao, chỉ ngày ngày ngẩn ngơ nhung nhớ mối tình cũ của thời thanh xuân tươi đẹp.\r\n\r\nĐến khi Thẩm Mặc nhận ra đâu mới là tình yêu đích thực của mình, thì cái người vẫn luôn sớm tối bên cậu đã không còn ở bên cậu nữa rồi.                                                                            ', NULL, '2022-01-19 18:36:14', '2022-01-19 18:36:14'),
+(30, 'Gần Mặt Cách Lòng', 'assets/image/book/bia-1_gan-mat-cach-long.jpg', 149000, 49000, 120000, 15, '                                        Để báo ơn, Thẩm Mặc đồng ý thực hiện một giao dịch kỳ lạ với quý ngài doanh nhân thành đạt– Quý Minh Hiên, để bảo toàn hạnh phúc vẹn tròn cho em gái của ngài Quý. Cậu vô tình vướng vào một mối quan hệ phức tạp, hoàn toàn không biết phải làm sao, chỉ ngày ngày ngẩn ngơ nhung nhớ mối tình cũ của thời thanh xuân tươi đẹp.\r\n\r\nĐến khi Thẩm Mặc nhận ra đâu mới là tình yêu đích thực của mình, thì cái người vẫn luôn sớm tối bên cậu đã không còn ở bên cậu nữa rồi.                                                                                                                ', NULL, '2022-01-19 18:36:14', '2022-01-19 21:12:41'),
 (31, 'Khẩu Thị Tâm Phi', 'assets/image/book/tbph_kh_u_th_t_m_phib_a.png', 159000, 30000, 110000, 49, '  Khẩu Thị Tâm Phi\r\n\r\nRanh giới giữa “bạn bè” và “kẻ thù” trên đời này vốn dĩ rất mong manh. Có người vốn thân thiết như ruột thịt lại có thể trở mặt thành thù, cũng có người thù ghét nhau cả đời nhưng sâu thẳm trong tâm can lại luôn che chở đối phương…\r\n\r\nMối duyên giữa xà yêu Luyện Thiên Sương và Quỷ vương Lăng Phi đã kéo dài cả trăm năm. Từ khi còn là tiểu xà, quỷ non, đến khi thành đại xà, quỷ già, kẻ thù gặp nhau đỏ mắt phân tranh, bất phân thắng bại, dây dưa không dứt. Càng trớ trêu thay nữ nhân mà cả hai người cùng đem lòng mến mộ lại nên duyên cùng kẻ khác, thậm chí còn để lại đứa con cho hai người cùng nuôi dưỡng.                                                                          ', NULL, '2022-01-19 18:38:12', '2022-01-19 18:38:12'),
 (32, 'Phàm Tâm Đại Động', 'assets/image/book/2021_06_22_10_22_06_1-390x510.jpg', 149000, 10000, 98000, 46, ' Thế gian này rộng lớn lắm, bỏ lỡ nhau một lần, cũng là bỏ lỡ một đời…\r\n\r\nTrương Triệu Huyền là thần tiên trên trời, sống đã trăm ngàn năm tuổi. Còn Diệp Thanh chỉ là một chàng thanh niên người phàm lại đem lòng ái mộ vị thần tiên cao xa vời vợi kia. Nhưng lời chân tình chưa kịp tỏ bày, đã bỏ lỡ nhau suốt ba trăm năm. “Duyên phận đều được định sẵn trong số mệnh. Nếu vô duyên ắt sẽ lướt qua vai nhau, đôi bên chẳng hề hay biết. Hoặc như những kẻ gái trai si tình trên thế gian, dẫu cho đau khổ quằn quại, sau cùng cũng chẳng gặt hái được kết quả gì.”                                                                           ', NULL, '2022-01-19 18:40:34', '2022-01-19 18:40:34'),
-(33, 'Khi Chủ Tịch Không Yêu Nữ Chính', 'assets/image/book/bia_khi-chu-tich-khong-yeu-nu-chinh---ban-dac-biet-1_1.jpg', 218000, 20000, 168000, 55, ' Khi Chủ Tịch Không Yêu Nữ Chính (Bộ 2 tập)\r\n\r\nSở Ca - một thanh niên dân kỹ thuật luôn dành phần lớn thời gian ru rú ở nhà bỗng nhiên xuyên không vào thế giới truyện ngôn tình cẩu huyết phi logic. Điều đáng buồn, trong kịch bản này cậu chính là nhân vật phản diện đã bị nam chính - ngài chủ tịch Satan lạnh lùng cưỡi mây bảy màu đến lấy mạng. Chẳng biết làm cách nào để quay trở lại, cậu chỉ đành lặng lẽ rơi những giọt nước mắt đắng cay cho cuộc đời xuyên không của mình, đồng thời hạ quyết tâm: Phải quý trọng sinh mạng, né xa tình tiết gốc.\r\n\r\nThế nhưng, diễn biến câu chuyện có vẻ sai sai. Nam chính Hiên Viên Ngạo Thiên cầm nhầm kịch bản, cậu bạn mờ nhạt trong suy nghĩ của Sở Ca lại là em trai của nam chính, kẻ thù kiếp trước bỗng chốc trở thành bạn thân ở kiếp này. Chỉ có mình nữ chính là vẫn “tuân thủ” đúng quỹ đạo, song dường như cô ta lại có chút vấn đề về thần kinh. Vậy rốt cuộc Sở Ca phải làm gì đây?\r\n\r\nSở Ca quyết định yên phận trải qua cuộc sống của một học sinh cấp ba bình thường, nhưng dường như vị thần nắm giữ tình tiết truyện lại không muốn dễ dàng buông tha cho cậu. Năm lần, bảy lượt để cậu “đụng độ” với nam chính vừa giàu vừa đẹp trai, lại mắc bệnh ảo tưởng vô cùng nặng, khiến tình tiết kịch bản ban đầu dần đi chệch hướng.\r\n\r\nKẻ thù kiếp trước đã hoá thành bạn thân, lại không đem lòng yêu nữ chính. Cả nam chính lạnh lùng cũng chẳng ngó ngàng tới nữ chính. Sở Ca bớt lo lắng phần nào về chuyện sẽ bị nam chính cưỡi mây bảy màu đến tiêu diệt. Thế nhưng, nam chính lại đột nhiên muốn chịu trách nhiệm với cậu. Là một thanh niên thẳng băng chưa vấp vào tình yêu trong đời, rốt cuộc Sở Ca sẽ quyết định giải quyết chuyện này ra sao?\r\n\r\nBằng cách dẫn dắt đáng yêu, câu từ hài hước và tình tiết vô cùng bất ngờ, “Khi chủ tịch không yêu nữ chính” sẽ mang đến cho bạn một câu chuyện dễ thương về hành trình chinh phục tình yêu không dành cho nữ chính của ngài chủ tịch Satan lạnh lùng.\r\n\r\nMã hàng	8935325003387\r\nTên Nhà Cung Cấp	Skybooks\r\nTác giả	Thiên Diễn\r\nNgười Dịch	Hala\r\nNXB	NXB Dân Trí\r\nNăm XB	2022\r\nNgôn Ngữ	Tiếng Việt\r\nTrọng lượng (gr)	620\r\nKích Thước Bao Bì	20.5 x 14.5 cm\r\nSố trang	616\r\nHình thức	Bìa Mềm\r\nSản phẩm hiển thị trong	\r\nSkybooks\r\nSản phẩm bán chạy nhất	Top 100 sản phẩm Ngôn Tình bán chạy của tháng\r\nKhi Chủ Tịch Không Yêu Nữ Chính (Bộ 2 tập)\r\n\r\nSở Ca - một thanh niên dân kỹ thuật luôn dành phần lớn thời gian ru rú ở nhà bỗng nhiên xuyên không vào thế giới truyện ngôn tình cẩu huyết phi logic. Điều đáng buồn, trong kịch bản này cậu chính là nhân vật phản diện đã bị nam chính - ngài chủ tịch Satan lạnh lùng cưỡi mây bảy màu đến lấy mạng. Chẳng biết làm cách nào để quay trở lại, cậu chỉ đành lặng lẽ rơi những giọt nước mắt đắng cay cho cuộc đời xuyên không của mình, đồng thời hạ quyết tâm: Phải quý trọng sinh mạng, né xa tình tiết gốc.\r\n\r\nThế nhưng, diễn biến câu chuyện có vẻ sai sai. Nam chính Hiên Viên Ngạo Thiên cầm nhầm kịch bản, cậu bạn mờ nhạt trong suy nghĩ của Sở Ca lại là em trai của nam chính, kẻ thù kiếp trước bỗng chốc trở thành bạn thân ở kiếp này. Chỉ có mình nữ chính là vẫn “tuân thủ” đúng quỹ đạo, song dường như cô ta lại có chút vấn đề về thần kinh. Vậy rốt cuộc Sở Ca phải làm gì đây?                                                                           ', NULL, '2022-01-19 18:43:39', '2022-01-19 18:43:39');
+(33, 'Khi Chủ Tịch Không Yêu Nữ Chính', 'assets/image/book/bia_khi-chu-tich-khong-yeu-nu-chinh---ban-dac-biet-1_1.jpg', 218000, 20000, 168000, 55, ' Khi Chủ Tịch Không Yêu Nữ Chính (Bộ 2 tập)\r\n\r\nSở Ca - một thanh niên dân kỹ thuật luôn dành phần lớn thời gian ru rú ở nhà bỗng nhiên xuyên không vào thế giới truyện ngôn tình cẩu huyết phi logic. Điều đáng buồn, trong kịch bản này cậu chính là nhân vật phản diện đã bị nam chính - ngài chủ tịch Satan lạnh lùng cưỡi mây bảy màu đến lấy mạng. Chẳng biết làm cách nào để quay trở lại, cậu chỉ đành lặng lẽ rơi những giọt nước mắt đắng cay cho cuộc đời xuyên không của mình, đồng thời hạ quyết tâm: Phải quý trọng sinh mạng, né xa tình tiết gốc.\r\n\r\nThế nhưng, diễn biến câu chuyện có vẻ sai sai. Nam chính Hiên Viên Ngạo Thiên cầm nhầm kịch bản, cậu bạn mờ nhạt trong suy nghĩ của Sở Ca lại là em trai của nam chính, kẻ thù kiếp trước bỗng chốc trở thành bạn thân ở kiếp này. Chỉ có mình nữ chính là vẫn “tuân thủ” đúng quỹ đạo, song dường như cô ta lại có chút vấn đề về thần kinh. Vậy rốt cuộc Sở Ca phải làm gì đây?\r\n\r\nSở Ca quyết định yên phận trải qua cuộc sống của một học sinh cấp ba bình thường, nhưng dường như vị thần nắm giữ tình tiết truyện lại không muốn dễ dàng buông tha cho cậu. Năm lần, bảy lượt để cậu “đụng độ” với nam chính vừa giàu vừa đẹp trai, lại mắc bệnh ảo tưởng vô cùng nặng, khiến tình tiết kịch bản ban đầu dần đi chệch hướng.\r\n\r\nKẻ thù kiếp trước đã hoá thành bạn thân, lại không đem lòng yêu nữ chính. Cả nam chính lạnh lùng cũng chẳng ngó ngàng tới nữ chính. Sở Ca bớt lo lắng phần nào về chuyện sẽ bị nam chính cưỡi mây bảy màu đến tiêu diệt. Thế nhưng, nam chính lại đột nhiên muốn chịu trách nhiệm với cậu. Là một thanh niên thẳng băng chưa vấp vào tình yêu trong đời, rốt cuộc Sở Ca sẽ quyết định giải quyết chuyện này ra sao?\r\n\r\nBằng cách dẫn dắt đáng yêu, câu từ hài hước và tình tiết vô cùng bất ngờ, “Khi chủ tịch không yêu nữ chính” sẽ mang đến cho bạn một câu chuyện dễ thương về hành trình chinh phục tình yêu không dành cho nữ chính của ngài chủ tịch Satan lạnh lùng.\r\n\r\nMã hàng	8935325003387\r\nTên Nhà Cung Cấp	Skybooks\r\nTác giả	Thiên Diễn\r\nNgười Dịch	Hala\r\nNXB	NXB Dân Trí\r\nNăm XB	2022\r\nNgôn Ngữ	Tiếng Việt\r\nTrọng lượng (gr)	620\r\nKích Thước Bao Bì	20.5 x 14.5 cm\r\nSố trang	616\r\nHình thức	Bìa Mềm\r\nSản phẩm hiển thị trong	\r\nSkybooks\r\nSản phẩm bán chạy nhất	Top 100 sản phẩm Ngôn Tình bán chạy của tháng\r\nKhi Chủ Tịch Không Yêu Nữ Chính (Bộ 2 tập)\r\n\r\nSở Ca - một thanh niên dân kỹ thuật luôn dành phần lớn thời gian ru rú ở nhà bỗng nhiên xuyên không vào thế giới truyện ngôn tình cẩu huyết phi logic. Điều đáng buồn, trong kịch bản này cậu chính là nhân vật phản diện đã bị nam chính - ngài chủ tịch Satan lạnh lùng cưỡi mây bảy màu đến lấy mạng. Chẳng biết làm cách nào để quay trở lại, cậu chỉ đành lặng lẽ rơi những giọt nước mắt đắng cay cho cuộc đời xuyên không của mình, đồng thời hạ quyết tâm: Phải quý trọng sinh mạng, né xa tình tiết gốc.\r\n\r\nThế nhưng, diễn biến câu chuyện có vẻ sai sai. Nam chính Hiên Viên Ngạo Thiên cầm nhầm kịch bản, cậu bạn mờ nhạt trong suy nghĩ của Sở Ca lại là em trai của nam chính, kẻ thù kiếp trước bỗng chốc trở thành bạn thân ở kiếp này. Chỉ có mình nữ chính là vẫn “tuân thủ” đúng quỹ đạo, song dường như cô ta lại có chút vấn đề về thần kinh. Vậy rốt cuộc Sở Ca phải làm gì đây?                                                                           ', NULL, '2022-01-19 18:43:39', '2022-01-19 18:43:39'),
+(34, 'Quân Vương', 'assets/image/book/8936071674722.jpg', 160000, 1000, 100000, 50, 'Ít có quyển sách nào gây nhiều tranh cãi trong lần xuất bản đầu tiên như Quân vương, và số sách có thể duy trì những cuốc tranh cãi đó trong suốt hơn năm thế kỉ sau lại càng ít hơn. Có nhiều luồng ý kiến về những mưu đồ chính trị xấu và và vô lương tâm được nêu trong tuyệt tác của Niccolò Machiavelli, nhưng những luận thuyết này lại rất thực dụng và sâu sắc. Là một trong những tác phẩm có tầm ảnh hưởng nhất, Quân vương đến nay vẫn đang làm kim chỉ nam cho tư tưởng và hành động của nhiều chính trị gia và doanh nhân trong thời hiện đại.                                                    ', NULL, '2022-01-19 20:54:34', '2022-01-19 20:54:34'),
+(35, 'Singapore Của Tôi', 'assets/image/book/2_1.jpg', 500000, 200000, 100000, 10, '                                        Singapore Của Tôi là tập hợp những bài viết của Lý Vỹ Linh con gái duy nhất của cố Thủ tướng Singapore Lý Quang Diệu kiêm bác sĩ chỉ đạo chuyên môn cấp cao về thần kinh nhi tại Viện Khoa học Thần kinh Quốc gia Singapore, đăng trên các báo Straits Time và Sunday Time, gồm những chuyên mục Think-Tank, một chuyên mục Op-ed ( Ý kiến công luận) của tờ Straits Time, cùng những bài viết giải đáp về các sự kiện lớn. Độc giả cũng có thể tìm thấy trong sách nhiều bài viết về cuộc sống của gia đình danh giá nhất Singapore và những suy tư của Lý Vỹ Linh về giáo dục, y tế và sự phát triển của Singapore.                                                                                 ', NULL, '2022-01-19 21:05:04', '2022-01-19 21:08:24'),
+(36, 'Cách Mạng', 'assets/image/book/3_1.jpg', 320000, 180000, 210000, 30, 'Cách Mạng được xuất bản ngày 24-11-2016, đã bán được gần 200.000 bản và là một trong những quyển sách bán chạy nhất nước Pháp trong năm 2016. Không phải ngẫu nhiên mà bản quyền dịch thuật cuốn sách này bán được cho hơn 20 quốc gia, một con số chưa từng có đối với một chính trị gia người Pháp.  Điều gì khiến cuốn sách nhỏ này hấp dẫn đến vậy?                                   ', NULL, '2022-01-19 21:10:25', '2022-01-19 21:10:25'),
+(37, 'Những Nhân Chứng Cuối Cùng', 'assets/image/book/4.jpg', 365000, 140000, 150000, 56, '                                                             Những nhân chứng cuối cùng (ấn bản lần đầu năm 1985) là quyển thứ hai trong loạt năm quyển “Những giọng nói không tưởng”: Chiến tranh không mang một khuôn mặt phụ nữ, Những cậu bé kẽm, Lời nguyện cầu Chernobyl và Thời second hand, đã mang đến cho nữ nhà văn người Belarus Svetlana Alexievich giải Nobel Văn chương 2015. Trong một lần trả lời phỏng vấn báo chí Ba Lan năm 2013, nữ nhà văn cho biết ý tưởng viết quyển sách thứ hai này xuất phát từ những chuyến đi thực tế cho quyển sách đầu tiên Chiến tranh không mang một khuôn mặt phụ nữ. Cuộc chiến tranh chống phát xít Đức cướp mất hàng chục triệu con người Liên Xô đã khiến nhiều ngôi làng Xô viết sau chiến tranh không còn bóng dáng đàn ông, và tại những ngôi nhà góa bụa đó, bà thường nghe được hai câu chuyện: Một của người mẹ và một của đứa con. Nhờ đó, bà phát hiện: “còn một kho cất giữ nỗi đau còn tinh khôi, hoàn toàn chưa được động tới”: ký ức trẻ thơ. Người ta đã quen nghe nói về chiến tranh từ người lớn, nhưng chỉ những chuyện kể từ miệng trẻ em mới có thể bộc lộ hết sự điên rồ của chiến tranh, sự hung bạo phi nhân tính không gì có thể biện bạch.                                                                                          ', NULL, '2022-01-19 21:14:32', '2022-01-19 21:16:49'),
+(39, 'Combo Gia Tộc Morgan + Titan', 'assets/image/book/5_2.jpg', 1000000, 200000, 700000, 4, '                                                                                                                 Một triều đại ngân hàng Mỹ và sự trỗi dậy của nền tài chính hiện đại\r\n\r\nHình thành, phát triển, sụp đổ rồi lại hồi sinh, có lẽ không một tổ chức nào ẩn chứa nhiều giai thoại, bí mật hay chủ đề gây tranh cãi gay gắt như đế chế ngân hàng Mỹ – Gia tộc Morgan. Đạt Giải thưởng Sách quốc gia và hiện được coi là một tác phẩm kinh điển, Gia tộc Morgan là cuốn tiểu sử tham vọng nhất từng được viết về một triều đại ngân hàng Mỹ. Cuốn sách vẽ nên bức tranh toàn diện về bốn thế hệ nhà Morgan và các công ty bí mật, mạnh mẽ mà họ sở hữu. Với thế lực của mình, đế chế Morgan đã biến nền kinh tế non trẻ của Mỹ thành một cường quốc công nghiệp mạnh nhất thế giới và khiến trung tâm tài chính thế giới dịch chuyển từ London sang New York. Vượt xa cả lịch sử đơn thuần của ngành ngân hàng Mỹ, cuốn sách chính là câu chuyện về sự tiến hóa của nền tài chính hiện đại. Dựa trên các cuộc phỏng vấn rộng rãi cùng quyền truy cập đặc biệt vào kho lưu trữ của gia tộc này, tác đã khắc họa nên bức chân dung hấp dẫn về câu chuyện riêng của nhà Morgan và thế giới hiếm hoi của giới tinh hoa Mỹ và Anh.\r\n\r\nTRÍCH ĐOẠN:                                                                                                                   ', NULL, '2022-01-19 21:20:27', '2022-01-19 21:26:25'),
+(40, 'Bắc Hành Lược Ký', 'assets/image/book/6_1.jpg', 400000, 26000, 200000, 12, '                                                                      Bắc hành lược ký là một “hồi ký chính trị” của Trường Phái hầu Lê Quýnh mà trọng điểm là mười năm ông bị cầm tù trong nhiều nhà ngục tại Trung Hoa sau khi theo vua Lê Chiêu Thống chạy sang phương Bắc lưu vong. Có thể xem nó như một phong vũ biểu đo lường gió mưa, thăng trầm của thời cuộc, phản ánh những lên xuống trong bang giao Thanh-Việt từ đời Quang Trung sang đời Cảnh Thịnh và sau cùng là đời Gia Long.\r\n\r\nBản dịch mới lần này dựa theo bản Hán văn của tạp chí Nam Phong, có đối chiếu, bổ túc, tham khảo các bản in trong Việt Nam Hán văn tiểu thuyết tùng san và lưu trữ tại Viện Hán Nôm Hà Nội, cùng những tài liệu, văn thư của triều Thanh trong cùng thời điểm, nhằm giúp bạn đọc có cái nhìn đa chiều, sáng tỏ hơn khi nghiên cứu về giai đoạn lịch sử từ cuối triều Lê đến đầu triều Nguyễn.                                                                                  ', NULL, '2022-01-19 21:23:44', '2022-01-19 21:24:39'),
+(41, 'Gã Nghiện Giày', 'assets/image/book/7.jpg', 240000, 200000, 120000, 120, '                                                                         Một câu chuyện cuốn hút, và truyền cảm hứng.... 24 tuổi, lấy bằng MBA ở Đại học Stanford, trăn trở với những câu hỏi lớn của cuộc đời, băn khoăn không biết tiếp tục làm việc cho một tập đoàn lớn hay tạo dựng sư nghiệp riêng cho mình... 24 tuổi, năm 1962, Phil Knight quyết định rằng con đường khác thường mới là lựa chọn duy nhất dành cho ông... Rồi ông khoác ba lô đi đến Tokyo, Hongkong, Bangkok, Việt Nam, Calcutta, Kathmandu, Bombay, Cairo, Jerusalem, Rome, Florence, Milan, Venice, Paris,, Munich, Vienna, London, Hy Lạp... Để rồi khi về lại quê nhà ở bang Oregon, ông quyết định mở công ty nhập khẩu giày chạy từ Nhật. Ban đầu chỉ một đôi để thử, rồi vài chục đôi, bán tại tầng hầm của gia đình bố mẹ Phil. Đam mê, quyết tâm, dám chấp nhận thất bại, vượt qua nhiều chông gai từ chuyện thiếu vốn, đến chuyện cạnh tranh từ đối thủ nhập khẩu khác… Phil Knight đã đưa công ty nhập khẩu giày ra đời với 50 đô-la mượn của bố phát triển đến doanh nghiệp có doanh số hơn 1 triệu đô-la chỉ 10 năm sau đó, năm 1972.                                                                               ', NULL, '2022-01-19 21:28:34', '2022-01-19 21:29:17'),
+(42, 'Bão Lửa Và Cuồng Nộ', 'assets/image/book/8.jpg', 600000, 0, 300000, 4, '                                                               Bão lửa và cuồng nộ - Nội tình nhà Trắng thời Trump (Tựa gốc: Fire and Fury - Inside the Trump White House) của cây bút chính trị Michael Wolff tiết lộ toàn bộ những bí mật về năm đầu tiên ngồi ghế Tổng thống Mỹ của ông Donald Trump.\r\n\r\nSách phát hành ngày 5/1/2018 tại Mỹ, ngay lập tức gây chấn động trong thị trường xuất bản; đứng đầu danh sách những cuốn sách bán chạy nhất trên Amazon, sách bán chạy nhất của The New York Times. Chỉ trong một tuần đầu, Fire and Fury đã bán được hơn 1,7 triệu bản; tiếp tục là cuốn sách gây chú ý đặc biệt đến giữa năm 2018!\r\n\r\nVỀ TÁC PHẨM\r\n\r\n“Bão lửa và cuồng nộ” được viết dựa trên quá trình trải nghiệm quan sát và các cuộc phỏng vấn với nhiều nhân vật trong cuộc của một nhà báo, tác giả kỳ cựu về lĩnh vực chính trị Mỹ, với hàng loạt chuyện thâm cung bí sử, đã hé lộ những góc khuất, những âm mưu tác động đến vị tổng thống vốn nổi tiếng về tâm tính bất thường. Tác giả cũng phân tích rất rõ cuộc chiến giữa các phe nhóm quanh Tổng thống, sự kiện liên quan đến chính quyền Trump và nước Nga bằng lối kể khách quan. Và tất nhiên, cuốn sách càng tăng thêm phần hấp dẫn nhờ giọng văn hài hước và những nhận xét sắc bén đến mức đã khiến tổng thống Trump nổi trận lôi đình.\r\n\r\nTrình bày sự khởi đầu và vận hành của một cỗ máy chính trị quyền lực bằng lối viết sinh động, giễu nhại, hài hước, Michael Wolff làm cho bức chân dung tổng thống Mỹ đương nhiệm Donald Trump có sức hấp dẫn như một vở hài kịch đậm đặc chất phi lý. Điều này tạo ra sức cuốn hút lạ lùng như khi ta bước vào thế giới tiểu thuyết của Kafka!\r\n\r\nMô tả tổng thống Trump như một đứa trẻ lớn xác tỏ ra biết tuốt, không thích lắng nghe mà chỉ thích nói, thích được khen ngợi, thích được nịnh nọt, thích được tất cả mọi người yêu mến mình, dễ bị tác động, hay thay đổi, không thích đọc bất cứ thứ gì, chỉ xem ti-vi hoặc ảnh, thích trả thù ai làm trái ý, hay đưa ra những quyết định bốc đồng và nực cười, thích nói linh tinh trên Twitter,…\r\n\r\nDũng cảm, biến hóa, thuyết phục, đó là những gì có thể nhận thấy được ở thứ báo chí sắc bén, đầy tinh thần tự do, kiêu hãnh trước quyền lực mà Wolff thể hiện qua tác phẩm này.\r\n\r\nMột bản hỗn xướng chính trị đồ sộ, dị thường, chưa từng có trong lịch sử nước Mỹ.\r\n\r\nVỀ TÁC GIẢ\r\n\r\nMichael Wolff là cây bút xã luận có nhiều tác phẩm gây tiếng vang; từng nhận nhiều giải thưởng báo chí danh giá tại Mỹ. Những bình luận chính trị của ông thường xuất hiện trên các báo, tạp chí:Vanity Fair, New York, The Hollywood Reporter, GQ, USA Today và The Guardian.\r\n\r\nTác phẩm đã xuất bản: Television Is the New Television: The Unexpected Triumph of Old Media in the Digital Age, The Man Who Owns the News: Inside the Secret World of Rupert Murdoch, Autumn of the Moguls: My Misadventures with the Titans, Poseurs, and Money Guys, Who Mastered and Messed Up Big Media Burn Rate: How I Survived the Gold Rush Years on the Internet, Where We Stand, White Kids.\r\n\r\nNHẬN ĐỊNH\r\n\r\n“Điều làm cho quyển sách này đáng chú ý đến vậy là bức chân dung châm biếm và vui nhộn về một người đàn ông rỗng tuếch, hút vào trong lỗ đen của cái tôi nghèo nàn và tham lam của mình cả thế giới…” —The Guardian\r\n\r\n“Một cuốn biên niên ký cực kỳ thú vị về một chính quyền mà chỉ trong vòng một năm đã bị bao phủ bởi rất nhiều xì-căng-đan và khủng hoảng... Wolff đã cho độc giả cảm giác người trong cuộc mà không cần đến lối viết kịch tính không cần thiết.” —The San Francisco Chronicle\r\n\r\nMã hàng	8936144200049\r\nTên Nhà Cung Cấp	Phanbook\r\nTác giả	Michael Wolff\r\nNXB	NXB Hội Nhà Văn\r\nNăm XB	2018\r\nNgôn Ngữ	Tiếng Việt\r\nTrọng lượng (gr)	420\r\nKích Thước Bao Bì	24 x 16 x 0.5 cm\r\nSố trang	400\r\nHình thức	Bìa Mềm\r\nSản phẩm hiển thị trong	\r\nDONALD TRUMP VÀ NHỮNG CÂU CHUYỆN\r\nTủ Sách Donald Trump\r\nSản phẩm bán chạy nhất	Top 100 sản phẩm Chính Trị bán chạy của tháng\r\nQuyển sách phơi bày nội tình đầy bất thường của Nhà Trắng thời Donald Trump gây chấn động toàn thế giới vừa ra mắt bạn đọc Việt Nam!\r\n\r\nĐây là một cơn siêu bão hướng thẳng vào Nhà Trắng dưới thời Trump.\r\n\r\nBão lửa và cuồng nộ - Nội tình nhà Trắng thời Trump (Tựa gốc: Fire and Fury - Inside the Trump White House) của cây bút chính trị Michael Wolff tiết lộ toàn bộ những bí mật về năm đầu tiên ngồi ghế Tổng thống Mỹ của ông Donald Trump.\r\n\r\nSách phát hành ngày 5/1/2018 tại Mỹ, ngay lập tức gây chấn động trong thị trường xuất bản; đứng đầu danh sách những cuốn sách bán chạy nhất trên Amazon, sách bán chạy nhất của The New York Times. Chỉ trong một tuần đầu, Fire and Fury đã bán được hơn 1,7 triệu bản; tiếp tục là cuốn sách gây chú ý đặc biệt đến giữa năm 2018!                                                                                         ', NULL, '2022-01-19 21:30:53', '2022-01-19 21:31:37'),
+(43, 'Combo Sự Thật Donald Trump', 'assets/image/book/9.jpg', 2000000, 1000000, 1200000, 1, '                                                                                    Đây là cuốn sách New York Times Bestseller ĐẦU TIÊN tiết lộ mối liên hệ giữa Donald Trump với Liên Bang Nga - thứ đã làm tốn không ít giấy mực của giới truyền thông toàn cầu.\r\n\r\n \r\n\r\nTrong \"Sự thật về Donald Trump\", những khía cạnh gay cấn và riêng tư nhất của nhân vật thời đại này sẽ được tiết lộ một cách cẩn trọng, dựa trên những tài liệu vững chắc. Thông qua hàng chục năm nghiên cứu các bài phỏng vấn, báo cáo tài chính, văn kiện tòa án... liên quan đến Donald Trump; tác giả - nhà báo David Cay Johnston cung cấp cho độc giả cái nhìn sâu sắc nhất về người đàn ông khiến cả thế giới phải dõi theo.\r\n\r\n \r\n\r\nĐúng như tiêu đề của nó, tất cả những sự thật về Donald Trump, như lịch sử gia đình phức tạp của ông, các câu chuyện hôn nhân đầy toan tính, sự nghiệp kinh doanh lắm thăng trầm, đế chế Trump hùng mạnh nhưng tai tiếng... đều sẽ được phơi bày trong tác phẩm. Và đương nhiên, chúng ta không thể không bàn tới việc Trump đã lôi kéo rất nhiều cá nhân quyền lực vào quỹ đạo của bản thân như thế nào. Johnston tâp trung phân tích hành vi ứng xử của Trump, để người đọc có thể phần nào hiểu được tính cách của con người kỳ lạ này.\r\n\r\n                                                                    ', NULL, '2022-01-19 21:33:16', '2022-01-19 21:34:05'),
+(44, 'Trump - Đừng Bao Giờ Bỏ Cuộc', 'assets/image/book/10.jpg', 120000, 100000, 50000, 3, '                                                                     Trump - Đừng bao giờ bỏ cuộc, doanh nhân nổi tiếng nhất thế giới này thẳng thắn giãi bày những thách thức to lớn nhất, những giây phút tệ hại nhất, và những cuộc chiến khốc liệt nhất - và cách ông biến những nghịch cảnh đó thành các thành công mới.\r\nCuốn sách còn đưa ra những lời khuyên đắt giá trong kinh về: cách phản pháo khi gặp thất bại và trở ngại; biến những vấn đề lớn thành những cơ hội thậm chí còn lớn hơn; cách biến kẻ thù và địch thủ thành bạn bè và đồng minh; cách tận dụng những thất bại trước mắt làm động lực cho bản thân bạn - và khiến bạn kiên cường hơn.                                                                                   ', NULL, '2022-01-19 21:35:17', '2022-01-19 21:35:42'),
+(45, 'Med - Putin Bộ Đội Quyền Lực', 'assets/image/book/11.jpg', 69000, 2000, 25000, 12, '                                                                          Medvedev & Putin Bộ Đội Quyền Lực\r\n\r\nCục diện chính trị Nga thay đổi thường mang tính đột ngột, bí mật và khó dự đoán. Medvedev và Putin có quyền sắp xếp chính trị mang tính chiến lược đối với các nhà cầm quyền và những quyền lực tối cao của nước Nga. Putin và Medvedev đã làm rất tốt. Điều quan trọng là, chúng ta đang mong chờ sự kết hợp chính trị và cơ cấu chính trị độc đáo, tuyệt vời này sẽ mang lại những gì cho nước Nga.                                                                              ', NULL, '2022-01-19 21:37:19', '2022-01-19 21:47:08');
+INSERT INTO `books` (`id`, `tittle`, `image`, `price`, `discount`, `import_price`, `quantity`, `content`, `publication_date`, `created_date`, `last_updated`) VALUES
+(46, 'Nghệ Thuật Bán Hàng Bậc Cao', 'assets/image/book/12(1).jpg', 150000, 0, 120000, 21, '                                                                             Mục tiêu của một thương vụ là đảm bảo khách hàng nhận được giá trị tương xứng, nhưng nếu bạn mang đến cho khách hàng những giá trị còn cao hơn giá trị mà lẽ ra họ sẽ nhận được thì không những bạn đã có một thương vụ thành công mà bạn còn có thêm một khách hàng sẵn lòng giúp bạn có thêm nhiều khách hàng khác nữa.\r\n\r\nTriết lý chứa đựng trong cuốn sách Nghệ Thuật Bán Hàng Bậc Cao thật đơn giản: “bạn có thể có được những tất cả mọi thứ trong cuộc sống nếu bạn biết giúp người khác đạt được điều họ muốn”, thậm chí còn đúng đắn và cần thiết hơn trong cuộc sống hiện nay so với thời kỳ khi cuốn Nghệ Thuật Bán Hàng Bậc Cao được xuất bản lần đầu                                                                           ', NULL, '2022-01-19 21:38:44', '2022-01-19 21:46:35'),
+(47, 'Mã Vân Giày Vải ', 'assets/image/book/13_3.jpg', 320000, 190000, 200000, 50, '                                                                                                                                        Mã Vân Giày Vải (Tái Bản 2017)\r\n\r\nNgày nay, ALIBABA là một tập đoàn thương mại điện tử toàn cầu với quy mô và giá trị tài sản khổng lồ (tính đến 2015 là 255.434 tỷ nhân dân tệ, tương đương 41 tỷ đô-la Mỹ), là ngọn cờ đầu trong lĩnh vực thương mại điện tử của Trung Quốc, một trong những biểu tượng mới của nền kinh tế thế giới. Đứng sau sự thành công của tập đoàn này không ai khác chính là Mã Vân - nhà sáng lập của Alibaba. Tuy nhiên, thật khó để chúng ta hình dung ra con đường nào để Mã Vân từ một giáo viên tiếng Anh không chút hiểu biết về công nghệ, trở thành vị Chủ tịch của một tập đoàn thương mại điện tử lớn nhất toàn cầu. Mã Vân được biết đến với nhiều tư cách: Nhà sáng lập, diễn giản, nhà từ thiện và tỷ phú. Với mỗi vai trò, Mã Vân đều gặp hái được những thành công rực rỡ, anh không chỉ là tấm gương điển hình mà hơn thế, anh còn là một hiện tượng rất nhiều người muốn tìm hiểu và khám phá.\r\n\r\nKhông đơn thuần là một cuốn sách viết về tiểu sử - cuộc đời doanh nhân, Mã vân giày vải còn muốn gửi gắm tinh thần lập nghiệp, dấn thân vì lý tưởng và mơ ước đến tất cả những ai đang ấp ủ những dự định và hoài bão lớn lao.                                                                                            ', NULL, '2022-01-19 21:43:06', '2022-01-19 21:46:01'),
+(48, ' Liên - Người Được Chọn', 'assets/image/book/14(1).jpg', 165000, 45000, 120000, 34, '                                                                                 Đỗ Thị Kim Liên (thường được gọi là Madam Liên, Shark Liên) là một nữ doanh nhân và là Lãnh sự Danh dự nước Cộng hòa Nam Phi tại Việt Nam. Hiện bà đảm nhiệm vị trí Chủ tịch Hội đồng Quản trị Tập đoàn AquaOne, Chủ tịch Hội đồng Quản trị Công ty Cổ phần nước mặt Sông Đuống, Chủ tịch Hội đồng Quản trị Công ty Cổ phần Nước Xuân Mai - Hòa Bình, Chủ tịch Quỹ Môi trường Xanh Việt Nam (Green Vietnam Fund), kiêm Hiệu trưởng trường Đào tạo Quản lý Doanh nghiệp (CBAM), nguyên Chủ tịch Hội đồng Quản trị kiêm Tổng giám đốc Công ty Cổ phần Bảo hiểm AAA.\r\n\r\nCuốn sách “Liên Người Được Chọn” được nhà văn Y Ban và Cộng sự chấp bút. Nhà văn Y Ban, với cảm hứng đặc biệt cho nhân vật đặc biệt, đã hóa thân một cách xuất sắc trong tác phẩm. Những ngày nghiên cứu tài liệu, đi thực tế, gặp gỡ các nhân vật có liên quan và nói chuyện cùng nhân vật đã giúp nhà văn Y Ban nhận ra, nhân vật Shark Liên đã vận dụng thành công 3 định luật. Đó là: Định luật hoa sen, Định luật cây tre và Định luật ve sầu.\r\n\r\nĐịnh luật hoa sen: Đại đa số những người thành công là do nghị lực, mấu chốt là nghị lực. Người ta cho rằng trong cuộc đời mỗi người có khoảng 7 cơ hội để thay đổi cuộc đời. Những cơ hội này đến với những người kiên trì dốc sức làm việc từng ngày một thì mới có thể bắt gặp.                                                                       ', NULL, '2022-01-19 21:44:51', '2022-01-19 21:45:28');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `books_authors`
+-- Cấu trúc bảng cho bảng `books_authors`
 --
 
 CREATE TABLE `books_authors` (
@@ -144,7 +167,7 @@ CREATE TABLE `books_authors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `books_authors`
+-- Đang đổ dữ liệu cho bảng `books_authors`
 --
 
 INSERT INTO `books_authors` (`author_id`, `book_id`) VALUES
@@ -157,6 +180,7 @@ INSERT INTO `books_authors` (`author_id`, `book_id`) VALUES
 (3, 3),
 (3, 14),
 (4, 8),
+(4, 45),
 (5, 9),
 (5, 13),
 (6, 10),
@@ -177,15 +201,29 @@ INSERT INTO `books_authors` (`author_id`, `book_id`) VALUES
 (17, 27),
 (17, 28),
 (17, 29),
+(17, 42),
+(17, 43),
 (18, 30),
 (18, 31),
 (18, 32),
-(19, 33);
+(19, 33),
+(20, 34),
+(21, 35),
+(22, 35),
+(23, 36),
+(23, 47),
+(24, 37),
+(25, 39),
+(25, 44),
+(26, 40),
+(26, 48),
+(27, 41),
+(27, 46);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `books_genres`
+-- Cấu trúc bảng cho bảng `books_genres`
 --
 
 CREATE TABLE `books_genres` (
@@ -194,7 +232,7 @@ CREATE TABLE `books_genres` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `books_genres`
+-- Đang đổ dữ liệu cho bảng `books_genres`
 --
 
 INSERT INTO `books_genres` (`book_id`, `genres_id`) VALUES
@@ -245,12 +283,26 @@ INSERT INTO `books_genres` (`book_id`, `genres_id`) VALUES
 (32, 1),
 (32, 2),
 (33, 2),
-(33, 9);
+(33, 9),
+(34, 8),
+(35, 8),
+(36, 8),
+(37, 8),
+(39, 8),
+(40, 8),
+(41, 3),
+(42, 8),
+(43, 8),
+(44, 8),
+(45, 8),
+(46, 8),
+(47, 8),
+(48, 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `books_library`
+-- Cấu trúc bảng cho bảng `books_library`
 --
 
 CREATE TABLE `books_library` (
@@ -262,7 +314,7 @@ CREATE TABLE `books_library` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `books_library`
+-- Đang đổ dữ liệu cho bảng `books_library`
 --
 
 INSERT INTO `books_library` (`id`, `book_id`, `path`, `created_time`, `last_updated`) VALUES
@@ -323,12 +375,47 @@ INSERT INTO `books_library` (`id`, `book_id`, `path`, `created_time`, `last_upda
 (58, 32, 'assets/image/book/2021_06_22_10_22_06_3-390x510.jpg', '2022-01-19', '2022-01-19'),
 (59, 33, 'assets/image/book/600-khi-chu-tich-khong-yeu-nu-chinh---ban-dac-biet-1_1.jpg', '2022-01-19', '2022-01-19'),
 (60, 33, 'assets/image/book/bia_khi-chu-tich-khong-yeu-nu-chinh---ban-dac-biet-1_1(1).jpg', '2022-01-19', '2022-01-19'),
-(61, 33, 'assets/image/book/bia_khi-chu-tich-khong-yeu-nu-chinh---ban-dac-biet-2_1.jpg', '2022-01-19', '2022-01-19');
+(61, 33, 'assets/image/book/bia_khi-chu-tich-khong-yeu-nu-chinh---ban-dac-biet-2_1.jpg', '2022-01-19', '2022-01-19'),
+(62, 34, 'assets/image/book/1.jpg', '2022-01-19', '2022-01-19'),
+(63, 34, 'assets/image/book/8936071674722(1).jpg', '2022-01-19', '2022-01-19'),
+(64, 34, 'assets/image/book/quan_vuong_2_2018_07_25_08_39_20.jpg', '2022-01-19', '2022-01-19'),
+(65, 35, 'assets/image/book/2_1.jpg', '2022-01-19', '2022-01-19'),
+(66, 35, 'assets/image/book/2_2.jpg', '2022-01-19', '2022-01-19'),
+(67, 35, 'assets/image/book/2_3.jpg', '2022-01-19', '2022-01-19'),
+(68, 35, 'assets/image/book/2.jpg', '2022-01-19', '2022-01-19'),
+(69, 36, 'assets/image/book/3_1.jpg', '2022-01-19', '2022-01-19'),
+(70, 36, 'assets/image/book/3_2.jpg', '2022-01-19', '2022-01-19'),
+(71, 36, 'assets/image/book/3_3.jpg', '2022-01-19', '2022-01-19'),
+(72, 36, 'assets/image/book/3_4.jpg', '2022-01-19', '2022-01-19'),
+(73, 37, 'assets/image/book/4(1).jpg', '2022-01-19', '2022-01-19'),
+(77, 39, 'assets/image/book/5_1.jpg', '2022-01-19', '2022-01-19'),
+(78, 39, 'assets/image/book/5_2.jpg', '2022-01-19', '2022-01-19'),
+(79, 39, 'assets/image/book/5(1).jpg', '2022-01-19', '2022-01-19'),
+(80, 40, 'assets/image/book/6_1.jpg', '2022-01-19', '2022-01-19'),
+(81, 40, 'assets/image/book/6_2.jpg', '2022-01-19', '2022-01-19'),
+(82, 40, 'assets/image/book/6.jpg', '2022-01-19', '2022-01-19'),
+(83, 41, 'assets/image/book/7_1.jpg', '2022-01-19', '2022-01-19'),
+(84, 41, 'assets/image/book/7_2.jpg', '2022-01-19', '2022-01-19'),
+(85, 41, 'assets/image/book/7(1).jpg', '2022-01-19', '2022-01-19'),
+(86, 42, 'assets/image/book/8_1.jpg', '2022-01-19', '2022-01-19'),
+(87, 42, 'assets/image/book/8_2.jpg', '2022-01-19', '2022-01-19'),
+(88, 42, 'assets/image/book/8_3.jpg', '2022-01-19', '2022-01-19'),
+(89, 42, 'assets/image/book/8(1).jpg', '2022-01-19', '2022-01-19'),
+(90, 43, 'assets/image/book/9(1).jpg', '2022-01-19', '2022-01-19'),
+(91, 44, 'assets/image/book/10_1.jpg', '2022-01-19', '2022-01-19'),
+(92, 44, 'assets/image/book/10(1).jpg', '2022-01-19', '2022-01-19'),
+(93, 45, 'assets/image/book/11(1).jpg', '2022-01-19', '2022-01-19'),
+(94, 46, 'assets/image/book/12_1.jpg', '2022-01-19', '2022-01-19'),
+(95, 46, 'assets/image/book/12(1).jpg', '2022-01-19', '2022-01-19'),
+(96, 47, 'assets/image/book/13_1.jpg', '2022-01-19', '2022-01-19'),
+(97, 47, 'assets/image/book/13_3.jpg', '2022-01-19', '2022-01-19'),
+(98, 47, 'assets/image/book/13.jpg', '2022-01-19', '2022-01-19'),
+(99, 48, 'assets/image/book/14(1).jpg', '2022-01-19', '2022-01-19');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `books_publishers`
+-- Cấu trúc bảng cho bảng `books_publishers`
 --
 
 CREATE TABLE `books_publishers` (
@@ -338,7 +425,7 @@ CREATE TABLE `books_publishers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `books_publishers`
+-- Đang đổ dữ liệu cho bảng `books_publishers`
 --
 
 INSERT INTO `books_publishers` (`book_id`, `publisher_id`, `started_date`) VALUES
@@ -374,12 +461,26 @@ INSERT INTO `books_publishers` (`book_id`, `publisher_id`, `started_date`) VALUE
 (30, 1, '2021-06-28'),
 (31, 6, '2019-10-21'),
 (32, 6, '2018-02-19'),
-(33, 1, '2021-11-03');
+(33, 1, '2021-11-03'),
+(34, 11, '2020-01-29'),
+(35, 1, '2020-11-23'),
+(36, 4, '2019-06-26'),
+(37, 1, '2018-11-28'),
+(39, 13, '2016-06-07'),
+(40, 9, '2017-07-04'),
+(41, 1, '2018-08-28'),
+(42, 10, '2018-04-22'),
+(43, 13, '2020-09-19'),
+(44, 13, '2022-02-13'),
+(45, 4, '2020-04-24'),
+(46, 13, '2022-04-21'),
+(47, 11, '2020-05-19'),
+(48, 12, '2021-12-29');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customers`
+-- Cấu trúc bảng cho bảng `customers`
 --
 
 CREATE TABLE `customers` (
@@ -400,7 +501,7 @@ CREATE TABLE `customers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `customers`
+-- Đang đổ dữ liệu cho bảng `customers`
 --
 
 INSERT INTO `customers` (`id`, `username`, `password`, `first_name`, `last_name`, `avatar`, `birthday`, `phone`, `address`, `email`, `status`, `money_spent`, `last_updated`, `created_date`) VALUES
@@ -426,12 +527,14 @@ INSERT INTO `customers` (`id`, `username`, `password`, `first_name`, `last_name`
 (20, 'lehavinh39', '25f9e794323b453885f5181f1b624d0b', 'Lê Hà ', 'Vinh', NULL, NULL, NULL, NULL, NULL, 1, 0, '2022-01-19 17:18:57', '2021-03-25 17:18:57'),
 (21, 'yen2104', '25f9e794323b453885f5181f1b624d0b', 'Lê Thị Phi ', 'Yến', NULL, NULL, NULL, NULL, NULL, 1, 0, '2022-01-19 17:19:32', '2021-02-17 17:19:32'),
 (22, 'thanhtuan246', '25f9e794323b453885f5181f1b624d0b', 'Ngô Thanh', 'Tuấn', NULL, NULL, NULL, NULL, NULL, 1, 0, '2022-01-19 17:19:58', '2021-12-15 17:19:58'),
-(23, 'ntchuc207', '25f9e794323b453885f5181f1b624d0b', 'Nguyễn Thị', 'Chúc', NULL, NULL, NULL, NULL, NULL, 1, 0, '2022-01-19 17:20:42', '2021-01-15 17:20:42');
+(23, 'ntchuc207', '25f9e794323b453885f5181f1b624d0b', 'Nguyễn Thị', 'Chúc', NULL, NULL, NULL, NULL, NULL, 1, 0, '2022-01-19 17:20:42', '2021-01-15 17:20:42'),
+(24, 'namduong111', '25f9e794323b453885f5181f1b624d0b', 'Tran Nam ', 'Duong', NULL, NULL, NULL, NULL, NULL, 1, 0, '2022-01-19 20:37:55', '2022-01-19 20:37:55'),
+(25, 'nduong1', '25f9e794323b453885f5181f1b624d0b', 'Nam', 'Duong', NULL, NULL, NULL, NULL, NULL, 1, 2488000, '2022-01-19 20:38:31', '2022-01-19 20:38:31');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `favorites`
+-- Cấu trúc bảng cho bảng `favorites`
 --
 
 CREATE TABLE `favorites` (
@@ -440,7 +543,7 @@ CREATE TABLE `favorites` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `favorites`
+-- Đang đổ dữ liệu cho bảng `favorites`
 --
 
 INSERT INTO `favorites` (`book_id`, `customer_id`) VALUES
@@ -493,12 +596,14 @@ INSERT INTO `favorites` (`book_id`, `customer_id`) VALUES
 (31, 16),
 (32, 14),
 (32, 18),
-(33, 16);
+(33, 16),
+(39, 25),
+(43, 25);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `genres`
+-- Cấu trúc bảng cho bảng `genres`
 --
 
 CREATE TABLE `genres` (
@@ -508,7 +613,7 @@ CREATE TABLE `genres` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `genres`
+-- Đang đổ dữ liệu cho bảng `genres`
 --
 
 INSERT INTO `genres` (`id`, `name`, `last_updated`) VALUES
@@ -527,7 +632,7 @@ INSERT INTO `genres` (`id`, `name`, `last_updated`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders`
+-- Cấu trúc bảng cho bảng `orders`
 --
 
 CREATE TABLE `orders` (
@@ -545,7 +650,7 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `orders`
+-- Đang đổ dữ liệu cho bảng `orders`
 --
 
 INSERT INTO `orders` (`id`, `customer_id`, `fullname`, `phone`, `address`, `note`, `total`, `created_date`, `required_date`, `status`, `last_updated`) VALUES
@@ -585,12 +690,15 @@ INSERT INTO `orders` (`id`, `customer_id`, `fullname`, `phone`, `address`, `note
 (34, 18, 'Lê Hoài  Thương', '0321654897', '227 Nguyen Van Cu, Q5, TpHCM', '', 407000, '2022-01-19 19:21:10', NULL, 1, '2022-01-19 19:21:10'),
 (35, 18, 'Lê Hoài  Thương', '0321654897', '227 Nguyen Van Cu, Q5, TpHCM', '', 160000, '2022-01-19 19:21:50', NULL, 1, '2022-01-19 19:21:50'),
 (36, 19, 'Nguyễn Văn  Tâm', '0312354989', '32/3 Tran Binh Trong, Q5, TpHCM', '', 177000, '2022-01-19 19:23:17', NULL, 1, '2022-01-19 19:23:17'),
-(37, 19, 'Nguyễn Văn  Tâm', '01321616516', '32/3 Tran Binh Trong, Q5, TpHCM', '', 390000, '2022-01-19 19:23:55', NULL, 1, '2022-01-19 19:23:55');
+(37, 19, 'Nguyễn Văn  Tâm', '01321616516', '32/3 Tran Binh Trong, Q5, TpHCM', '', 390000, '2022-01-19 19:23:55', NULL, 1, '2022-01-19 19:23:55'),
+(38, 25, 'Tran Nam Duong', '+10962936064', 'số 10 ngõ 61/40', 'thêm sốt cà chua', 88000, '2022-01-19 20:39:36', NULL, 1, '2022-01-19 20:39:36'),
+(39, 25, 'James Bond', '2356898991', 'USA', '', 1800000, '2022-01-19 21:51:55', NULL, 1, '2022-01-19 21:51:55'),
+(40, 25, 'James Bond', '2356898991', 'USA', '', 600000, '2022-01-19 21:52:42', NULL, 1, '2022-01-19 21:52:42');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders_details`
+-- Cấu trúc bảng cho bảng `orders_details`
 --
 
 CREATE TABLE `orders_details` (
@@ -604,7 +712,7 @@ CREATE TABLE `orders_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `orders_details`
+-- Đang đổ dữ liệu cho bảng `orders_details`
 --
 
 INSERT INTO `orders_details` (`id`, `order_id`, `book_id`, `quantity`, `price`, `discount`, `import_price`) VALUES
@@ -667,12 +775,16 @@ INSERT INTO `orders_details` (`id`, `order_id`, `book_id`, `quantity`, `price`, 
 (57, 36, 4, 1, 119000, 20000, 90000),
 (58, 36, 9, 1, 108000, 30000, 70000),
 (59, 37, 22, 1, 360000, 88000, 220000),
-(60, 37, 26, 1, 138000, 20000, 75000);
+(60, 37, 26, 1, 138000, 20000, 75000),
+(61, 38, 2, 1, 100000, 12000, 80000),
+(62, 39, 39, 1, 1000000, 200000, 700000),
+(63, 39, 43, 1, 2000000, 1000000, 1200000),
+(64, 40, 42, 1, 600000, 0, 300000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `publishers`
+-- Cấu trúc bảng cho bảng `publishers`
 --
 
 CREATE TABLE `publishers` (
@@ -682,7 +794,7 @@ CREATE TABLE `publishers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `publishers`
+-- Đang đổ dữ liệu cho bảng `publishers`
 --
 
 INSERT INTO `publishers` (`id`, `name`, `last_updated`) VALUES
@@ -695,12 +807,15 @@ INSERT INTO `publishers` (`id`, `name`, `last_updated`) VALUES
 (7, 'NXB Bách Khoa', '2022-01-19 04:15:38'),
 (8, 'NXB Kim Đồng', '2022-01-19 04:15:38'),
 (9, 'NXB Thanh Niên', '2022-01-19 04:15:38'),
-(10, 'NXB Giáo Dục', '2022-01-19 04:15:38');
+(10, 'NXB Giáo Dục', '2022-01-19 04:15:38'),
+(11, 'NXB Dân Trí', '2022-01-19 14:58:18'),
+(12, 'NXB Phụ Nữ Việt Nam', '2022-01-19 15:16:23'),
+(13, 'NXB Thế Giới', '2022-01-19 15:21:43');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reviews`
+-- Cấu trúc bảng cho bảng `reviews`
 --
 
 CREATE TABLE `reviews` (
@@ -715,7 +830,7 @@ CREATE TABLE `reviews` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `reviews`
+-- Đang đổ dữ liệu cho bảng `reviews`
 --
 
 INSERT INTO `reviews` (`id`, `book_id`, `customer_id`, `rating`, `tittle`, `content`, `created_date`, `last_updated`) VALUES
@@ -732,50 +847,50 @@ INSERT INTO `reviews` (`id`, `book_id`, `customer_id`, `rating`, `tittle`, `cont
 (11, 2, 2, NULL, '', 'Sách rất hay, sẽ ủng hộ shop nhiều', '2022-01-19 15:20:09', '2022-01-19 15:20:09');
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `authors`
+-- Chỉ mục cho bảng `authors`
 --
 ALTER TABLE `authors`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `blogs`
+-- Chỉ mục cho bảng `blogs`
 --
 ALTER TABLE `blogs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `books`
+-- Chỉ mục cho bảng `books`
 --
 ALTER TABLE `books`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `books_authors`
+-- Chỉ mục cho bảng `books_authors`
 --
 ALTER TABLE `books_authors`
   ADD UNIQUE KEY `author_id` (`author_id`,`book_id`),
   ADD KEY `books_authors_ibfk_2` (`book_id`);
 
 --
--- Indexes for table `books_genres`
+-- Chỉ mục cho bảng `books_genres`
 --
 ALTER TABLE `books_genres`
   ADD UNIQUE KEY `book_id` (`book_id`,`genres_id`),
   ADD KEY `books_genres_ibfk_2` (`genres_id`);
 
 --
--- Indexes for table `books_library`
+-- Chỉ mục cho bảng `books_library`
 --
 ALTER TABLE `books_library`
   ADD PRIMARY KEY (`id`),
   ADD KEY `product_id` (`book_id`);
 
 --
--- Indexes for table `books_publishers`
+-- Chỉ mục cho bảng `books_publishers`
 --
 ALTER TABLE `books_publishers`
   ADD UNIQUE KEY `book_id_2` (`book_id`,`publisher_id`),
@@ -783,34 +898,34 @@ ALTER TABLE `books_publishers`
   ADD KEY `publisher_id` (`publisher_id`);
 
 --
--- Indexes for table `customers`
+-- Chỉ mục cho bảng `customers`
 --
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Indexes for table `favorites`
+-- Chỉ mục cho bảng `favorites`
 --
 ALTER TABLE `favorites`
   ADD UNIQUE KEY `book_id` (`book_id`,`customer_id`),
   ADD KEY `favorites_ibfk_2` (`customer_id`);
 
 --
--- Indexes for table `genres`
+-- Chỉ mục cho bảng `genres`
 --
 ALTER TABLE `genres`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `orders`
+-- Chỉ mục cho bảng `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `customer_id` (`customer_id`);
 
 --
--- Indexes for table `orders_details`
+-- Chỉ mục cho bảng `orders_details`
 --
 ALTER TABLE `orders_details`
   ADD PRIMARY KEY (`id`),
@@ -818,13 +933,13 @@ ALTER TABLE `orders_details`
   ADD KEY `product_id` (`book_id`);
 
 --
--- Indexes for table `publishers`
+-- Chỉ mục cho bảng `publishers`
 --
 ALTER TABLE `publishers`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `reviews`
+-- Chỉ mục cho bảng `reviews`
 --
 ALTER TABLE `reviews`
   ADD PRIMARY KEY (`id`),
@@ -832,122 +947,122 @@ ALTER TABLE `reviews`
   ADD KEY `customer_id` (`customer_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `authors`
+-- AUTO_INCREMENT cho bảng `authors`
 --
 ALTER TABLE `authors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT for table `blogs`
+-- AUTO_INCREMENT cho bảng `blogs`
 --
 ALTER TABLE `blogs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `books`
+-- AUTO_INCREMENT cho bảng `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
--- AUTO_INCREMENT for table `books_library`
+-- AUTO_INCREMENT cho bảng `books_library`
 --
 ALTER TABLE `books_library`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
--- AUTO_INCREMENT for table `customers`
+-- AUTO_INCREMENT cho bảng `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT for table `genres`
+-- AUTO_INCREMENT cho bảng `genres`
 --
 ALTER TABLE `genres`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `orders`
+-- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
--- AUTO_INCREMENT for table `orders_details`
+-- AUTO_INCREMENT cho bảng `orders_details`
 --
 ALTER TABLE `orders_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
--- AUTO_INCREMENT for table `publishers`
+-- AUTO_INCREMENT cho bảng `publishers`
 --
 ALTER TABLE `publishers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `reviews`
+-- AUTO_INCREMENT cho bảng `reviews`
 --
 ALTER TABLE `reviews`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `books_authors`
+-- Các ràng buộc cho bảng `books_authors`
 --
 ALTER TABLE `books_authors`
   ADD CONSTRAINT `books_authors_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`),
   ADD CONSTRAINT `books_authors_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `books_genres`
+-- Các ràng buộc cho bảng `books_genres`
 --
 ALTER TABLE `books_genres`
   ADD CONSTRAINT `books_genres_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `books_genres_ibfk_2` FOREIGN KEY (`genres_id`) REFERENCES `genres` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `books_library`
+-- Các ràng buộc cho bảng `books_library`
 --
 ALTER TABLE `books_library`
   ADD CONSTRAINT `books_library_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `books_publishers`
+-- Các ràng buộc cho bảng `books_publishers`
 --
 ALTER TABLE `books_publishers`
   ADD CONSTRAINT `books_publishers_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `books_publishers_ibfk_2` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `favorites`
+-- Các ràng buộc cho bảng `favorites`
 --
 ALTER TABLE `favorites`
   ADD CONSTRAINT `favorites_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `favorites_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `orders`
+-- Các ràng buộc cho bảng `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `orders_details`
+-- Các ràng buộc cho bảng `orders_details`
 --
 ALTER TABLE `orders_details`
   ADD CONSTRAINT `orders_details_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `orders_details_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `reviews`
+-- Các ràng buộc cho bảng `reviews`
 --
 ALTER TABLE `reviews`
   ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
