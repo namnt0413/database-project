@@ -141,21 +141,6 @@
     $quantity4s=array($price1s,$price2s,$price3s,$price4s,$price5s,$price6s,$price7s,$price8s,$price9s); 
     $quantity4s = json_encode($quantity4s);
 
-
-
-
-    $query = "SELECT * FROM account";
-    $result = mysqli_query($con, $query);
-    $chart_data = '';
-    while($row = mysqli_fetch_array($result))
-    {
-      $chart_data .= "{ year:'".$row["year"]."', profit:".$row["profit"].", purchase:".$row["purchase"].", sale:".$row["sale"]."}, ";
-    }
-    $chart_data = substr($chart_data, 0, -2);
-
-
-
-
      ?>
             <!-- MAIN CONTENT-->
             <div class="main-content">
