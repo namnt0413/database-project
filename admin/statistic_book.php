@@ -19,7 +19,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 
     <?php 
-        // include 'admin_navbar.php';
+        include 'admin_navbar.php';
          
 
 //  THONG KE THEO THE LOAI SACH
@@ -165,7 +165,7 @@
                             <div class="col-lg-6">
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner">
-                                        <h3 class="title-2 m-b-40">Tỉ lệ số lượng sách bán được theo Thể loại (%)</h3>
+                                        <h3 class="title-2" style="margin-bottom:10px">Tỉ lệ số lượng sách bán được theo Thể loại (%)</h3>
                                         <select name="sort" id="sort" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" style="margin-bottom: 20px">
                                             <option selected value="?&name=genres_chart&year=2022">Năm 2022</option>
                                             <option <?php if(isset($_GET['name']) && $_GET['name'] == "genres_chart" && $_GET['year'] == "2021") { ?> selected <?php } ?> 
@@ -379,7 +379,7 @@
       try {
     var ctx = document.getElementById("singelBarChart");
     if (ctx) {
-      ctx.height = 150;
+      ctx.height = 230;
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -468,6 +468,7 @@
    console.log(total);
   var donutChart = Morris.Donut({
     element: 'genres_chart',
+    resize: true,
     data: [<?php echo $genres ?>],
      formatter: function (value, data) { 
      return Math.round(value/total*100) + '%'; 
@@ -488,12 +489,12 @@
       ]
   });
     donutChart.options.data.forEach(function(label, i) {
-      var legendItem = $('<span></span>').text( label['label'] + " ( " +label['value'] + " )" ).prepend('<br><span>&nbsp;</span>');
+      var legendItem = $('<span></span>').text( label['label'] + " ( " +label['value'] + " )" ).prepend('<span>&nbsp;</span>');
       legendItem.find('span')
         .css('backgroundColor', donutChart.options.colors[i])
         .css('width', '20px')
         .css('display', 'inline-block')
-        .css('margin', '5px');
+        .css('margin', '2px');
       $('#legend').append(legendItem)
     });
 

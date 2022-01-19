@@ -15,7 +15,7 @@
         <div class="page-container">
 
     <?php 
-        // include 'admin_navbar.php';
+        include 'admin_navbar.php';
          
     // THONG KE SO KHACH HANG MOI
     $where5 = ""; $new_users=""; $spend_users="";  
