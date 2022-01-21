@@ -224,10 +224,7 @@
                         ?>
                     </div>
                     <!-- text center -->
-                    
                     </hr><br></br>
-                   
-                    
                     <?php
                         $current_id = $currentUser['id'];
                         $totalmoney = mysqli_query($con, "SELECT SUM(total) AS sum FROM orders 
@@ -246,7 +243,6 @@
                         $favorbook = mysqli_query($con, "SELECT COUNT(book_id) AS numbook FROM favorites WHERE customer_id = $current_id;");
                         $favorbook = mysqli_fetch_assoc($favorbook);
                     ?>
-                    
                     <ul class="list-group">
                         <li class="list-group-item text-muted">Hoạt động<i class="fa fa-dashboard fa-1x"></i></li> 
                         <li class="list-group-item text-right">
@@ -259,8 +255,6 @@
                         <span class="pull-left"><strong>Số sách đã yêu thích</strong></span>
                         <?=$favorbook['numbook']?></li>
                     </ul>
-
-                    
                 </div>
                 <!--col-3-sm-3-->
             

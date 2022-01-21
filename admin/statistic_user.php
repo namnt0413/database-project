@@ -78,23 +78,21 @@
                                 <h3 class="title-2 m-b-40">Top 10 khách hàng tương tác nhiều nhất </h3>
                                 <select name="sort" id="sort" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" style="margin-bottom: 20px">
                                                 <option selected value="?&name=top_comment&month=1&year=2022">Xếp theo tháng</option>
-                                                
                                                 <?php
                                                   $i = 1;
                                                   for ($i = 1; $i<=12; $i++){
                                                     ?>
                                                     <option <?php if(isset($_GET['name']) && $_GET['name'] == "top_comment" && $_GET['month'] == "$i"&& $_GET['year'] == "2021") { ?> selected <?php } ?> 
-                                                      value="?&name=top_comment&month=<?=$i?>&year=2021" >Tháng <?=$i?> - 2021</option>
+                                                      value="?&name=top_comment&month=<?=$i?>&year=2021">Tháng <?=$i?> - 2021</option>
                                                     <?php
                                                   }
                                                   for ($i = 1; $i<=12; $i++){
                                                     ?>
                                                     <option <?php if(isset($_GET['name']) && $_GET['name'] == "top_comment" && $_GET['month'] == "$i"&& $_GET['year'] == "2022") { ?> selected <?php } ?> 
-                                                      value="?&name=top_comment&month=<?=$i?>&year=2022" >Tháng <?=$i?> - 2022</option>
+                                                      value="?&name=top_comment&month=<?=$i?>&year=2022">Tháng <?=$i?> - 2022</option>
                                                     <?php
                                                   }
                                                 ?>
-                                                
                                 </select>                              
                                   <?php
                                     $where = "";
@@ -192,8 +190,6 @@
                                     WHERE (".$where.") GROUP BY(customer_id) 
                                     ORDER BY socmt DESC
                                     LIMIT 10;");
-                                    
-                                    
                                   ?>
                                   <table class="table table-borderless table-striped table-earning">
                                     <thead>
@@ -229,8 +225,6 @@
                             </div>
                           </div>                          
                         </div>
-
-
                         </div>
 
                         <div class="row">
@@ -277,13 +271,6 @@
                               </div>
                             </div>
                           </div>
-                          
-                        
-
-                                               
-
-                        
-                     
                     </div>   <!-- end container -->
                 </div>
             </div>

@@ -143,15 +143,13 @@
                     $totalmoney = mysqli_query($con, "SELECT SUM(total) AS sum FROM orders 
                     WHERE customer_id = $current_id");
                     $totalmoney = mysqli_fetch_assoc($totalmoney);
-                ?>
-                <?php
+
                     $current_id = $currentUser['id'];
                     $boughtbook = mysqli_query($con, "SELECT SUM(quantity) AS bought FROM orders INNER JOIN orders_details 
                     ON orders.id = orders_details.order_id 
                     WHERE customer_id = $current_id;");
                     $boughtbook = mysqli_fetch_assoc($boughtbook);
-                ?>
-                <?php
+        
                     $current_id = $currentUser['id'];
                     $favorbook = mysqli_query($con, "SELECT COUNT(book_id) AS numbook FROM favorites WHERE customer_id = $current_id;");
                     $favorbook = mysqli_fetch_assoc($favorbook);
@@ -187,6 +185,15 @@
                         <?php
                             $error = false;
                             if (isset($_GET['action']) && $_GET['action'] == 'edit'){
+                                // check mật khẩu cũ 
+                                if (isset($_POST['old_password']) && $_POST['old_password'] != $currentUser['password']){
+                                    <div class="content-container">
+                                            <div id="edit-notify" class="box-content">
+                                                <h1>Mật khẩu không thể để trống</h1>
+                                                <a class="link-button" href="uif_passedit.php">Quay lại</a>
+                                            </div>
+                                        </div>
+                                }
                                 if (isset($_POST['password']) && isset($_POST['password2'])){   //nếu tồn tại pass
                                     if (!empty($_POST['password']) && !empty($_POST['password2'])){         //nếu 2 pass đều không rỗng 
                                         if ( ($_POST['password'] == $_POST['password2'])){      //nếu mật khẩu khớp
@@ -234,11 +241,21 @@
 
                                 <div class="form-group">
                                     <div class="col-xs-9">
+                                        <label for="old_password">
+                                            <h4>Nhập mật khẩu cũ của bạn</h4>
+                                        </label>
+                                        <input type="password" class="form-control" name="old_password" id="old_password"
+                                            placeholder="Nhập mật khẩu" title="enter your password.">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-xs-9">
                                         <label for="password">
                                             <h4>Nhập mật khẩu</h4>
                                         </label>
                                         <input type="password" class="form-control" name="password" id="password"
-                                            placeholder="Nhập mật khẩu" title="enter your password.">
+                                            placeholder="Nhập mật khẩu mới" title="enter your password.">
                                     </div>
                                 </div>
 
@@ -248,7 +265,7 @@
                                             <h4>Nhập lại mật khẩu</h4>
                                         </label>
                                         <input type="password" class="form-control" name="password2" id="password2"
-                                            placeholder="Nhập lại mật khẩu" title="enter your password2.">
+                                            placeholder="Nhập lại mật khẩu mới" title="enter your password2.">
                                     </div>
                                 </div>
 
