@@ -4,7 +4,7 @@
 
 - Trần Nam Dương 20194535
 - Nguyễn Hà Sơn 20194660
-- Trần Tuấn Nam 20194629
+- Nguyễn Tuấn Nam 20194629
 - Vũ Tài Công 20194496
 
 Các thao tác làm việc cơ bản :
